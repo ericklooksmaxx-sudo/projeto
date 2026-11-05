@@ -1,0 +1,51 @@
+#!/bin/bash
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+ARCH="$(uname -m)"
+
+CANDIDATE=""
+if [ "$ARCH" = "x86_64" ] || [ "$ARCH" = "amd64" ]; then
+    CANDIDATE="$DIR/tools/lune-x86_64"
+elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
+    CANDIDATE="$DIR/tools/lune-aarch64"
+fi
+
+# Try candidate first
+if [ -n "$CANDIDATE" ] && [ -f "$CANDIDATE" ]; then
+    chmod +x "$CANDIDATE" 2>/dev/null
+    if "$CANDIDATE" --version >/dev/null 2>&1; then
+        exec "$CANDIDATE" "$@"
+    fi
+    # If failed to execute directly (e.g. noexec mount on Android /sdcard)
+    TMP_BIN="/tmp/dumper_bin/$(basename "$CANDIDATE")"
+    mkdir -p "/tmp/dumper_bin" 2>/dev/null
+    if [ ! -f "$TMP_BIN" ] || [ "$CANDIDATE" -nt "$TMP_BIN" ]; then
+        cp "$CANDIDATE" "$TMP_BIN" 2>/dev/null
+        chmod +x "$TMP_BIN" 2>/dev/null
+    fi
+    if [ -x "$TMP_BIN" ] && "$TMP_BIN" --version >/dev/null 2>&1; then
+        exec "$TMP_BIN" "$@"
+    fi
+fi
+
+# Try system-installed lune. This launcher usually sits first on PATH (see up.sh), so its own folder
+# is left out of the search; otherwise it would find itself and call itself forever.
+SELF_DIR="$(cd "$(dirname "$0")" && pwd)"
+SYS_PATH="$(printf '%s' "$PATH" | tr ':' '\n' | grep -vxF -e "$SELF_DIR" -e "$DIR" | paste -sd: -)"
+if PATH="$SYS_PATH" command -v lune >/dev/null 2>&1; then
+    PATH="$SYS_PATH" exec lune "$@"
+fi
+
+if [ -x "/data/data/com.termux/files/usr/bin/lune" ]; then
+    exec "/data/data/com.termux/files/usr/bin/lune" "$@"
+fi
+
+if [ -x "/usr/local/bin/lune" ]; then
+    exec "/usr/local/bin/lune" "$@"
+fi
+
+if [ -x "/usr/bin/lune" ]; then
+    exec "/usr/bin/lune" "$@"
+fi
+
+echo "Error: No executable 'lune' found for architecture $ARCH." >&2
+exit 1

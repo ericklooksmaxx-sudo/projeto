@@ -1,0 +1,18 @@
+# Secrets and local configuration (never commit these)
+.env
+.env.*
+!.env.example
+
+# Runtime data: credits, premium keys, giveaways, warnings, anti-raid settings (real user data)
+data/
+
+# Dumper output (originals, results and error reports of every `.l`)
+dumps/
+
+# Process files and logs written by up.sh
+*.pid
+*.log
+
+# Python
+__pycache__/
+*.pyc
