@@ -1,0 +1,13 @@
+name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        run: shellcheck -x install.sh scripts/*.sh bin/tx11 config/bashrc.sh tests/run.sh
+      - name: Testes
+        run: bash tests/run.sh

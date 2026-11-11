@@ -1,0 +1,46 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# tx11 – roda um programa gráfico no app Termux:X11.
+#
+#   tx11                         abre só o servidor X + gerenciador de janelas
+#   tx11 python meu_app.py       abre o servidor X e roda o programa
+#   tx11 --stop                  encerra o servidor X
+#
+# O servidor não escuta em TCP e mantém o controle de acesso do X ligado.
+set -euo pipefail
+
+DISPLAY_NUM="${TX11_DISPLAY:-:0}"
+WM="${TX11_WM:-openbox}"
+
+stop_x() {
+	pkill -f "termux-x11 $DISPLAY_NUM" 2>/dev/null || true
+	pkill -x "$WM" 2>/dev/null || true
+	echo "Servidor X encerrado."
+}
+
+if [[ "${1:-}" == "--stop" ]]; then stop_x; exit 0; fi
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then sed -n '2,8p' "$0"; exit 0; fi
+
+command -v termux-x11 >/dev/null || { echo "Instale: pkg install x11-repo && pkg install termux-x11-nightly" >&2; exit 1; }
+
+export DISPLAY="$DISPLAY_NUM"
+# Muitos tutoriais usam "termux-x11 :0 -ac", que DESLIGA o controle de acesso
+# do X. Aqui não usamos -ac e desativamos TCP explicitamente.
+if ! pgrep -f "termux-x11 $DISPLAY_NUM" >/dev/null; then
+	termux-x11 "$DISPLAY_NUM" -nolisten tcp >/dev/null 2>&1 &
+	# Espera o socket aparecer (até ~5s).
+	for _ in $(seq 1 25); do
+		[[ -S "${TMPDIR:-/tmp}/.X11-unix/X${DISPLAY_NUM#:}" ]] && break
+		sleep 0.2
+	done
+	# Abre o app Termux:X11 na frente.
+	am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity >/dev/null 2>&1 || true
+fi
+
+if command -v "$WM" >/dev/null && ! pgrep -x "$WM" >/dev/null; then
+	"$WM" >/dev/null 2>&1 &
+fi
+
+if (($#)); then
+	exec "$@"
+fi
+echo "Servidor X rodando em DISPLAY=$DISPLAY. Use 'tx11 --stop' para encerrar."
