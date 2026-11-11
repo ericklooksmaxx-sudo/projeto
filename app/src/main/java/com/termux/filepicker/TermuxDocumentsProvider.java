@@ -19,6 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  * A document provider for the Storage Access Framework which exposes the files in the
@@ -90,8 +91,12 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
     public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) throws FileNotFoundException {
         final MatrixCursor result = new MatrixCursor(projection != null ? projection : DEFAULT_DOCUMENT_PROJECTION);
         final File parent = getFileForDocId(parentDocumentId);
-        for (File file : parent.listFiles()) {
-            includeFile(result, null, file);
+        final File[] files = parent.listFiles();
+        // listFiles() returns null if parent is not a directory or cannot be read.
+        if (files != null) {
+            for (File file : files) {
+                includeFile(result, null, file);
+            }
         }
         return result;
     }
@@ -117,10 +122,18 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
 
     @Override
     public String createDocument(String parentDocumentId, String mimeType, String displayName) throws FileNotFoundException {
-        File newFile = new File(parentDocumentId, displayName);
+        // SECURITY: Validate the parent document id (it previously was used as is) and do not allow
+        // display names like "../../usr/etc/bash.bashrc" to create files outside the parent directory.
+        final File parent = getFileForDocId(parentDocumentId);
+        if (!parent.isDirectory())
+            throw new FileNotFoundException("Parent document is not a directory: " + parentDocumentId);
+        if (!DocumentPathUtils.isValidFileName(displayName))
+            throw new FileNotFoundException("Invalid document name: " + displayName);
+
+        File newFile = new File(parent, displayName);
         int noConflictId = 2;
         while (newFile.exists()) {
-            newFile = new File(parentDocumentId, displayName + " (" + noConflictId++ + ")");
+            newFile = new File(parent, displayName + " (" + noConflictId++ + ")");
         }
         try {
             boolean succeeded;
@@ -161,6 +174,9 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
         // results, so we can stop as soon as we find a sufficient number of matches.  Other
         // implementations might rank results and use other data about files, rather than the file
         // name, to produce a match.
+        // Search must be case-insensitive on both sides, the query was previously not lower cased,
+        // so queries with upper case characters never matched anything.
+        final String lowerCaseQuery = query == null ? "" : query.toLowerCase(Locale.ROOT);
         final LinkedList<File> pending = new LinkedList<>();
         pending.add(parent);
 
@@ -171,15 +187,16 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
             // through the whole SD card).
             boolean isInsideHome;
             try {
-                isInsideHome = file.getCanonicalPath().startsWith(TermuxConstants.TERMUX_HOME_DIR_PATH);
+                isInsideHome = DocumentPathUtils.isPathInside(TermuxConstants.TERMUX_HOME_DIR_PATH, file.getCanonicalPath());
             } catch (IOException e) {
-                isInsideHome = true;
+                isInsideHome = false;
             }
             if (isInsideHome) {
                 if (file.isDirectory()) {
-                    Collections.addAll(pending, file.listFiles());
+                    final File[] children = file.listFiles();
+                    if (children != null) Collections.addAll(pending, children);
                 } else {
-                    if (file.getName().toLowerCase().contains(query)) {
+                    if (file.getName().toLowerCase(Locale.ROOT).contains(lowerCaseQuery)) {
                         includeFile(result, null, file);
                     }
                 }
@@ -191,7 +208,10 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
 
     @Override
     public boolean isChildDocument(String parentDocumentId, String documentId) {
-        return documentId.startsWith(parentDocumentId);
+        // SECURITY: A plain startsWith() check allowed apps that were granted access to a directory
+        // tree to access any file by using a document id like "<granted dir>/../../.ssh/id_rsa" or a
+        // sibling like "<granted dir>-other". Normalize and compare full path components instead.
+        return DocumentPathUtils.isPathInside(parentDocumentId, documentId);
     }
 
     /**
@@ -208,7 +228,12 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
      * Get the file given a document id (the reverse of {@link #getDocIdForFile(File)}).
      */
     private static File getFileForDocId(String docId) throws FileNotFoundException {
-        final File f = new File(docId);
+        // SECURITY: Only expose files under BASE_DIR. The check is lexical so that symlinks created by
+        // the user inside $HOME (like ~/storage) still work, but ".." components cannot escape it.
+        final String normalizedDocId = DocumentPathUtils.normalizeAbsolutePath(docId);
+        if (normalizedDocId == null || !DocumentPathUtils.isPathInside(BASE_DIR.getAbsolutePath(), normalizedDocId))
+            throw new FileNotFoundException("Invalid document id: " + docId);
+        final File f = new File(normalizedDocId);
         if (!f.exists()) throw new FileNotFoundException(f.getAbsolutePath() + " not found");
         return f;
     }
@@ -217,10 +242,8 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
         if (file.isDirectory()) {
             return Document.MIME_TYPE_DIR;
         } else {
-            final String name = file.getName();
-            final int lastDot = name.lastIndexOf('.');
-            if (lastDot >= 0) {
-                final String extension = name.substring(lastDot + 1).toLowerCase();
+            final String extension = DocumentPathUtils.getFileExtension(file.getName());
+            if (extension != null) {
                 final String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
                 if (mime != null) return mime;
             }
@@ -249,7 +272,8 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
         } else if (file.canWrite()) {
             flags |= Document.FLAG_SUPPORTS_WRITE;
         }
-        if (file.getParentFile().canWrite()) flags |= Document.FLAG_SUPPORTS_DELETE;
+        final File parentFile = file.getParentFile();
+        if (parentFile != null && parentFile.canWrite()) flags |= Document.FLAG_SUPPORTS_DELETE;
 
         final String displayName = file.getName();
         final String mimeType = getMimeType(file);

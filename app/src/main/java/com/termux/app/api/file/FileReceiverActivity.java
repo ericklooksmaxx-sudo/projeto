@@ -10,6 +10,7 @@ import android.util.Patterns;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.termux.filepicker.DocumentPathUtils;
 import com.termux.R;
 import com.termux.shared.android.PackageUtils;
 import com.termux.shared.data.DataUtils;
@@ -150,6 +151,9 @@ public class FileReceiverActivity extends AppCompatActivity {
 
             if (attachmentFileName == null) attachmentFileName = subjectFromIntent;
             if (attachmentFileName == null) attachmentFileName = UriUtils.getUriFileBasename(uri, true);
+            // SECURITY: The display name is controlled by the sending app and could be something like
+            // "../../usr/etc/bash.bashrc", only keep the last path component as the suggested name.
+            attachmentFileName = DocumentPathUtils.sanitizeFileName(attachmentFileName);
 
             InputStream in = getContentResolver().openInputStream(uri);
             promptNameAndSave(in, attachmentFileName);
@@ -193,7 +197,7 @@ public class FileReceiverActivity extends AppCompatActivity {
                 startService(executeIntent);
                 finish();
             },
-            android.R.string.cancel, text -> finish(), dialog -> {
+            android.R.string.cancel, text -> { closeQuietly(in); finish(); }, dialog -> {
                 if (mFinishOnDismissNameDialog) finish();
             });
     }
@@ -206,6 +210,13 @@ public class FileReceiverActivity extends AppCompatActivity {
             return null;
         }
 
+        // SECURITY: Do not allow writing outside the receive directory, e.g. to overwrite shell rc
+        // files with a name like "../../usr/etc/bash.bashrc" which would lead to code execution.
+        if (!DocumentPathUtils.isValidFileName(attachmentFileName)) {
+            showErrorDialogAndQuit("Invalid file name \"" + attachmentFileName + "\", it must not contain \"/\" or be \".\" or \"..\"");
+            return null;
+        }
+
         if (!receiveDir.isDirectory() && !receiveDir.mkdirs()) {
             showErrorDialogAndQuit("Cannot create directory: " + receiveDir.getAbsolutePath());
             return null;
@@ -213,10 +224,11 @@ public class FileReceiverActivity extends AppCompatActivity {
 
         try {
             final File outFile = new File(receiveDir, attachmentFileName);
-            try (FileOutputStream f = new FileOutputStream(outFile)) {
-                byte[] buffer = new byte[4096];
+            try (InputStream input = in; FileOutputStream f = new FileOutputStream(outFile)) {
+                byte[] buffer = new byte[16 * 1024];
                 int readBytes;
-                while ((readBytes = in.read(buffer)) > 0) {
+                // read() returns -1 at end of stream, 0 does not mean end of stream.
+                while ((readBytes = input.read(buffer)) != -1) {
                     f.write(buffer, 0, readBytes);
                 }
             }
@@ -225,6 +237,14 @@ public class FileReceiverActivity extends AppCompatActivity {
             showErrorDialogAndQuit("Error saving file:\n\n" + e);
             Logger.logStackTraceWithMessage(LOG_TAG, "Error saving file", e);
             return null;
+        }
+    }
+
+    private static void closeQuietly(InputStream in) {
+        if (in == null) return;
+        try {
+            in.close();
+        } catch (IOException ignored) {
         }
     }
 

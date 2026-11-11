@@ -13,6 +13,7 @@ import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
+import com.termux.filepicker.DocumentPathUtils;
 import com.termux.shared.termux.plugins.TermuxPluginUtils;
 import com.termux.shared.data.DataUtils;
 import com.termux.shared.data.IntentUtils;
@@ -92,12 +93,11 @@ public class TermuxOpenReceiver extends BroadcastReceiver {
 
         String contentTypeToUse;
         if (contentTypeExtra == null) {
-            String fileName = fileToShare.getName();
-            int lastDotIndex = fileName.lastIndexOf('.');
-            String fileExtension = fileName.substring(lastDotIndex + 1);
+            // Files without an extension previously used the whole file name as the extension.
+            // getFileExtension() also lower cases, which makes it work with e.g. "JPG".
+            String fileExtension = DocumentPathUtils.getFileExtension(fileToShare.getName());
             MimeTypeMap mimeTypes = MimeTypeMap.getSingleton();
-            // Lower casing makes it work with e.g. "JPG":
-            contentTypeToUse = mimeTypes.getMimeTypeFromExtension(fileExtension.toLowerCase());
+            contentTypeToUse = fileExtension == null ? null : mimeTypes.getMimeTypeFromExtension(fileExtension);
             if (contentTypeToUse == null) contentTypeToUse = "application/octet-stream";
         } else {
             contentTypeToUse = contentTypeExtra;
@@ -135,7 +135,16 @@ public class TermuxOpenReceiver extends BroadcastReceiver {
 
         @Override
         public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-            File file = new File(uri.getPath());
+            // SECURITY: Apply the same restrictions as openFile(), previously any app with the
+            // RUN_COMMAND permission could query the name and size of any file path, even if
+            // allow-external-apps was not enabled.
+            File file;
+            try {
+                file = getValidatedFile(uri);
+            } catch (IOException | IllegalArgumentException e) {
+                Logger.logError(LOG_TAG, "Rejected query for \"" + uri + "\": " + e.getMessage());
+                return null;
+            }
 
             if (projection == null) {
                 projection = new String[]{
@@ -154,7 +163,8 @@ public class TermuxOpenReceiver extends BroadcastReceiver {
                         value = file.getName();
                         break;
                     case MediaStore.MediaColumns.SIZE:
-                        value = (int) file.length();
+                        // Do not cast to int, it overflows for files larger than 2 GiB.
+                        value = file.length();
                         break;
                     case MediaStore.MediaColumns._ID:
                         value = 1;
@@ -175,13 +185,9 @@ public class TermuxOpenReceiver extends BroadcastReceiver {
             String pathComponent = uri.getLastPathSegment();
             if (pathComponent == null || pathComponent.isEmpty()) return null;
 
-            int extIndex = pathComponent.lastIndexOf('.') + 1;
-            if (extIndex > 0) {
-                MimeTypeMap mimeMap = MimeTypeMap.getSingleton();
-                String ext = pathComponent.substring(extIndex).toLowerCase();
-                return mimeMap.getMimeTypeFromExtension(ext);
-            }
-            return null;
+            String ext = DocumentPathUtils.getFileExtension(pathComponent);
+            if (ext == null) return null;
+            return MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
         }
 
         @Override
@@ -199,24 +205,49 @@ public class TermuxOpenReceiver extends BroadcastReceiver {
             return 0;
         }
 
+        /**
+         * Validate that the file referenced by the uri may be accessed by external apps and return
+         * its canonical {@link File}.
+         *
+         * The canonical file is returned so that the file that is later opened is the same one that
+         * was validated. Previously the validated canonical path was discarded and the original
+         * (possibly symlinked) path was opened, so a symlink could be swapped between the check
+         * and the open (TOCTOU) to point outside the allowed directories.
+         */
+        @NonNull
+        private File getValidatedFile(@NonNull Uri uri) throws IOException {
+            String uriPath = uri.getPath();
+            if (uriPath == null || uriPath.isEmpty())
+                throw new IllegalArgumentException("Uri path is null or empty");
+
+            File canonicalFile = new File(uriPath).getCanonicalFile();
+            String path = canonicalFile.getPath();
+            String storagePath = Environment.getExternalStorageDirectory().getCanonicalPath();
+            // See https://support.google.com/faqs/answer/7496913:
+            // Compare full path components, a plain startsWith() would also accept paths like
+            // "/data/data/com.termux/files-other" or "/storage/emulated/0-other".
+            if (!(DocumentPathUtils.isPathInside(TermuxConstants.TERMUX_FILES_DIR_PATH, path) ||
+                DocumentPathUtils.isPathInside(storagePath, path))) {
+                throw new IllegalArgumentException("Invalid path: " + path);
+            }
+
+            // If TermuxConstants.PROP_ALLOW_EXTERNAL_APPS property to not set to "true", then throw exception
+            String errmsg = TermuxPluginUtils.checkIfAllowExternalAppsPolicyIsViolated(getContext(), LOG_TAG);
+            if (errmsg != null) {
+                throw new IllegalArgumentException(errmsg);
+            }
+
+            return canonicalFile;
+        }
+
         @Override
         public ParcelFileDescriptor openFile(@NonNull Uri uri, @NonNull String mode) throws FileNotFoundException {
-            File file = new File(uri.getPath());
+            File file;
             try {
-                String path = file.getCanonicalPath();
+                file = getValidatedFile(uri);
+                String path = file.getPath();
                 String callingPackageName = getCallingPackage();
                 Logger.logDebug(LOG_TAG, "Open file request received from " + callingPackageName + " for \"" + path + "\" with mode \"" + mode + "\"");
-                String storagePath = Environment.getExternalStorageDirectory().getCanonicalPath();
-                // See https://support.google.com/faqs/answer/7496913:
-                if (!(path.startsWith(TermuxConstants.TERMUX_FILES_DIR_PATH) || path.startsWith(storagePath))) {
-                    throw new IllegalArgumentException("Invalid path: " + path);
-                }
-
-                // If TermuxConstants.PROP_ALLOW_EXTERNAL_APPS property to not set to "true", then throw exception
-                String errmsg = TermuxPluginUtils.checkIfAllowExternalAppsPolicyIsViolated(getContext(), LOG_TAG);
-                if (errmsg != null) {
-                    throw new IllegalArgumentException(errmsg);
-                }
 
                 // **DO NOT** allow these files to be modified by ContentProvider exposed to external
                 // apps, since they may silently modify the values for security properties like
