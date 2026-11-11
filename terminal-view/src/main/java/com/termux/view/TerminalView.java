@@ -524,6 +524,13 @@ public final class TerminalView extends View {
     }
 
     @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        // Report focus changes to applications that requested it with DECSET 1004 (Textual, vim, tmux...).
+        if (mEmulator != null) mEmulator.sendFocusEvent(hasWindowFocus);
+    }
+
+    @Override
     public boolean onCheckIsTextEditor() {
         return true;
     }

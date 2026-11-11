@@ -200,7 +200,7 @@ public final class TerminalEmulator {
     private static final int DECSET_BIT_MOUSE_TRACKING_PRESS_RELEASE = 1 << 6;
     /** DECSET 1002 - like 1000, but report moving mouse while pressed. */
     private static final int DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT = 1 << 7;
-    /** DECSET 1004 - NOT implemented. */
+    /** DECSET 1004 - if to report focus in/out events, see {@link #sendFocusEvent(boolean)}. */
     private static final int DECSET_BIT_SEND_FOCUS_EVENTS = 1 << 8;
     /** DECSET 1006 - SGR-like mouse protocol (the modern sane choice). */
     private static final int DECSET_BIT_MOUSE_PROTOCOL_SGR = 1 << 9;
@@ -210,6 +210,18 @@ public final class TerminalEmulator {
     private static final int DECSET_BIT_LEFTRIGHT_MARGIN_MODE = 1 << 11;
     /** Not really DECSET bit... - http://www.vt100.net/docs/vt510-rm/DECSACE */
     private static final int DECSET_BIT_RECTANGULAR_CHANGEATTRIBUTE = 1 << 12;
+    /**
+     * DECSET 1003 - like 1002, but report all motion events. On a touch screen there is no hover, so
+     * this behaves like 1002 (motion is reported while a finger/button is down). Used by TUI
+     * libraries such as Textual and urwid that only request 1003 instead of 1002.
+     */
+    private static final int DECSET_BIT_MOUSE_TRACKING_ANY_EVENT = 1 << 13;
+    /**
+     * DECSET 2026 - synchronized output (https://gist.github.com/christianparpart/d8a62cc1ab659194337d73e399004036).
+     * While set, the screen is not redrawn so that applications (Textual, Rich Live, prompt_toolkit,
+     * neovim, ...) can update the screen atomically without flicker or tearing.
+     */
+    private static final int DECSET_BIT_SYNCHRONIZED_OUTPUT = 1 << 14;
 
 
     private String mTitle;
@@ -450,8 +462,13 @@ public final class TerminalEmulator {
             // The mouse modes are mutually exclusive.
             if (internalBit == DECSET_BIT_MOUSE_TRACKING_PRESS_RELEASE) {
                 setDecsetinternalBit(DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT, false);
+                setDecsetinternalBit(DECSET_BIT_MOUSE_TRACKING_ANY_EVENT, false);
             } else if (internalBit == DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT) {
                 setDecsetinternalBit(DECSET_BIT_MOUSE_TRACKING_PRESS_RELEASE, false);
+                setDecsetinternalBit(DECSET_BIT_MOUSE_TRACKING_ANY_EVENT, false);
+            } else if (internalBit == DECSET_BIT_MOUSE_TRACKING_ANY_EVENT) {
+                setDecsetinternalBit(DECSET_BIT_MOUSE_TRACKING_PRESS_RELEASE, false);
+                setDecsetinternalBit(DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT, false);
             }
         }
         if (set) {
@@ -481,12 +498,16 @@ public final class TerminalEmulator {
                 return DECSET_BIT_MOUSE_TRACKING_PRESS_RELEASE;
             case 1002:
                 return DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT;
+            case 1003:
+                return DECSET_BIT_MOUSE_TRACKING_ANY_EVENT;
             case 1004:
                 return DECSET_BIT_SEND_FOCUS_EVENTS;
             case 1006:
                 return DECSET_BIT_MOUSE_PROTOCOL_SGR;
             case 2004:
                 return DECSET_BIT_BRACKETED_PASTE_MODE;
+            case 2026:
+                return DECSET_BIT_SYNCHRONIZED_OUTPUT;
             default:
                 return -1;
             // throw new IllegalArgumentException("Unsupported decset: " + decsetBit);
@@ -556,10 +577,13 @@ public final class TerminalEmulator {
         if (row < 1) row = 1;
         if (row > mRows) row = mRows;
 
-        if (mouseButton == MOUSE_LEFT_BUTTON_MOVED && !isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT)) {
+        if (mouseButton == MOUSE_LEFT_BUTTON_MOVED && !isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT)
+            && !isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_ANY_EVENT)) {
             // Do not send tracking.
         } else if (isDecsetInternalBitSet(DECSET_BIT_MOUSE_PROTOCOL_SGR)) {
-            mSession.write(String.format("\033[<%d;%d;%d" + (pressed ? 'M' : 'm'), mouseButton, column, row));
+            // Locale.US is required, otherwise locales like Arabic or Persian would format the
+            // numbers with non-ASCII digits which applications cannot parse.
+            mSession.write(String.format(Locale.US, "\033[<%d;%d;%d" + (pressed ? 'M' : 'm'), mouseButton, column, row));
         } else {
             mouseButton = pressed ? mouseButton : 3; // 3 for release of all buttons.
             // Clip to screen, and clip to the limits of 8-bit data.
@@ -669,9 +693,33 @@ public final class TerminalEmulator {
         return isDecsetInternalBitSet(DECSET_BIT_APPLICATION_CURSOR_KEYS);
     }
 
+    /**
+     * If the application has requested synchronized output (DECSET 2026) and is in the middle of
+     * updating the screen, in which case the screen should not be redrawn yet.
+     */
+    public boolean isSynchronizedOutputActive() {
+        return isDecsetInternalBitSet(DECSET_BIT_SYNCHRONIZED_OUTPUT);
+    }
+
+    /** Forcefully end synchronized output, e.g. if an application crashed without resetting it. */
+    public void endSynchronizedOutput() {
+        setDecsetinternalBit(DECSET_BIT_SYNCHRONIZED_OUTPUT, false);
+    }
+
+    /**
+     * Send a focus in ({@code CSI I}) or focus out ({@code CSI O}) event to the application if it
+     * has requested focus reporting with DECSET 1004. Used by e.g. Textual, prompt_toolkit, vim and tmux.
+     */
+    public void sendFocusEvent(boolean focused) {
+        if (isDecsetInternalBitSet(DECSET_BIT_SEND_FOCUS_EVENTS)) {
+            mSession.write(focused ? "\033[I" : "\033[O");
+        }
+    }
+
     /** If mouse events are being sent as escape codes to the terminal. */
     public boolean isMouseTrackingActive() {
-        return isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_PRESS_RELEASE) || isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT);
+        return isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_PRESS_RELEASE) || isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_BUTTON_EVENT)
+            || isDecsetInternalBitSet(DECSET_BIT_MOUSE_TRACKING_ANY_EVENT);
     }
 
     private void setDefaultTabStops() {
@@ -1259,7 +1307,7 @@ public final class TerminalEmulator {
                             } else {
                                 StringBuilder hexEncoded = new StringBuilder();
                                 for (int j = 0; j < responseValue.length(); j++) {
-                                    hexEncoded.append(String.format("%02X", (int) responseValue.charAt(j)));
+                                    hexEncoded.append(String.format(Locale.US, "%02X", (int) responseValue.charAt(j)));
                                 }
                                 mSession.write("\033P1+r" + part + "=" + hexEncoded + "\033\\");
                             }
@@ -1878,6 +1926,10 @@ public final class TerminalEmulator {
             }
             case 2004:
                 // Bracketed paste mode - setting bit is enough.
+                break;
+            case 2026:
+                // Synchronized output - setting bit is enough, TerminalSession checks
+                // isSynchronizedOutputActive() before notifying the view to redraw.
                 break;
             default:
                 unknownParameter(externalBit);

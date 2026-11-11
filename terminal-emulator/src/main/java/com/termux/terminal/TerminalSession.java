@@ -32,6 +32,14 @@ public final class TerminalSession extends TerminalOutput {
 
     private static final int MSG_NEW_INPUT = 1;
     private static final int MSG_PROCESS_EXITED = 4;
+    private static final int MSG_SYNCHRONIZED_OUTPUT_TIMEOUT = 5;
+
+    /**
+     * Maximum time in milliseconds to defer screen updates while an application has synchronized
+     * output (DECSET 2026) active. If the application does not end the update in time (e.g. it
+     * crashed), the screen is redrawn anyway, as recommended by the specification.
+     */
+    private static final int SYNCHRONIZED_OUTPUT_TIMEOUT_MS = 150;
 
     public final String mHandle = UUID.randomUUID().toString();
 
@@ -340,13 +348,30 @@ public final class TerminalSession extends TerminalOutput {
 
         @Override
         public void handleMessage(Message msg) {
+            if (msg.what == MSG_SYNCHRONIZED_OUTPUT_TIMEOUT) {
+                if (mEmulator != null && mEmulator.isSynchronizedOutputActive()) {
+                    mEmulator.endSynchronizedOutput();
+                    notifyScreenUpdate();
+                }
+                return;
+            }
+
             int bytesRead = mProcessToTerminalIOQueue.read(mReceiveBuffer, false);
             if (bytesRead > 0) {
                 mEmulator.append(mReceiveBuffer, bytesRead);
-                notifyScreenUpdate();
+                if (mEmulator.isSynchronizedOutputActive()) {
+                    // Defer redraw until the application ends the synchronized update, with a timeout.
+                    if (!hasMessages(MSG_SYNCHRONIZED_OUTPUT_TIMEOUT))
+                        sendEmptyMessageDelayed(MSG_SYNCHRONIZED_OUTPUT_TIMEOUT, SYNCHRONIZED_OUTPUT_TIMEOUT_MS);
+                } else {
+                    removeMessages(MSG_SYNCHRONIZED_OUTPUT_TIMEOUT);
+                    notifyScreenUpdate();
+                }
             }
 
             if (msg.what == MSG_PROCESS_EXITED) {
+                removeMessages(MSG_SYNCHRONIZED_OUTPUT_TIMEOUT);
+                mEmulator.endSynchronizedOutput();
                 int exitCode = (Integer) msg.obj;
                 cleanupResources(exitCode);
 

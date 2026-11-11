@@ -75,4 +75,52 @@ public class DecSetTest extends TerminalTestCase {
 		enterString("\033[?7hhij").assertLinesAre("abh", "ij ", "   ");
 	}
 
+	/** DECSET 1004, focus reporting, used by Textual, prompt_toolkit, vim and tmux. */
+	public void testFocusEvents() {
+		withTerminalSized(3, 3);
+		mTerminal.sendFocusEvent(true);
+		assertEquals("No focus events should be sent by default", "", mOutput.getOutputAndClear());
+		enterString("\033[?1004h");
+		mTerminal.sendFocusEvent(true);
+		assertEquals("\033[I", mOutput.getOutputAndClear());
+		mTerminal.sendFocusEvent(false);
+		assertEquals("\033[O", mOutput.getOutputAndClear());
+		enterString("\033[?1004l");
+		mTerminal.sendFocusEvent(false);
+		assertEquals("", mOutput.getOutputAndClear());
+	}
+
+	/** DECSET 2026, synchronized output, used by Textual, Rich and neovim to avoid flicker. */
+	public void testSynchronizedOutput() {
+		withTerminalSized(3, 3);
+		assertFalse(mTerminal.isSynchronizedOutputActive());
+		assertEnteringStringGivesResponse("\033[?2026$p", "\033[?2026;2$y");
+		enterString("\033[?2026h");
+		assertTrue(mTerminal.isSynchronizedOutputActive());
+		assertEnteringStringGivesResponse("\033[?2026$p", "\033[?2026;1$y");
+		enterString("\033[?2026l");
+		assertFalse(mTerminal.isSynchronizedOutputActive());
+		enterString("\033[?2026h");
+		mTerminal.endSynchronizedOutput();
+		assertFalse(mTerminal.isSynchronizedOutputActive());
+		enterString("\033[?2026h");
+		mTerminal.reset();
+		assertFalse("Terminal reset() should end synchronized output", mTerminal.isSynchronizedOutputActive());
+	}
+
+	/** DECSET 1003, any-event mouse tracking, which is what Textual and urwid request. */
+	public void testAnyEventMouseTracking() {
+		withTerminalSized(3, 3);
+		assertFalse(mTerminal.isMouseTrackingActive());
+		enterString("\033[?1003h\033[?1006h");
+		assertTrue(mTerminal.isMouseTrackingActive());
+		mTerminal.sendMouseEvent(TerminalEmulator.MOUSE_LEFT_BUTTON_MOVED, 2, 3, true);
+		assertEquals("Motion should be reported with 1003", "\033[<32;2;3M", mOutput.getOutputAndClear());
+		enterString("\033[?1000h");
+		mTerminal.sendMouseEvent(TerminalEmulator.MOUSE_LEFT_BUTTON_MOVED, 2, 3, true);
+		assertEquals("Motion should not be reported with only 1000", "", mOutput.getOutputAndClear());
+		enterString("\033[?1000l");
+		assertFalse(mTerminal.isMouseTrackingActive());
+	}
+
 }
