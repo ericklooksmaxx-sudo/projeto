@@ -56,7 +56,31 @@
                         android:src="@drawable/ic_settings"
                         android:background="@null"
                         android:contentDescription="@string/action_open_settings"
-                        app:tint="?attr/termuxActivityDrawerImageTint" />
+                        android:tooltipText="@string/action_open_settings"
+                        app:tint="?attr/termuxActivityDrawerImageTint"
+                        tools:targetApi="o" />
+
+                    <ImageButton
+                        android:id="@+id/python_environment_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_python_environment"
+                        android:background="@null"
+                        android:contentDescription="@string/action_python_setup"
+                        android:tooltipText="@string/action_python_setup"
+                        app:tint="?attr/termuxActivityDrawerImageTint"
+                        tools:targetApi="o" />
+
+                    <ImageButton
+                        android:id="@+id/help_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_help"
+                        android:background="@null"
+                        android:contentDescription="@string/action_open_help"
+                        android:tooltipText="@string/action_open_help"
+                        app:tint="?attr/termuxActivityDrawerImageTint"
+                        tools:targetApi="o" />
                 </LinearLayout>
 
                 <ListView

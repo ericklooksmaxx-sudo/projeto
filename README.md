@@ -21,6 +21,12 @@ Quick how-to about Termux package management is available at [Package Management
 
 ***
 
+> **Este fork:** correções de segurança, suporte a bibliotecas Python de interface (Textual,
+> Rich, prompt_toolkit...), instalador de PyTorch e melhorias na interface. Veja
+> [docs/MELHORIAS.md](docs/MELHORIAS.md).
+
+***
+
 ## Contents
 - [Termux App and Plugins](#termux-app-and-plugins)
 - [Installation](#installation)

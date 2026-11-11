@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Python environment setup -->
+    <string name="action_python_setup">Ambiente Python</string>
+    <string name="title_python_setup">Instalar bibliotecas Python</string>
+    <string-array name="python_setup_profiles">
+        <item>Interfaces de terminal (Textual, Rich, prompt_toolkit, urwid…)</item>
+        <item>PyTorch (dispositivos 64 bits)</item>
+        <item>Ciência de dados (NumPy, SciPy, pandas, matplotlib)</item>
+        <item>Interfaces no navegador (Flask, PyWebIO)</item>
+        <item>Interfaces gráficas via Termux:X11 (tkinter, PyQt5, pygame)</item>
+    </string-array>
+    <string name="action_python_setup_install">Instalar</string>
+    <string name="action_python_setup_check">Ver instalados</string>
+    <string name="error_python_setup_script_not_installed">Não foi possível instalar o script de configuração. Abra uma sessão de terminal primeiro para que o ambiente do Termux seja instalado.</string>
+</resources>
