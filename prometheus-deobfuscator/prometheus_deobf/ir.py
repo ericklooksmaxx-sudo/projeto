@@ -1023,12 +1023,16 @@ class Structurer(object):
                 if h2 != h and h in b2 and (best is None or len(b2) < len(self.body[best])):
                     best = h2
             self.parent[h] = best
+        returns_only = self._returns_only()
         for h, body in self.body.items():
             exits = []
             for n in body:
                 for s in self.fn.blocks[n].succs():
                     if s not in body and s not in exits:
                         exits.append(s)
+            real = [e for e in exits if e not in returns_only]
+            if real or not exits:
+                exits = real
             if not exits:
                 self.follow[h] = None
             elif len(exits) == 1:
@@ -1104,6 +1108,21 @@ class Structurer(object):
                 return False
             stack.extend(self.fn.blocks[x].succs())
         return True
+
+    def _returns_only(self):
+        """Blocks from which every path ends in a return without looping (DAG to returns)."""
+        out = set()
+        changed = True
+        while changed:
+            changed = False
+            for b, blk in self.fn.blocks.items():
+                if b in out:
+                    continue
+                ss = blk.succs()
+                if blk.term[0] == "ret" or (ss and all(s in out for s in ss)):
+                    out.add(b)
+                    changed = True
+        return out
 
     def postdom(self, a, b):
         while b is not None:

@@ -515,12 +515,24 @@ def analyze_runtime(runtime, lay):
             r = difflib.SequenceMatcher(None, toks, tt, autojunk=False).ratio()
             scores.append((r, opid, name))
     scores.sort(key=lambda x: -x[0])
+    import os
+    if os.environ.get("DEOBF_VMDEBUG"):
+        import sys
+        best = {}
+        for r, opid, name in scores:
+            best.setdefault(opid, []).append((r, name))
+        for opid, lst in sorted(best.items()):
+            sys.stderr.write("op %3d: %s %.2f | %s %.2f   %s\n" % (opid, lst[0][1], lst[0][0], lst[1][1], lst[1][0],
+                             " ".join(_normalize(handlers[opid], role_of, numbers))[:150]))
     opmap, used = {}, set()
     for r, opid, name in scores:
         if opid in opmap or name in used:
             continue
         opmap[opid] = name
         used.add(name)
+    if os.environ.get("DEOBF_VMDEBUG"):
+        sys.stderr.write("missing: %r\n" % sorted(set(HANDLERS) - used))
+        sys.stderr.write("op54=%r\n" % opmap.get(54.0))
     return opmap
 
 

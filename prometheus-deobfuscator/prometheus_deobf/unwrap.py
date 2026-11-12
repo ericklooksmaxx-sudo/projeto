@@ -169,6 +169,10 @@ def _capture_header(body):
                 isinstance(s.targets[0], Name) and s.targets[0].sym in declared and \
                 _vararg_index(s.exprs[0]) is not None:
             idx[s.targets[0].sym] = _vararg_index(s.exprs[0])
+        elif isinstance(s, Assign) and len(s.targets) == 1 and len(s.exprs) == 1 and \
+                isinstance(s.targets[0], Name) and s.targets[0].sym in declared and \
+                isinstance(s.exprs[0], Name) and s.exprs[0].sym in idx:
+            idx[s.targets[0].sym] = idx[s.exprs[0].sym]
         else:
             break
         i += 1
@@ -177,8 +181,40 @@ def _capture_header(body):
     return idx, i
 
 
+def _inline_global_aliases(chunk):
+    """`local s = select; local function f() .. end; return f(s(3, ...))` -> `... return f(select(3, ...))`."""
+    from .luaast import LocalFunc
+    changed = False
+    for fn in list(_walk(chunk)):
+        if not isinstance(fn, Func) or not fn.body or not isinstance(fn.body[-1], _Return):
+            continue
+        body = fn.body
+        for i, s in enumerate(body[:-1]):
+            if not (isinstance(s, _Local) and len(s.syms) == 1 and len(s.exprs) == 1 and
+                    isinstance(s.exprs[0], Name) and s.exprs[0].sym is None):
+                continue
+            between = body[i + 1:-1]
+            if not all(isinstance(b, LocalFunc) or (isinstance(b, _Local) and all(isinstance(e, (Func, Name))
+                                                                                   for e in b.exprs))
+                       for b in between):
+                continue
+            sym = s.syms[0]
+            uses = [n for n in _walk(Chunk(body[i + 1:])) if isinstance(n, Name) and n.sym is sym]
+            ret_uses = [n for n in _walk(body[-1]) if isinstance(n, Name) and n.sym is sym]
+            if len(uses) != 1 or len(ret_uses) != 1:
+                continue
+            ret_uses[0].sym = None
+            ret_uses[0].name = s.exprs[0].name
+            del body[i]
+            changed = True
+            break
+    return changed
+
+
 def beta_reduce(chunk):
     changed = [False]
+    if _inline_global_aliases(chunk):
+        changed[0] = True
     assigned = _assigned_syms(chunk)
     # variables assigned inside function bodies may change at any time
     in_funcs = set()
