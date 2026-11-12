@@ -197,6 +197,13 @@ def _effectful(x):
     return False
 
 
+def _has_real_call(e):
+    for x in iter_expr(e):
+        if isinstance(x, (Call, Method)):
+            return True
+    return False
+
+
 def has_call(e):
     for x in iter_expr(e):
         if _effectful(x):
@@ -778,7 +785,7 @@ def inline_temps(fn):
                 for node, cond in order:
                     if isinstance(node, Name) and node.sym is sym:
                         found = True
-                        if cond and e_call:
+                        if cond and _has_real_call(E):
                             ok = False
                         break
                     if node is None:

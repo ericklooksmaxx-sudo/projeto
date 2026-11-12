@@ -1055,8 +1055,10 @@ def devirtualize(chunk):
             vmd = VMDecompiler(lay, opmap)
             main = vmd.lift_proto(root, [], is_main=True)
         except (VMError, EmuAbort, LuaError, StructError) as ex:
+            import os
             import sys
-            sys.stderr.write("[deobf] VM not devirtualized: %s\n" % ex)
+            if os.environ.get("DEOBF_DEBUG"):
+                sys.stderr.write("[deobf] VM not devirtualized (yet): %s\n" % ex)
             continue
         call.func = Paren(main)
         call.args = [Vararg()]

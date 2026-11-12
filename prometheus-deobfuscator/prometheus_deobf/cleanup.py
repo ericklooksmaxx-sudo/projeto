@@ -137,6 +137,17 @@ def merge_decl_assign(chunk):
                     changed = True
                     continue
             i += 1
+        i = 0
+        while i < len(lst) - 2:
+            a, b, c = lst[i], lst[i + 1], lst[i + 2]
+            if isinstance(a, Local) and len(a.syms) == 1 and all(isinstance(x, Nil) for x in a.exprs) and \
+                    isinstance(b, LocalFunc) and isinstance(c, Assign) and len(c.targets) == 1 and \
+                    len(c.exprs) == 1 and isinstance(c.targets[0], Name) and c.targets[0].sym is a.syms[0] and \
+                    isinstance(c.exprs[0], Name) and c.exprs[0].sym is b.sym and count_refs(chunk).get(b.sym) == 1:
+                lst[i:i + 3] = [LocalFunc(a.syms[0], b.func)]
+                changed = True
+                continue
+            i += 1
         for j, s in enumerate(lst):
             if isinstance(s, Local) and len(s.syms) == 1 and len(s.exprs) == 1 and isinstance(s.exprs[0], Func):
                 lst[j] = LocalFunc(s.syms[0], s.exprs[0])
@@ -235,10 +246,34 @@ def _def_of(lst, start, sym):
     return None, None
 
 
+def _absorb_cond_temps(body):
+    """[x = a+b, local t = <cmp>, if <uses t once> then break end, ...] -> t inlined into the condition."""
+    k = 1
+    temps = []
+    while k < len(body) and isinstance(body[k], Local) and len(body[k].syms) == 1 and len(body[k].exprs) == 1 \
+            and not any(isinstance(x, (Call, Method)) for x in walk(body[k].exprs[0])):
+        temps.append(body[k])
+        k += 1
+    if not temps or k >= len(body) or not isinstance(body[k], If):
+        return body
+    chk = body[k]
+    refs = count_refs(Chunk(body))
+    cond_refs = refs_in([chk.cond])
+    for t in temps:
+        s = t.syms[0]
+        if refs.get(s, 0) != 1 or cond_refs.get(s, 0) != 1:
+            return body
+    for t in temps:
+        s, e = t.syms[0], t.exprs[0]
+        chk.cond = transform(chk.cond, lambda n, s=s, e=e: e if isinstance(n, Name) and n.sym is s else None)
+    return [body[0]] + body[k:]
+
+
 def _try_numfor(lst, w):
     loop = lst[w]
     if not (isinstance(loop, While) and isinstance(loop.cond, Bool) and loop.cond.value and len(loop.body) >= 2):
         return False
+    loop.body = _absorb_cond_temps(loop.body)
     first, chk = loop.body[0], loop.body[1]
     if not (isinstance(first, Assign) and len(first.targets) == 1 and isinstance(first.targets[0], Name) and
             len(first.exprs) == 1 and isinstance(first.exprs[0], Bin) and first.exprs[0].op == "+"):
@@ -515,7 +550,7 @@ def _try_inline(slots, sym, E):
                     return False
             continue
         if isinstance(node, Name) and node.sym is sym:
-            if cond and e_call:
+            if cond and any(isinstance(x, (Call, Method)) for x in walk(E)):
                 return False
             found = True
             break

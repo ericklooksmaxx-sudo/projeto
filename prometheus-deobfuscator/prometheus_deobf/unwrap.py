@@ -134,29 +134,47 @@ def _replace_level(body, fn):
     return [rec(s) for s in body]
 
 
+def _vararg_index(e):
+    e = _unparen(e)
+    if isinstance(e, Vararg):
+        return 1
+    if isinstance(e, Call) and isinstance(e.func, Name) and e.func.sym is None and e.func.name == "select" and \
+            len(e.args) == 2 and isinstance(e.args[0], Number) and isinstance(e.args[1], Vararg):
+        return int(e.args[0].value)
+    return None
+
+
 def _capture_header(body):
-    """`local c1, c2 = ...` or `local c1 = (...); local c2 = (select(2, ...))` -> ([c1, c2], nstmts)."""
-    caps = []
+    """Leading statements binding locals to the incoming varargs.
+
+    Returns ({sym: index}, number_of_statements)."""
+    idx = {}
+    declared = set()
     i = 0
     while i < len(body):
         s = body[i]
-        if not isinstance(s, _Local) or len(s.exprs) != 1:
-            break
-        e = _unparen(s.exprs[0])
-        if isinstance(e, Vararg) and not caps:
-            if isinstance(s.exprs[0], Paren) and len(s.syms) != 1:
+        if isinstance(s, _Local) and not s.exprs:
+            declared.update(s.syms)
+        elif isinstance(s, _Local) and len(s.exprs) == 1 and len(s.syms) >= 1:
+            e = s.exprs[0]
+            k = _vararg_index(e)
+            if k is not None and (len(s.syms) == 1 or not isinstance(e, Paren)):
+                for j, sy in enumerate(s.syms):
+                    idx[sy] = k + j
+            elif len(s.syms) == 1 and isinstance(e, Name) and e.sym in idx:
+                idx[s.syms[0]] = idx[e.sym]
+            else:
                 break
-            caps.extend(s.syms if not isinstance(s.exprs[0], Paren) else s.syms[:1])
-            i += 1
-            continue
-        if isinstance(e, Call) and isinstance(e.func, Name) and e.func.sym is None and e.func.name == "select" and \
-                len(e.args) == 2 and isinstance(e.args[0], Number) and isinstance(e.args[1], Vararg) and \
-                e.args[0].value == len(caps) + 1 and len(s.syms) == 1:
-            caps.append(s.syms[0])
-            i += 1
-            continue
-        break
-    return caps, i
+        elif isinstance(s, Assign) and len(s.targets) == 1 and len(s.exprs) == 1 and \
+                isinstance(s.targets[0], Name) and s.targets[0].sym in declared and \
+                _vararg_index(s.exprs[0]) is not None:
+            idx[s.targets[0].sym] = _vararg_index(s.exprs[0])
+        else:
+            break
+        i += 1
+    if any(d not in idx for d in declared):
+        return {}, 0
+    return idx, i
 
 
 def beta_reduce(chunk):
@@ -203,17 +221,18 @@ def beta_reduce(chunk):
             return Call(Paren(inner), n.args)
         # (function(...) local c1..ck = ...; BODY end)(x1..xk, ...)
         args = n.args
-        caps, nhead = _capture_header(f.body)
-        if not caps:
+        idx, nhead = _capture_header(f.body)
+        if not idx:
             return None
-        k = len(caps)
+        k = max(idx.values())
         if len(args) != k + 1 or not isinstance(args[-1], Vararg):
             return None
         if not all(isinstance(a, Name) and a.sym is not None and stable_at(a.sym, n) for a in args[:-1]):
             return None
-        if any(c in assigned for c in caps):
+        later = _assigned_syms(Chunk(f.body[nhead:]))
+        if any(c in later for c in idx):
             return None
-        mapping = dict(zip(caps, args[:-1]))
+        mapping = dict((c, args[i - 1]) for c, i in idx.items())
         uses = [0]
 
         marker = []

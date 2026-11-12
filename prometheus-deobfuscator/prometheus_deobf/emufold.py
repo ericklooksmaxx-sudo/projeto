@@ -125,9 +125,23 @@ def emulate_fold(chunk, budget=3000000):
                     ok = False
                     break
         table_ok[sym] = ok
-    guard_write_syms = set(s for s in visible if s in defined_syms)
+    # tables mutated anywhere (t[k] = v) cannot have their reads folded
+    mutated = set()
+    for s in body:
+        for n in walk(s):
+            if isinstance(n, Assign):
+                for t in n.targets:
+                    if isinstance(t, Index) and isinstance(t.obj, Name) and t.obj.sym is not None:
+                        mutated.add(t.obj.sym)
+    for sym in list(table_ok):
+        if sym in mutated:
+            table_ok[sym] = False
+    # a folded call must not write any top-level variable or table (that would drop a side effect)
+    guard_write_syms = set(defined_syms)
+    rest_visible = set(visible)
+    visible = visible | defined_syms
     guard_read_syms = set(s for s in rest_assigned if s in defined_syms)
-    escaped_syms = set(s for s in visible if s in defined_syms and not table_ok.get(s, False))
+    escaped_syms = set(s for s in rest_visible if s in defined_syms and not table_ok.get(s, False))
     changed = [False]
     state = {}
 
