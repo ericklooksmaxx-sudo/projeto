@@ -10,9 +10,11 @@
 
 set -u
 
-VERSION=1
+VERSION=2
 PREFIX="${PREFIX:-/data/data/com.termux/files/usr}"
-EXAMPLES_DIR="${HOME:-/data/data/com.termux/files/home}/python-examples"
+HOME_DIR="${HOME:-/data/data/com.termux/files/home}"
+EXAMPLES_DIR="$HOME_DIR/python-examples"
+SHARE_DIR="$PREFIX/share/termux-gui"
 ASSUME_YES=0
 FAILED=()
 INSTALLED=()
@@ -39,16 +41,23 @@ Profiles:
   ui       Terminal user interface libraries: rich, textual, prompt_toolkit,
            urwid, npyscreen, pytermgui, asciimatics, blessed, questionary
            (and curses, which is part of Python)
-  torch    PyTorch (torch) with NumPy, for 64-bit devices (aarch64 / x86_64)
+  torch    PyTorch (torch, torchvision, torchaudio), 64-bit devices only
   data     NumPy, SciPy, pandas, matplotlib, Pillow, scikit-learn
   web      Browser based interfaces: Flask, PyWebIO (open http://localhost:PORT)
-  gui      Desktop GUIs through Termux:X11: tkinter, PyQt5, pygame
-  all      All of the above
+  gui      Windowed apps shown in a floating window over other apps: tkinter, CustomTkinter,
+           Kivy, PyQt5/PyQt6, PySide6 (compatibility layer), pygame and Flet.
+           Includes "popup". Run them with: termux-gui-run python app.py
+  popup    Only the pieces for the floating window: Xvnc (TigerVNC), websockify, noVNC
+  ml       TensorFlow Lite (tflite-runtime) and ONNX Runtime
+  llm      Local LLMs: llama.cpp with Vulkan/OpenCL backends, "termux-llm" and the
+           termux_llm Python module (add --ollama for Ollama)
+  all      Everything above
 
 Options:
   -y, --yes      Do not ask for confirmation
   -c, --check    Only show which Python libraries can be imported
   -e, --examples Only (re)create the example programs in ~/python-examples
+  --ollama       With the llm profile, also install Ollama
   -h, --help     Show this help
 
 Without a profile, "base ui torch" is installed.
@@ -132,6 +141,19 @@ setup_base() {
 	# pip is a separate package in Termux. Do not upgrade it with pip itself, that breaks the
 	# package managed by apt.
 	install_lib "pip" "" python-pip || true
+	link_python_modules
+}
+
+# Make the Python modules shipped with the app (termux_llm, PySide6 compatibility layer) importable.
+# They are added at the END of sys.path with a .pth file, so a real PySide6 always wins.
+link_python_modules() {
+	[ -d "$SHARE_DIR/python" ] || return 0
+	command -v python >/dev/null 2>&1 || return 0
+	local site_dir
+	site_dir="$(python -c 'import site; print(site.getusersitepackages())' 2>/dev/null)" || return 0
+	[ -n "$site_dir" ] || return 0
+	mkdir -p "$site_dir" && printf '%s\n' "$SHARE_DIR/python" > "$site_dir/termux-gui.pth" \
+		&& ok "Python modules linked ($site_dir/termux-gui.pth)"
 }
 
 setup_ui() {
@@ -197,19 +219,99 @@ setup_web() {
 	echo "   Start a server on localhost and open it with: termux-open-url http://localhost:8080"
 }
 
-setup_gui() {
-	info "Desktop GUI libraries (shown with the Termux:X11 app)"
+setup_popup() {
+	info "Floating window support (Xvnc + websockify + noVNC)"
 	enable_repo x11-repo
-	install_pkg "Termux:X11 server" termux-x11-nightly || warn "termux-x11-nightly not available, install the Termux:X11 app and package manually"
+	install_pkg "TigerVNC (Xvnc)" tigervnc || { FAILED+=("TigerVNC"); fail "TigerVNC is needed to show X11 apps in the floating window"; }
+	# websockify without its optional dependencies (numpy, jwcrypto, redis...), only the core is used.
+	if python -c "import websockify" 2>/dev/null; then
+		ok "websockify"
+	elif python -m pip install --no-deps websockify; then
+		ok "websockify (pip)"
+	else
+		fail "websockify could not be installed"; FAILED+=("websockify")
+	fi
+	if command -v termux-gui-run >/dev/null 2>&1; then
+		termux-gui-run --setup && ok "noVNC" || { fail "noVNC could not be downloaded"; FAILED+=("noVNC"); }
+	else
+		warn "termux-gui-run not found: open the Termux app once so that it installs its helper scripts"
+	fi
+	echo "   The floating window needs the 'Display over other apps' permission for Termux"
+	echo "   (terminal long-press menu > Floating windows)."
+}
+
+# Flet: pure Python, but its web server needs pydantic (compiled with Rust, takes a few minutes).
+install_flet() {
+	info "Installing Flet (web mode, shown in the floating window)"
+	local api_level; api_level="$(getprop ro.build.version.sdk 2>/dev/null || echo 24)"
+	install_pkg "msgpack" python-msgpack || true
+	local deps=(oauthlib httpx repath msgpack watchdog packaging qrcode cookiecutter binaryornot "chardet<6"
+		rich fastapi uvicorn websockets)
+	# --no-deps for flet packages: "uvicorn[standard]" would pull uvloop, httptools and watchfiles,
+	# which are not needed and do not build on Android.
+	if python -m pip install --no-deps flet flet-cli flet-web flet-platform-assets \
+		&& ANDROID_API_LEVEL="$api_level" python -m pip install "${deps[@]}"; then
+		ok "Flet"; INSTALLED+=("Flet"); return 0
+	fi
+	warn "The install failed, probably while compiling pydantic-core. Installing Rust and retrying (a few minutes)"
+	install_pkg "Rust" rust || true
+	install_pkg "binutils" binutils || true
+	if ANDROID_API_LEVEL="$api_level" python -m pip install "${deps[@]}" && python -m pip install --no-deps flet flet-cli flet-web flet-platform-assets; then
+		ok "Flet"; INSTALLED+=("Flet"); return 0
+	fi
+	fail "Flet could not be installed"; FAILED+=("Flet")
+	return 1
+}
+
+setup_gui() {
+	info "Windowed GUI libraries"
+	setup_popup
+	enable_repo tur-repo
 	install_lib "tkinter" "" python-tkinter
-	install_lib "PyQt5" "" python-pyqt5 || true
+	install_lib "CustomTkinter" "customtkinter" || true
+	# Kivy: prebuilt package from the TUR repository (building it from source needs SDL2 and takes long).
+	if ! install_pkg "Kivy" python-kivy; then
+		warn "python-kivy is not in the enabled repositories, building Kivy with pip (slow)"
+		install_pkg "SDL2" sdl2 || true; install_pkg "SDL2_image" sdl2-image || true
+		install_pkg "SDL2_mixer" sdl2-mixer || true; install_pkg "SDL2_ttf" sdl2-ttf || true
+		KIVY_SDL2_PATH="$PREFIX/include/SDL2" python -m pip install kivy || { fail "Kivy could not be installed"; FAILED+=("Kivy"); }
+	fi
+	install_lib "PyQt5" "" pyqt5 || true
+	install_lib "PyQt6" "" pyqt6 || true
+	# There are no PySide6 wheels for Android: the app ships a compatibility layer over PyQt6.
+	link_python_modules
 	install_lib "pygame" "" python-pygame || true
+	install_flet || true
+	warn "Dear PyGui has no Android build (no source package, and its wheels need glibc): not installed."
+	warn "CustomTkinter, Kivy, PyQt6/PySide6 or Flet cover the same needs."
 	cat <<EOF
-   To show desktop windows, install the Termux:X11 app (https://github.com/termux/termux-x11)
-   and run your program with:
-     termux-x11 :0 &
-     DISPLAY=:0 python ~/python-examples/tk_demo.py
+   Run an app in a floating window:
+     termux-gui-run python ~/python-examples/tk_demo.py
+     termux-gui-run flet run ~/python-examples/flet_demo.py
 EOF
+}
+
+setup_ml() {
+	info "Machine learning runtimes"
+	install_lib "NumPy" "" python-numpy
+	install_lib "ONNX Runtime" "" python-onnxruntime || true
+	install_lib "TensorFlow Lite" "" python-tflite-runtime || true
+	echo "   Full TensorFlow is not available for Android (Google publishes no Android wheels and it"
+	echo "   cannot be built here). Use tflite_runtime for TensorFlow Lite models, onnxruntime for ONNX"
+	echo "   models and torch for training."
+}
+
+setup_llm() {
+	info "Local LLMs (llama.cpp / Ollama)"
+	if ! command -v termux-llm >/dev/null 2>&1; then
+		fail "termux-llm not found: open the Termux app once so that it installs its helper scripts"
+		FAILED+=("termux-llm"); return 1
+	fi
+	local args=()
+	[ "$WITH_OLLAMA" = 1 ] && args+=(--ollama)
+	if termux-llm setup "${args[@]}"; then INSTALLED+=("llama.cpp"); else FAILED+=("llama.cpp"); fi
+	link_python_modules
+	echo "   Next: termux-llm pull qwen2.5-1.5b && termux-llm serve qwen2.5-1.5b --popup"
 }
 
 create_examples() {
@@ -327,6 +429,156 @@ if __name__ == "__main__":
     start_server(app, port=8080, host="127.0.0.1")
 EOF
 
+	cat > "$EXAMPLES_DIR/customtkinter_demo.py" <<'EOF'
+"""CustomTkinter demo (modern looking Tk). Run: termux-gui-run python customtkinter_demo.py"""
+import customtkinter as ctk
+
+ctk.set_appearance_mode("dark")
+app = ctk.CTk()
+app.title("CustomTkinter")
+app.geometry("420x300")
+count = ctk.IntVar(value=0)
+ctk.CTkLabel(app, text="Hello from CustomTkinter", font=("sans", 20)).pack(pady=20)
+ctk.CTkButton(app, text="Click me", command=lambda: count.set(count.get() + 1)).pack()
+ctk.CTkLabel(app, textvariable=count, font=("sans", 28)).pack(pady=10)
+ctk.CTkSwitch(app, text="Dark mode", command=lambda: ctk.set_appearance_mode(
+    "light" if ctk.get_appearance_mode() == "Dark" else "dark")).pack(pady=10)
+app.mainloop()
+EOF
+
+	cat > "$EXAMPLES_DIR/kivy_demo.py" <<'EOF'
+"""Kivy demo. Run: termux-gui-run python kivy_demo.py"""
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+
+
+class Demo(App):
+    def build(self):
+        box = BoxLayout(orientation="vertical", padding=20, spacing=10)
+        self.label = Label(text="0", font_size=48)
+        button = Button(text="Tap me", size_hint=(1, 0.3))
+        button.bind(on_release=self.bump)
+        box.add_widget(self.label)
+        box.add_widget(button)
+        return box
+
+    def bump(self, *_):
+        self.label.text = str(int(self.label.text) + 1)
+
+
+if __name__ == "__main__":
+    Demo().run()
+EOF
+
+	cat > "$EXAMPLES_DIR/flet_demo.py" <<'EOF'
+"""Flet demo (Flutter UI written in Python). Run: termux-gui-run flet run flet_demo.py"""
+import flet as ft
+
+
+def main(page: ft.Page):
+    page.title = "Flet"
+    counter = ft.Text("0", size=48)
+
+    def bump(_):
+        counter.value = str(int(counter.value) + 1)
+        page.update()
+
+    page.add(ft.Column([ft.Text("Hello from Flet", size=20), counter, ft.Button("Tap me", on_click=bump)],
+                       horizontal_alignment=ft.CrossAxisAlignment.CENTER))
+
+
+if __name__ == "__main__":
+    ft.run(main)
+EOF
+
+	cat > "$EXAMPLES_DIR/pyside6_demo.py" <<'EOF'
+"""PySide6 demo. On Termux, PySide6 is provided by a compatibility layer over PyQt6.
+Run: termux-gui-run python pyside6_demo.py"""
+import sys
+
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget
+
+
+class Window(QWidget):
+    clicked = Signal(int)
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("PySide6")
+        self.count = 0
+        self.label = QLabel("0")
+        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setStyleSheet("font-size: 48px")
+        button = QPushButton("Click me")
+        button.clicked.connect(self.bump)
+        self.clicked.connect(lambda n: self.label.setText(str(n)))
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.label)
+        layout.addWidget(button)
+
+    def bump(self):
+        self.count += 1
+        self.clicked.emit(self.count)
+
+
+app = QApplication(sys.argv)
+window = Window()
+window.resize(320, 240)
+window.show()
+sys.exit(app.exec())
+EOF
+
+	cat > "$EXAMPLES_DIR/onnx_demo.py" <<'EOF'
+"""ONNX Runtime demo: runs a tiny model (z = x + y) stored in this file."""
+import base64
+
+import numpy as np
+import onnxruntime as ort
+
+MODEL = base64.b64decode(
+    "CAg6QgoOCgF4CgF5EgF6IgNBZGQSA2FkZFoNCgF4EggKBggBEgIKAFoNCgF5EggKBggBEgIKAGINCgF6EggKBggBEgIKAEIECgAQDQ==")
+print("onnxruntime", ort.__version__, "| providers:", ort.get_available_providers())
+session = ort.InferenceSession(MODEL, providers=["CPUExecutionProvider"])
+x = np.array([1, 2, 3], dtype=np.float32)
+y = np.array([10, 20, 30], dtype=np.float32)
+print("x + y =", session.run(None, {"x": x, "y": y})[0])
+EOF
+
+	cat > "$EXAMPLES_DIR/tflite_demo.py" <<'EOF'
+"""TensorFlow Lite demo. Run: python tflite_demo.py model.tflite"""
+import sys
+
+import numpy as np
+from tflite_runtime.interpreter import Interpreter
+
+if len(sys.argv) != 2:
+    sys.exit("usage: python tflite_demo.py model.tflite   (any .tflite model, e.g. from kaggle.com/models)")
+interpreter = Interpreter(model_path=sys.argv[1], num_threads=4)
+interpreter.allocate_tensors()
+inp = interpreter.get_input_details()[0]
+out = interpreter.get_output_details()[0]
+print("input :", inp["shape"], inp["dtype"].__name__)
+print("output:", out["shape"], out["dtype"].__name__)
+interpreter.set_tensor(inp["index"], np.zeros(inp["shape"], dtype=inp["dtype"]))
+interpreter.invoke()
+print("result:", interpreter.get_tensor(out["index"]).ravel()[:10])
+EOF
+
+	cat > "$EXAMPLES_DIR/llm_demo.py" <<'EOF'
+"""Local LLM demo (llama.cpp). First: termux-llm setup && termux-llm pull qwen2.5-1.5b
+Run: python llm_demo.py"""
+from termux_llm import LLM
+
+with LLM("qwen2.5-1.5b") as llm:  # starts llama-server with the fastest backend, stops it at the end
+    print("Backend/API:", llm.base_url)
+    for piece in llm.chat("Explain what Vulkan is in two sentences.", stream=True):
+        print(piece, end="", flush=True)
+    print()
+EOF
+
 	ok "Examples in $EXAMPLES_DIR"
 }
 
@@ -344,7 +596,10 @@ libs = [
     ("torchvision", "torchvision"), ("scipy", "SciPy"), ("pandas", "pandas"),
     ("matplotlib", "matplotlib"), ("PIL", "Pillow"), ("sklearn", "scikit-learn"),
     ("flask", "Flask"), ("pywebio", "PyWebIO"), ("tkinter", "tkinter"),
-    ("PyQt5", "PyQt5"), ("pygame", "pygame"),
+    ("PyQt5", "PyQt5"), ("PyQt6", "PyQt6"), ("PySide6", "PySide6 (compat)"), ("pygame", "pygame"),
+    ("customtkinter", "CustomTkinter"), ("kivy", "Kivy"), ("flet", "Flet"),
+    ("dearpygui", "Dear PyGui"), ("onnxruntime", "ONNX Runtime"),
+    ("tflite_runtime", "TF Lite"), ("termux_llm", "termux_llm"),
 ]
 for module, label in libs:
     try:
@@ -357,6 +612,7 @@ EOF
 }
 
 PROFILES=()
+WITH_OLLAMA=0
 ONLY_CHECK=0
 ONLY_EXAMPLES=0
 for arg in "$@"; do
@@ -365,8 +621,9 @@ for arg in "$@"; do
 		-c|--check) ONLY_CHECK=1 ;;
 		-e|--examples) ONLY_EXAMPLES=1 ;;
 		-h|--help) usage; exit 0 ;;
-		base|ui|torch|data|web|gui) PROFILES+=("$arg") ;;
-		all) PROFILES+=(ui torch data web gui) ;;
+		--ollama) WITH_OLLAMA=1 ;;
+		base|ui|torch|data|web|gui|popup|ml|llm) PROFILES+=("$arg") ;;
+		all) PROFILES+=(ui torch data web gui ml llm) ;;
 		*) echo "Unknown argument: $arg" >&2; usage >&2; exit 1 ;;
 	esac
 done
@@ -385,10 +642,10 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 setup_base
-declare -A DONE=()
+declare -A SEEN=()
 for profile in "${PROFILES[@]}"; do
-	[ -n "${DONE[$profile]:-}" ] && continue
-	DONE[$profile]=1
+	[ -n "${SEEN[$profile]:-}" ] && continue
+	SEEN[$profile]=1
 	case "$profile" in
 		base) ;;
 		ui) setup_ui ;;
@@ -396,6 +653,9 @@ for profile in "${PROFILES[@]}"; do
 		data) setup_data ;;
 		web) setup_web ;;
 		gui) setup_gui ;;
+		popup) setup_popup ;;
+		ml) setup_ml ;;
+		llm) setup_llm ;;
 	esac
 done
 

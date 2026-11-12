@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Floating windows (termux-gui-popup) -->
+    <string name="notification_channel_gui_popup">Janelas flutuantes</string>
+    <string name="notification_gui_popup_title">Janelas flutuantes</string>
+    <string name="notification_gui_popup_starting">Iniciando…</string>
+    <plurals name="notification_gui_popup_windows">
+        <item quantity="one">%d janela flutuante aberta</item>
+        <item quantity="other">%d janelas flutuantes abertas</item>
+    </plurals>
+    <string name="popup_close_all">Fechar todas</string>
+    <string name="popup_reload">Recarregar</string>
+    <string name="popup_hide">Ocultar</string>
+    <string name="popup_show">Mostrar janela</string>
+    <string name="popup_fullscreen">Tela cheia</string>
+    <string name="popup_close">Fechar</string>
+    <string name="popup_resize">Redimensionar</string>
+    <string name="popup_error_permission">Permita “Sobrepor a outros apps” para o Termux mostrar janelas flutuantes.</string>
+    <string name="popup_error_url_not_allowed">Janelas flutuantes só mostram páginas deste aparelho (http://127.0.0.1).</string>
+    <string name="action_gui_popup_permission">Janelas flutuantes</string>
+    <string name="msg_gui_popup_permission_granted">Janelas flutuantes permitidas. Execute: termux-gui-run python ~/python-examples/tk_demo.py</string>
+
     <!-- Python environment setup -->
     <string name="action_python_setup">Ambiente Python</string>
     <string name="title_python_setup">Instalar bibliotecas Python</string>
@@ -8,7 +28,9 @@
         <item>PyTorch (dispositivos 64 bits)</item>
         <item>Ciência de dados (NumPy, SciPy, pandas, matplotlib)</item>
         <item>Interfaces no navegador (Flask, PyWebIO)</item>
-        <item>Interfaces gráficas via Termux:X11 (tkinter, PyQt5, pygame)</item>
+        <item>Apps com janela em popup flutuante (tkinter, CustomTkinter, Kivy, PyQt, PySide6, Flet)</item>
+        <item>Machine learning (TensorFlow Lite, ONNX Runtime)</item>
+        <item>LLMs locais (llama.cpp, Vulkan/OpenCL)</item>
     </string-array>
     <string name="action_python_setup_install">Instalar</string>
     <string name="action_python_setup_check">Ver instalados</string>

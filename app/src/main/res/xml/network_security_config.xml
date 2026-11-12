@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The app targets API 28, where cleartext (http) traffic is blocked by default. The floating
+    window shows pages served from the device itself (noVNC, Flet, llama-server...), so cleartext is
+    allowed for loopback addresses only. Everything else keeps the default (https only).
+-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">127.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
+        <domain includeSubdomains="false">[::1]</domain>
+    </domain-config>
+</network-security-config>

@@ -89,6 +89,26 @@
 
     <string name="action_report_issue">Report Issue</string>
 
+    <!-- Floating windows (termux-gui-popup) -->
+    <string name="notification_channel_gui_popup">Floating windows</string>
+    <string name="notification_gui_popup_title">Floating windows</string>
+    <string name="notification_gui_popup_starting">Starting…</string>
+    <plurals name="notification_gui_popup_windows">
+        <item quantity="one">%d floating window open</item>
+        <item quantity="other">%d floating windows open</item>
+    </plurals>
+    <string name="popup_close_all">Close all</string>
+    <string name="popup_reload">Reload</string>
+    <string name="popup_hide">Hide</string>
+    <string name="popup_show">Show window</string>
+    <string name="popup_fullscreen">Full screen</string>
+    <string name="popup_close">Close</string>
+    <string name="popup_resize">Resize</string>
+    <string name="popup_error_permission">Allow “Display over other apps” for Termux to show floating windows.</string>
+    <string name="popup_error_url_not_allowed">Floating windows can only show pages from this device (http://127.0.0.1).</string>
+    <string name="action_gui_popup_permission">Floating windows</string>
+    <string name="msg_gui_popup_permission_granted">Floating windows are allowed. Run: termux-gui-run python ~/python-examples/tk_demo.py</string>
+
     <!-- Python environment setup -->
     <string name="action_python_setup">Python environment</string>
     <string name="title_python_setup">Install Python libraries</string>
@@ -97,7 +117,9 @@
         <item>PyTorch (64-bit devices)</item>
         <item>Data science (NumPy, SciPy, pandas, matplotlib)</item>
         <item>Browser interfaces (Flask, PyWebIO)</item>
-        <item>Desktop GUIs via Termux:X11 (tkinter, PyQt5, pygame)</item>
+        <item>Windowed apps in a floating window (tkinter, CustomTkinter, Kivy, PyQt, PySide6, Flet)</item>
+        <item>Machine learning (TensorFlow Lite, ONNX Runtime)</item>
+        <item>Local LLMs (llama.cpp, Vulkan/OpenCL)</item>
     </string-array>
     <string name="action_python_setup_install">Install</string>
     <string name="action_python_setup_check">Check installed</string>

@@ -1,0 +1,273 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# termux-gui-run - run a Python GUI app inside a floating window over other apps.
+#
+#   X11 apps  (tkinter, CustomTkinter, Kivy, PyQt, PySide6, pygame, ...)
+#       An X server (TigerVNC's Xvnc) is started in the background and shown through noVNC in the
+#       floating window of the Termux app.
+#   Web apps  (Flet, NiceGUI, Streamlit, PyWebIO, llama-server, ...)
+#       The app is started as a local web server and its page is shown in the floating window.
+
+set -u
+
+PREFIX="${PREFIX:-/data/data/com.termux/files/usr}"
+HOME_DIR="${HOME:-/data/data/com.termux/files/home}"
+CACHE_DIR="$HOME_DIR/.cache/termux-gui"
+WEB_DIR="$CACHE_DIR/web"
+SHARE_DIR="$PREFIX/share/termux-gui"
+RUN_DIR="${TMPDIR:-$PREFIX/tmp}/termux-gui-run"
+NOVNC_VERSION="1.7.0"
+NOVNC_URL="https://registry.npmjs.org/@novnc/novnc/-/novnc-$NOVNC_VERSION.tgz"
+NOVNC_SHA256="32689f18d6abe96bc6530828a6bd0b9ae33bda07c083a6575ed255b5a8f2e903"
+
+usage() {
+	cat <<'EOF'
+Usage: termux-gui-run [options] [--] COMMAND [ARGS...]
+       termux-gui-run --setup
+
+Examples:
+  termux-gui-run python ~/python-examples/tk_demo.py        Tk / CustomTkinter / Kivy / Qt app
+  termux-gui-run flet run app.py                             Flet app (served on a local port)
+  termux-gui-run --web 8080 python -m http.server 8080       any local web server
+  termux-gui-run --web 8501 streamlit run app.py --server.port 8501
+
+Options:
+  --x11              Treat COMMAND as an X11 app (default)
+  --web [PORT]       COMMAND is a web server; open http://127.0.0.1:PORT (default: auto for Flet)
+  --size WxH         Size of the virtual screen for X11 apps (default 1024x768)
+  --resize           Make the virtual screen follow the window size (for responsive apps)
+  --title TEXT       Window title
+  --id ID            Window name (default: derived from the command)
+  --fullscreen       Open in full screen
+  --no-popup         Only start the server and print the URL
+  --keep             Keep the window open after the app exits
+  --setup            Download the noVNC client used for X11 apps
+  -h, --help         This help
+
+Needs (installed by "termux-python-setup popup"): x11-repo, tigervnc, python websockify, noVNC.
+Closing the window stops the app.
+EOF
+}
+
+die() { echo "termux-gui-run: $*" >&2; exit 1; }
+info() { echo "termux-gui-run: $*" >&2; }
+
+free_port() {
+	python3 - <<'EOF'
+import socket
+s = socket.socket()
+s.bind(("127.0.0.1", 0))
+print(s.getsockname()[1])
+s.close()
+EOF
+}
+
+port_open() { (exec 3<>"/dev/tcp/127.0.0.1/$1") 2>/dev/null; }
+
+setup_novnc() {
+	command -v curl >/dev/null 2>&1 || die "curl is required (pkg install curl)"
+	command -v sha256sum >/dev/null 2>&1 || die "sha256sum is required (pkg install coreutils)"
+	local tmp
+	tmp="$(mktemp -d)" || die "could not create a temporary directory"
+	info "Downloading noVNC $NOVNC_VERSION"
+	if ! curl -fsSL --retry 3 -o "$tmp/novnc.tgz" "$NOVNC_URL"; then
+		rm -rf "$tmp"; die "download failed: $NOVNC_URL"
+	fi
+	if [ "$(sha256sum "$tmp/novnc.tgz" | cut -d' ' -f1)" != "$NOVNC_SHA256" ]; then
+		rm -rf "$tmp"; die "checksum mismatch for the noVNC download, refusing to install it"
+	fi
+	rm -rf "$WEB_DIR.new"
+	mkdir -p "$WEB_DIR.new" || die "could not create $WEB_DIR.new"
+	tar -xzf "$tmp/novnc.tgz" -C "$WEB_DIR.new" --strip-components=1 \
+		package/core package/vendor package/LICENSE.txt package/docs/LICENSE.MPL-2.0 \
+		|| { rm -rf "$tmp" "$WEB_DIR.new"; die "could not extract noVNC"; }
+	rm -rf "$tmp" "$WEB_DIR"
+	mv "$WEB_DIR.new" "$WEB_DIR"
+	cp -f "$SHARE_DIR/web/index.html" "$WEB_DIR/index.html" || die "missing $SHARE_DIR/web/index.html"
+	info "noVNC installed in $WEB_DIR"
+}
+
+ensure_web_page() {
+	# Always refresh the page (it ships with the app), the library is only downloaded once.
+	if [ -f "$WEB_DIR/core/rfb.js" ]; then
+		cp -f "$SHARE_DIR/web/index.html" "$WEB_DIR/index.html"
+	else
+		setup_novnc
+	fi
+}
+
+MODE=x11
+SIZE=1024x768
+RESIZE=0
+TITLE=""
+ID=""
+FULLSCREEN=0
+NO_POPUP=0
+KEEP=0
+WEB_PORT=""
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h|--help) usage; exit 0 ;;
+		--setup) setup_novnc; exit 0 ;;
+		--x11) MODE=x11 ;;
+		--web)
+			MODE=web
+			if [ $# -ge 2 ] && [[ "$2" =~ ^[0-9]+$ ]]; then WEB_PORT="$2"; shift; fi ;;
+		--size) [ $# -ge 2 ] || die "--size needs a value"; SIZE="$2"; shift ;;
+		--resize) RESIZE=1 ;;
+		--title) [ $# -ge 2 ] || die "--title needs a value"; TITLE="$2"; shift ;;
+		--id) [ $# -ge 2 ] || die "--id needs a value"; ID="$2"; shift ;;
+		--fullscreen) FULLSCREEN=1 ;;
+		--no-popup) NO_POPUP=1 ;;
+		--keep) KEEP=1 ;;
+		--) shift; break ;;
+		-*) die "unknown option: $1 (see --help)" ;;
+		*) break ;;
+	esac
+	shift
+done
+
+[ $# -gt 0 ] || { usage >&2; exit 1; }
+[[ "$SIZE" =~ ^[0-9]{3,4}x[0-9]{3,4}$ ]] || die "--size must look like 1024x768"
+COMMAND=("$@")
+
+# Flet serves its web client with "flet run --web", pick a free port for it.
+if [ "${COMMAND[0]}" = flet ] && [ "${COMMAND[1]:-}" = run ] && [ "$MODE" = x11 ]; then
+	MODE=web
+fi
+if [ "$MODE" = web ] && [ -z "$WEB_PORT" ]; then
+	WEB_PORT="$(free_port)" || die "could not find a free port"
+	if [ "${COMMAND[0]}" = flet ]; then
+		COMMAND=("${COMMAND[0]}" "${COMMAND[1]}" --web --port "$WEB_PORT" "${COMMAND[@]:2}")
+	else
+		info "Using port $WEB_PORT, make sure your server listens on it"
+	fi
+fi
+
+if [ -z "$ID" ]; then
+	ID="$(basename "${COMMAND[0]}" | tr -c 'A-Za-z0-9_-' '_' | cut -c1-20)-$$"
+fi
+[[ "$ID" =~ ^[A-Za-z0-9_-]{1,32}$ ]] || die "invalid --id, use up to 32 letters, digits, '_' or '-'"
+[ -n "$TITLE" ] || TITLE="${COMMAND[0]##*/}"
+
+mkdir -p "$RUN_DIR/$ID" || die "could not create $RUN_DIR/$ID"
+chmod 700 "$RUN_DIR" "$RUN_DIR/$ID" 2>/dev/null
+PIDS=()
+
+cleanup() {
+	trap - EXIT INT TERM HUP
+	local pid
+	for pid in "${PIDS[@]:-}"; do
+		[ -n "$pid" ] || continue
+		kill "$pid" 2>/dev/null
+		pkill -P "$pid" 2>/dev/null
+	done
+	if [ "$NO_POPUP" = 0 ] && [ "$KEEP" = 0 ]; then
+		termux-gui-popup --close --id "$ID" 2>/dev/null
+	fi
+	rm -rf "${RUN_DIR:?}/$ID"
+}
+trap cleanup EXIT
+trap 'exit 130' INT TERM HUP
+
+popup() {
+	local args=(--id "$ID" --title "$TITLE")
+	[ "$FULLSCREEN" = 1 ] && args+=(--fullscreen)
+	termux-gui-popup "$1" "${args[@]}" || info "could not open the floating window"
+}
+
+wait_for_end() {
+	# Return when the app exits or the window is closed by the user.
+	local app_pid="$1" seen=0 state
+	while kill -0 "$app_pid" 2>/dev/null; do
+		if [ "$NO_POPUP" = 0 ]; then
+			state="$(termux-gui-popup --status --id "$ID" 2>/dev/null)"
+			if [ "$state" != closed ]; then seen=1; fi
+			if [ "$seen" = 1 ] && [ "$state" = closed ]; then
+				info "window closed, stopping the app"
+				return 0
+			fi
+		fi
+		sleep 0.5
+	done
+	wait "$app_pid" 2>/dev/null
+	return $?
+}
+
+if [ "$MODE" = web ]; then
+	"${COMMAND[@]}" &
+	APP_PID=$!
+	PIDS+=("$APP_PID")
+	info "Waiting for the server on port $WEB_PORT..."
+	for _ in $(seq 1 120); do
+		port_open "$WEB_PORT" && break
+		kill -0 "$APP_PID" 2>/dev/null || { wait "$APP_PID"; die "the app exited before the server started"; }
+		sleep 0.5
+	done
+	port_open "$WEB_PORT" || die "nothing is listening on port $WEB_PORT after 60 s"
+	URL="http://127.0.0.1:$WEB_PORT"
+	echo "$URL"
+	[ "$NO_POPUP" = 1 ] || popup "$URL"
+	wait_for_end "$APP_PID"
+	exit $?
+fi
+
+# ---- X11 mode ------------------------------------------------------------------------------
+for tool in Xvnc vncpasswd; do
+	command -v "$tool" >/dev/null 2>&1 || die "$tool not found. Run: termux-python-setup popup"
+done
+python3 -c "import websockify" 2>/dev/null || die "websockify is missing. Run: termux-python-setup popup"
+ensure_web_page
+
+# Random VNC password, only known to this script and to the page opened in the window.
+PASSWORD="$(python3 -c "import secrets; print(secrets.token_hex(4))")"
+PWFILE="$RUN_DIR/$ID/passwd"
+( umask 077; printf '%s\n' "$PASSWORD" | vncpasswd -f > "$PWFILE" ) 2>/dev/null || die "could not create the VNC password file"
+
+DISPLAY_NUM=""
+for n in $(seq 20 60); do
+	if [ ! -e "${TMPDIR:-$PREFIX/tmp}/.X11-unix/X$n" ] && [ ! -e "/tmp/.X11-unix/X$n" ]; then DISPLAY_NUM="$n"; break; fi
+done
+[ -n "$DISPLAY_NUM" ] || die "no free X display number"
+VNC_PORT="$(free_port)" || die "could not find a free port"
+WS_PORT="$(free_port)" || die "could not find a free port"
+
+Xvnc ":$DISPLAY_NUM" -geometry "$SIZE" -depth 24 -rfbport "$VNC_PORT" -localhost \
+	-SecurityTypes VncAuth -PasswordFile "$PWFILE" -desktop "termux-gui" \
+	>"$RUN_DIR/$ID/xvnc.log" 2>&1 &
+PIDS+=("$!")
+for _ in $(seq 1 60); do
+	port_open "$VNC_PORT" && break
+	sleep 0.25
+done
+port_open "$VNC_PORT" || { tail -5 "$RUN_DIR/$ID/xvnc.log" >&2; die "the X server did not start"; }
+
+python3 -m websockify --web "$WEB_DIR" "127.0.0.1:$WS_PORT" "127.0.0.1:$VNC_PORT" \
+	>"$RUN_DIR/$ID/websockify.log" 2>&1 &
+PIDS+=("$!")
+for _ in $(seq 1 40); do
+	port_open "$WS_PORT" && break
+	sleep 0.25
+done
+port_open "$WS_PORT" || { tail -5 "$RUN_DIR/$ID/websockify.log" >&2; die "websockify did not start"; }
+
+VIEW_MODE=scale
+[ "$RESIZE" = 1 ] && VIEW_MODE=resize
+URL="http://127.0.0.1:$WS_PORT/index.html#pw=$PASSWORD&mode=$VIEW_MODE"
+
+# Qt must use the X11 plugin, GTK/Tk/SDL pick the display from $DISPLAY.
+env DISPLAY=":$DISPLAY_NUM" QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-xcb}" SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-x11}" \
+	"${COMMAND[@]}" &
+APP_PID=$!
+PIDS+=("$APP_PID")
+
+# Show the window once the app had time to draw something.
+sleep 1
+if kill -0 "$APP_PID" 2>/dev/null; then
+	[ "$NO_POPUP" = 1 ] && echo "$URL" || popup "$URL"
+else
+	wait "$APP_PID"
+	die "the app exited right away (exit code $?), see its output above"
+fi
+wait_for_end "$APP_PID"
+exit $?

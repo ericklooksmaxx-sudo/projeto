@@ -1,0 +1,514 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# termux-llm - run local LLMs (llama.cpp, Ollama) in Termux without the usual hacks.
+#
+# Uses the packages from the Termux repositories (llama-cpp, its Vulkan/OpenCL backends, ollama)
+# and takes care of the parts that are annoying by hand: installing the right backend, downloading
+# GGUF models, picking threads/GPU layers and choosing the fastest backend for your phone.
+
+set -u
+
+PREFIX="${PREFIX:-/data/data/com.termux/files/usr}"
+HOME_DIR="${HOME:-/data/data/com.termux/files/home}"
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME_DIR/.config}/termux-llm"
+DATA_DIR="${XDG_DATA_HOME:-$HOME_DIR/.local/share}/termux-llm"
+MODELS_DIR="${TERMUX_LLM_MODELS:-$DATA_DIR/models}"
+CONFIG_FILE="$CONFIG_DIR/config"
+PID_FILE="$DATA_DIR/server.pid"
+PORT_FILE="$DATA_DIR/server.port"
+LOG_FILE="$DATA_DIR/server.log"
+DEFAULT_PORT=8080
+DEFAULT_CTX=4096
+
+# name|Hugging Face repo|file|size in MB (approximate)
+PRESETS=(
+	"qwen2.5-0.5b|Qwen/Qwen2.5-0.5B-Instruct-GGUF|qwen2.5-0.5b-instruct-q4_k_m.gguf|470"
+	"llama3.2-1b|bartowski/Llama-3.2-1B-Instruct-GGUF|Llama-3.2-1B-Instruct-Q4_K_M.gguf|770"
+	"gemma3-1b|unsloth/gemma-3-1b-it-GGUF|gemma-3-1b-it-Q4_K_M.gguf|770"
+	"qwen2.5-1.5b|Qwen/Qwen2.5-1.5B-Instruct-GGUF|qwen2.5-1.5b-instruct-q4_k_m.gguf|1070"
+	"smollm2-1.7b|bartowski/SmolLM2-1.7B-Instruct-GGUF|SmolLM2-1.7B-Instruct-Q4_K_M.gguf|1010"
+	"llama3.2-3b|bartowski/Llama-3.2-3B-Instruct-GGUF|Llama-3.2-3B-Instruct-Q4_K_M.gguf|1930"
+	"qwen2.5-3b|Qwen/Qwen2.5-3B-Instruct-GGUF|qwen2.5-3b-instruct-q4_k_m.gguf|2010"
+	"phi3.5-mini|bartowski/Phi-3.5-mini-instruct-GGUF|Phi-3.5-mini-instruct-Q4_K_M.gguf|2280"
+)
+
+if [ -t 1 ]; then B=$'\e[1m'; G=$'\e[32m'; R=$'\e[31m'; Y=$'\e[33m'; C=$'\e[36m'; N=$'\e[0m'; else B=""; G=""; R=""; Y=""; C=""; N=""; fi
+info() { printf '%s==>%s %s\n' "$C$B" "$N" "$*" >&2; }
+ok() { printf ' %s✔%s %s\n' "$G" "$N" "$*" >&2; }
+warn() { printf ' %s!%s %s\n' "$Y" "$N" "$*" >&2; }
+die() { printf '%stermux-llm:%s %s\n' "$R" "$N" "$*" >&2; exit 1; }
+
+usage() {
+	cat <<EOF
+${B}termux-llm${N} - local LLMs with llama.cpp and Ollama, with Vulkan/OpenCL acceleration when it helps.
+
+Usage: termux-llm COMMAND [options]
+
+Commands:
+  setup [--ollama] [--cpu-only]   Install llama.cpp (+ Vulkan and OpenCL backends), optionally Ollama
+  doctor                          Show your device, installed backends and what was detected
+  models                          List ready-made models and the ones you downloaded
+  pull MODEL                      Download a model: a preset name, hf:owner/repo/file.gguf or an https URL
+  serve [MODEL] [options]         Start an OpenAI-compatible server with a web chat UI
+  chat [MODEL] [options]          Chat in the terminal
+  bench [MODEL]                   Measure CPU, Vulkan and OpenCL and remember the fastest
+  stop                            Stop the background server
+  ollama start|stop|status|...    Run Ollama (other arguments are passed to the ollama command)
+  api                             Show how to use the server from curl and Python
+
+Options for serve and chat:
+  --backend auto|cpu|vulkan|opencl   Default: auto (the fastest measured one)
+  --ctx N         Context size (default $DEFAULT_CTX)
+  --threads N     CPU threads (default: the fast cores of your phone)
+  --ngl N         Layers to offload to the GPU (default: all)
+  --port N        Server port (default $DEFAULT_PORT)
+  --bg            Run the server in the background
+  --popup         Open the chat UI in a floating window (needs --bg or runs it in the background)
+  --extra "ARGS"  Extra arguments for llama-server / llama-cli
+
+Models: $MODELS_DIR
+Quick start:  termux-llm setup && termux-llm pull qwen2.5-1.5b && termux-llm serve qwen2.5-1.5b --popup
+EOF
+}
+
+# ---- helpers -------------------------------------------------------------------------------
+
+is_64bit() { case "$(uname -m)" in aarch64|arm64|x86_64) return 0 ;; *) return 1 ;; esac; }
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+pkg_installed() { dpkg -s "$1" >/dev/null 2>&1; }
+
+pkg_available() {
+	local candidate
+	candidate="$(apt-cache policy "$1" 2>/dev/null | awk '/Candidate:/ {print $2; exit}')"
+	[ -n "$candidate" ] && [ "$candidate" != "(none)" ]
+}
+
+install_pkg() {
+	local name="$1"
+	if pkg_installed "$name"; then ok "$name already installed"; return 0; fi
+	if ! pkg_available "$name"; then warn "$name is not available in the enabled repositories"; return 1; fi
+	if apt-get install -y "$name" >&2; then ok "$name"; return 0; fi
+	warn "could not install $name"; return 1
+}
+
+config_get() { [ -r "$CONFIG_FILE" ] && sed -n "s/^$1=//p" "$CONFIG_FILE" | tail -n 1; }
+
+config_set() {
+	mkdir -p "$CONFIG_DIR" || return 1
+	local tmp="$CONFIG_FILE.tmp.$$"
+	{ [ -r "$CONFIG_FILE" ] && grep -v "^$1=" "$CONFIG_FILE"; echo "$1=$2"; } > "$tmp" && mv "$tmp" "$CONFIG_FILE"
+}
+
+total_ram_mb() { awk '/MemTotal/ {printf "%d", $2/1024}' /proc/meminfo 2>/dev/null; }
+
+# Number of "fast" cores: phones mix big and little cores, and using the little ones slows
+# llama.cpp down a lot, so only cores close to the maximum frequency are used.
+fast_cores() {
+	local max=0 f freqs=() n
+	for f in /sys/devices/system/cpu/cpu[0-9]*/cpufreq/cpuinfo_max_freq; do
+		[ -r "$f" ] || continue
+		n="$(cat "$f" 2>/dev/null)"
+		[[ "$n" =~ ^[0-9]+$ ]] || continue
+		freqs+=("$n")
+		[ "$n" -gt "$max" ] && max="$n"
+	done
+	if [ "${#freqs[@]}" -eq 0 ]; then
+		n="$(nproc 2>/dev/null || echo 4)"
+		n=$((n / 2)); [ "$n" -lt 2 ] && n=2
+		echo "$n"; return
+	fi
+	local count=0
+	for n in "${freqs[@]}"; do [ $((n * 100)) -ge $((max * 75)) ] && count=$((count + 1)); done
+	[ "$count" -lt 2 ] && count=2
+	[ "$count" -gt 8 ] && count=8
+	echo "$count"
+}
+
+# Print the GPU devices llama.cpp can use, one per line as "NAME<TAB>description".
+list_devices() {
+	local bin
+	bin="$(command -v llama-server || command -v llama-cli)" || return 0
+	"$bin" --list-devices 2>/dev/null | sed -n 's/^[[:space:]]*\([A-Za-z][A-Za-z0-9_]*[0-9]\):[[:space:]]*\(.*\)$/\1\t\2/p'
+}
+
+device_for_backend() {
+	# Usage: device_for_backend vulkan|opencl -> first device name of that backend
+	local want="$1"
+	list_devices | awk -F'\t' -v w="$want" 'tolower($1) ~ "^" w {print $1; exit}'
+}
+
+resolve_model() {
+	# Usage: resolve_model [name-or-path] -> prints the path of a model file
+	local name="${1:-}" entry file
+	if [ -z "$name" ]; then
+		local files=()
+		while IFS= read -r file; do files+=("$file"); done < <(find "$MODELS_DIR" -maxdepth 1 -name '*.gguf' 2>/dev/null | sort)
+		case "${#files[@]}" in
+			0) die "no model found. Download one with: termux-llm pull qwen2.5-1.5b   (see: termux-llm models)" ;;
+			1) echo "${files[0]}"; return ;;
+			*) local last; last="$(config_get last_model)"
+			   if [ -n "$last" ] && [ -f "$last" ]; then echo "$last"; return; fi
+			   die "several models found, choose one: termux-llm serve NAME (see: termux-llm models)" ;;
+		esac
+	fi
+	if [ -f "$name" ]; then echo "$name"; return; fi
+	if [ -f "$MODELS_DIR/$name" ]; then echo "$MODELS_DIR/$name"; return; fi
+	for entry in "${PRESETS[@]}"; do
+		if [ "${entry%%|*}" = "$name" ]; then
+			IFS='|' read -r _ _ file _ <<<"$entry"
+			[ -f "$MODELS_DIR/$file" ] && { echo "$MODELS_DIR/$file"; return; }
+			die "model '$name' is not downloaded yet. Run: termux-llm pull $name"
+		fi
+	done
+	[ -f "$MODELS_DIR/$name.gguf" ] && { echo "$MODELS_DIR/$name.gguf"; return; }
+	die "model not found: $name (see: termux-llm models)"
+}
+
+# Fill BACKEND_ARGS (an array) and CHOSEN_BACKEND for the requested backend.
+select_backend() {
+	local requested="$1" model="$2" dev
+	BACKEND_ARGS=()
+	CHOSEN_BACKEND=cpu
+	if [ "$requested" = auto ]; then
+		requested="$(config_get backend)"
+		if [ -z "$requested" ]; then
+			if [ -n "$(list_devices)" ] && [ -n "$model" ] && have llama-bench; then
+				info "First run with a GPU backend available: measuring what is fastest on this phone (about a minute)"
+				run_bench "$model" >/dev/null 2>&1
+				requested="$(config_get backend)"
+			fi
+			[ -n "$requested" ] || requested=cpu
+		fi
+	fi
+	case "$requested" in
+		cpu) BACKEND_ARGS=(--device none -ngl 0) ;;
+		vulkan|opencl)
+			dev="$(device_for_backend "$requested")"
+			if [ -z "$dev" ]; then
+				warn "no $requested device found, using the CPU (run: termux-llm doctor)"
+				BACKEND_ARGS=(--device none -ngl 0)
+			else
+				CHOSEN_BACKEND="$requested"
+				BACKEND_ARGS=(--device "$dev" -ngl "${NGL:-99}")
+			fi ;;
+		*) die "unknown backend: $requested (use auto, cpu, vulkan or opencl)" ;;
+	esac
+}
+
+# ---- commands ------------------------------------------------------------------------------
+
+cmd_setup() {
+	local want_ollama=0 cpu_only=0
+	while [ $# -gt 0 ]; do
+		case "$1" in
+			--ollama) want_ollama=1 ;;
+			--cpu-only) cpu_only=1 ;;
+			*) die "unknown option: $1" ;;
+		esac
+		shift
+	done
+	is_64bit || die "llama.cpp and Ollama are only available for 64-bit devices, this one is $(uname -m)"
+	info "Installing llama.cpp"
+	apt-get update >&2 || warn "apt-get update failed, check your mirror with 'termux-change-repo'"
+	install_pkg llama-cpp || die "llama-cpp could not be installed"
+	if [ "$cpu_only" = 0 ]; then
+		install_pkg llama-cpp-backend-vulkan || true
+		install_pkg vulkan-tools || true
+		install_pkg llama-cpp-backend-opencl || true
+		pkg_installed opencl-vendor-driver || install_pkg opencl-vendor-driver || true
+	fi
+	if [ "$want_ollama" = 1 ]; then
+		info "Installing Ollama"
+		install_pkg ollama || true
+		[ "$cpu_only" = 0 ] && { install_pkg ollama-backend-vulkan || true; }
+	fi
+	mkdir -p "$MODELS_DIR"
+	ok "Done. Next: termux-llm pull qwen2.5-1.5b && termux-llm serve qwen2.5-1.5b --popup"
+	echo "Run 'termux-llm doctor' to see which GPU backends your phone supports." >&2
+}
+
+cmd_doctor() {
+	info "Device"
+	echo "  CPU: $(uname -m), $(nproc 2>/dev/null || echo '?') cores ($(fast_cores) fast)"
+	echo "  RAM: $(total_ram_mb) MB"
+	if have getprop; then
+		echo "  Android $(getprop ro.build.version.release) / platform: $(getprop ro.board.platform) / $(getprop ro.product.model)"
+	fi
+	is_64bit || warn "32-bit device: llama.cpp and Ollama are not available"
+	info "Packages"
+	local p
+	for p in llama-cpp llama-cpp-backend-vulkan llama-cpp-backend-opencl vulkan-loader-android vulkan-loader-generic opencl-vendor-driver ollama ollama-backend-vulkan; do
+		if pkg_installed "$p"; then ok "$p"; else echo "  - $p (not installed)"; fi
+	done
+	info "GPU devices seen by llama.cpp"
+	local devices
+	devices="$(list_devices)"
+	if [ -n "$devices" ]; then
+		while IFS=$'\t' read -r name desc; do echo "  $name: $desc"; done <<<"$devices"
+	else
+		echo "  none (CPU only). Install the backends with: termux-llm setup"
+	fi
+	have vulkaninfo && { info "Vulkan"; vulkaninfo --summary 2>/dev/null | grep -E "deviceName|apiVersion|driverName" | head -6 | sed 's/^/  /'; }
+	info "Settings"
+	echo "  Preferred backend: $(config_get backend || true)${CONFIG_FILE:+ ($CONFIG_FILE)}"
+	echo "  Models: $MODELS_DIR ($(find "$MODELS_DIR" -maxdepth 1 -name '*.gguf' 2>/dev/null | wc -l) downloaded)"
+	echo
+	echo "Tips: a model should use at most half of the RAM. GPU backends are not always faster on"
+	echo "phones (Vulkan drivers vary, OpenCL is tuned for Adreno and Q4_0 models), so run"
+	echo "'termux-llm bench' once and termux-llm will remember the fastest backend."
+}
+
+cmd_models() {
+	local entry name repo file size state
+	printf '%-14s %-8s %s\n' "NAME" "SIZE" "STATUS"
+	for entry in "${PRESETS[@]}"; do
+		IFS='|' read -r name repo file size <<<"$entry"
+		state="not downloaded"
+		[ -f "$MODELS_DIR/$file" ] && state="${G}downloaded${N}"
+		printf '%-14s %-8s %s\n' "$name" "${size} MB" "$state"
+	done
+	local f
+	while IFS= read -r f; do
+		[ -n "$f" ] || continue
+		case " ${PRESETS[*]} " in *"|$(basename "$f")|"*) continue ;; esac
+		printf '%-14s %-8s %s\n' "$(basename "$f" .gguf | cut -c1-14)" "$(du -m "$f" | cut -f1) MB" "downloaded (custom)"
+	done < <(find "$MODELS_DIR" -maxdepth 1 -name '*.gguf' 2>/dev/null | sort)
+	echo
+	echo "Download with: termux-llm pull NAME   (or hf:owner/repo/file.gguf, or an https URL)"
+}
+
+cmd_pull() {
+	[ $# -eq 1 ] || die "usage: termux-llm pull MODEL"
+	have curl || die "curl is required: pkg install curl"
+	local spec="$1" url="" file="" entry name repo pfile
+	for entry in "${PRESETS[@]}"; do
+		IFS='|' read -r name repo pfile _ <<<"$entry"
+		if [ "$name" = "$spec" ]; then url="https://huggingface.co/$repo/resolve/main/$pfile"; file="$pfile"; fi
+	done
+	if [ -z "$url" ]; then
+		case "$spec" in
+			hf:*/*/*)
+				local path="${spec#hf:}"
+				[[ "$path" =~ ^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+/[A-Za-z0-9._/-]+\.gguf$ ]] || die "invalid Hugging Face spec, use hf:owner/repo/file.gguf"
+				[[ "$path" == *..* ]] && die "invalid Hugging Face spec"
+				local owner="${path%%/*}" rest="${path#*/}"
+				url="https://huggingface.co/$owner/${rest%%/*}/resolve/main/${rest#*/}"
+				file="$(basename "$path")" ;;
+			https://*.gguf|https://*.gguf\?*)
+				url="$spec"; file="$(basename "${spec%%\?*}")" ;;
+			*) die "unknown model '$spec'. Use a preset (termux-llm models), hf:owner/repo/file.gguf or an https URL" ;;
+		esac
+	fi
+	[[ "$file" =~ ^[A-Za-z0-9._-]+\.gguf$ ]] || die "unsafe file name: $file"
+	mkdir -p "$MODELS_DIR" || die "cannot create $MODELS_DIR"
+	if [ -f "$MODELS_DIR/$file" ]; then ok "$file is already downloaded"; return 0; fi
+
+	local size avail
+	size="$(curl -fsSIL --retry 2 "$url" 2>/dev/null | tr -d '\r' | awk 'tolower($1)=="content-length:" {v=$2} END {print v}')"
+	if [[ "$size" =~ ^[0-9]+$ ]]; then
+		avail="$(df -Pk "$MODELS_DIR" | awk 'NR==2 {print $4}')"
+		if [ -n "$avail" ] && [ $((avail * 1024)) -lt "$size" ]; then
+			die "not enough free space: need $((size / 1048576)) MB, have $((avail / 1024)) MB"
+		fi
+		info "Downloading $file ($((size / 1048576)) MB)"
+	else
+		info "Downloading $file"
+	fi
+	# Resumable: an interrupted download continues from the .part file.
+	curl -fL --retry 5 --retry-delay 3 -C - --progress-bar -o "$MODELS_DIR/$file.part" "$url" || die "download failed (run the same command again to resume)"
+	if [[ "$size" =~ ^[0-9]+$ ]] && [ "$(wc -c < "$MODELS_DIR/$file.part")" -ne "$size" ]; then
+		die "the downloaded file has the wrong size, run the same command again"
+	fi
+	mv "$MODELS_DIR/$file.part" "$MODELS_DIR/$file"
+	ok "$file saved in $MODELS_DIR"
+}
+
+parse_run_options() {
+	BACKEND=auto; CTX="$DEFAULT_CTX"; THREADS=""; NGL=""; PORT="$DEFAULT_PORT"; BG=0; POPUP=0; EXTRA=""
+	MODEL_ARG=""
+	while [ $# -gt 0 ]; do
+		case "$1" in
+			--backend) [ $# -ge 2 ] || die "--backend needs a value"; BACKEND="$2"; shift ;;
+			--ctx) [ $# -ge 2 ] || die "--ctx needs a value"; CTX="$2"; shift ;;
+			--threads) [ $# -ge 2 ] || die "--threads needs a value"; THREADS="$2"; shift ;;
+			--ngl) [ $# -ge 2 ] || die "--ngl needs a value"; NGL="$2"; shift ;;
+			--port) [ $# -ge 2 ] || die "--port needs a value"; PORT="$2"; shift ;;
+			--extra) [ $# -ge 2 ] || die "--extra needs a value"; EXTRA="$2"; shift ;;
+			--bg) BG=1 ;;
+			--popup) POPUP=1 ;;
+			-*) die "unknown option: $1" ;;
+			*) [ -z "$MODEL_ARG" ] || die "only one model can be given"; MODEL_ARG="$1" ;;
+		esac
+		shift
+	done
+	[[ "$CTX" =~ ^[0-9]+$ ]] || die "--ctx must be a number"
+	[[ "$PORT" =~ ^[0-9]+$ ]] || die "--port must be a number"
+	[ -z "$THREADS" ] || [[ "$THREADS" =~ ^[0-9]+$ ]] || die "--threads must be a number"
+	[ -z "$NGL" ] || [[ "$NGL" =~ ^[0-9]+$ ]] || die "--ngl must be a number"
+}
+
+wait_healthy() {
+	local port="$1" pid="$2"
+	for _ in $(seq 1 240); do
+		curl -fs -m 2 "http://127.0.0.1:$port/health" >/dev/null 2>&1 && return 0
+		kill -0 "$pid" 2>/dev/null || return 1
+		sleep 0.5
+	done
+	return 1
+}
+
+cmd_serve() {
+	parse_run_options "$@"
+	have llama-server || die "llama-server not found. Run: termux-llm setup"
+	local model; model="$(resolve_model "$MODEL_ARG")" || exit 1
+	select_backend "$BACKEND" "$model"
+	config_set last_model "$model"
+	[ -n "$THREADS" ] || THREADS="$(fast_cores)"
+	local args=(-m "$model" --host 127.0.0.1 --port "$PORT" -c "$CTX" -t "$THREADS" "${BACKEND_ARGS[@]}")
+	# shellcheck disable=SC2206
+	[ -n "$EXTRA" ] && args+=($EXTRA)
+	mkdir -p "$DATA_DIR"
+	if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+		die "a server is already running (port $(cat "$PORT_FILE" 2>/dev/null)). Stop it with: termux-llm stop"
+	fi
+	info "Model: $(basename "$model") | backend: $CHOSEN_BACKEND | threads: $THREADS | context: $CTX"
+
+	if [ "$BG" = 0 ] && [ "$POPUP" = 0 ]; then
+		echo "Web UI:  http://127.0.0.1:$PORT   |   OpenAI API: http://127.0.0.1:$PORT/v1" >&2
+		exec llama-server "${args[@]}"
+	fi
+	nohup llama-server "${args[@]}" >"$LOG_FILE" 2>&1 &
+	local pid=$!
+	echo "$pid" > "$PID_FILE"; echo "$PORT" > "$PORT_FILE"
+	info "Starting the server (log: $LOG_FILE)"
+	if ! wait_healthy "$PORT" "$pid"; then
+		tail -n 8 "$LOG_FILE" >&2
+		rm -f "$PID_FILE" "$PORT_FILE"
+		die "the server did not start"
+	fi
+	ok "Web UI:  http://127.0.0.1:$PORT   |   OpenAI API: http://127.0.0.1:$PORT/v1"
+	if [ "$POPUP" = 1 ]; then
+		if have termux-gui-popup; then
+			termux-gui-popup "http://127.0.0.1:$PORT" --title "llama.cpp" --id llm || warn "could not open the floating window"
+		else
+			warn "termux-gui-popup is not installed"
+		fi
+	fi
+	echo "Stop with: termux-llm stop" >&2
+}
+
+cmd_stop() {
+	local stopped=0
+	if [ -f "$PID_FILE" ]; then
+		local pid; pid="$(cat "$PID_FILE")"
+		if [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null; then kill "$pid" && stopped=1; fi
+		rm -f "$PID_FILE" "$PORT_FILE"
+	fi
+	have termux-gui-popup && termux-gui-popup --close --id llm 2>/dev/null
+	[ "$stopped" = 1 ] && ok "server stopped" || echo "no server was running" >&2
+}
+
+cmd_chat() {
+	parse_run_options "$@"
+	have llama-cli || die "llama-cli not found. Run: termux-llm setup"
+	local model; model="$(resolve_model "$MODEL_ARG")" || exit 1
+	select_backend "$BACKEND" "$model"
+	[ -n "$THREADS" ] || THREADS="$(fast_cores)"
+	local args=(-m "$model" -c "$CTX" -t "$THREADS" "${BACKEND_ARGS[@]}" -cnv)
+	# shellcheck disable=SC2206
+	[ -n "$EXTRA" ] && args+=($EXTRA)
+	info "Model: $(basename "$model") | backend: $CHOSEN_BACKEND | threads: $THREADS"
+	exec llama-cli "${args[@]}"
+}
+
+# Tokens per second of text generation for one device ("none" = CPU).
+bench_one() {
+	local model="$1" device="$2" ngl="$3" threads out
+	threads="$(fast_cores)"
+	out="$(llama-bench -m "$model" --device "$device" -ngl "$ngl" -t "$threads" -p 64 -n 24 -r 1 -o jsonl 2>/dev/null)" || return 1
+	printf '%s\n' "$out" | awk '
+		/"n_gen": *[1-9]/ { if (match($0, /"avg_ts": *[0-9.]+/)) { s = substr($0, RSTART, RLENGTH); sub(/.*: */, "", s); print s; exit } }'
+}
+
+run_bench() {
+	local model="$1" best=cpu best_ts=0 ts dev name
+	have llama-bench || die "llama-bench not found. Run: termux-llm setup"
+	info "Benchmarking $(basename "$model") (generation speed, tokens/s)"
+	ts="$(bench_one "$model" none 0)" || ts=0; ts="${ts:-0}"
+	printf '  %-8s %s t/s\n' cpu "$ts" >&2
+	best_ts="$ts"
+	for name in vulkan opencl; do
+		dev="$(device_for_backend "$name")"
+		[ -n "$dev" ] || continue
+		ts="$(bench_one "$model" "$dev" 99)" || ts=0; ts="${ts:-0}"
+		printf '  %-8s %s t/s (%s)\n' "$name" "$ts" "$dev" >&2
+		if awk -v a="$ts" -v b="$best_ts" 'BEGIN {exit !(a > b * 1.1)}'; then best="$name"; best_ts="$ts"; fi
+	done
+	config_set backend "$best"
+	ok "Fastest: $best ($best_ts t/s). Saved as your default backend."
+}
+
+cmd_bench() {
+	local model; model="$(resolve_model "${1:-}")" || exit 1
+	run_bench "$model"
+}
+
+cmd_ollama() {
+	have ollama || die "ollama not found. Run: termux-llm setup --ollama"
+	local sub="${1:-status}"
+	mkdir -p "$DATA_DIR"
+	local opid="$DATA_DIR/ollama.pid"
+	case "$sub" in
+		start)
+			if [ -f "$opid" ] && kill -0 "$(cat "$opid")" 2>/dev/null; then ok "Ollama is already running"; return 0; fi
+			local env_vars=(OLLAMA_HOST=127.0.0.1:11434)
+			[ -n "$(device_for_backend vulkan)" ] && env_vars+=(OLLAMA_VULKAN=1)
+			env "${env_vars[@]}" nohup ollama serve >"$DATA_DIR/ollama.log" 2>&1 &
+			echo $! > "$opid"
+			ok "Ollama started on http://127.0.0.1:11434 (log: $DATA_DIR/ollama.log)" ;;
+		stop)
+			if [ -f "$opid" ] && kill "$(cat "$opid")" 2>/dev/null; then rm -f "$opid"; ok "Ollama stopped"; else echo "Ollama was not running" >&2; fi ;;
+		status)
+			if [ -f "$opid" ] && kill -0 "$(cat "$opid")" 2>/dev/null; then ok "Ollama is running (pid $(cat "$opid"))"; else echo "Ollama is not running" >&2; fi ;;
+		*)
+			OLLAMA_HOST="${OLLAMA_HOST:-127.0.0.1:11434}" exec ollama "$@" ;;
+	esac
+}
+
+cmd_api() {
+	local port; port="$(cat "$PORT_FILE" 2>/dev/null || echo "$DEFAULT_PORT")"
+	cat <<EOF
+The server speaks the OpenAI API on http://127.0.0.1:$port/v1
+
+curl:
+  curl http://127.0.0.1:$port/v1/chat/completions -H 'Content-Type: application/json' \\
+    -d '{"messages":[{"role":"user","content":"Hello!"}]}'
+
+Python (standard library only, included with termux-python-setup llm):
+  from termux_llm import LLM
+  with LLM() as llm:
+      print(llm.chat("Hello!"))
+
+Python with the openai package:
+  from openai import OpenAI
+  client = OpenAI(base_url="http://127.0.0.1:$port/v1", api_key="none")
+EOF
+}
+
+[ $# -gt 0 ] || { usage; exit 0; }
+cmd="$1"; shift
+case "$cmd" in
+	setup) cmd_setup "$@" ;;
+	doctor) cmd_doctor ;;
+	models|list) cmd_models ;;
+	pull|download) cmd_pull "$@" ;;
+	serve|server) cmd_serve "$@" ;;
+	chat) cmd_chat "$@" ;;
+	bench) cmd_bench "$@" ;;
+	stop) cmd_stop ;;
+	ollama) cmd_ollama "$@" ;;
+	api) cmd_api ;;
+	-h|--help|help) usage ;;
+	*) echo "Unknown command: $cmd" >&2; usage >&2; exit 1 ;;
+esac

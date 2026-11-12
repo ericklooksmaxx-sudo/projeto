@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Termux GUI</title>
+<!--
+  Minimal noVNC client used by the Termux floating window ("termux-gui-run").
+  The noVNC library (core/ and vendor/) is downloaded next to this file by
+  "termux-gui-run --setup". Options are passed in the URL fragment so that they are never sent
+  to a server:  #pw=<vnc password>&mode=scale|resize
+-->
+<style>
+  html, body { margin: 0; height: 100%; background: #111; overflow: hidden; font-family: sans-serif; }
+  #screen { position: fixed; inset: 0; }
+  #msg { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+         color: #ddd; font-size: 15px; text-align: center; padding: 24px; pointer-events: none; }
+  #kb { position: fixed; right: 10px; bottom: 10px; width: 44px; height: 44px; border-radius: 22px;
+        border: 0; background: rgba(60, 60, 60, .85); color: #fff; font-size: 22px; z-index: 5; }
+  #kbd { position: fixed; left: -1000px; top: 0; width: 10px; height: 10px; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="screen"></div>
+<div id="msg">Connecting…</div>
+<button id="kb" type="button" aria-label="Keyboard">&#9000;</button>
+<textarea id="kbd" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea>
+
+<script type="module">
+import RFB from './core/rfb.js';
+
+const params = new URLSearchParams(location.hash.slice(1));
+const password = params.get('pw') || '';
+const mode = params.get('mode') === 'resize' ? 'resize' : 'scale';
+const msg = document.getElementById('msg');
+const kbd = document.getElementById('kbd');
+const SENTINEL = '#'.repeat(64);
+
+function showMessage(text) { msg.textContent = text || ''; msg.style.display = text ? 'flex' : 'none'; }
+
+const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+let rfb;
+try {
+  rfb = new RFB(document.getElementById('screen'), `${proto}://${location.host}/websockify`,
+                { credentials: { password } });
+} catch (e) {
+  showMessage('Could not start the VNC client: ' + e);
+  throw e;
+}
+rfb.scaleViewport = mode === 'scale';
+rfb.resizeSession = mode === 'resize';
+rfb.background = '#111';
+rfb.addEventListener('connect', () => { showMessage(''); rfb.focus(); });
+rfb.addEventListener('credentialsrequired', () => rfb.sendCredentials({ password }));
+rfb.addEventListener('securityfailure', () => showMessage('Authentication failed'));
+rfb.addEventListener('disconnect', (e) => showMessage(e.detail.clean ? 'The application has closed.' : 'Connection lost.'));
+
+// ---- Soft keyboard -------------------------------------------------------------------------
+// Android keyboards do not produce key events for a canvas, so a hidden textarea is focused and
+// its input is translated to X11 keysyms (same approach as the noVNC UI).
+const KEYSYMS = { Enter: 0xff0d, Backspace: 0xff08, Tab: 0xff09, Escape: 0xff1b, Delete: 0xffff,
+                  ArrowLeft: 0xff51, ArrowUp: 0xff52, ArrowRight: 0xff53, ArrowDown: 0xff54,
+                  Home: 0xff50, End: 0xff57, PageUp: 0xff55, PageDown: 0xff56 };
+
+function tap(keysym) { rfb.sendKey(keysym, null, true); rfb.sendKey(keysym, null, false); }
+function resetKeyboard() { kbd.value = SENTINEL; kbd.setSelectionRange(SENTINEL.length, SENTINEL.length); }
+
+kbd.addEventListener('keydown', (e) => {
+  if (KEYSYMS[e.key] !== undefined) { tap(KEYSYMS[e.key]); e.preventDefault(); }
+});
+kbd.addEventListener('input', () => {
+  const value = kbd.value;
+  if (value.length < SENTINEL.length) {
+    for (let i = 0; i < SENTINEL.length - value.length; i++) tap(KEYSYMS.Backspace);
+  } else if (value.length > SENTINEL.length) {
+    for (const ch of value.slice(SENTINEL.length)) {
+      if (ch === '\n') { tap(KEYSYMS.Enter); continue; }
+      const cp = ch.codePointAt(0);
+      tap(cp < 0x100 ? cp : 0x01000000 + cp);
+    }
+  }
+  resetKeyboard();
+});
+document.getElementById('kb').addEventListener('click', () => {
+  if (document.activeElement === kbd) { kbd.blur(); } else { resetKeyboard(); kbd.focus(); }
+});
+</script>
+</body>
+</html>

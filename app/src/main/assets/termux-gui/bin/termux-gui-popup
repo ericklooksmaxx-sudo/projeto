@@ -1,0 +1,131 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# termux-gui-popup - show a web page or a GUI app in a floating window over other apps.
+#
+# The window is provided by the Termux app (needs the "Display over other apps" permission) and
+# has buttons to reload, hide (shrinks to a bubble), go full screen and close it.
+# Only http://127.0.0.1, http://localhost and http://[::1] addresses can be opened.
+
+set -u
+
+PACKAGE="@TERMUX_PACKAGE_NAME@"
+SERVICE="$PACKAGE/com.termux.app.overlay.GuiOverlayService"
+ACTION_PREFIX="com.termux.app.GUI_POPUP_"
+STATE_DIR="${TMPDIR:-/data/data/com.termux/files/usr/tmp}/termux-gui-popup"
+
+usage() {
+	cat <<'EOF'
+Usage: termux-gui-popup URL [options]
+       termux-gui-popup (--show|--hide|--fullscreen|--reload|--close|--status) [--id ID]
+
+Open a floating window with a local web page. Examples:
+  termux-gui-popup http://127.0.0.1:8080          chat UI of llama-server
+  termux-gui-popup http://127.0.0.1:8550 --title "My Flet app" --fullscreen
+
+Options:
+  --id ID            Window name, lets you control several windows (default: "default")
+  --title TEXT       Title shown in the title bar
+  --size WxH         Initial size in dp (default 360x520)
+  --fullscreen       Start in full screen
+  --wait             Wait until the window is closed
+  --show             Bring a hidden window back
+  --hide             Shrink the window to a bubble
+  --fullscreen       Toggle full screen (when used without URL)
+  --reload           Reload the page
+  --close            Close and delete the window
+  --status           Print the window state: open, hidden or closed
+  -h, --help         This help
+
+If nothing appears, allow "Display over other apps" for Termux in the Android settings
+(or use the "Floating windows" item in the terminal long-press menu).
+EOF
+}
+
+die() { echo "termux-gui-popup: $*" >&2; exit 1; }
+
+valid_id() { [[ "$1" =~ ^[A-Za-z0-9_-]{1,32}$ ]]; }
+
+state_of() {
+	local file="$STATE_DIR/$1.state"
+	if [ -r "$file" ]; then cat "$file"; else echo closed; fi
+}
+
+send() {
+	# Usage: send ACTION [am extra args...]
+	local action="$1"; shift
+	command -v am >/dev/null 2>&1 || die "the 'am' command is not available, install it with: pkg install termux-am"
+	am start-foreground-service --user 0 -n "$SERVICE" -a "${ACTION_PREFIX}${action}" "$@" >/dev/null 2>&1 \
+		|| am startservice --user 0 -n "$SERVICE" -a "${ACTION_PREFIX}${action}" "$@" >/dev/null 2>&1 \
+		|| die "could not reach the Termux window service"
+}
+
+wait_until_closed() {
+	local id="$1" waited=0 seen=0 state
+	while :; do
+		state="$(state_of "$id")"
+		if [ "$state" != closed ]; then seen=1; fi
+		if [ "$seen" = 1 ] && [ "$state" = closed ]; then return 0; fi
+		if [ "$seen" = 0 ] && [ "$waited" -ge 20 ]; then
+			echo "termux-gui-popup: the window did not open. Allow \"Display over other apps\" for Termux in the Android settings." >&2
+			return 3
+		fi
+		sleep 0.5
+		waited=$((waited + 1))
+	done
+}
+
+ID=default
+TITLE=""
+SIZE=""
+FULLSCREEN=0
+WAIT=0
+URL=""
+COMMAND=""
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h|--help) usage; exit 0 ;;
+		--id) [ $# -ge 2 ] || die "--id needs a value"; ID="$2"; shift ;;
+		--title) [ $# -ge 2 ] || die "--title needs a value"; TITLE="$2"; shift ;;
+		--size) [ $# -ge 2 ] || die "--size needs a value"; SIZE="$2"; shift ;;
+		--wait) WAIT=1 ;;
+		--fullscreen) FULLSCREEN=1 ;;
+		--show|--hide|--reload|--close|--status) COMMAND="${1#--}" ;;
+		-*) die "unknown option: $1 (see --help)" ;;
+		*) [ -z "$URL" ] || die "only one URL can be given"; URL="$1" ;;
+	esac
+	shift
+done
+
+valid_id "$ID" || die "invalid --id, use up to 32 letters, digits, '_' or '-'"
+mkdir -p "$STATE_DIR" 2>/dev/null
+
+if [ -n "$COMMAND" ]; then
+	if [ "$COMMAND" = status ]; then state_of "$ID"; exit 0; fi
+	send "$(echo "$COMMAND" | tr '[:lower:]' '[:upper:]')" --es id "$ID"
+	exit 0
+fi
+
+if [ -z "$URL" ]; then
+	if [ "$FULLSCREEN" = 1 ]; then send FULLSCREEN --es id "$ID"; exit 0; fi
+	usage >&2
+	exit 1
+fi
+
+case "$URL" in
+	http://127.0.0.1|http://127.0.0.1[:/?#]*|http://localhost|http://localhost[:/?#]*|http://\[::1\]|http://\[::1\][:/?#]*) ;;
+	*) die "only http://127.0.0.1, http://localhost and http://[::1] addresses are allowed, got: $URL" ;;
+esac
+
+args=(--es id "$ID" --es url "$URL")
+[ -n "$TITLE" ] && args+=(--es title "$TITLE")
+if [ -n "$SIZE" ]; then
+	[[ "$SIZE" =~ ^[0-9]{2,4}x[0-9]{2,4}$ ]] || die "--size must look like 360x520"
+	args+=(--ei width "${SIZE%x*}" --ei height "${SIZE#*x}")
+fi
+[ "$FULLSCREEN" = 1 ] && args+=(--ez fullscreen true)
+
+rm -f "$STATE_DIR/$ID.state" 2>/dev/null
+send SHOW "${args[@]}"
+
+if [ "$WAIT" = 1 ]; then wait_until_closed "$ID"; exit $?; fi
+exit 0
