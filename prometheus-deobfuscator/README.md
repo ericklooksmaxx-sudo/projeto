@@ -138,8 +138,11 @@ python3 tests/roundtrip.py --prometheus /caminho/Prometheus --lua lua5.1
 python3 tests/roundtrip.py --prometheus /caminho/Prometheus --presets Strong arquivo.lua
 ```
 
-Com os 34 testes do repositório do Prometheus × 6 presets, todos passam
-exceto `gc-temporaries` e `function-environment-gc` (ver limitações).
+Resultado com os 32 testes executáveis do repositório do Prometheus × 6
+presets: **182/192** — as 10 falhas são só `gc-temporaries` e
+`function-environment-gc` (ver limitações). Em todos os casos do `Strong` a VM
+foi devirtualizada. Tempo típico: < 1 s para `Weak`/`Cff`/`Vmify`, ~15 s para
+`Medium`/`Strong` (a emulação dos decodificadores em Python domina).
 
 ## Limitações
 
