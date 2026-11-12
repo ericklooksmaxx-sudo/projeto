@@ -1030,9 +1030,15 @@ class Structurer(object):
                 for s in self.fn.blocks[n].succs():
                     if s not in body and s not in exits:
                         exits.append(s)
-            real = [e for e in exits if e not in returns_only]
-            if real or not exits:
-                exits = real
+            natural = [s for s in self.fn.blocks[h].succs() if s not in body]
+            for latch in self.loops[h]:
+                lt = self.fn.blocks[latch].term
+                if lt[0] == "cond":
+                    natural += [s for s in (lt[2], lt[3]) if s not in body and s not in natural]
+            if natural:
+                exits = [e for e in exits if e in natural] or exits
+            else:
+                exits = [e for e in exits if e not in returns_only]
             if not exits:
                 self.follow[h] = None
             elif len(exits) == 1:
