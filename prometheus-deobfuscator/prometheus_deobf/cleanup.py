@@ -355,7 +355,7 @@ def multi_results(chunk):
                         k += 1
                     else:
                         break
-                if targets and refs.get(tsym, 0) == len(targets) + 1:
+                if targets and refs.get(tsym, 0) == len(targets):
                     call = s.exprs[0].items[0].value
                     new = Local(targets, [call]) if is_local else Assign(targets, [call])
                     lst[i:k] = [new]
@@ -519,7 +519,7 @@ def _try_inline(slots, sym, E):
                 return False
             found = True
             break
-        if (e_call or e_mem) and isinstance(node, (Call, Method)):
+        if (e_call or e_mem) and ir._effectful(node):
             return False
         if e_call and isinstance(node, Index):
             return False
@@ -583,6 +583,59 @@ def truncate_dead(chunk):
     return changed
 
 
+def strip_parens(chunk):
+    """Drop `( )` around calls / varargs where only one value is used anyway."""
+    changed = [False]
+
+    def strip(e):
+        if isinstance(e, Paren) and is_multi(e.expr):
+            changed[0] = True
+            return e.expr
+        return e
+
+    def fix_list(lst, keep_last):
+        return [strip(x) if (i < len(lst) - 1 or not keep_last) else x for i, x in enumerate(lst)]
+
+    for n in walk(chunk):
+        if isinstance(n, (Call, Method)):
+            n.args = fix_list(n.args, True)
+            if isinstance(n, Call):
+                n.func = strip(n.func)
+            else:
+                n.obj = strip(n.obj)
+        elif isinstance(n, Return):
+            n.exprs = fix_list(n.exprs, True)
+        elif isinstance(n, Local):
+            n.exprs = fix_list(n.exprs, len(n.syms) > len(n.exprs))
+        elif isinstance(n, Assign):
+            n.exprs = fix_list(n.exprs, len(n.targets) > len(n.exprs))
+        elif isinstance(n, Table):
+            pos = [it for it in n.items if it.key is None]
+            for it in n.items:
+                if it.key is not None:
+                    it.key = strip(it.key)
+                    it.value = strip(it.value)
+                elif it is not (pos[-1] if pos else None) or n.items[-1] is not it:
+                    it.value = strip(it.value)
+        elif isinstance(n, Bin):
+            n.left, n.right = strip(n.left), strip(n.right)
+        elif isinstance(n, Un):
+            n.expr = strip(n.expr)
+        elif isinstance(n, Index):
+            n.obj, n.key = strip(n.obj), strip(n.key)
+        elif isinstance(n, (If, While)):
+            n.cond = strip(n.cond)
+        elif isinstance(n, Repeat):
+            n.cond = strip(n.cond)
+        elif isinstance(n, NumFor):
+            n.start, n.stop = strip(n.start), strip(n.stop)
+            if n.step is not None:
+                n.step = strip(n.step)
+        elif isinstance(n, GenFor):
+            n.exprs = fix_list(n.exprs, True)
+    return changed[0]
+
+
 def simplify(chunk):
     changed = False
     for _ in range(10):
@@ -598,6 +651,7 @@ def simplify(chunk):
         c |= inline_adjacent(chunk)
         c |= flatten_else(chunk)
         c |= drop_trailing_return(chunk)
+        strip_parens(chunk)
         if not c:
             break
         changed = True
@@ -633,6 +687,10 @@ def rename(chunk):
 
     def name_sym(s, base):
         if s in done:
+            return
+        if s.attrs.get("discard"):
+            done.add(s)
+            s.name = "_"
             return
         done.add(s)
         s.name = fresh(base)

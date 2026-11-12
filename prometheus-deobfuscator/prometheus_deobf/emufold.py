@@ -182,9 +182,14 @@ def emulate_fold(chunk, budget=3000000):
             try:
                 emu.steps = 0
                 r = emu.call(f, args)
+                if len(r) != 1 or not is_scalar(r[0]):
+                    return False, None
+                # stateful functions (counters, generators...) cannot be replaced by one value
+                emu.steps = 0
+                r2 = emu.call(f, args)
             except EMU_ERRORS:
                 return False, None
-            if len(r) == 1 and is_scalar(r[0]):
+            if len(r2) == 1 and r2[0] == r[0] and type(r2[0]) is type(r[0]):
                 return True, r[0]
             return False, None
 
@@ -302,8 +307,10 @@ def _collect_parents(node, parents):
 def remove_dead_prologue(chunk, emulated):
     body = chunk.body
     rest = [s for s, e in zip(body, emulated) if not e]
-    keep = [not e for e in emulated]
-    refs = _syms_mentioned(rest)
+    from .luaast import CallStat
+    # statements with observable intent (calls such as assert/print) are never dropped
+    keep = [(not e) or isinstance(s, CallStat) for s, e in zip(body, emulated)]
+    refs = _syms_mentioned([s for s, k in zip(body, keep) if k])
     changed = True
     while changed:
         changed = False

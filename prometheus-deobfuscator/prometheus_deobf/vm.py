@@ -39,6 +39,9 @@ class VMError(Exception):
     pass
 
 
+EXPAND = Symbol("__expand")  # pseudo function: t[n], t[n+1], ... = values
+
+
 # ------------------------------------------------------------- templates
 HANDLERS = {
     "LOAD": "R[a] = K[b]",
@@ -651,7 +654,7 @@ class ProtoLifter(object):
             return None
         t, nl, eq, jt = code[pc], code[pc + 1], code[pc + 2], code[pc + 3]
         res = c[1]
-        if not (t[0] == "TAKE" and t[2] == res and t[3] == 1 and nl[0] == "NIL" and eq[0] == "EQ" and
+        if not (t[0] == "TAKE" and t[2] == res and t[3] == 1 and nl[0] in ("NIL", "CLEAR") and eq[0] == "EQ" and
                 eq[2] == t[1] and eq[3] == nl[1] and jt[0] == "JTRUE" and jt[1] == eq[1]):
             return None
         mv = code[pc + 3] if False else (code[pc + 4] if pc + 4 < n else None)
@@ -668,6 +671,10 @@ class ProtoLifter(object):
             ins = code[q - 1]
             if ins[0] == "TAKE" and ins[2] == res:
                 takes[int(ins[3])] = q
+            if ins[0] == "CLEARS" and res in _array(ins[1]):
+                break
+            if ins[0] != "CLEARS" and ins[1] == res:
+                break
             q += 1
         nvals = max(takes) if takes else 1
         extra = {}
@@ -721,7 +728,7 @@ class ProtoLifter(object):
         elif op == "TABLE":
             out.append(A([R(a)], [Table([])]))
         elif op == "EXPAND":
-            out.append(CallStat(Call(Name("__expand", None), [R(a), Number(float(b)), Spread(R(c))])))
+            out.append(CallStat(Call(Name(EXPAND.name, EXPAND), [R(a), Number(float(b)), Spread(R(c))])))
         elif op == "ARGS":
             es = [R(r) for r in _array(b)]
             if c:
@@ -956,7 +963,7 @@ def recover_vm_constructs(body):
                         j += 1
                         continue
                     if isinstance(t, CallStat) and isinstance(t.call, Call) and isinstance(t.call.func, Name) and \
-                            t.call.func.name == "__expand" and t.call.func.sym is None and \
+                            t.call.func.sym is EXPAND and \
                             isinstance(t.call.args[0], Name) and t.call.args[0].sym is tsym and \
                             isinstance(t.call.args[1], Number) and int(t.call.args[1].value) == pos and \
                             not refs_in(t.call.args[2:]).get(tsym):
@@ -992,15 +999,21 @@ def _expand_fallback(s):
                 new = []
                 for x in v:
                     if isinstance(x, CallStat) and isinstance(x.call, Call) and isinstance(x.call.func, Name) and \
-                            x.call.func.sym is None and x.call.func.name == "__expand":
+                            x.call.func.sym is EXPAND:
                         base, start, vals = x.call.args[0], x.call.args[1], x.call.args[2:]
-                        # for i, v in ipairs({...}) do t[start + i - 1] = v end  (keeps multi-values)
-                        k = Symbol("k")
-                        v_ = Symbol("v")
-                        new.append(GenFor([k, v_], [Call(Name("ipairs", None), [Table([TItem(None, y) for y in vals])])],
-                                          [Assign([Index(ir.clone(base), Bin("+", Number(start.value - 1),
-                                                                             Name(k.name, k)))],
-                                                  [Name(v_.name, v_)])]))
+                        if not vals or not ir.is_multi(vals[-1]):
+                            new.append(Assign([Index(ir.clone(base), Number(start.value + i)) for i in range(len(vals))],
+                                              vals))
+                            continue
+                        # local p = pack(values); for i = 1, p.n do t[start + i - 1] = p[i] end
+                        p, i = Symbol("p"), Symbol("i")
+                        packer = Func([], True, [Return([Table([TItem(String("n"), Call(Name("select", None), [
+                            String("#"), Vararg()])), TItem(None, Vararg())])])])
+                        body = [Local([p], [Call(Paren(packer), vals)]),
+                                NumFor(i, Number(1.0), Index(Name(p.name, p), String("n")), None, [
+                                    Assign([Index(ir.clone(base), Bin("+", Number(start.value - 1), Name(i.name, i)))],
+                                           [Index(Name(p.name, p), Name(i.name, i))])])]
+                        new.append(Do(body))
                     else:
                         new.append(x)
                 setattr(n, f, new)

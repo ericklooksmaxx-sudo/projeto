@@ -181,9 +181,25 @@ def map_term_exprs(t, fn):
     return t
 
 
+_EFFECT_BIN = set(["+", "-", "*", "/", "%", "^", "..", "<", "<=", ">", ">=", "==", "~="])
+
+
+def _effectful(x):
+    """Nodes that may run arbitrary code (calls, metamethods) or raise."""
+    if isinstance(x, (Call, Method)):
+        return True
+    if isinstance(x, Index):
+        return True
+    if isinstance(x, Bin) and x.op in _EFFECT_BIN:
+        return not (is_literal(x.left) and is_literal(x.right))
+    if isinstance(x, Un) and x.op in ("-", "#"):
+        return not is_literal(x.expr)
+    return False
+
+
 def has_call(e):
     for x in iter_expr(e):
-        if isinstance(x, (Call, Method)):
+        if _effectful(x):
             return True
     return False
 
@@ -223,7 +239,7 @@ def stmt_written_syms(s):
 
 def is_pure(e):
     for x in iter_expr(e):
-        if isinstance(x, (Call, Method)):
+        if _effectful(x) or isinstance(x, CellRef) and False:
             return False
     return True
 
@@ -577,13 +593,15 @@ def count_uses(fn):
     return uses, defs
 
 
-def substitute(e, sym, value, count=[0]):
+def substitute(e, sym, value):
+    """Replace reads of `sym`. Registers hold exactly one value, so a call
+    moved into a multi-value position is parenthesised."""
     def pr(x):
         return isinstance(x, Name) and x.sym is sym
 
     def mk(x):
-        count[0] += 1
-        return clone(value)
+        v = clone(value)
+        return Paren(v) if is_multi(v) else v
     return replace_in(e, pr, mk)
 
 
@@ -663,6 +681,13 @@ def dead_code(fn):
                         new.append(CallStat(s.exprs[0].expr))
                         again = True
                         continue
+                    if len(s.exprs) == len(s.targets):
+                        # evaluated only for its side effects (metamethods / errors)
+                        d = Symbol("_")
+                        d.attrs["discard"] = True
+                        new.append(Local([d], [e for e in s.exprs if not is_pure(e)] or s.exprs[:1]))
+                        again = True
+                        continue
                 new.append(s)
             blk.stmts = new
         if not again:
@@ -723,8 +748,8 @@ def inline_temps(fn):
                 if ub != b or ui <= di:
                     continue
                 E = s.exprs[0]
-                if isinstance(E, ClosureE) and False:
-                    continue
+                if isinstance(E, ClosureE) and getattr(E, "kind", "closure") != "native":
+                    continue  # keep function definitions as named locals
                 if sym in read_syms(E):
                     continue
                 e_call = has_call(E)
@@ -759,7 +784,7 @@ def inline_temps(fn):
                     if node is None:
                         continue
                     if e_call or e_mem:
-                        if isinstance(node, (Call, Method)):
+                        if _effectful(node):
                             ok = False
                             break
                         if e_call and (isinstance(node, (Index, CellRef)) or
@@ -1421,9 +1446,15 @@ def lower_pseudo(stmts):
             return Paren(Call(Name("select", None), [Number(float(k))] + es))
         if isinstance(x, TupleE):
             es = lower_list(x.exprs)
-            n_expr = Call(Name("select", None), [String("#")] + [clone(e) for e in es]) \
-                if es and is_multi(es[-1]) else Number(float(len(es)))
-            return Table([TItem(None, y) for y in es] + [TItem(String("n"), n_expr)])
+            if not getattr(x, "need_n", False):
+                return Table([TItem(None, y) for y in es])
+            if es and is_multi(es[-1]):
+                # pack(...) without evaluating the values twice
+                packer = Func([], True, [Return([Table([TItem(String("n"), Call(Name("select", None),
+                                                                                    [String("#"), Vararg()])),
+                                                        TItem(None, Vararg())])])])
+                return Call(Paren(packer), es)
+            return Table([TItem(String("n"), Number(float(len(es))))] + [TItem(None, y) for y in es])
         if isinstance(x, Table):
             items = []
             for i, it in enumerate(x.items):
@@ -1451,6 +1482,17 @@ def lower_pseudo(stmts):
                 setattr(x, f, lower(v))
         return x
 
+    # tuples whose element count matters (they are spread later) keep an `n` field
+    spread = set()
+    for n in _walk_all(stmts):
+        if isinstance(n, Spread) and isinstance(n.expr, Name) and n.expr.sym is not None:
+            spread.add(n.expr.sym)
+    for n in _walk_all(stmts):
+        if isinstance(n, (Assign, Local)):
+            tg = n.targets if isinstance(n, Assign) else [Name(s.name, s) for s in n.syms]
+            for t, e in zip(tg, n.exprs):
+                if isinstance(t, Name) and t.sym in spread and isinstance(e, TupleE):
+                    e.need_n = True
     return [lower(s) for s in stmts]
 
 

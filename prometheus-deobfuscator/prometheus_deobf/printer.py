@@ -110,7 +110,8 @@ class Printer(object):
                 ls = "(" + ls + ")"
             rs = self.expr(e.right)
             rpri = _pri(e.right)
-            if rpri is not None and rpri[0] <= rp:
+            assoc = e.op in ("and", "or") and isinstance(e.right, Bin) and e.right.op == e.op
+            if rpri is not None and rpri[0] <= rp and not assoc:
                 rs = "(" + rs + ")"
             return "%s %s %s" % (ls, e.op, rs)
         if isinstance(e, Un):

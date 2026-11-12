@@ -9,7 +9,58 @@ def _unparen(e):
     return e
 
 
+def _named_wrapper(stmts):
+    """`local function f(...) B end; return f(...)` -> B (f used nowhere else)."""
+    from .luaast import LocalFunc, Name, walk as w
+    if len(stmts) < 2 or not isinstance(stmts[-1], Return) or len(stmts[-1].exprs) != 1:
+        return None
+    d = stmts[-2]
+    if isinstance(d, LocalFunc):
+        sym, f = d.sym, d.func
+    elif isinstance(d, Local) and len(d.syms) == 1 and len(d.exprs) == 1 and isinstance(d.exprs[0], Func):
+        sym, f = d.syms[0], d.exprs[0]
+    else:
+        return None
+    c = _unparen(stmts[-1].exprs[0])
+    if not (isinstance(c, Call) and isinstance(c.func, Name) and c.func.sym is sym and len(c.args) == 1 and
+            isinstance(c.args[0], Vararg) and not f.params and f.vararg):
+        return None
+    for n in w(Chunk(f.body)):
+        if isinstance(n, Name) and n.sym is sym:
+            return None
+    for s in stmts[:-2]:
+        for n in w(s):
+            if isinstance(n, Name) and n.sym is sym:
+                return None
+    return f.body
+
+
+def _forwarding_function(stmts):
+    """[local function f(...) end, return f(...)] -> f's function literal (f not used elsewhere)."""
+    from .luaast import LocalFunc, Name, walk as w
+    if len(stmts) != 2 or not isinstance(stmts[1], Return) or len(stmts[1].exprs) != 1:
+        return None
+    d = stmts[0]
+    if isinstance(d, LocalFunc):
+        sym, f = d.sym, d.func
+    elif isinstance(d, Local) and len(d.syms) == 1 and len(d.exprs) == 1 and isinstance(d.exprs[0], Func):
+        sym, f = d.syms[0], d.exprs[0]
+    else:
+        return None
+    c = _unparen(stmts[1].exprs[0])
+    if not (isinstance(c, Call) and isinstance(c.func, Name) and c.func.sym is sym and len(c.args) == 1 and
+            isinstance(c.args[0], Vararg)):
+        return None
+    for n in w(Chunk(f.body)):
+        if isinstance(n, Name) and n.sym is sym:
+            return None
+    return f
+
+
 def _wrapped_body(stmts):
+    nb = _named_wrapper(stmts)
+    if nb is not None:
+        return ("named", nb)
     if not stmts or not isinstance(stmts[-1], Return) or len(stmts[-1].exprs) != 1:
         return None
     c = _unparen(stmts[-1].exprs[0])
@@ -29,7 +80,10 @@ def unwrap_body(stmts, is_vararg=True):
         inner = _wrapped_body(stmts)
         if inner is None:
             break
-        stmts = stmts[:-1] + inner
+        if isinstance(inner, tuple):
+            stmts = stmts[:-2] + inner[1]
+        else:
+            stmts = stmts[:-1] + inner
         changed = True
     return stmts, changed
 
@@ -97,7 +151,7 @@ def _capture_header(body):
             continue
         if isinstance(e, Call) and isinstance(e.func, Name) and e.func.sym is None and e.func.name == "select" and \
                 len(e.args) == 2 and isinstance(e.args[0], Number) and isinstance(e.args[1], Vararg) and \
-                e.args[0].value == len(caps) + 1 and isinstance(s.exprs[0], Paren) and len(s.syms) == 1:
+                e.args[0].value == len(caps) + 1 and len(s.syms) == 1:
             caps.append(s.syms[0])
             i += 1
             continue
@@ -142,6 +196,11 @@ def beta_reduce(chunk):
                     isinstance(_unparen(inner.func), Func):
                 changed[0] = True
                 return Call(inner.func, n.args)
+        # (function(...) local function f(...) B end; return f(...) end)(args) -> (function(...) B end)(args)
+        inner = _forwarding_function(f.body)
+        if inner is not None:
+            changed[0] = True
+            return Call(Paren(inner), n.args)
         # (function(...) local c1..ck = ...; BODY end)(x1..xk, ...)
         args = n.args
         caps, nhead = _capture_header(f.body)
