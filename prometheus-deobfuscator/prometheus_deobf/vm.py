@@ -174,6 +174,47 @@ for _n in range(4):
     HANDLERS["CALL%d" % _n] = _call_body(_n)
     HANDLERS["TAILCALL%d" % _n] = _tail_body(_n)
 
+# Operand shapes (slots a, b, c, d): N = number, T = list of registers (length given by the opcode's arity),
+# '-' = unused. Used to validate the opcode names guessed from the interpreter text against the real bytecode.
+SIGNATURES = {
+    "LOAD": "NN--", "NIL": "N---", "MOVE": "NN--", "CLEAR": "N---", "CELL": "NN--", "GETCELL": "NN--",
+    "SETCELL": "NN--", "GETUP": "NN--", "SETUP": "NN--", "GLOBAL": "NN--", "SETGLOBAL": "NN--",
+    "GETTABLE": "NNN-", "SETTABLE": "NNN-", "TABLE": "N---", "EXPAND": "NNN-", "ARGS": "NTN-", "TAKE": "NNN-",
+    "VARARG": "N---", "RETURN": "N---", "CLOSURE": "NN--", "JMP": "N---", "JFALSE": "NN--", "JTRUE": "NN--",
+    "ADD": "NNN-", "SUB": "NNN-", "MUL": "NNN-", "DIV": "NNN-", "MOD": "NNN-", "POW": "NNN-", "CONCAT": "NNN-",
+    "LT": "NNN-", "LE": "NNN-", "GT": "NNN-", "GE": "NNN-", "EQ": "NNN-", "NE": "NNN-", "NOT": "NN--",
+    "NEG": "NN--", "LEN": "NN--", "FORPREP": "NNN-", "FORCHECK": "NNNN", "CLEARS": "T---", "CALL": "NNNN",
+    "TAILCALL": "NN--", "RETURN0": "----", "RETURN1": "N---", "RETURN2": "NN--", "RETURN3": "NNN-",
+}
+for _n in range(4):
+    SIGNATURES["CALL%d" % _n] = "NNTN"
+    SIGNATURES["TAILCALL%d" % _n] = "NT--"
+
+
+def _arity(name):
+    return int(name[-1]) if name[-1].isdigit() and name not in ("RETURN",) and \
+        (name.startswith("CALL") or name.startswith("TAILCALL")) else None
+
+
+def _compatible(name, instructions, slots):
+    sig = SIGNATURES[name]
+    arity = _arity(name)
+    for ins in instructions:
+        for k, kind in enumerate(sig):
+            v = ins.hash.get(slots[k]) if k < len(slots) else None
+            if kind == "N":
+                if not isinstance(v, float) or isinstance(v, bool):
+                    return False
+            elif kind == "T":
+                if not isinstance(v, LuaTable):
+                    return False
+                if arity is not None and len(_array(v)) != arity:
+                    return False
+            elif v is not None:
+                return False
+    return True
+
+
 ROLE_NAMES = ["P", "U", "Env", "R", "V", "K", "pc", "a", "b", "c", "d", "code", "I", "opcode"]
 TOKEN_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*|\d+(?:\.\d+)?|\.\.|==|~=|<=|>=|\S")
 
@@ -462,6 +503,7 @@ def analyze_runtime(runtime, lay):
                     defs.append((t.sym, n.exprs[i]))
     code_sym = I_sym = op_sym = pc_sym = None
     slot_syms = {}
+    slot_order = []
     for s, e in defs:
         e = _unparen(e)
         if isinstance(e, Index) and isinstance(e.obj, Name) and e.obj.sym is P:
@@ -489,8 +531,13 @@ def analyze_runtime(runtime, lay):
                 role_of[s] = "opcode"
             elif k is not None:
                 slot_syms[k] = s
+                slot_order.append(k)
     if op_sym is None:
         raise VMError("opcode fetch not found")
+    # The interpreter fetches `a, b, c, d = I[s1], I[s2], I[s3], I[s4]`: the order in which the
+    # slots appear there *is* the operand order (more reliable than any heuristic on the data).
+    if len(slot_order) == 4 and len(set(slot_order)) == 4:
+        lay.slots = [float(k) for k in slot_order]
     for i, slot in enumerate(lay.slots):
         if slot in slot_syms:
             role_of[slot_syms[slot]] = "abcd"[i]
@@ -514,6 +561,19 @@ def analyze_runtime(runtime, lay):
         for name, tt in templates.items():
             r = difflib.SequenceMatcher(None, toks, tt, autojunk=False).ratio()
             scores.append((r, opid, name))
+    by_op = {}
+    for proto in lay.protos:
+        code = proto.hash.get(lay.fields["code"])
+        if isinstance(code, LuaTable):
+            for ins in _array(code):
+                by_op.setdefault(ins.hash.get(1.0), []).append(ins)
+    checked = []
+    for r, opid, name in scores:
+        ins_list = by_op.get(float(opid), [])
+        if ins_list and not _compatible(name, ins_list, lay.slots):
+            continue
+        checked.append((r, opid, name))
+    scores = checked
     scores.sort(key=lambda x: -x[0])
     import os
     if os.environ.get("DEOBF_VMDEBUG"):
@@ -1066,7 +1126,7 @@ def devirtualize(chunk):
             opmap = analyze_runtime(runtime, lay)
             vmd = VMDecompiler(lay, opmap)
             main = vmd.lift_proto(root, [], is_main=True)
-        except (VMError, EmuAbort, LuaError, StructError) as ex:
+        except Exception as ex:  # a VM we cannot lift must not abort the other passes
             import os
             import sys
             if os.environ.get("DEOBF_DEBUG"):
