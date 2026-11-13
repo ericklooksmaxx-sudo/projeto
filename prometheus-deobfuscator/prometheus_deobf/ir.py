@@ -189,7 +189,9 @@ def _effectful(x):
     if isinstance(x, (Call, Method)):
         return True
     if isinstance(x, Index):
-        return True
+        return not getattr(x, "env_read", False)
+    if isinstance(x, Bin) and x.op in ("==", "~=") and (is_literal(x.left) or is_literal(x.right)):
+        return False   # __eq only runs when both operands are tables
     if isinstance(x, Bin) and x.op in _EFFECT_BIN:
         return not (is_literal(x.left) and is_literal(x.right))
     if isinstance(x, Un) and x.op in ("-", "#"):
@@ -497,12 +499,29 @@ def resolve_cells(fn, new_cell_symbol):
         blk.term = map_term_exprs(blk.term, lambda e, b=b, n=len(blk.stmts): replace_in(
             e, lambda x: isinstance(x, (CellRef, UpvalRef)),
             lambda x: resolve(x.ref if isinstance(x, CellRef) else x, b, n)))
+    # A cell that no closure captures is just a local variable: let the ordinary variable
+    # optimisations (constant propagation, inlining) see it.
+    escaping = set()
+    for blk in fn.blocks.values():
+        exprs = [e for s in blk.stmts for e in stmt_exprs(s)] + term_exprs(blk.term)
+        for e in exprs:
+            for x in iter_expr(e):
+                if isinstance(x, ClosureE):
+                    for u in x.upvals:
+                        for y in iter_expr(u):
+                            if isinstance(y, Name) and y.sym is not None:
+                                escaping.add(y.sym)
+    plain = set(sym for sym in site_sym.values() if sym not in escaping)
+    for sym in plain:
+        sym.attrs["var"] = True
+        sym.attrs.pop("mem", None)
     # second pass: allocation sites become declarations, cell-id copies vanish
     for b, blk in fn.blocks.items():
         new = []
         for i, s in enumerate(blk.stmts):
             if (b, i) in site_sym:
-                new.append(Local([site_sym[(b, i)]], []))
+                if site_sym[(b, i)] not in plain:
+                    new.append(Local([site_sym[(b, i)]], []))
                 continue
             if isinstance(s, Assign) and len(s.targets) == 1 and is_reg(s.targets[0]) and s.exprs and \
                     is_reg(s.exprs[0]) and site_of((b, i), set()):
@@ -682,6 +701,11 @@ def dead_code(fn):
                         continue
                     if len(s.exprs) == 1 and isinstance(s.exprs[0], (Call, Method)):
                         new.append(CallStat(s.exprs[0]))
+                        again = True
+                        continue
+                    if len(s.exprs) == 1 and isinstance(s.exprs[0], TupleE) and len(s.exprs[0].exprs) == 1 and \
+                            isinstance(s.exprs[0].exprs[0], (Call, Method)):
+                        new.append(CallStat(s.exprs[0].exprs[0]))   # value list of a call that nobody reads
                         again = True
                         continue
                     if len(s.exprs) == 1 and isinstance(s.exprs[0], Paren) and isinstance(s.exprs[0].expr, (Call, Method)):
@@ -1465,6 +1489,8 @@ def lower_pseudo(stmts):
             if isinstance(x.expr, TupleE):
                 return _single(lower_list(x.expr.exprs))
             inner = lower(x.expr)
+            if getattr(x, "plain", False):
+                return Call(Name("unpack", None), [inner])
             return Call(Name("unpack", None), [inner, Number(1.0), Index(clone(inner), String("n"))])
         if isinstance(x, Index) and isinstance(x.obj, TupleE) and isinstance(x.key, Number):
             es = lower_list(x.obj.exprs)
@@ -1478,7 +1504,7 @@ def lower_pseudo(stmts):
             return Paren(Call(Name("select", None), [Number(float(k))] + es))
         if isinstance(x, TupleE):
             es = lower_list(x.exprs)
-            if not getattr(x, "need_n", False):
+            if getattr(x, "plain", False) or not getattr(x, "need_n", False):
                 return Table([TItem(None, y) for y in es])
             if es and is_multi(es[-1]):
                 # pack(...) without evaluating the values twice
@@ -1517,7 +1543,8 @@ def lower_pseudo(stmts):
     # tuples whose element count matters (they are spread later) keep an `n` field
     spread = set()
     for n in _walk_all(stmts):
-        if isinstance(n, Spread) and isinstance(n.expr, Name) and n.expr.sym is not None:
+        if isinstance(n, Spread) and isinstance(n.expr, Name) and n.expr.sym is not None and \
+                not getattr(n, "plain", False):
             spread.add(n.expr.sym)
     for n in _walk_all(stmts):
         if isinstance(n, (Assign, Local)):

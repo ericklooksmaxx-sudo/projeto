@@ -27,6 +27,9 @@ class CffError(Exception):
     pass
 
 
+RET_BLOCK = -1  # synthetic block: `return unpack(ret)`
+
+
 def unparen(e):
     while isinstance(e, Paren):
         e = e.expr
@@ -64,6 +67,15 @@ def classify_arg(a):
     return None
 
 
+def _func_of(stmt):
+    """The function literal bound by `local f = function ... end` / `local function f ... end`."""
+    if isinstance(stmt, LocalFunc):
+        return stmt.func
+    if isinstance(stmt, Local) and len(stmt.exprs) == 1 and isinstance(unparen(stmt.exprs[0]), Func):
+        return unparen(stmt.exprs[0])
+    return None
+
+
 def classify_helper(e, fw):
     e = unparen(e)
     if isinstance(e, Table) and not e.items:
@@ -74,7 +86,7 @@ def classify_helper(e, fw):
         return None
     np = len(e.params)
     body = e.body
-    if np == 5 and _contains(Chunk(body), While):
+    if np in (4, 5) and _contains(Chunk(body), While):
         return "CONTAINER"
     if np == 0 and e.vararg and len(body) == 1 and isinstance(body[0], Return) and \
             len(body[0].exprs) == 1 and isinstance(unparen(body[0].exprs[0]), Table):
@@ -87,9 +99,8 @@ def classify_helper(e, fw):
         c = unparen(body[-1].exprs[0])
         if isinstance(c, Call) and is_name(c.func, e.params[0]):
             return "CALLFN"
-    if np == 3 and len(body) >= 3 and isinstance(body[0], Local) and isinstance(body[1], Local) and \
-            len(body[1].exprs) == 1 and isinstance(unparen(body[1].exprs[0]), Func):
-        inner = unparen(body[1].exprs[0])
+    if np in (2, 3) and len(body) >= 3 and isinstance(body[0], Local) and _func_of(body[1]) is not None:
+        inner = _func_of(body[1])
         pf = unparen(body[0].exprs[0]) if body[0].exprs else None
         if isinstance(pf, Call) and isinstance(pf.func, Name):
             fw.proxyfn_candidates.add(pf.func.sym)
@@ -109,7 +120,7 @@ def match_framework(call):
     if not isinstance(call, Call):
         return None
     f = unparen(call.func)
-    if not isinstance(f, Func) or f.vararg or len(f.params) < 20 or len(call.args) < 8:
+    if not isinstance(f, Func) or f.vararg or len(f.params) < 16 or len(call.args) < 6:
         return None
     body = f.body
     if len(body) != 2 or not isinstance(body[0], Assign) or not isinstance(body[1], Return):
@@ -146,9 +157,17 @@ def match_framework(call):
                 fw.container = e
             if r == "ALLOC":
                 fw.alloc_fn = e
-    for need in ("CONTAINER", "PACK", "UNPACKPACKED", "CALLFN", "ALLOC"):
-        if need not in fw.roles:
-            return None
+    if "CONTAINER" not in fw.roles or "ALLOC" not in fw.roles:
+        return None
+    # Older Prometheus (WeAreDevs): container(pos, args, upvals, proxy), plain `{...}` tuples and
+    # `unpack(t)`; no pack / unpackPacked / callFunction helpers and no environment parameter.
+    fw.legacy = len(fw.container.params) == 4
+    if not fw.legacy:
+        for need in ("PACK", "UNPACKPACKED", "CALLFN"):
+            if need not in fw.roles:
+                return None
+    elif "UNPACK" not in fw.roles:
+        return None
     # upvalue table vs. reference count table: ALLOC writes RC[id] = 1
     rc = None
     for s in fw.alloc_fn.body:
@@ -184,7 +203,11 @@ class Container(object):
     def __init__(self, fw):
         c = fw.container
         self.fw = fw
-        self.pos, self.args, self.upvalsp, self.gcproxy, self.envp = c.params
+        if fw.legacy:
+            self.pos, self.args, self.upvalsp, self.gcproxy = c.params
+            self.envp = None
+        else:
+            self.pos, self.args, self.upvalsp, self.gcproxy, self.envp = c.params
         body = c.body
         self.overflow = None
         self.regs = set()
@@ -250,6 +273,8 @@ class FuncLifter(object):
         self.vararg = is_main or arity is None
         self.nparams_vararg = 0
         self.ret_sym = self.new_reg("ret")
+        self.pos_reg = self.new_reg("pos")   # legacy frameworks also use `pos` as a scratch register
+        self.pos_written = False
 
     def new_reg(self, hint):
         s = Symbol("r_%s" % hint)
@@ -281,6 +306,8 @@ class FuncLifter(object):
             if s is None:
                 return Name(e.name, None)
             if s is c.pos:
+                if self.pos_written:
+                    return Name(self.pos_reg.name, self.pos_reg)
                 return Number(float(bid))
             if s in c.regs:
                 r = self.reg(s)
@@ -291,7 +318,7 @@ class FuncLifter(object):
                 return self.L.env_name()
             if s is c.args:
                 self.vararg = True
-                return TupleE([Vararg()])
+                return self.tuple([Vararg()])
             role = fw.sym_role.get(s)
             if role in ("NEWPROXY", "SETMETATABLE", "GETMETATABLE", "SELECT", "TONUMBER", "ERROR", "GETFENV",
                         "SETFENV"):
@@ -315,11 +342,18 @@ class FuncLifter(object):
             if is_name(obj, c.overflow) and isinstance(e.key, Number) and c.overflow is not None:
                 r = self.reg(("T", int(e.key.value)))
                 return Name(r.name, r)
-            return Index(self.tr(obj, bid), self.tr(e.key, bid))
+            ix = Index(self.tr(obj, bid), self.tr(e.key, bid))
+            if fw.legacy and is_name(obj) and fw.sym_role.get(obj.sym) == "ENV" and isinstance(e.key, String):
+                ix.env_read = True   # a global read: no observable effect, removable when unused
+            return ix
         if t is Call:
             f = e.func
             if is_name(f) and f.sym is not None:
                 role = fw.sym_role.get(f.sym)
+                if role == "UNPACK" and fw.legacy and len(e.args) == 1:
+                    sp = Spread(self.tr(e.args[0], bid))
+                    sp.plain = True
+                    return sp
                 if role == "CALLFN":
                     return Call(self.tr(e.args[0], bid), [self.tr(a, bid) for a in e.args[2:]])
                 if role == "PACK":
@@ -361,11 +395,31 @@ class FuncLifter(object):
         if t is Un:
             return Un(e.op, self.tr(e.expr, bid))
         if t is Table:
+            if fw.legacy and all(it.key is None for it in e.items):
+                return self.tuple([self.tr(it.value, bid) for it in e.items])
             return Table([TItem(self.tr(it.key, bid) if it.key is not None else None, self.tr(it.value, bid))
                           for it in e.items])
         if t is Func:
             return e  # native function (should not happen outside native expressions)
         return e  # literals, vararg
+
+    def _jumpy(self, e):
+        """Could `e` be a jump target expression (`cond and A or B`, ids, nil)? Only those are decoded."""
+        e = unparen(e)
+        if isinstance(e, (Number, Nil, Name)):
+            return True
+        if isinstance(e, Index) and is_name(e.obj) and self.fw.sym_role.get(e.obj.sym) == "ENV" and \
+                isinstance(e.key, String):
+            return True
+        if isinstance(e, Bin) and e.op in ("and", "or"):
+            return self._jumpy(e.left) and self._jumpy(e.right)
+        return False
+
+    def tuple(self, exprs):
+        """A value list. In legacy frameworks lists are plain tables without an `n` field."""
+        t = TupleE(exprs)
+        t.plain = self.fw.legacy
+        return t
 
     def _param_name(self, i):
         s = self.param(i)
@@ -407,6 +461,7 @@ class FuncLifter(object):
     # ---------------------------------------------------------- statements
     def lift_block(self, bid):
         stmts_in = self.c.lookup(bid)
+        self.pos_written = False
         out = []
         known = {}
         posv = None
@@ -425,8 +480,15 @@ class FuncLifter(object):
                 return Number(e.value)
             if isinstance(e, Nil):
                 return Nil()
+            if self.fw.legacy and isinstance(e, Index) and is_name(e.obj) and \
+                    self.fw.sym_role.get(e.obj.sym) == "ENV" and isinstance(e.key, String):
+                return Nil()  # WeAreDevs spells nil as a read of a random, undefined global
             if is_name(e, self.c.pos):
-                return posv if posv is not None else Number(float(bid))
+                if posv is not None:
+                    return posv
+                if self.pos_written:
+                    return capture(e)   # `pos` currently holds an ordinary value (e.g. a condition)
+                return Number(float(bid))
             if is_name(e) and e.sym in known:
                 return Number(known[e.sym])
             if isinstance(e, Bin) and e.op in ("and", "or"):
@@ -450,9 +512,19 @@ class FuncLifter(object):
                 tg = s.targets[0]
                 ex = s.exprs[0] if s.exprs else Nil()
                 if is_name(tg, self.c.pos):
+                    if self.fw.legacy:
+                        # the right-hand side reads the previous `pos`; keep it as a register value
+                        # (dead stores are removed later) and decode the jump only from the last one
+                        value = self.tr(ex, bid)
+                        jump_like = self._jumpy(ex)
+                        new_posv = sym_pos(ex) if jump_like else None
+                        out.append(Assign([Name(self.pos_reg.name, self.pos_reg)], [value]))
+                        self.pos_written = True
+                        posv = new_posv
+                        continue
                     posv = sym_pos(ex)
                     continue
-                if is_name(tg) and tg.sym in self.c.regs:
+                if is_name(tg) and (tg.sym in self.c.regs or tg.sym is self.c.ret):
                     u = unparen(ex)
                     if isinstance(u, Number):
                         known[tg.sym] = u.value
@@ -467,11 +539,16 @@ class FuncLifter(object):
                     if is_name(tg):
                         known.pop(tg.sym, None)
             targets = []
+            exprs = [self.tr(x, bid) for x in s.exprs]
             for tg in s.targets:
                 if is_name(tg) and tg.sym is self.c.pos:
-                    raise CffError("pos in multiple assignment")
+                    if not self.fw.legacy:
+                        raise CffError("pos in multiple assignment")
+                    self.pos_written = True
+                    posv = None
+                    targets.append(Name(self.pos_reg.name, self.pos_reg))
+                    continue
                 targets.append(self.tr_target(tg, bid))
-            exprs = [self.tr(x, bid) for x in s.exprs]
             out.append(Assign(targets, exprs))
         # terminator
         if posv is None:
@@ -495,13 +572,25 @@ class FuncLifter(object):
             return ("goto", int(p.value))
         if isinstance(p, Nil):
             r = self.ret_sym
-            return ("ret", [Spread(Name(r.name, r))])
+            sp = Spread(Name(r.name, r))
+            sp.plain = self.fw.legacy
+            return ("ret", [sp])
         if isinstance(p, Bin) and p.op == "or":
             l = unparen(p.left)
-            if isinstance(l, Bin) and l.op == "and" and isinstance(unparen(l.right), Number) and \
-                    isinstance(unparen(p.right), Number):
-                return ("cond", l.left, int(unparen(l.right).value), int(unparen(p.right).value))
-        raise CffError("cannot decode jump in block %d" % bid)
+
+            def target(x):
+                x = unparen(x)
+                if isinstance(x, Number):
+                    return int(x.value)
+                if isinstance(x, Nil):
+                    return RET_BLOCK
+                return None
+            if isinstance(l, Bin) and l.op == "and":
+                a, b = target(l.right), target(p.right)
+                if a is not None and b is not None:
+                    return ("cond", l.left, a, b)
+        from .printer import Printer
+        raise CffError("cannot decode jump in block %d: %s" % (bid, Printer().expr(p)))
 
     # -------------------------------------------------------------- driver
     def lift(self):
@@ -510,6 +599,12 @@ class FuncLifter(object):
         while work:
             b = work.pop()
             if b in blocks:
+                continue
+            if b == RET_BLOCK:
+                r = self.ret_sym
+                sp = Spread(Name(r.name, r))
+                sp.plain = self.fw.legacy
+                blocks[b] = Block(b, [], ("ret", [sp]))
                 continue
             blk = self.lift_block(b)
             blocks[b] = blk

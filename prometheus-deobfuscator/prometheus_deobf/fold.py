@@ -39,6 +39,14 @@ def is_const(e):
     return const_value(e)[0]
 
 
+def _boolean_valued(e):
+    if isinstance(e, Bool):
+        return True
+    if isinstance(e, Un) and e.op == "not":
+        return True
+    return isinstance(e, Bin) and e.op in ("<", ">", "<=", ">=", "==", "~=")
+
+
 def _single(e):
     return Paren(e) if is_multi(e) else e
 
@@ -56,10 +64,14 @@ def fold_expr(e):
         if op == "and":
             if lc:
                 return _single(e.right) if truthy(lv) else e.left
+            if rc and rv is True and _boolean_valued(e.left):
+                return e.left          # `cmp and true` -> `cmp`
             return None
         if op == "or":
             if lc:
                 return e.left if truthy(lv) else _single(e.right)
+            if rc and rv is False and _boolean_valued(e.left):
+                return e.left          # `cmp or false` -> `cmp`
             return None
         if not (lc and rc):
             return None

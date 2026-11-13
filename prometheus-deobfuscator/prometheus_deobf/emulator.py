@@ -14,6 +14,16 @@ from .luaast import (Nil, Bool, Number, String, Vararg, Name, Index, Call, Metho
 from .luavalue import LuaError, arith, tostr_concat, truthy, num2str, tonum, str2num
 
 
+# Standard (and common host) globals the sandbox does not provide: reading one must abort the
+# emulation instead of silently yielding nil.  Any other undefined global reads as nil, which is how
+# WeAreDevs spells `nil` (a read of a random, never-defined name).
+KNOWN_GLOBALS = set("""_G _ENV _VERSION assert collectgarbage coroutine debug dofile error gcinfo getfenv
+getmetatable io ipairs load loadfile loadstring math module newproxy next os package pairs pcall print rawequal
+rawget rawset require select setfenv setmetatable string table tonumber tostring type unpack xpcall bit bit32
+utf8 game workspace script wait spawn delay tick time warn typeof Instance Vector3 Vector2 CFrame Color3 Enum
+task shared""".split())
+
+
 class EmuAbort(Exception):
     """Raised when the code is not emulatable (impure, unknown, too long...)."""
 
@@ -105,6 +115,7 @@ class Emulator(object):
         self.steps = 0
         self.G = LuaTable()
         self.rng_state = 12345
+        self.dynamic_globals = set()
         self.guard_read_syms = None
         self.guard_write_syms = None
         self.guard_read_cells = None
@@ -580,7 +591,10 @@ class Emulator(object):
                 return c[0]
             if e.name in self.G.hash:
                 return self.G.hash[e.name]
-            raise EmuAbort("global %s" % e.name)
+            if e.name in KNOWN_GLOBALS or e.name in self.dynamic_globals or \
+                    getattr(self, "treat_all_globals_dynamic", False):
+                raise EmuAbort("global %s" % e.name)
+            return None
         if t is Index:
             return self.index(self.eval(e.obj, sc, va), self.eval(e.key, sc, va))
         if t is Bin:

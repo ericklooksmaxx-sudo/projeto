@@ -14,7 +14,7 @@ emulation does not write any state that the rest of the program can observe.
 Finally prologue statements that became unreferenced are deleted.
 """
 
-from .luaast import (Name, Index, Call, Method, Func, Table, String, Number, Nil, Bool, Local, LocalFunc, Assign, Break,
+from .luaast import (CallStat, Name, Index, Call, Method, Func, Table, String, Number, Nil, Bool, Local, LocalFunc, Assign, Break,
                      FuncStat, Return, Paren, Vararg, Node, Chunk, transform, walk)
 from .emulator import Emulator, EmuAbort, LuaTable, Closure, Builtin, Scope, is_scalar
 from .luavalue import LuaError
@@ -67,8 +67,88 @@ def _skip_statement(s):
     return False
 
 
+def _all_const(args):
+    return all(const_value(a)[0] for a in args)
+
+
+def _decoder_temps(body):
+    """Single-assignment locals initialised with `f(<constants>)` (e.g. `local v = DECRYPT("..", seed)`)."""
+    assigned = _assigned_syms(body)
+    out = set()
+    for s in body:
+        for n in walk(s):
+            if isinstance(n, Local) and len(n.syms) == 1 and len(n.exprs) == 1 and \
+                    isinstance(n.exprs[0], Call) and isinstance(n.exprs[0].func, Name) and \
+                    n.exprs[0].func.sym is not None and n.exprs[0].args and _all_const(n.exprs[0].args) and \
+                    n.syms[0] not in assigned:
+                out.add(n.syms[0])
+    return out
+
+
+def _reachable_tables(t, limit=20000):
+    """Ids of every table reachable from `t` through values and metatables."""
+    seen, stack = set(), [t]
+    while stack and len(seen) < limit:
+        x = stack.pop()
+        if not isinstance(x, LuaTable) or id(x) in seen:
+            continue
+        seen.add(id(x))
+        if x.mt is not None:
+            stack.append(x.mt)
+        stack.extend(v for v in x.hash.values() if isinstance(v, LuaTable))
+    return seen
+
+
+def _visible_syms(stmts, decoder_temps=()):
+    """Symbols mentioned by `stmts`, except decoder entry points called with constant arguments."""
+    skip = set()
+    for s in stmts:
+        for n in walk(s):
+            if isinstance(n, Call) and isinstance(n.func, Name) and n.func.sym is not None and n.args and \
+                    _all_const(n.args):
+                skip.add(id(n.func))
+            elif isinstance(n, Index) and isinstance(n.obj, Name) and n.obj.sym is not None and \
+                    ((isinstance(n.key, Call) and n.key.args and _all_const(n.key.args)) or
+                     (isinstance(n.key, Name) and n.key.sym in decoder_temps)):
+                skip.add(id(n.obj))
+    out = set()
+    for s in stmts:
+        for n in walk(s):
+            if isinstance(n, Name) and n.sym is not None and id(n) not in skip:
+                out.add(n.sym)
+            elif isinstance(n, Local):
+                out.update(n.syms)
+            elif isinstance(n, LocalFunc):
+                out.add(n.sym)
+    return out
+
+
+def _written_globals(chunk_body):
+    """Names of globals the program assigns anywhere (their value is not statically nil)."""
+    out = set()
+    for s in chunk_body:
+        for n in walk(s):
+            if isinstance(n, Assign):
+                for t in n.targets:
+                    if isinstance(t, Name) and t.sym is None:
+                        out.add(t.name)
+                    elif isinstance(t, Index) and isinstance(t.obj, Name) and t.obj.sym is None and \
+                            t.obj.name in ("_G", "_ENV"):
+                        out.add("*")
+            elif isinstance(n, FuncStat) and isinstance(n.target, Name) and n.target.sym is None:
+                out.add(n.target.name)
+            elif isinstance(n, Call) and isinstance(n.func, Name) and n.func.sym is None and \
+                    n.func.name in ("rawset", "setfenv", "getfenv", "loadstring", "load"):
+                out.add("*")
+    return out
+
+
 def _run_prologue(body, budget, before=None):
     emu = Emulator(budget=budget)
+    emu.dynamic_globals = _written_globals(body)
+    if "*" in emu.dynamic_globals:
+        emu.dynamic_globals = set(["*"])
+        emu.treat_all_globals_dynamic = True
     scope = Scope()
     emulated = []
     for i, s in enumerate(body):
@@ -136,10 +216,17 @@ def emulate_fold(chunk, budget=3000000):
     for sym in list(table_ok):
         if sym in mutated:
             table_ok[sym] = False
-    # a folded call must not write any top-level variable or table (that would drop a side effect)
-    guard_write_syms = set(defined_syms)
+    # A folded call must not change state the program can observe. Observable = mentioned by a statement
+    # that stays in the output (not emulated, or a call statement such as assert/print), ignoring the
+    # decoder entry points themselves (`wrapper(n)`, `POOL[decrypt(s, n)]`), whose internal state
+    # (PRNG, caches) is exactly what a decoder is allowed to write.
+    kept = [s for s, e in zip(body, emulated) if (not e) or isinstance(s, CallStat)]
+    decoder_temps = _decoder_temps(body)
+    visible = _visible_syms(kept, decoder_temps)
+    folded_consts = {}
+    assigned_all = _assigned_syms(body)
+    guard_write_syms = set(s for s in visible if s in defined_syms)
     rest_visible = set(visible)
-    visible = visible | defined_syms
     guard_read_syms = set(s for s in rest_assigned if s in defined_syms)
     escaped_syms = set(s for s in rest_visible if s in defined_syms and not table_ok.get(s, False))
     changed = [False]
@@ -152,7 +239,7 @@ def emulate_fold(chunk, budget=3000000):
         for s in visible:
             c = scope.vars.get(s)
             if c is not None and isinstance(c[0], LuaTable):
-                tw.add(id(c[0]))
+                tw |= _reachable_tables(c[0])
                 if s in escaped_syms:
                     tr.add(id(c[0]))
         emu.guard_write_tables = tw
@@ -184,6 +271,8 @@ def emulate_fold(chunk, budget=3000000):
             return False, None
 
         def eval_call(n):
+            if not n.args:
+                return False, None  # decoders always take constant arguments; `f()` may be anything
             ok, f = value_of(n.func)
             if not ok or not isinstance(f, Closure):
                 return False, None
@@ -208,6 +297,9 @@ def emulate_fold(chunk, budget=3000000):
             return False, None
 
         def fix(n):
+            if isinstance(n, Name) and n.sym in folded_consts:
+                changed[0] = True
+                return make_const(folded_consts[n.sym])
             if isinstance(n, Index) and isinstance(n.obj, Name) and n.obj.sym in stable_syms and \
                     isinstance(n.key, Call):
                 n.key._keyed = True
@@ -223,6 +315,10 @@ def emulate_fold(chunk, budget=3000000):
                     not getattr(n, "_is_target", False):
                 cell = scope.vars.get(n.obj.sym)
                 if cell is None:
+                    return None
+                # Only constant pools: tables holding strings / numbers (or empty decoder proxies).
+                # Tables with booleans, functions or tables are program data, not decoder data.
+                if any(not isinstance(x, (str, float)) or isinstance(x, bool) for x in cell[0].hash.values()):
                     return None
                 if isinstance(n.key, Call):
                     ok, kv = eval_call(n.key)
@@ -270,10 +366,18 @@ def emulate_fold(chunk, budget=3000000):
 
     def before(i, s, emu, scope):
         guards(emu, scope)
+        was_decoder_call = isinstance(s, Local) and len(s.syms) == 1 and len(s.exprs) == 1 and \
+            isinstance(s.exprs[0], Call) and s.syms[0] in decoder_temps
         try:
-            return fold_outside_funcs(s, make_fix(emu, scope))
+            new = fold_outside_funcs(s, make_fix(emu, scope))
         finally:
             unguard(emu)
+        if was_decoder_call and isinstance(new, Local) and new.syms[0] not in assigned_all:
+            c, v = const_value(new.exprs[0])
+            if c and v is not None:
+                # `local v = DECRYPT(s, seed)` became `local v = seed`: v is a constant from now on
+                folded_consts[new.syms[0]] = v
+        return new
     before.emulated = emulated
 
     # pass 2: fold each statement with the emulator state at that point

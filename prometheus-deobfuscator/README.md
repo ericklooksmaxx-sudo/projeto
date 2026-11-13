@@ -2,7 +2,9 @@
 
 Desofuscador **estático** para scripts Lua protegidos com o
 [Prometheus](https://github.com/prometheus-lua/Prometheus) (versão atual, com
-`Cff` e a VM de registradores `Vmify`).
+`Cff` e a VM de registradores `Vmify`) **e com o fork antigo usado pelo
+[WeAreDevs](https://wearedevs.net/obfuscator)** (`wearedevs.net/api/obfuscate`).
+O formato é detectado automaticamente.
 
 Ele desfaz todas as camadas dos presets `Minify`, `Weak`, `Cff`, `Vmify`,
 `Medium` e `Strong` e devolve código Lua estruturado e legível
@@ -56,6 +58,33 @@ from prometheus_deobf import deobfuscate
 codigo, relatorio = deobfuscate(open("x.lua", encoding="latin-1").read())
 ```
 
+## WeAreDevs
+
+O ofuscador do WeAreDevs é um Prometheus antigo (achatamento de fluxo + `ConstantArray` +
+`EncryptStrings` + `AntiTamper` + `NumbersToExpressions`). Diferenças tratadas em `cff.py`:
+
+* contêiner com 4 parâmetros `(pos, args, upvals, proxy)` e sem parâmetro de ambiente
+  (o ambiente é um dos argumentos do envelope);
+* sem `pack`/`unpack` próprios: listas de valores são tabelas simples `{f()}` e
+  `unpack(t)` (sem campo `n`);
+* a variável de posição `pos` e o registrador de retorno também servem de registradores
+  temporários — só a última atribuição a `pos` no bloco é o salto;
+* `nil` escrito como leitura de um global aleatório e inexistente (`ENV.GCTp3DUdOQMn`);
+  no emulador, globais não-padrão e nunca atribuídos no programa valem `nil`;
+* o salto de saída de função pode ser `cond and A or nil` (bloco de retorno sintético).
+
+Como o ofuscador do WeAreDevs **não preserva a semântica** em alguns casos (perde `nil`
+finais em listas de retorno e ignora `(f())` para truncar valores), o resultado pode
+coincidir com o programa *original* numa linha e com o programa *ofuscado* em outra.
+`tests/wad_roundtrip.py` aceita qualquer um dos dois como referência.
+
+Para gerar amostras pela API pública (só o texto do script é enviado):
+
+```bash
+python3 tests/wad_samples.py amostras/ a.lua b.lua
+python3 tests/wad_roundtrip.py amostras/ --orig diretorio_dos_originais
+```
+
 ## "Estático"
 
 O programa ofuscado **nunca é executado**. O código é analisado como AST. Os
@@ -80,7 +109,7 @@ rodam num interpretador Lua próprio, escrito em Python (`emulator.py`), que:
 | `ConstantArray`         | idem: rotação + decodificação base64/base85/mixed emuladas, `wrapper(n)` vira a constante |
 | `EncryptStrings`        | idem: `STR[DECRYPT(s, seed)]` vira a string em claro |
 | `AntiTamper`            | reconhecido pela string `"Tamper Detected!"` + `local valid` / `if valid then` e removido |
-| `Cff`                   | ver abaixo (`cff.py` + `ir.py`) |
+| `Cff` (também WeAreDevs)| ver abaixo (`cff.py` + `ir.py`) |
 | `Vmify`                 | ver abaixo (`vm.py` + `ir.py`) |
 | `Minify` / renomeação   | nomes novos e únicos (`cleanup.py`) |
 

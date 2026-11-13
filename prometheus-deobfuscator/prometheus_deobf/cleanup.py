@@ -223,8 +223,101 @@ def _apply_until_stable(chunk, attempt):
         changed = True
 
 
+def _discarded_compare(s, cur):
+    return isinstance(s, Local) and len(s.syms) == 1 and s.syms[0].attrs.get("discard") and len(s.exprs) == 1 and \
+        isinstance(s.exprs[0], Bin) and s.exprs[0].op in ("<", ">", "<=", ">=") and \
+        (_is_sym(s.exprs[0].left, cur) or _is_sym(s.exprs[0].right, cur))
+
+
+def _try_numfor_plain(lst, w):
+    """`local c = c0; while true do c = c + s; if not (c <= L) then break end; BODY end` (no coercion checks)."""
+    loop = lst[w]
+    if not (isinstance(loop, While) and isinstance(loop.cond, Bool) and loop.cond.value and len(loop.body) >= 2):
+        return False
+    first = loop.body[0]
+    if not (isinstance(first, Assign) and len(first.targets) == 1 and isinstance(first.targets[0], Name) and
+            len(first.exprs) == 1 and isinstance(first.exprs[0], Bin) and first.exprs[0].op == "+"):
+        return False
+    cur = first.targets[0].sym
+    # comparisons evaluated and thrown away (the obfuscator computes both branches of the direction test)
+    skip = 1
+    while skip < len(loop.body) - 1 and _discarded_compare(loop.body[skip], cur):
+        skip += 1
+    chk = loop.body[skip]
+    add = first.exprs[0]
+    if _is_sym(add.left, cur) and isinstance(add.right, Number):
+        step = add.right.value
+    elif _is_sym(add.right, cur) and isinstance(add.left, Number):
+        step = add.left.value
+    else:
+        return False
+    if step == 0 or not (isinstance(chk, If) and len(chk.body) == 1 and isinstance(chk.body[0], Break) and
+                         not chk.orelse and isinstance(chk.cond, Un) and chk.cond.op == "not" and
+                         isinstance(chk.cond.expr, Bin)):
+        return False
+    c = chk.cond.expr
+    flip = {"<=": ">=", ">=": "<=", "<": ">", ">": "<"}
+    if _is_sym(c.left, cur):
+        op, lim = c.op, c.right
+    elif _is_sym(c.right, cur):
+        op, lim = flip.get(c.op), c.left
+    else:
+        return False
+    if op != ("<=" if step > 0 else ">="):
+        return False
+    if not isinstance(lim, (Number, Name)):
+        return False
+    jc, init = _def_of(lst, w, cur)
+    if jc is None or not isinstance(init, Number):
+        return False
+    rest = loop.body[skip + 1:]
+    asg = assigned(Chunk(rest))
+    if cur in asg or (isinstance(lim, Name) and lim.sym in asg):
+        return False
+    after = refs_in(lst[w + 1:])
+    if cur in after:
+        return False
+    if rest and isinstance(rest[0], Local) and len(rest[0].syms) == 1 and len(rest[0].exprs) == 1 and \
+            _is_sym(rest[0].exprs[0], cur) and rest[0].syms[0] not in assigned(Chunk(rest[1:])):
+        var = rest[0].syms[0]
+        rest = rest[1:]
+    else:
+        var = Symbol("i")
+    rest = [subst_sym(s, cur, var) for s in rest]
+    start = init.value + step
+    lst[w] = NumFor(var, Number(start), lim, None if step == 1 else Number(step), rest)
+    del lst[jc]
+    return True
+
+
 def recover_numeric_for(chunk):
-    return _apply_until_stable(chunk, _try_numfor)
+    return _apply_until_stable(chunk, lambda l, i: _try_numfor(l, i) or _try_numfor_plain(l, i))
+
+
+def tuple_for(chunk):
+    """`local t = {f(x)}; for k, v in t[1], t[2], t[3] do` -> `for k, v in f(x) do`."""
+    changed = False
+    for owner in list(walk(chunk)):
+        for lst in _lists_of(owner):
+            for w, s in enumerate(lst):
+                if not (isinstance(s, GenFor) and s.exprs and w > 0):
+                    continue
+                prev = lst[w - 1]
+                if not (isinstance(prev, Local) and len(prev.syms) == 1 and len(prev.exprs) == 1 and
+                        isinstance(prev.exprs[0], Table) and len(prev.exprs[0].items) == 1 and
+                        prev.exprs[0].items[0].key is None and
+                        isinstance(prev.exprs[0].items[0].value, (Call, Method))):
+                    continue
+                t = prev.syms[0]
+                ok = all(isinstance(e, Index) and _is_sym(e.obj, t) and isinstance(e.key, Number) and
+                         e.key.value == i + 1 for i, e in enumerate(s.exprs))
+                if not ok or refs_in(lst[w + 1:]).get(t) or refs_in(s.body).get(t):
+                    continue
+                s.exprs = [prev.exprs[0].items[0].value]
+                del lst[w - 1]
+                changed = True
+                break
+    return changed
 
 
 def _lists_of(n):
@@ -353,7 +446,7 @@ def _try_numfor(lst, w):
 
 
 def multi_results(chunk):
-    """`local t = {f()}; local a = t[1]; local b = t[2]` -> `local a, b = f()`."""
+    """`local t = {f()}; local a = t[1]; local b = t[2]` (any order) -> `local a, b = f()`."""
     changed = False
     refs = count_refs(chunk)
     for lst in list(stat_lists(chunk)):
@@ -363,40 +456,114 @@ def multi_results(chunk):
             if isinstance(s, (Local, Assign)) and len(s.exprs) == 1 and isinstance(s.exprs[0], Table) and \
                     len(s.exprs[0].items) == 1 and s.exprs[0].items[0].key is None and \
                     isinstance(s.exprs[0].items[0].value, (Call, Method)):
-                tsym = s.syms[0] if isinstance(s, Local) else (s.targets[0].sym if isinstance(s.targets[0], Name)
-                                                               else None)
-                if tsym is None or (isinstance(s, Local) and len(s.syms) != 1):
+                if isinstance(s, Local):
+                    tsym = s.syms[0] if len(s.syms) == 1 else None
+                else:
+                    tsym = s.targets[0].sym if len(s.targets) == 1 and isinstance(s.targets[0], Name) else None
+                if tsym is None:
                     i += 1
                     continue
                 k = i + 1
-                targets = []
+                picked = {}
                 is_local = None
                 while k < len(lst):
                     t = lst[k]
                     if isinstance(t, (Local, Assign)) and len(t.exprs) == 1 and isinstance(t.exprs[0], Index) and \
                             _is_sym(t.exprs[0].obj, tsym) and isinstance(t.exprs[0].key, Number) and \
-                            t.exprs[0].key.value == len(targets) + 1:
+                            t.exprs[0].key.value not in picked:
                         tl = isinstance(t, Local)
                         if is_local is None:
                             is_local = tl
                         if tl != is_local:
                             break
                         if tl and len(t.syms) == 1:
-                            targets.append(t.syms[0])
+                            picked[t.exprs[0].key.value] = t.syms[0]
                         elif not tl and len(t.targets) == 1 and isinstance(t.targets[0], Name):
-                            targets.append(t.targets[0])
+                            picked[t.exprs[0].key.value] = t.targets[0]
                         else:
                             break
                         k += 1
                     else:
                         break
-                if targets and refs.get(tsym, 0) == len(targets):
+                n = len(picked)
+                if n and sorted(picked) == [float(x) for x in range(1, n + 1)] and refs.get(tsym, 0) == n:
+                    targets = [picked[float(x)] for x in range(1, n + 1)]
                     call = s.exprs[0].items[0].value
                     new = Local(targets, [call]) if is_local else Assign(targets, [call])
                     lst[i:k] = [new]
                     changed = True
             i += 1
     return changed
+
+
+def vararg_tables(chunk):
+    """`local t = {...}` (or `{select(1, ...)}`) only ever read as `unpack(t)` -> use `...` directly."""
+    changed = False
+    for fn in list(walk(chunk)):
+        if not isinstance(fn, (Func, Chunk)) or (isinstance(fn, Func) and not fn.vararg):
+            continue
+        body = fn.body
+        for i, s in enumerate(body):
+            if not (isinstance(s, Local) and len(s.syms) == 1 and len(s.exprs) == 1 and
+                    isinstance(s.exprs[0], Table) and len(s.exprs[0].items) == 1 and
+                    s.exprs[0].items[0].key is None):
+                continue
+            v = s.exprs[0].items[0].value
+            if isinstance(v, Call) and isinstance(v.func, Name) and v.func.sym is None and \
+                    v.func.name == "select" and len(v.args) == 2 and isinstance(v.args[0], Number) and \
+                    v.args[0].value == 1 and isinstance(v.args[1], Vararg):
+                v = v.args[1]
+            if not isinstance(v, Vararg):
+                continue
+            t = s.syms[0]
+            uses, nested, other = [], False, False
+            parents = {}
+            for st in body[i + 1:]:
+                _collect_parents(st, parents)
+            for n in [x for st in body[i + 1:] for x in walk(st)]:
+                if isinstance(n, Name) and n.sym is t:
+                    p = parents.get(n)
+                    if isinstance(p, Call) and isinstance(p.func, Name) and p.func.sym is None and \
+                            p.func.name == "unpack" and len(p.args) == 1 and p.args[0] is n:
+                        uses.append(p)
+                    else:
+                        other = True
+            if other or not uses:
+                continue
+            # `...` is not visible inside nested functions
+            inner = set()
+            for st in body[i + 1:]:
+                for n in walk(st):
+                    if isinstance(n, Func):
+                        inner |= set(id(x) for x in walk(n))
+            if any(id(u) in inner for u in uses):
+                continue
+            ids = set(id(u) for u in uses)
+
+            def fix(n, ids=ids):
+                return Vararg() if id(n) in ids else None
+            for j in range(i + 1, len(body)):
+                body[j] = transform(body[j], fix)
+            del body[i]
+            changed = True
+            break
+    return changed
+
+
+def _collect_parents(node, parents):
+    stack = [node]
+    while stack:
+        x = stack.pop()
+        for f in x.fields:
+            v = getattr(x, f)
+            if isinstance(v, Node):
+                parents[v] = x
+                stack.append(v)
+            elif isinstance(v, list):
+                for y in v:
+                    if isinstance(y, Node):
+                        parents[y] = x
+                        stack.append(y)
 
 
 def recover_generic_for(chunk):
@@ -588,6 +755,55 @@ def _try_inline(slots, sym, E):
     return True
 
 
+def inline_literal_locals(chunk):
+    """`local k = "event"` assigned nowhere else and read once -> use the literal at the read."""
+    refs = count_refs(chunk)
+    asg = assigned(chunk)
+    cands = {}
+    owners = []
+    for lst in stat_lists(chunk):
+        for s in lst:
+            if isinstance(s, Local) and len(s.syms) == 1 and len(s.exprs) == 1 and \
+                    isinstance(s.exprs[0], (String, Number, Bool)) and s.syms[0] not in asg and \
+                    refs.get(s.syms[0]) == 1 and not s.syms[0].attrs.get("discard"):
+                cands[s.syms[0]] = s.exprs[0]
+    if not cands:
+        return False
+
+    def fix(n):
+        if isinstance(n, Name) and n.sym in cands:
+            return cands[n.sym].copy()
+        return None
+    transform(chunk, fix)
+    for lst in stat_lists(chunk):
+        lst[:] = [s for s in lst if not (isinstance(s, Local) and len(s.syms) == 1 and s.syms[0] in cands and
+                                         len(s.exprs) == 1)]
+    return True
+
+
+def named_function_stores(chunk):
+    """`local function f() end; T.k = f` (f used nowhere else) -> `function T.k() end`."""
+    changed = False
+    refs = count_refs(chunk)
+    for lst in list(stat_lists(chunk)):
+        i = 0
+        while i < len(lst) - 1:
+            a, b = lst[i], lst[i + 1]
+            if isinstance(a, LocalFunc) and isinstance(b, Assign) and len(b.targets) == 1 and \
+                    len(b.exprs) == 1 and _is_sym(b.exprs[0], a.sym) and refs.get(a.sym) == 1 and \
+                    not refs_in([a.func]).get(a.sym):
+                t = b.targets[0]
+                x = t
+                while isinstance(x, Index) and isinstance(x.key, String) and is_ident(x.key.value):
+                    x = x.obj
+                if isinstance(x, Name) and (isinstance(t, Index) or t.sym is None):
+                    lst[i:i + 2] = [FuncStat(t, a.func, False)]
+                    changed = True
+                    continue
+            i += 1
+    return changed
+
+
 def func_statements(chunk):
     """`T.x = function(...)` -> `function T.x(...)`; `g = function` -> `function g(...)`."""
     changed = False
@@ -677,11 +893,15 @@ def simplify(chunk):
         c = False
         fold.fold(chunk)
         fold.flatten_all_do(chunk)
+        c |= inline_literal_locals(chunk)
         c |= truncate_dead(chunk)
         c |= method_calls(chunk)
         c |= merge_decl_assign(chunk)
         c |= multi_results(chunk)
         c |= recover_numeric_for(chunk)
+        c |= tuple_for(chunk)
+        c |= vararg_tables(chunk)
+        c |= named_function_stores(chunk)
         c |= recover_generic_for(chunk)
         c |= inline_adjacent(chunk)
         c |= flatten_else(chunk)
