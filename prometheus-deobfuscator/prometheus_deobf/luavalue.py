@@ -4,7 +4,12 @@ import math
 
 
 class LuaError(Exception):
-    pass
+    """A Lua runtime error. `value` is the error object; `positioned` once a "chunk:line:" prefix was added."""
+
+    def __init__(self, msg, value=None, positioned=False):
+        Exception.__init__(self, msg)
+        self.value = msg if value is None else value
+        self.positioned = positioned
 
 
 def num2str(v):

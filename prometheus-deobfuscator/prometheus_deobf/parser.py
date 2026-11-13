@@ -422,23 +422,28 @@ class Parser(object):
                 if t[1] == ".":
                     self.next()
                     e = Index(e, String(self.expect("name")[1]))
+                    e.line = t[2]
                     continue
                 if t[1] == "[":
                     self.next()
                     k = self.expr()
                     self.expect("op", "]")
                     e = Index(e, k)
+                    e.line = t[2]
                     continue
                 if t[1] == ":":
                     self.next()
                     name = self.expect("name")[1]
                     e = Method(e, name, self.callargs())
+                    e.line = t[2]
                     continue
                 if t[1] in ("(", "{"):
                     e = Call(e, self.callargs())
+                    e.line = t[2]
                     continue
             if t[0] == "str":
                 e = Call(e, self.callargs())
+                e.line = t[2]
                 continue
             return e
 
@@ -512,6 +517,7 @@ class Parser(object):
             self.next()
             op = "not" if t[1] in ("not", "!") else t[1]
             e = Un(op, self.expr(UNARY_PRI))
+            e.line = t[2]
         else:
             e = self.simpleexp()
         while True:
@@ -522,6 +528,7 @@ class Parser(object):
             self.next()
             r = self.expr(BINPRI[op][1])
             e = Bin(op, e, r)
+            e.line = t[2]
 
 
 def parse(src):

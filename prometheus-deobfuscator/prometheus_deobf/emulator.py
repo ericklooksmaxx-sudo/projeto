@@ -29,11 +29,12 @@ class EmuAbort(Exception):
 
 
 class LuaTable(object):
-    __slots__ = ("hash", "mt")
+    __slots__ = ("hash", "mt", "tag")
 
     def __init__(self):
         self.hash = {}
         self.mt = None
+        self.tag = None
 
     def length(self):
         n = 0
@@ -55,11 +56,12 @@ class Closure(object):
 
 
 class Builtin(object):
-    __slots__ = ("name", "fn")
+    __slots__ = ("name", "fn", "qualname")
 
     def __init__(self, name, fn):
         self.name = name
         self.fn = fn
+        self.qualname = name
 
 
 class Scope(object):
@@ -123,6 +125,7 @@ class Emulator(object):
         self.guard_read_tables = None
         self.guard_write_tables = None
         self.strict_tables = set()
+        self.full = False
         self._install()
 
     # ------------------------------------------------------------- builtins
@@ -432,7 +435,11 @@ class Emulator(object):
         reg(G, "rawequal", lambda a: [arg(a, 0) is arg(a, 1) or arg(a, 0) == arg(a, 1)])
 
         def error(a):
-            raise LuaError(self.tostring(arg(a, 0)))
+            v = arg(a, 0)
+            level = arg(a, 1, 1.0)
+            if isinstance(v, str) and level not in (0, 0.0):
+                raise LuaError(v, v, positioned=False)   # position added at the call site
+            raise LuaError(self.tostring(v) if not isinstance(v, LuaTable) else "error object", v, positioned=True)
 
         reg(G, "error", error)
 
@@ -447,12 +454,246 @@ class Emulator(object):
             try:
                 return [True] + self.call(arg(a, 0), list(a[1:]))
             except LuaError as ex:
-                return [False, str(ex)]
+                return [False, ex.value]
 
         reg(G, "pcall", pcall)
         G.hash["_G"] = G
         for t in (S, M, T):
             self.strict_tables.add(id(t))
+        self._qualify()
+
+    def _qualify(self):
+        """Give every builtin its qualified name (string.sub, math.floor, print...)."""
+        for k, v in list(self.G.hash.items()):
+            if isinstance(v, Builtin):
+                v.qualname = k
+            elif isinstance(v, LuaTable) and k != "_G":
+                for k2, v2 in v.hash.items():
+                    if isinstance(v2, Builtin):
+                        v2.qualname = "%s.%s" % (k, k2)
+
+    def enable_roblox_mock(self):
+        """Mock Roblox globals: every access / call on them is recorded in self.trace."""
+        G = self.G
+        self.trace = []
+        self.output = []
+        trace = self.trace
+        emu = self
+        mt = LuaTable()
+
+        def mock(path):
+            t = LuaTable()
+            t.mt = mt
+            t.tag = path
+            return t
+
+        def fmt(v):
+            if isinstance(v, LuaTable) and v.tag:
+                return v.tag
+            if isinstance(v, str):
+                return repr(v)
+            return emu.tostring(v) if not isinstance(v, (LuaTable, Closure, Builtin)) else ltype(v)
+
+        def m_index(a):
+            o, k = a[0], a[1] if len(a) > 1 else None
+            path = "%s.%s" % (o.tag, k if isinstance(k, str) else fmt(k))
+            trace.append("get " + path)
+            return [mock(path)]
+
+        def m_newindex(a):
+            o, k, v = a[0], a[1], a[2] if len(a) > 2 else None
+            trace.append("set %s.%s = %s" % (o.tag, k if isinstance(k, str) else fmt(k), fmt(v)))
+            return []
+
+        def m_call(a):
+            o = a[0]
+            args = a[1:]
+            path = "%s(%s)" % (o.tag, ", ".join(fmt(x) for x in args))
+            trace.append("call " + path)
+            return [mock(path)]
+
+        mt.hash["__index"] = Builtin("mock_index", m_index)
+        mt.hash["__newindex"] = Builtin("mock_newindex", m_newindex)
+        mt.hash["__call"] = Builtin("mock_call", m_call)
+        for ev in ("__add", "__sub", "__mul", "__div", "__mod", "__pow", "__concat"):
+            mt.hash[ev] = Builtin(ev, lambda a, ev=ev: [mock("(%s %s %s)" % (fmt(a[0]), ev, fmt(a[1])))])
+        mt.hash["__tostring"] = Builtin("mock_tostring", lambda a: [a[0].tag])
+        for name in ("game", "workspace", "script", "Vector3", "Vector2", "CFrame", "Color3", "UDim2", "UDim",
+                     "Instance", "Enum", "TweenInfo", "Ray", "BrickColor", "NumberSequence", "Drawing",
+                     "syn", "shared", "task", "Random", "RaycastParams", "PhysicalProperties", "Region3",
+                     "NumberRange", "ColorSequence", "Rect", "Axes", "Faces", "DockWidgetPluginGuiInfo",
+                     "plugin", "debug", "os", "utf8", "coroutine", "getgenv", "getrenv", "getrawmetatable",
+                     "setreadonly", "hookfunction", "hookmetamethod", "newcclosure", "firetouchinterest",
+                     "fireclickdetector", "request", "http_request", "identifyexecutor", "loadstring",
+                     "readfile", "writefile", "isfile", "setclipboard", "getconnections", "firesignal",
+                     "gethui", "checkcaller", "getnamecallmethod", "setfpscap", "queue_on_teleport",
+                     "spawn", "delay", "wait", "warn", "require", "printidentity", "Mouse", "Players"):
+            if name not in G.hash:
+                G.hash[name] = mock(name)
+
+        def p_print(a):
+            line = "\t".join(emu.tostring(x) if not (isinstance(x, LuaTable) and x.tag) else x.tag for x in a)
+            emu.output.append(line)
+            trace.append("print " + line)
+            return []
+        G.hash["print"] = Builtin("print", p_print)
+        G.hash["typeof"] = Builtin("typeof", lambda a: ["Instance" if isinstance(a[0], LuaTable) and a[0].tag
+                                                        else ltype(a[0]) if a else "nil"])
+        G.hash["tick"] = Builtin("tick", lambda a: [1000.0])
+        G.hash["time"] = Builtin("time", lambda a: [1.0])
+        self._qualify()
+
+    def tostring(self, v):
+        if isinstance(v, LuaTable) and v.mt is not None and isinstance(v.mt, LuaTable) and self.full:
+            h = v.mt.hash.get("__tostring")
+            if h is not None:
+                r = self.call1(h, [v])
+                return r if isinstance(r, str) else num2str(r) if isinstance(r, float) else "?"
+        return self._tostring(v)
+
+    def enable_full(self):
+        """Extra library surface needed to run whole obfuscator loaders (still no I/O).
+
+        Globals may be written (they live in the sandbox's own `_G`)."""
+        from . import luapattern as LP
+        self.full = True
+        G, S = self.G, self.string_lib
+
+        def reg(tbl, name, fn):
+            tbl.hash[name] = Builtin(name, fn)
+
+        def arg(a, i, default=None):
+            return a[i] if i < len(a) else default
+
+        def sarg(v, what):
+            if isinstance(v, str):
+                return v
+            if isinstance(v, float):
+                return num2str(v)
+            raise LuaError("bad argument to '%s' (string expected, got %s)" % (what, ltype(v)))
+
+        def pat(fn):
+            def w(a):
+                try:
+                    return fn(a)
+                except LP.PatternError as ex:
+                    raise LuaError(str(ex))
+            return w
+
+        def s_find(a):
+            s, p = sarg(arg(a, 0), "find"), sarg(arg(a, 1), "find")
+            init = int(tonum(arg(a, 2, 1.0)) or 1)
+            r = LP.find(s, p, init, truthy(arg(a, 3)))
+            return [None] if r is None else r
+
+        def s_match(a):
+            s, p = sarg(arg(a, 0), "match"), sarg(arg(a, 1), "match")
+            init = int(tonum(arg(a, 2, 1.0)) or 1)
+            r = LP.match(s, p, init)
+            return [None] if r is None else r
+
+        def s_gmatch(a):
+            it = LP.gmatch_iter(sarg(arg(a, 0), "gmatch"), sarg(arg(a, 1), "gmatch"))
+
+            def nxt(_):
+                r = it()
+                return [None] if r is None else r
+            return [Builtin("gmatch_iter", pat(nxt))]
+
+        def s_gsub(a):
+            s, p = sarg(arg(a, 0), "gsub"), sarg(arg(a, 1), "gsub")
+            repl = arg(a, 2)
+            mx = arg(a, 3)
+            mx = None if mx is None else int(tonum(mx))
+
+            def rf(whole, caps):
+                if isinstance(repl, (str, float)):
+                    r = sarg(repl, "gsub")
+                    out, i = [], 0
+                    while i < len(r):
+                        c = r[i]
+                        if c == "%" and i + 1 < len(r):
+                            d = r[i + 1]
+                            if d == "0":
+                                out.append(whole)
+                            elif d.isdigit():
+                                v = caps[int(d) - 1] if int(d) - 1 < len(caps) else whole
+                                out.append(self.tostring(v))
+                            else:
+                                out.append(d)
+                            i += 2
+                            continue
+                        out.append(c)
+                        i += 1
+                    return "".join(out)
+                key = caps[0] if caps else whole
+                if isinstance(repl, LuaTable):
+                    v = self.index(repl, key)
+                else:
+                    v = self.call1(repl, list(caps) if caps else [whole])
+                if v is None or v is False:
+                    return None
+                if isinstance(v, (str, float)):
+                    return sarg(v, "gsub")
+                raise LuaError("invalid replacement value (a %s)" % ltype(v))
+            out, n = LP.gsub(s, p, rf, mx)
+            return [out, float(n)]
+
+        reg(S, "find", pat(s_find))
+        reg(S, "match", pat(s_match))
+        reg(S, "gmatch", pat(s_gmatch))
+        reg(S, "gsub", pat(s_gsub))
+        reg(G, "getfenv", lambda a: [G])
+        reg(G, "setfenv", lambda a: [arg(a, 0)])
+
+        # bit32 (Roblox / Lua 5.2)
+        B = LuaTable()
+        M32 = 0xFFFFFFFF
+
+        def u(v):
+            n = tonum(v)
+            if n is None:
+                raise LuaError("bad argument to bit32 function (number expected)")
+            return int(n) & M32
+
+        def fold_bits(op, init):
+            def f(a):
+                r = init
+                for v in a:
+                    r = op(r, u(v))
+                return [float(r & M32)]
+            return f
+
+        reg(B, "band", fold_bits(lambda x, y: x & y, M32))
+        reg(B, "bor", fold_bits(lambda x, y: x | y, 0))
+        reg(B, "bxor", fold_bits(lambda x, y: x ^ y, 0))
+        reg(B, "bnot", lambda a: [float(~u(arg(a, 0)) & M32)])
+        reg(B, "lshift", lambda a: [float((u(arg(a, 0)) << int(tonum(arg(a, 1)))) & M32)
+                                    if int(tonum(arg(a, 1))) < 32 else 0.0])
+        reg(B, "rshift", lambda a: [float(u(arg(a, 0)) >> int(tonum(arg(a, 1))))
+                                    if int(tonum(arg(a, 1))) < 32 else 0.0])
+        reg(B, "btest", lambda a: [fold_bits(lambda x, y: x & y, M32)(a)[0] != 0])
+
+        def extract(a):
+            n, f = u(arg(a, 0)), int(tonum(arg(a, 1)))
+            w = int(tonum(arg(a, 2, 1.0)))
+            return [float((n >> f) & ((1 << w) - 1))]
+        reg(B, "extract", extract)
+        G.hash["bit32"] = B
+
+        M = G.hash["math"]
+
+        def ldexp(a):
+            import math as _m
+            return [_m.ldexp(tonum(arg(a, 0)), int(tonum(arg(a, 1))))]
+        reg(M, "ldexp", ldexp)
+
+        def frexp(a):
+            import math as _m
+            m, e = _m.frexp(tonum(arg(a, 0)))
+            return [m, float(e)]
+        reg(M, "frexp", frexp)
+        self._qualify()
 
     # ------------------------------------------------------------- semantics
     def tick(self):
@@ -460,7 +701,7 @@ class Emulator(object):
         if self.steps > self.budget:
             raise EmuAbort("step budget exceeded")
 
-    def tostring(self, v):
+    def _tostring(self, v):
         if v is None:
             return "nil"
         if v is True:
@@ -477,7 +718,7 @@ class Emulator(object):
         if isinstance(o, LuaTable):
             if self.guard_read_tables is not None and id(o) in self.guard_read_tables:
                 raise EmuAbort("reads guarded table")
-            if id(o) in self.strict_tables and k not in o.hash:
+            if id(o) in self.strict_tables and k not in o.hash and not self.full:
                 raise EmuAbort("unsupported library function %r" % (k,))
             if k is None:
                 v = None
@@ -495,7 +736,7 @@ class Emulator(object):
                 return self.call1(h, [o, k])
             return v
         if isinstance(o, str):
-            if isinstance(k, str) and k not in self.string_lib.hash:
+            if isinstance(k, str) and k not in self.string_lib.hash and not self.full:
                 raise EmuAbort("unsupported string method %r" % (k,))
             return self.string_lib.hash.get(k) if isinstance(k, str) else None
         raise LuaError("attempt to index a %s value" % ltype(o))
@@ -511,7 +752,12 @@ class Emulator(object):
         if o.mt is not None and kk not in o.hash:
             h = o.mt.hash.get("__newindex") if isinstance(o.mt, LuaTable) else None
             if h is not None:
-                raise EmuAbort("__newindex")
+                if not self.full:
+                    raise EmuAbort("__newindex")
+                if isinstance(h, LuaTable):
+                    return self.setindex(h, k, v)
+                self.call(h, [o, k, v])
+                return
         if v is None:
             o.hash.pop(kk, None)
         else:
@@ -542,8 +788,21 @@ class Emulator(object):
             return r[1]
         return []
 
+    def metamethod(self, event, a, b=None):
+        for o in (a, b):
+            if isinstance(o, LuaTable) and isinstance(o.mt, LuaTable):
+                h = o.mt.hash.get(event)
+                if h is not None:
+                    return h
+        return None
+
     def arith(self, op, a, b):
         r = arith(op, a, b)
+        if r is None and self.full:
+            ev = {"+": "__add", "-": "__sub", "*": "__mul", "/": "__div", "%": "__mod", "^": "__pow"}[op]
+            h = self.metamethod(ev, a, b)
+            if h is not None:
+                return self.call1(h, [a, b])
         if r is None:
             raise LuaError("attempt to perform arithmetic on a %s value" % ltype(b if tonum(a) is not None else a))
         return r
@@ -559,6 +818,15 @@ class Emulator(object):
         return out
 
     def eval_m(self, e, sc, va):
+        if self.full and getattr(e, "line", None) is not None:
+            try:
+                return self._eval_m(e, sc, va)
+            except LuaError as ex:
+                self._position(ex, e)
+                raise
+        return self._eval_m(e, sc, va)
+
+    def _eval_m(self, e, sc, va):
         if isinstance(e, Vararg):
             if va is None:
                 raise EmuAbort("vararg outside vararg function")
@@ -572,7 +840,26 @@ class Emulator(object):
             return self.call(f, [o] + self.eval_multi(e.args, sc, va))
         return [self.eval(e, sc, va)]
 
+    chunkname = "input"
+
+    def _position(self, ex, e):
+        line = getattr(e, "line", None)
+        if line is not None and not ex.positioned:
+            ex.positioned = True
+            if isinstance(ex.value, str):
+                ex.value = "%s:%d: %s" % (self.chunkname, line, ex.value)
+                ex.args = (ex.value,)
+
     def eval(self, e, sc, va):
+        if self.full and getattr(e, "line", None) is not None:
+            try:
+                return self._eval(e, sc, va)
+            except LuaError as ex:
+                self._position(ex, e)
+                raise
+        return self._eval(e, sc, va)
+
+    def _eval(self, e, sc, va):
         self.tick()
         t = type(e)
         if t is Number:
@@ -618,6 +905,10 @@ class Emulator(object):
                 return self.arith(op, l, r)
             if op == "..":
                 a, b = tostr_concat(l), tostr_concat(r)
+                if (a is None or b is None) and self.full:
+                    h = self.metamethod("__concat", l, r)
+                    if h is not None:
+                        return self.call1(h, [l, r])
                 if a is None or b is None:
                     raise LuaError("attempt to concatenate a %s value" % ltype(l if a is None else r))
                 if len(a) + len(b) > 20000000:
@@ -699,7 +990,9 @@ class Emulator(object):
                     raise EmuAbort("writes guarded variable")
                 c[0] = value
             else:
-                raise EmuAbort("global write %s" % target.name)
+                if not self.full:
+                    raise EmuAbort("global write %s" % target.name)
+                self.setindex(self.G, target.name, value)
         else:
             o, k = pre
             self.setindex(o, k, value)
