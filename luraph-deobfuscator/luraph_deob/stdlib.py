@@ -422,6 +422,31 @@ def make_env(it: I.Interp, script_args=()):
 
     SZ = {"b": 1, "B": 1, "h": 2, "H": 2, "l": 8, "L": 8, "j": 8, "J": 8, "T": 8, "i": 4, "I": 4}
 
+    def s_packsize(fmt=None, *r):
+        import re as _re
+        fmt = _s(fmt).decode("latin-1")
+        total = 0
+        for m in _re.finditer(r"([<>=!]\d*|\s)|([bBhHlLjJfdnTxXsz]|[iI]\d*|c\d+)", fmt):
+            tok = m.group(2)
+            if not tok:
+                continue
+            c = tok[0]
+            if c in "bBx":
+                total += 1
+            elif c in "hH":
+                total += 2
+            elif c in "iI":
+                total += int(tok[1:]) if len(tok) > 1 else 4
+            elif c in "lLjJdnT":
+                total += 8
+            elif c == "f":
+                total += 4
+            elif c == "c":
+                total += int(tok[1:])
+            else:
+                raise LuaError(b"variable-size format in packsize")
+        return (total,)
+
     def s_pack(fmt, *args):
         out = bytearray()
         ai = 0
@@ -491,7 +516,7 @@ def make_env(it: I.Interp, script_args=()):
         ("reverse", s_reverse), ("lower", s_lower), ("upper", s_upper),
         ("find", wrap_pat(s_find)), ("match", wrap_pat(s_match)), ("gmatch", wrap_pat(s_gmatch)),
         ("gsub", wrap_pat(s_gsub)), ("format", s_format), ("split", s_split),
-        ("pack", s_pack), ("unpack", s_unpack),
+        ("pack", s_pack), ("unpack", s_unpack), ("packsize", s_packsize),
     ]:
         reg(S, n, f)
     smeta = LuaTable()
