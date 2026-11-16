@@ -531,10 +531,20 @@ def _norm(v):
     return v
 
 
+_MAXI = 9007199254740992  # 2**53: Lua numbers are doubles, larger integers lose precision
+
+
+def _dbl(r):
+    """Round an exact Python int result to what a double would hold."""
+    if type(r) is int and (r > _MAXI or r < -_MAXI):
+        return float(r)
+    return r
+
+
 ARITH = {
-    "+": lambda a, b: a + b,
-    "-": lambda a, b: a - b,
-    "*": lambda a, b: a * b,
+    "+": lambda a, b: _dbl(a + b),
+    "-": lambda a, b: _dbl(a - b),
+    "*": lambda a, b: _dbl(a * b),
     "/": _div,
     "%": _mod,
     "//": _idiv,
@@ -1449,7 +1459,8 @@ class Compiler:
                     ta = type(a)
                     tb = type(b)
                     if (ta is int or ta is float) and (tb is int or tb is float):
-                        return a + b
+                        r = a + b
+                        return r if type(r) is float or -_MAXI <= r <= _MAXI else float(r)
                     return _ar(it, "+", a, b, e)
             elif op == "-":
                 def run(fr):
@@ -1458,7 +1469,8 @@ class Compiler:
                     ta = type(a)
                     tb = type(b)
                     if (ta is int or ta is float) and (tb is int or tb is float):
-                        return a - b
+                        r = a - b
+                        return r if type(r) is float or -_MAXI <= r <= _MAXI else float(r)
                     return _ar(it, "-", a, b, e)
             elif op == "*":
                 def run(fr):
@@ -1467,7 +1479,8 @@ class Compiler:
                     ta = type(a)
                     tb = type(b)
                     if (ta is int or ta is float) and (tb is int or tb is float):
-                        return a * b
+                        r = a * b
+                        return r if type(r) is float or -_MAXI <= r <= _MAXI else float(r)
                     return _ar(it, "*", a, b, e)
             else:
                 def run(fr):
