@@ -593,7 +593,7 @@ def build_env(it: I.Interp, tr: Tracer, opts) -> LuaTable:
     return G
 
 
-def dump(src: bytes, timeout: float = 120.0, max_events: int = 200000, run_callbacks: bool = True,
+def _dump_once(src: bytes, timeout: float = 120.0, max_events: int = 200000, run_callbacks: bool = True,
          recursion: int = 200000) -> DumpResult:
     import sys
     t0 = time.time()
@@ -643,3 +643,43 @@ def dump(src: bytes, timeout: float = 120.0, max_events: int = 200000, run_callb
                   tr.events, len(tr.chunks), " | INCOMPLETE (timeout)" if out["timeout"] else ""), ""]
     text = "\n".join(header) + tr.render() + "\n"
     return DumpResult(text, tr.chunks, out["error"], out["timeout"], tr.events, time.time() - t0)
+
+
+def repair_mojibake(src: bytes) -> Optional[bytes]:
+    """Some sample sets were re-encoded (Latin-1/cp1252 bytes -> UTF-8), which corrupts
+    the binary payload inside string literals.  Undo that when the whole file is valid
+    UTF-8 with non-ASCII text that maps back to single bytes."""
+    if all(b < 128 for b in src):
+        return None
+    try:
+        text = src.decode("utf-8")
+    except UnicodeDecodeError:
+        return None
+    out = bytearray()
+    for ch in text:
+        o = ord(ch)
+        if o < 128:
+            out.append(o)
+            continue
+        try:
+            out += ch.encode("cp1252")
+        except UnicodeEncodeError:
+            if o < 256:
+                out.append(o)
+            else:
+                return None
+    return bytes(out)
+
+
+def dump(src: bytes, timeout: float = 120.0, max_events: int = 200000, run_callbacks: bool = True,
+         recursion: int = 200000, repair: bool = True) -> DumpResult:
+    res = _dump_once(src, timeout, max_events, run_callbacks, recursion)
+    if repair and (res.error or res.events == 0):
+        fixed = repair_mojibake(src)
+        if fixed is not None and fixed != src:
+            alt = _dump_once(fixed, timeout, max_events, run_callbacks, recursion)
+            if alt.events > res.events or (res.error and not alt.error):
+                alt.source = alt.source.replace(
+                    "\n", "\n-- note: input was UTF-8/cp1252 re-encoded; repaired before running\n", 1)
+                return alt
+    return res

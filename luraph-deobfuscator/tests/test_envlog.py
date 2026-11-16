@@ -43,3 +43,14 @@ loadstring("game.Players.LocalPlayer.Name = 'z'")()
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RepairTests(unittest.TestCase):
+    def test_mojibake_roundtrip(self):
+        from luraph_deob.envlog import repair_mojibake
+        orig = b'print("\xf0\x9f\x98\x80 \x81\xff")'
+        broken = orig.decode("cp1252", errors="replace").encode("utf-8") if False else \
+            "".join(chr(b) for b in orig).encode("utf-8")
+        self.assertNotEqual(broken, orig)
+        self.assertEqual(repair_mojibake(broken), orig)
+        self.assertIsNone(repair_mojibake(b"print(1)"))
