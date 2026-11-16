@@ -23,6 +23,7 @@ class LuaError(Exception):
         Exception.__init__(self, value)
         self.value = value
         self.lua_traceback = traceback
+        self.positioned = False  # message already carries a "chunk:line:" prefix
 
 
 class StepLimit(Exception):
@@ -30,15 +31,31 @@ class StepLimit(Exception):
 
 
 class LuaTable:
-    __slots__ = ("h", "meta", "__weakref__", "frozen")
+    __slots__ = ("h", "meta", "__weakref__", "frozen", "asize")
 
     def __init__(self, h=None):
         self.h = {} if h is None else h
         self.meta = None
         self.frozen = False
+        self.asize = 0  # size of the array part given by a constructor (Lua `#` border semantics)
 
     def length(self):
         h = self.h
+        a = self.asize
+        if a:
+            if a in h:
+                j = a
+                while (j + 1) in h:
+                    j += 1
+                return j
+            i, j = 0, a
+            while j - i > 1:
+                m = (i + j) // 2
+                if m in h:
+                    i = m
+                else:
+                    j = m
+            return i
         if 1 not in h:
             return 0
         n = len(h)
@@ -331,6 +348,10 @@ class Interp:
                 r = f.f(*args)
             except _PYERR as e:
                 raise LuaError(("%s: %s" % (f.name, e)).encode())
+            except LuaError as e:
+                if e.lua_traceback is None:
+                    e.lua_traceback = "in builtin '%s'" % f.name
+                raise
             if r is None:
                 return ()
             return r
@@ -1185,6 +1206,11 @@ class Compiler:
             ef = self.expr1(e.func, scope)
             ea = self.exprlist(e.args, scope, None)
             callnode = e
+            if type(e.func) is A.Index:
+                _eo = self.expr1(e.func.obj, scope)
+                _ek = self.expr1(e.func.key, scope)
+            else:
+                _eo = _ek = None
 
             def run(fr):
                 f = ef(fr)
@@ -1197,7 +1223,20 @@ class Compiler:
                         r = f.f(*args)
                     except _PYERR as e:
                         raise LuaError(("%s: %s" % (f.name, e)).encode())
+                    except LuaError as e:
+                        if e.lua_traceback is None:
+                            e.lua_traceback = "in builtin '%s'" % f.name
+                        raise
                     return () if r is None else r
+                if f is None:
+                    desc = _short_src(callnode.func)
+                    if _eo is not None:
+                        try:
+                            k = _ek(fr)
+                            desc = "field '%s'" % (tostr_py(k) if type(k) in (bytes, int, float) else type_name(k))
+                        except Exception:
+                            pass
+                    raise LuaError(("attempt to call a nil value (%s)" % desc).encode())
                 return it.call(f, args)
 
             return run
@@ -1209,6 +1248,8 @@ class Compiler:
             def run(fr):
                 o = eo(fr)
                 f = it.index(o, name)
+                if f is None:
+                    raise LuaError(("attempt to call method '%s' (a nil value)" % e.name).encode())
                 return it.call(f, (o,) + tuple(ea(fr)))
 
             return run
@@ -1371,7 +1412,10 @@ class Compiler:
                     v = ev(fr)
                     if v is not None:
                         h[key(k)] = v
-            return LuaTable(h)
+            t = LuaTable(h)
+            if ai > 2 and len(h) < ai - 1:
+                t.asize = ai - 1  # holes: keep constructor array size
+            return t
 
         return run
 
@@ -1406,7 +1450,7 @@ class Compiler:
                     tb = type(b)
                     if (ta is int or ta is float) and (tb is int or tb is float):
                         return a + b
-                    return it.arith("+", a, b)
+                    return _ar(it, "+", a, b, e)
             elif op == "-":
                 def run(fr):
                     a = ea(fr)
@@ -1415,7 +1459,7 @@ class Compiler:
                     tb = type(b)
                     if (ta is int or ta is float) and (tb is int or tb is float):
                         return a - b
-                    return it.arith("-", a, b)
+                    return _ar(it, "-", a, b, e)
             elif op == "*":
                 def run(fr):
                     a = ea(fr)
@@ -1424,7 +1468,7 @@ class Compiler:
                     tb = type(b)
                     if (ta is int or ta is float) and (tb is int or tb is float):
                         return a * b
-                    return it.arith("*", a, b)
+                    return _ar(it, "*", a, b, e)
             else:
                 def run(fr):
                     a = ea(fr)
@@ -1433,7 +1477,7 @@ class Compiler:
                     tb = type(b)
                     if (ta is int or ta is float) and (tb is int or tb is float):
                         return f(a, b)
-                    return it.arith(op, a, b)
+                    return _ar(it, op, a, b, e)
 
             return run
         if op == "..":
@@ -1487,6 +1531,22 @@ class Compiler:
 
             return run
         raise LuaError(("bad binop %s" % op).encode())
+
+
+def _ar(it, op, a, b, node):
+    try:
+        return it.arith(op, a, b)
+    except LuaError as ex:
+        if ex.lua_traceback is None:
+            ex.lua_traceback = "in `%s`" % _short_src(node)
+        raise
+
+
+def _short_src(node):
+    try:
+        return A.to_source(A.Block([A.CallStat(A.Call(node, []))])).strip()[:60]
+    except Exception:
+        return type(node).__name__
 
 
 def _builtin_next(t, k=None):

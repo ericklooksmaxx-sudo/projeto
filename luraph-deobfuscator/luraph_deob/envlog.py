@@ -139,6 +139,7 @@ class Tracer:
         self.service_cache: Dict[str, LuaTable] = {}
         self.meta = self._make_meta()
         self.running_cb = 0
+        self.spec_params = set()
 
     # ------------------------------------------------------------------ proxies
     def new_proxy(self, expr, **kw) -> LuaTable:
@@ -282,13 +283,13 @@ class Tracer:
         return "\x00FN%d\x00" % id(f)
 
     def params_of(self, f):
-        n = 0
-        try:
-            p = getattr(f.proto, "params", None) or getattr(getattr(f.proto, "node", None), "params", None)
-            if p is not None:
-                n = len(p)
-        except Exception:
-            pass
+        """Callback parameter names; vararg functions (all obfuscator VM closures)
+        get speculative names a1..a3, trimmed at render time to those actually used."""
+        pr = getattr(f, "proto", None)
+        n = getattr(pr, "nparams", 0) or 0
+        if getattr(pr, "vararg", False) and n == 0:
+            self.spec_params.add(id(f))
+            n = 3
         return ["a%d" % (i + 1) for i in range(n)]
 
     # ------------------------------------------------------------------ events
@@ -312,6 +313,8 @@ class Tracer:
         m = re.match(r'^.*:(?:FindFirstChild|WaitForChild|FindFirstChildOfClass|FindFirstAncestor)\("([A-Za-z_][A-Za-z0-9_]*)"', text)
         if m:
             base = m.group(1)[0].lower() + m.group(1)[1:]
+        if text == "loaded":
+            base = "loaded"
         if base is None or base in _LUA_KW:
             base = "v"
         n = self.var_names.get(base, 0) + 1
@@ -389,7 +392,10 @@ class Tracer:
 
     def err_text(self, e):
         v = e.value
-        return (v.decode("latin-1") if type(v) is bytes else str(v)).replace("\n", " ")[:300]
+        msg = (v.decode("latin-1") if type(v) is bytes else str(v)).replace("\n", " ")[:300]
+        if e.lua_traceback:
+            msg += " [%s]" % e.lua_traceback
+        return msg
 
     def run_pending(self, budget=2000):
         rounds = 0
@@ -413,11 +419,16 @@ class Tracer:
         def expand(m, pad_):
             fid = int(m.group(1))
             b = self.fn_blocks.get(fid)
-            params = ", ".join(self.fn_params.get(fid, []))
+            plist = list(self.fn_params.get(fid, []))
             if b is None or not b.items or depth > 40:
-                return "function(%s) end" % params
+                if fid in self.spec_params:
+                    plist = []
+                return "function(%s) end" % ", ".join(plist)
             body = self.render_block(b, len(pad_) // 4 + 1, depth + 1)
-            return "function(%s)\n%s\n%send" % (params, body, pad_)
+            if fid in self.spec_params:
+                used = [int(x) for x in re.findall(r"(?<![A-Za-z0-9_])a(\d+)(?![A-Za-z0-9_])", body)]
+                plist = plist[:max(used)] if used else []
+            return "function(%s)\n%s\n%send" % (", ".join(plist), body, pad_)
 
         for item in blk.items:
             if item[0] == "raw":
@@ -511,10 +522,14 @@ def build_env(it: I.Interp, tr: Tracer, opts) -> LuaTable:
     def l_loadstring(src=None, name=b"=(load)", *r):
         if tr.is_proxy(src):
             expr = tr.fmt(src)
-            tr.raw("-- loadstring of remote/unknown source: %s" % expr)
-            stub = Builtin(lambda *a: (tr.new_proxy("loadstring_result"),), "loadstring_chunk")
-            tr.emit("loadstring(%s)()" % expr)
-            return (stub,)
+
+            def remote_chunk(*a):
+                var = tr.hint("loaded")
+                res = tr.new_proxy(var, var=var)
+                tr.emit("loadstring(%s)(%s)" % (expr, ", ".join(tr.fmt(x) for x in a)), var)
+                return (res,)
+            tr.raw("-- loadstring of remote/unknown source (not executed in the sandbox)")
+            return (Builtin(remote_chunk, "loadstring_chunk"),)
         if type(src) is not bytes:
             return (None, b"bad argument")
         idx = len(tr.chunks) + 1

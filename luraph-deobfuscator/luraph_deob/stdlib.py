@@ -137,15 +137,27 @@ def make_env(it: I.Interp, script_args=()):
             raise LuaError(msg)
         return a
 
+    def errval(e):
+        """Error value as seen by pcall: runtime errors carry a position prefix
+        (scripts such as MoonSec V3 self-test for ':%d+:' in messages)."""
+        v = e.value
+        if type(v) is bytes and not e.positioned:
+            return b"script:1: " + v
+        return v
+
     def l_error(msg=None, level=1, *r):
-        raise LuaError(msg)
+        e = LuaError(msg)
+        e.positioned = True
+        if type(msg) is bytes and (level is None or (type(level) in (int, float) and level > 0)):
+            e.value = b"script:1: " + msg
+        raise e
 
     def l_pcall(f=None, *a):
         try:
             r = it.call(f, a)
             return (True,) + tuple(r)
         except LuaError as e:
-            return (False, e.value)
+            return (False, errval(e))
         except RecursionError:
             return (False, b"stack overflow")
         except PatternError as e:
@@ -156,7 +168,7 @@ def make_env(it: I.Interp, script_args=()):
             r = it.call(f, a)
             return (True,) + tuple(r)
         except LuaError as e:
-            return (False,) + tuple(it.call(h, (e.value,)))
+            return (False,) + tuple(it.call(h, (errval(e),)))
         except RecursionError:
             return (False,) + tuple(it.call(h, (b"stack overflow",)))
 
@@ -540,7 +552,10 @@ def make_env(it: I.Interp, script_args=()):
     def t_pack(*a):
         h = {i + 1: v for i, v in enumerate(a) if v is not None}
         h[b"n"] = len(a)
-        return (LuaTable(h),)
+        t = LuaTable(h)
+        if len(h) - 1 < len(a):
+            t.asize = len(a)
+        return (t,)
 
     def t_unpack(t, i=None, j=None, *r):
         return l_unpack(t, i, j)
