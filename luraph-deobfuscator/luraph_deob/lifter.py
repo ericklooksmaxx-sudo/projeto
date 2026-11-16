@@ -955,7 +955,7 @@ def _shape(stmts):
     def f(n):
         if type(n) is GotoNode:
             tg.append(n.label)
-            return GotoNode(None, -1, None)
+            return A.Goto("_")
         return n
     blank = transform(stmts, f)
     return A.to_source(blank), tg
