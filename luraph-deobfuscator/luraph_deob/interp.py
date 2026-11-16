@@ -30,6 +30,10 @@ class StepLimit(Exception):
     pass
 
 
+class Abort(BaseException):
+    """Cooperative cancellation (time/event budget); never caught by Lua pcall."""
+
+
 class LuaTable:
     __slots__ = ("h", "meta", "__weakref__", "frozen", "asize")
 
@@ -287,6 +291,7 @@ class Interp:
         self.loaded_chunks = []
         self.invoke_hooks = {}  # id(Function node) -> cb(fn, args, invoke)
         self.string_meta_table = None
+        self.abort = False  # set by a watchdog to stop all running Lua code
 
     # -- indexing ----------------------------------------------------------
     def index(self, o, k):
@@ -619,6 +624,8 @@ class Proto:
 
     def invoke(self, fn, args):
         it = self.interp
+        if it.abort:
+            raise Abort()
         it.call_depth += 1
         if it.call_depth > 7000:
             it.call_depth = 0

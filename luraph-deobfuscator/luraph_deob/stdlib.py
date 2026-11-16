@@ -968,6 +968,8 @@ def make_env(it: I.Interp, script_args=()):
                 self.transfer = tuple(it.call(self.fn, self.transfer))
             except LuaError as e:
                 self.error = e
+            except I.Abort as e:
+                self.error = e
             except BaseException as e:  # noqa
                 self.error = LuaError(str(e).encode())
             self.status = "dead"
@@ -986,8 +988,12 @@ def make_env(it: I.Interp, script_args=()):
                 self.thread.start()
             else:
                 self.ev_resume.set()
-            self.ev_yield.wait()
+            while not self.ev_yield.wait(0.25):
+                if it.abort:
+                    raise I.Abort()
             _cur[0] = prev
+            if isinstance(self.error, I.Abort):
+                raise self.error
             if self.error is not None:
                 e = self.error
                 self.error = None
@@ -1000,7 +1006,9 @@ def make_env(it: I.Interp, script_args=()):
             self.transfer = args
             self.ev_resume.clear()
             self.ev_yield.set()
-            self.ev_resume.wait()
+            while not self.ev_resume.wait(0.25):
+                if it.abort:
+                    raise I.Abort()
             return self.transfer
 
     def co_create(f, *r):

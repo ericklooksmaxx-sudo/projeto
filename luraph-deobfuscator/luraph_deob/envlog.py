@@ -52,7 +52,7 @@ _LUA_KW = {"and", "break", "do", "else", "elseif", "end", "false", "for", "funct
            "nil", "not", "or", "repeat", "return", "then", "true", "until", "while", "continue"}
 
 
-class WatchdogTimeout(BaseException):
+class WatchdogTimeout(I.Abort):
     pass
 
 
@@ -296,6 +296,7 @@ class Tracer:
     def emit(self, text, var=None):
         self.events += 1
         if self.events > self.max_events:
+            self.it.abort = True
             raise WatchdogTimeout()
         self.cur.items.append(("stmt", var, text))
 
@@ -323,6 +324,10 @@ class Tracer:
 
     def index(self, o, k):
         inf = self.info[id(o)]
+        if k == b"Parent" and (inf.expr in ("game", "Game") or inf.expr.count(".Parent") >= 3):
+            return None  # ancestor walks (`while x.Parent do x = x.Parent end`) must terminate
+        if type(k) in (int, float) and k > 3:
+            return None  # `while x[i] do i = i + 1 end` over a proxy list must end
         suffix = self.key_suffix(k)
         expr = inf.expr + suffix
         child = self.new_proxy(expr, parent=o, key=k, pure=inf.pure)
@@ -411,6 +416,35 @@ class Tracer:
             rounds += 1
 
     # ------------------------------------------------------------------ rendering
+    @staticmethod
+    def _norm(item):
+        t = item[2] if item[0] == "stmt" else item[1]
+        return re.sub(r"-?\d+(?:\.\d+)?(?:e[+-]?\d+)?", "N", t)
+
+    def fold_loops(self, items, min_reps=4, max_period=40):
+        """Collapse an observed repeating cycle (script loops such as `while true do ... task.wait() end`)
+        into one iteration plus a comment, so budget-truncated traces stay readable."""
+        n = len(items)
+        keys = [self._norm(it) for it in items]
+        out = []
+        i = 0
+        while i < n:
+            folded = False
+            for p in range(1, min(max_period, (n - i) // min_reps) + 1):
+                reps = 1
+                while i + (reps + 1) * p <= n and keys[i + reps * p:i + (reps + 1) * p] == keys[i:i + p]:
+                    reps += 1
+                if reps >= min_reps:
+                    out.extend(items[i:i + p])
+                    out.append(("raw", "-- ^ these %d statement(s) repeat %d more times (loop in the original script)" % (p, reps - 1)))
+                    i += reps * p
+                    folded = True
+                    break
+            if not folded:
+                out.append(items[i])
+                i += 1
+        return out
+
     def render_block(self, blk: Block, indent: int, depth: int = 0) -> str:
         pad = "    " * indent
         lines = []
@@ -430,7 +464,7 @@ class Tracer:
                 plist = plist[:max(used)] if used else []
             return "function(%s)\n%s\n%send" % (", ".join(plist), body, pad_)
 
-        for item in blk.items:
+        for item in self.fold_loops(blk.items):
             if item[0] == "raw":
                 text = item[1]
             else:
@@ -444,14 +478,17 @@ class Tracer:
 
     def render(self) -> str:
         text = self.render_block(self.root, 0)
-        # drop `local vN = ` for variables never used afterwards
-        names = set()
-        for m in re.finditer(r"^\s*local ([A-Za-z_][A-Za-z0-9_]*) = ", text, re.M):
-            names.add(m.group(1))
-        for n in names:
-            uses = len(re.findall(r"(?<![A-Za-z0-9_.\"])%s(?![A-Za-z0-9_\"])" % re.escape(n), text))
-            if uses <= 1:
-                text = re.sub(r"^(\s*)local %s = " % re.escape(n), r"\1", text, flags=re.M)
+        # drop `local vN = ` for variables never used afterwards (single linear pass)
+        from collections import Counter
+        counts = Counter(re.findall(r"[A-Za-z_][A-Za-z0-9_]*", text))
+        decl = re.compile(r"^(\s*)local ([A-Za-z_][A-Za-z0-9_]*) = ")
+        out = []
+        for ln in text.split("\n"):
+            m = decl.match(ln)
+            if m and counts[m.group(2)] <= 1:
+                ln = m.group(1) + ln[m.end():]
+            out.append(ln)
+        text = "\n".join(out)
         return text
 
 
@@ -616,7 +653,7 @@ def _dump_once(src: bytes, timeout: float = 120.0, max_events: int = 200000, run
                     tr.raw("-- undefined globals read: %s" % ", ".join(sorted(tr.missing)[:40]))
             if run_callbacks:
                 tr.run_pending()
-        except WatchdogTimeout:
+        except I.Abort:
             out["timeout"] = True
             tr.raw("-- dump stopped: time/event budget exhausted")
         except RecursionError:
@@ -632,6 +669,9 @@ def _dump_once(src: bytes, timeout: float = 120.0, max_events: int = 200000, run
     th = threading.Thread(target=target, daemon=True)
     th.start()
     th.join(timeout)
+    if th.is_alive():
+        it.abort = True
+        th.join(5)
     if th.is_alive():
         ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_ulong(th.ident), ctypes.py_object(WatchdogTimeout))
         th.join(10)
