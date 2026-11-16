@@ -489,6 +489,10 @@ class FunctionLifter:
                         dest = int(t.key.value)
         child = self.lc.funcs_by_key.get(ref.key)
         if dest is None or child is None:
+            self.lc.stats["closure_nodest" if dest is None else "closure_nochild"] = \
+                self.lc.stats.get("closure_nodest" if dest is None else "closure_nochild", 0) + 1
+            if child is None:
+                self.lc.stats.setdefault("nochild_keys", set()).add(repr(ref.key))
             return stmts
         # upvalue descriptors live in the constant args table (index -1)
         upnames = {}

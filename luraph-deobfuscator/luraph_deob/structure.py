@@ -19,7 +19,10 @@ from typing import Dict, List, Optional, Set, Tuple
 from . import luau_ast as A
 from .simplify import copy, fold, is_const, make_const, transform
 
-REG_RE = re.compile(r"^v\d+(_\d+)?$")
+REG_RE = re.compile(r"^(v\d+(_\d+)?|R(_\d+)?\[\d+\])$")
+
+# table whose bare uses make register accesses opaque (set per function)
+_W = {"name": None, "universe": frozenset()}
 
 
 class Unsupported(Exception):
@@ -61,9 +64,40 @@ def promote_registers(body, tname):
 
     new = transform(body, f)
     # the declaration itself accounts for one use; everything else must be promoted
-    if promoted[0] + 1 != total:
+    if promoted[0] != total:
         return None
     return [s for s in new if not (type(s) is A.Local and s.names == [tname])]
+
+
+def alias_registers(body, tname):
+    """Fallback when the table is also accessed dynamically: constant accesses
+    become pseudo-variables named ``T[k]`` (printed unchanged)."""
+    def f(n):
+        if type(n) is A.Index and type(n.obj) is A.Name and n.obj.name == tname \
+                and type(n.key) is A.Number and isinstance(n.key.value, int):
+            return A.Name("%s[%d]" % (tname, n.key.value))
+        return n
+    return transform(body, f)
+
+
+_SAFE_CALLS = {b"move", b"unpack", b"insert", b"remove", b"concat"}
+
+
+def escapes(body, tname):
+    """True if the table itself is stored/passed somewhere other than a table.* helper."""
+    ok = set()
+    for n in A.walk(body):
+        if type(n) is A.Call:
+            fn = n.func
+            if (type(fn) is A.Index and type(fn.obj) is A.Name and fn.obj.name == "table"
+                    and type(fn.key) is A.String and fn.key.value in _SAFE_CALLS) \
+                    or (type(fn) is A.Name and fn.name == "unpack"):
+                for a in n.args:
+                    ok.add(id(a))
+    for n in A.walk(body):
+        if type(n) is A.Name and n.name == tname and id(n) not in ok:
+            return True
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -177,7 +211,8 @@ def lower(stmts) -> CFG:
                 cur = join if reached else None
                 if cur is None:
                     del g.blocks[join.id]
-            elif t in SIMPLE or t is A.Do and not any(type(x) in (A.Goto, A.Label) for x in A.walk(s)):
+            elif t in SIMPLE or (t in (A.Do, A.While, A.Repeat, A.NumericFor, A.GenericFor)
+                                  and not any(type(x) in (A.Goto, A.Label) for x in A.walk(s))):
                 cur.stmts.append(s)
             else:
                 raise Unsupported("statement %s" % t.__name__)
@@ -244,9 +279,22 @@ def eval_const(e, env):
     return r if _lit(r) else None
 
 
+def _bare(node):
+    w = _W["name"]
+    return w is not None and any(type(n) is A.Name and n.name == w for n in A.walk(node))
+
+
+def _clobber(env):
+    pre = _W["name"] + "["
+    for k in [k for k in env if k.startswith(pre)]:
+        del env[k]
+
+
 def transfer(stmts, env, captured):
     for s in stmts:
         t = type(s)
+        if _W["name"] is not None and _bare(s):
+            _clobber(env)
         if t is A.Assign and all(type(x) is A.Name for x in s.targets):
             if len(s.targets) == len(s.values):
                 vals = [eval_const(v, env) for v in s.values]
@@ -407,12 +455,18 @@ def dead_stores(g, captured):
         t = b.term
         if t[0] == "cond":
             live |= reg_names(t[1])
+            if _bare(t[1]):
+                live |= _W["universe"]
         elif t[0] == "ret":
             for v in t[1]:
                 live |= reg_names(v)
+                if _bare(v):
+                    live |= _W["universe"]
         out = []
         for s in reversed(b.stmts):
             ty = type(s)
+            if _W["name"] is not None and _bare(s):
+                live |= _W["universe"]
             if ty is A.Assign and all(type(x) is A.Name and REG_RE.match(x.name) for x in s.targets):
                 tn = [x.name for x in s.targets]
                 dead = [n not in live and n not in captured for n in tn]
@@ -860,10 +914,19 @@ def _captured(body):
     return cap
 
 
-def structure_body(body, stats=None):
+def structure_body(body, stats=None, wild=None):
     """Structure one function body (``body`` is the flat statement list with the
     register table already promoted). Returns new statements."""
     captured = _captured(body)
+    if wild:
+        _W["name"] = wild
+        _W["universe"] = frozenset(n.name for n in A.walk(body)
+                                   if type(n) is A.Name and n.name.startswith(wild + "["))
+        if escapes(body, wild):
+            captured = captured | _W["universe"]
+    else:
+        _W["name"] = None
+        _W["universe"] = frozenset()
     g = lower(body)
     reachable(g)
     thread_jumps(g, captured)
@@ -884,6 +947,7 @@ def structure_body(body, stats=None):
         mode = "flat"
     if stats is not None:
         stats[mode] = stats.get(mode, 0) + 1
+        stats.setdefault("log", []).append((mode, len(g.blocks), bool(wild), bool(wild and escapes(body, wild))))
     return out
 
 
@@ -892,17 +956,22 @@ def process_function_body(body, stats=None):
     if tname is None:
         return _recurse_nested(body, stats)
     prom = promote_registers(body, tname)
+    wild = None
     if prom is None:
         if stats is not None:
-            stats["unpromoted"] = stats.get("unpromoted", 0) + 1
-        return _recurse_nested(body, stats)
+            stats["aliased"] = stats.get("aliased", 0) + 1
+        wild = tname
+        prom = alias_registers(body, tname)
     try:
-        out = structure_body(prom, stats)
-    except Unsupported:
+        out = structure_body(prom, stats, wild)
+    except Unsupported as e:
         if stats is not None:
             stats["unsupported"] = stats.get("unsupported", 0) + 1
+            stats["why:" + str(e)] = stats.get("why:" + str(e), 0) + 1
         out = prom
     out = _recurse_nested(out, stats)
+    if wild:
+        return out
     regs = sorted({n.name for n in A.walk(out) if type(n) is A.Name and REG_RE.match(n.name)
                    and n.name.endswith(tname[1:] if tname != "R" else "")} , key=_regkey)
     own = [r for r in regs if _is_own(r, tname)]
