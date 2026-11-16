@@ -1038,6 +1038,51 @@ def make_env(it: I.Interp, script_args=()):
     reg(U, "char", lambda *a: (("".join(chr(_int(x)) for x in a)).encode("utf-8"),))
     U.h[b"charpattern"] = b"[\0-\x7F\xC2-\xFD][\x80-\xBF]*"
 
+    # debug library (Luau subset; getinfo/sethook etc. for Lua 5.1 style scripts)
+    D = lib("debug")
+
+    def dbg_traceback(msg=None, *r):
+        if msg is not None and type(msg) is not bytes and not isinstance(msg, (int, float)):
+            return (msg,)
+        base = it.tostring(msg) + b"\n" if msg is not None else b""
+        return (base + b"stack traceback:\n\t[C]: in ?",)
+
+    def dbg_info(*a):
+        # debug.info(level|func, "slnaf") -> plausible values
+        what = a[-1] if a and type(a[-1]) is bytes else b""
+        out = []
+        for ch in what.decode("latin-1"):
+            if ch == "s":
+                out.append(b"script")
+            elif ch == "l":
+                out.append(1)
+            elif ch == "n":
+                out.append(b"")
+            elif ch == "a":
+                out.extend((0, False))
+            elif ch == "f":
+                out.append(a[0] if a and type(a[0]) in (LuaFunction, Builtin) else None)
+        return tuple(out)
+
+    def dbg_getinfo(*a):
+        t = LuaTable()
+        for k, v in (("short_src", b"script"), ("source", b"@script"), ("currentline", 1), ("linedefined", 1),
+                     ("lastlinedefined", 1), ("what", b"Lua"), ("name", b""), ("namewhat", b""),
+                     ("nups", 0), ("nparams", 0), ("isvararg", True)):
+            t.h[k.encode()] = v
+        if a and type(a[0]) in (LuaFunction, Builtin):
+            t.h[b"func"] = a[0]
+        return (t,)
+
+    for n, f in [("traceback", dbg_traceback), ("info", dbg_info), ("getinfo", dbg_getinfo),
+                 ("profilebegin", lambda *a: ()), ("profileend", lambda *a: ()),
+                 ("getmetatable", lambda o=None, *r: (o.meta if type(o) is LuaTable else None,)),
+                 ("setmetatable", lambda o=None, m=None, *r: (o,)),
+                 ("sethook", lambda *a: ()), ("gethook", lambda *a: (None,)),
+                 ("getlocal", lambda *a: (None,)), ("getupvalue", lambda *a: (None,)),
+                 ("getregistry", lambda *a: (LuaTable(),))]:
+        reg(D, n, f)
+
     # Roblox datatypes -> opaque constructors
     for cls in ("Vector3", "Vector2", "UDim", "UDim2", "Color3", "Rect", "CFrame", "BrickColor",
                 "NumberRange", "NumberSequence", "ColorSequence", "Ray", "Region3", "TweenInfo",

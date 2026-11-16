@@ -1498,7 +1498,9 @@ def _builtin_next(t, k=None):
     kk = key(k)
     # O(n) next: keep an iteration cache keyed by table id
     cache = _NEXT_CACHE.get(id(t))
-    if cache is None or cache[0] is not h or cache[1] != len(h):
+    if cache is None or cache[0] is not h or kk not in cache[3]:
+        # (a cache built earlier stays valid while fields are only removed
+        #  during traversal, which Lua allows)
         keys = list(h.keys())
         pos = {kx: i for i, kx in enumerate(keys)}
         cache = (h, len(h), keys, pos)

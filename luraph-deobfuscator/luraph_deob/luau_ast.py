@@ -208,7 +208,8 @@ def tokenize(src: bytes) -> List[Tok]:
                             j += 1
                         out += b"\n"
                     else:
-                        raise LexError("bad escape \\%s at %d" % (chr(e), j))
+                        out.append(e)  # Lua 5.1: unknown escape yields the character itself
+                        j += 1
                     continue
                 out.append(ch)
                 j += 1
