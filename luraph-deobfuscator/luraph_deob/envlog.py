@@ -558,6 +558,17 @@ def build_env(it: I.Interp, tr: Tracer, opts) -> LuaTable:
     reg(G, "getfenv", lambda *a: (G,))
     reg(G, "setfenv", lambda f=None, *a: (f,))
     reg(G, "getreg", lambda *a: (LuaTable(),))
+    isl = lambda f=None, *a: (type(f) is LuaFunction,)
+    for nm in ("islclosure", "is_l_closure", "is_lua_closure"):
+        reg(G, nm, isl)
+    for nm in ("iscclosure", "is_c_closure", "is_cclosure"):
+        reg(G, nm, lambda f=None, *a: (type(f) is not LuaFunction,))
+    for nm in ("isexecutorclosure", "is_synapse_function", "is_our_closure", "checkclosure"):
+        reg(G, nm, lambda f=None, *a: (False,))
+    for nm in ("getconstants", "getupvalues", "getprotos", "getstack", "getupvalues", "get_upvalues"):
+        reg(G, nm, lambda *a: (LuaTable(),))
+    for nm in ("getconstant", "getupvalue", "getproto", "get_upvalue"):
+        reg(G, nm, lambda *a: (None,))
     reg(G, "identifyexecutor", lambda *a: (b"Dumper", b"1.0"))
     reg(G, "checkcaller", lambda *a: (True,))
     reg(G, "hookfunction", lambda f=None, g=None, *a: (f,))
