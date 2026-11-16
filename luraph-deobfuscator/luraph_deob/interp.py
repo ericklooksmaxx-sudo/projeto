@@ -1553,9 +1553,8 @@ def _builtin_next(t, k=None):
     h = t.h
     if k is None:
         for kk in h:
-            if len(h) > 1:
-                keys = list(h.keys())
-                _NEXT_CACHE[id(t)] = (h, len(h), keys, {kx: i for i, kx in enumerate(keys)})
+            keys = list(h.keys())
+            _NEXT_CACHE[id(t)] = (h, len(h), keys, {kx: i for i, kx in enumerate(keys)})
             return (unkey(kk), h[kk])
         return (None,)
     kk = key(k)
@@ -1571,7 +1570,7 @@ def _builtin_next(t, k=None):
     _, _, keys, pos = cache
     i = pos.get(kk)
     if i is None:
-        raise LuaError(b"invalid key to 'next'")
+        return (None,)  # key vanished (table cleared during traversal): end of iteration
     i += 1
     while i < len(keys):
         kx = keys[i]
