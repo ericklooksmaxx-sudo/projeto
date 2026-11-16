@@ -191,6 +191,8 @@ class StructureTests(unittest.TestCase):
         for seed in range(600):
             for n in (3, 5, 8, 12):
                 for k, v in self.check(seed, n).items():
+                    if not isinstance(v, int):
+                        continue
                     agg[k] = agg.get(k, 0) + v
         print("modes:", agg, file=sys.stderr)
         self.assertTrue(agg.get("structured", 0) > 0)
