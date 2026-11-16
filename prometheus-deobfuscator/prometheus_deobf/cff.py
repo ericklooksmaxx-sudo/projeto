@@ -411,7 +411,11 @@ class FuncLifter(object):
         if isinstance(e, Index) and is_name(e.obj) and self.fw.sym_role.get(e.obj.sym) == "ENV" and \
                 isinstance(e.key, String):
             return True
-        if isinstance(e, Bin) and e.op in ("and", "or"):
+        if isinstance(e, Bin) and e.op == "and":
+            # `cond and A`: the condition may be any value (e.g. a register spilled to the values table)
+            return self._jumpy(e.right) and isinstance(unparen(e.right), (Number, Nil)) \
+                or (self._jumpy(e.left) and self._jumpy(e.right))
+        if isinstance(e, Bin) and e.op == "or":
             return self._jumpy(e.left) and self._jumpy(e.right)
         return False
 
