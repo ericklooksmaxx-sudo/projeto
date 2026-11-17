@@ -670,12 +670,17 @@ def _dump_once(src: bytes, timeout: float = 120.0, max_events: int = 200000, run
     th.start()
     th.join(timeout)
     if th.is_alive():
-        it.abort = True
-        th.join(5)
-    if th.is_alive():
-        ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_ulong(th.ident), ctypes.py_object(WatchdogTimeout))
+        it.abort = True  # cooperative cancellation (checked on every Lua call)
         th.join(10)
         out["timeout"] = True
+    if th.is_alive():
+        # last resort: async-raise into the worker thread (CPython only; PyPy lacks pythonapi,
+        # but there the cooperative abort above already stops it, the thread is daemon anyway)
+        try:
+            ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_ulong(th.ident), ctypes.py_object(WatchdogTimeout))
+            th.join(10)
+        except (AttributeError, Exception):
+            pass
     sys.setrecursionlimit(old)
     threading.stack_size(0)
     header = ["-- Dumped by luraph-deob envlog (script executed in a sandboxed emulator)",
