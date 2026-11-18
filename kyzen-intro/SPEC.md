@@ -3,7 +3,7 @@
 **Story:** "9.000 coisas grátis, um lugar só". Black + one purple, cut to the track.
 **Music:** Spencer Newton — "Right Now (Original Mix)" (CC BY, Jamendo), file 82.5 s → 127.5 s.
 128 BPM → beat 0.46875 s, bar 1.875 s. Drop lands at film 7.5 s; a half-beat of silence before it (7.03 s)
-and before the end card (22.03 s).
+and before the skin wall (22.03 s); the quieter bar 35.6–37.5 s builds into the end card.
 
 **Personality:** Energetic (motion-design skill): 100–250 ms moves, expo.out arrivals, power3.in exits,
 15–30% overshoot only on the stamp and the skin cards. Titles land and hold dead still; motion lives in
@@ -23,4 +23,4 @@ the image layer, the camera and the ambient grid/grain.
 | 33.75–35.63 | tunnel | bar 19 | 24 addons/textures/worlds/skins fly past the camera in 3D; "TUDO NUM SÓ LUGAR." |
 | 35.63–45.00 | end | bars 20–24 | in the quieter bar the fox gathers from scattered pixels and lands on 37.5; lockup, tagline, CTA, platform line, fade |
 
-Transitions (7 kinds): zoom-through, whip, iris, colour flood, object-becomes-world, push, blur swap; plus dip/hard cuts on silences. Old line: (5 kinds): zoom-through, whip, iris, colour flood, blur swap + two dip/hard cuts on silences.
+Transitions (7 kinds): zoom-through, whip, iris, colour flood, object-becomes-world, push, blur swap; plus dip/hard cuts on the silences.
