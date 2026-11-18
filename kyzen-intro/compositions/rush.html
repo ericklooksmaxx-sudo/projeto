@@ -1,0 +1,90 @@
+<template>
+  <style>
+    @font-face { font-family: "Anton"; src: url("assets/fonts/anton.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; background: #000; overflow: hidden; }
+    #r-stage { position: absolute; inset: 0; overflow: hidden; }
+    .r-img { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; opacity: 0; }
+    #r-shade { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.78) 70%); }
+    #r-tint { position: absolute; inset: 0; background: #6f0ecf; mix-blend-mode: color; opacity: 0; }
+    .r-bar { position: absolute; left: 0; width: 1920px; background: #f2f0f5; opacity: 0; mix-blend-mode: difference; }
+    .r-word { position: absolute; left: 0; top: 380px; width: 1920px; text-align: center; font-family: "Anton", sans-serif; font-size: 320px; line-height: 1;
+      color: #f2f0f5; text-shadow: 0 0 60px rgba(111,14,207,0.9), 0 8px 0 rgba(0,0,0,0.35); opacity: 0; }
+    .r-word span { display: inline-block; }
+    #r-w4 { top: 380px; }
+    #r-hl { position: absolute; left: 330px; top: 396px; width: 1260px; height: 300px; background: #6f0ecf; transform-origin: 0% 50%;
+      box-shadow: 0 0 80px rgba(138,63,240,0.8); }
+    #r-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="rush" data-width="1920" data-height="1080">
+    <div id="r-stage">
+      <img id="r-i1" class="r-img" src="assets/img/s46.jpg" alt="" />
+      <img id="r-i2" class="r-img" src="assets/skins/k6.jpg" alt="" />
+      <img id="r-i3" class="r-img" src="assets/img/s53.jpg" alt="" />
+      <img id="r-i4" class="r-img" src="assets/img/s13.jpg" alt="" />
+      <img id="r-i5" class="r-img" src="assets/skins/k5.jpg" alt="" />
+      <img id="r-i6" class="r-img" src="assets/img/s36.jpg" alt="" />
+      <img id="r-i7" class="r-img" src="assets/img/s04.jpg" alt="" />
+      <img id="r-i8" class="r-img" src="assets/skins/k8.jpg" alt="" />
+      <img id="r-i9" class="r-img" src="assets/img/s56.jpg" alt="" />
+      <img id="r-i10" class="r-img" src="assets/img/s43.jpg" alt="" />
+      <img id="r-i11" class="r-img" src="assets/skins/k4.jpg" alt="" />
+      <img id="r-i12" class="r-img" src="assets/img/s30.jpg" alt="" />
+      <img id="r-i13" class="r-img" src="assets/img/s14.jpg" alt="" />
+      <img id="r-i14" class="r-img" src="assets/skins/k7.jpg" alt="" />
+      <img id="r-i15" class="r-img" src="assets/img/s32.jpg" alt="" />
+      <img id="r-i16" class="r-img" src="assets/img/s52.jpg" alt="" />
+      <div id="r-shade"></div>
+      <div id="r-tint"></div>
+    </div>
+    <div id="r-b1" class="r-bar" style="top: 210px; height: 26px" data-layout-ignore></div>
+    <div id="r-b2" class="r-bar" style="top: 640px; height: 12px" data-layout-ignore></div>
+    <div id="r-b3" class="r-bar" style="top: 860px; height: 40px" data-layout-ignore></div>
+    <div id="r-hl" data-layout-ignore></div>
+    <div id="r-w1" class="r-word" data-layout-allow-overlap>BAIXE.</div>
+    <div id="r-w2" class="r-word" data-layout-allow-overlap><span>I</span><span>N</span><span>S</span><span>T</span><span>A</span><span>L</span><span>E</span><span>.</span></div>
+    <div id="r-w3" class="r-word" data-layout-allow-overlap>JOGUE.</div>
+    <div id="r-w4" class="r-word" data-layout-allow-overlap>DE GRAÇA.</div>
+    <div id="r-flash"></div>
+  </div>
+  <script>
+    (function () {
+      const B = 60 / 128, E = B / 2;
+      const tl = gsap.timeline({ paused: true });
+
+      // A real shot on every 8th note, each one punched in.
+      for (let i = 0; i < 16; i++) {
+        const at = i * E, id = "#r-i" + (i + 1);
+        tl.set(id, { opacity: 1 }, at);
+        tl.fromTo(id, { scale: 1.2 }, { scale: 1.03, duration: E, ease: "power3.out" }, at);
+        if (i < 15) tl.set(id, { opacity: 0 }, at + E);
+        // Glitch on every other cut: frame jitter + white slices.
+        if (i % 2 === 1) {
+          const s = i % 4 === 1 ? 1 : -1;
+          tl.set("#r-stage", { x: 34 * s }, at);
+          tl.set("#r-stage", { x: 0 }, at + 0.067);
+          tl.set("#r-b" + (1 + (i % 3)), { opacity: 1 }, at);
+          tl.set("#r-b" + (1 + (i % 3)), { opacity: 0 }, at + 0.067);
+        }
+      }
+      // Purple colour hits on the half bars.
+      [0, 4, 8, 12].forEach((k) => tl.fromTo("#r-tint", { opacity: 0.75 }, { opacity: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, k * E));
+
+      // Four verbs, two beats each, four different entrances.
+      tl.fromTo("#r-w1", { opacity: 0, scale: 2.2, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 0);
+      tl.set("#r-w1", { opacity: 0 }, B * 2);
+      tl.set("#r-w2", { opacity: 1 }, B * 2);
+      tl.fromTo("#r-w2 span", { opacity: 0, y: -60, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.16, ease: "expo.out", stagger: 0.03 }, B * 2);
+      tl.set("#r-w2", { opacity: 0 }, B * 4);
+      tl.fromTo("#r-w3", { opacity: 0, x: 900, filter: "blur(24px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.22, ease: "expo.out" }, B * 4);
+      tl.set("#r-w3", { opacity: 0 }, B * 6);
+      tl.fromTo("#r-hl", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.out" }, B * 6);
+      tl.fromTo("#r-w4", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power4.out" }, B * 6 + 0.08);
+      tl.fromTo("#r-flash", { opacity: 0.6 }, { opacity: 0, duration: 0.14, ease: "power2.out", immediateRender: false }, B * 6);
+
+      // Out on the gap: everything snaps to white.
+      tl.to("#r-flash", { opacity: 1, duration: 0.12, ease: "power2.in" }, B * 8 - 0.12);
+
+      window.__timelines["rush"] = tl;
+    })();
+  </script>
+</template>

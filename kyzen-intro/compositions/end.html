@@ -31,6 +31,8 @@
     #e-cta-a { font-size: 28px; letter-spacing: 0.2em; }
     #e-cta-arrow { font-size: 34px; color: #e9dbff; }
     #e-cta-b { font-family: "Anton", sans-serif; font-weight: 400; font-size: 40px; letter-spacing: 0.04em; }
+    #e-small { position: absolute; left: 0; top: 930px; width: 1920px; text-align: center; font-family: "Work Sans", sans-serif; font-weight: 700;
+      font-size: 28px; letter-spacing: 0.36em; color: #9a8cb5; }
     #e-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
     #e-black { position: absolute; inset: 0; background: #000; opacity: 0; }
   </style>
@@ -137,21 +139,22 @@
     <img id="e-word" src="assets/brand/kyzen-wordmark.png" alt="KYZEN" />
     <div id="e-tag"><span>9.000+</span><span>addons,</span><span>texturas,</span><span>mundos</span><span>e</span><span>skins</span><span class="hot">grátis.</span></div>
     <div id="e-cta"><span id="e-cta-a">BAIXE GRÁTIS</span><span id="e-cta-arrow">→</span><span id="e-cta-b">KYZENDLC.XYZ</span></div>
+    <div id="e-small">MINECRAFT BEDROCK · ANDROID E iOS</div>
     <div id="e-flash"></div>
     <div id="e-black"></div>
   </div>
   <script>
     (function () {
       const B = 60 / 128;
-      const LAND = B; // the 22.5 s hit, one beat after this scene starts in the silence
-      const END = 7.97;
+      const LAND = B * 4; // the 37.5 s downbeat, one bar after this scene starts in the dip
+      const END = 9.375;
       const tl = gsap.timeline({ paused: true });
       let s = 11;
       const rnd = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
 
       // Ambient: grid drifts, motes rise. Background only.
       tl.fromTo("#e-grid", { opacity: 0, backgroundPosition: "0px 0px" }, { opacity: 1, backgroundPosition: "0px -240px", duration: END, ease: "none" }, 0);
-      tl.fromTo("#e-bg", { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, LAND);
+      tl.fromTo("#e-bg", { opacity: 0.35, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out", immediateRender: false }, LAND);
       const motes = document.getElementById("e-motes");
       for (let i = 0; i < 16; i++) {
         const m = document.createElement("div"), z = Math.round(6 + rnd() * 12);
@@ -164,11 +167,12 @@
 
       // The fox assembles out of scattered pixels during the silence and lands on the hit.
       document.querySelectorAll("#e-foxpx .e-px").forEach((p) => {
-        const a = rnd() * Math.PI * 2, r = 380 + rnd() * 700, st = rnd() * 0.12;
+        const a = rnd() * Math.PI * 2, r = 420 + rnd() * 760, st = rnd() * 0.9;
         tl.fromTo(p, { x: Math.cos(a) * r, y: Math.sin(a) * r * 0.7, rotation: (rnd() - 0.5) * 300, scale: 0.3 },
           { x: 0, y: 0, rotation: 0, scale: 1, duration: LAND - st, ease: "power3.in" }, st);
-        tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none" }, st);
+        tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "none" }, st);
       });
+      tl.fromTo("#e-bg", { opacity: 0, scale: 0.3 }, { opacity: 0.35, scale: 0.55, duration: LAND, ease: "power2.in" }, 0);
       tl.fromTo("#e-foxglow", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, LAND);
       tl.fromTo("#e-fox", { scale: 1.22 }, { scale: 1, duration: 0.4, ease: "expo.out" }, LAND);
       tl.fromTo("#e-flash", { opacity: 0.85 }, { opacity: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, LAND);
@@ -191,6 +195,8 @@
         { clipPath: "inset(0px 0px 0px 0px round 999px)", opacity: 1, duration: 0.4, ease: "power3.out" }, CTA);
       tl.fromTo(["#e-cta-a", "#e-cta-arrow", "#e-cta-b"], { opacity: 0, filter: "blur(8px)" },
         { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power4.out", stagger: 0.07 }, CTA + 0.22);
+
+      tl.fromTo("#e-small", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, CTA + B * 2);
 
       // Out to black under the music fade.
       tl.fromTo("#e-black", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.in" }, END - 0.52);

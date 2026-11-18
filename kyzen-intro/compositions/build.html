@@ -17,6 +17,7 @@
     #b-num-c { color: #2be8ff; mix-blend-mode: screen; opacity: 0; }
     #b-label { position: absolute; left: 0; top: 690px; width: 1920px; text-align: center;
       font-family: "Work Sans", sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 0.42em; color: #d4b8ff; }
+    #b-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
     #b-pix { position: absolute; left: 942px; top: 522px; width: 36px; height: 36px; background: #8a3ff0;
       box-shadow: 0 0 40px 8px rgba(138,63,240,0.8); opacity: 0; }
   </style>
@@ -49,6 +50,7 @@
       <div id="b-label">ADDONS · TEXTURAS · MUNDOS · SKINS</div>
     </div>
     <div id="b-pix"></div>
+    <div id="b-flash"></div>
   </div>
   <script>
     (function () {
@@ -98,6 +100,18 @@
         tl.set("#b-slit", { x: 28 * s }, at);
         tl.set(["#b-num-r", "#b-num-c"], { opacity: 0, x: 0 }, at + 0.07);
         tl.set("#b-slit", { x: 0 }, at + 0.07);
+      }
+
+      // Every bar lands with a flash and a punch on the counter.
+      [1, 2, 3].forEach((k) => {
+        tl.fromTo("#b-flash", { opacity: 0.25 + k * 0.15 }, { opacity: 0, duration: 0.16, ease: "power2.out", immediateRender: false }, BAR * k);
+        tl.fromTo("#b-num", { scale: 1.1 }, { scale: 1, duration: 0.3, ease: "expo.out", immediateRender: false }, BAR * k);
+      });
+      // Bar 3: a hard jitter on every beat.
+      for (let i = 0; i < 4; i++) {
+        const at = BAR * 2 + i * B;
+        tl.set("#b-numwrap", { x: i % 2 ? 14 : -14 }, at);
+        tl.set("#b-numwrap", { x: 0 }, at + 0.05);
       }
 
       // The half-beat of silence: everything cuts out, one pixel winds up.

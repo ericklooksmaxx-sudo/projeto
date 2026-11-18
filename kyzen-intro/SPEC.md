@@ -1,7 +1,7 @@
-# Kyzen — intro film (30 s, 1920×1080, 30 fps)
+# Kyzen — intro film (45 s, 1920×1080, 30 fps)
 
 **Story:** "9.000 coisas grátis, um lugar só". Black + one purple, cut to the track.
-**Music:** Spencer Newton — "Right Now (Original Mix)" (CC BY, Jamendo), file 82.5 s → 112.5 s.
+**Music:** Spencer Newton — "Right Now (Original Mix)" (CC BY, Jamendo), file 82.5 s → 127.5 s.
 128 BPM → beat 0.46875 s, bar 1.875 s. Drop lands at film 7.5 s; a half-beat of silence before it (7.03 s)
 and before the end card (22.03 s).
 
@@ -17,6 +17,10 @@ the image layer, the camera and the ambient grid/grain.
 | 7.50–11.25 | drop | bars 5–6 | white flash, KYZEN wordmark slams 2.2× → 1 with shake, shockwave ring, pixel burst; category words land one per beat; zoom-through the logo into white |
 | 11.25–18.75 | cats | bars 7–10 | ADDONS (image inside the letters) → whip → TEXTURAS (3 parallax panels, per-letter) → iris → MUNDOS (slot-machine roll) → purple flood → SKINS (outline fill wipe, skin cards on a spring) |
 | 18.75–22.03 | count | bars 11–12 | wall of real addon thumbnails, 9.000+ slams, 100% GRÁTIS stamp; music dips → GRÁTIS. stutters on the beats; silence → black |
-| 22.03–30.00 | end | bars 12–16 | the pixel fox assembles from scattered pixels during the silence and lands on the 22.5 hit; fox slides left, wordmark wipes in; tagline; CTA pill morphs open; fade to black |
+| 22.03–26.25 | skinwall | bars 12–14 | silence → pixel; on the 22.5 hit eight real skin-pack banners slam in, one per 8th note; Soul Fire becomes the world; "PRA TODO ESTILO." |
+| 26.25–30.00 | rush | bars 15–16 | a real shot every 8th note with punch-ins, frame jitter, white slices and purple colour hits; BAIXE. / INSTALE. / JOGUE. / DE GRAÇA., two beats each, four different entrances |
+| 30.00–33.75 | feats | bars 17–18 | the site's own pixel icons: BUSCA, PRA VOCÊ, NOVIDADES, APP ANDROID; the stack pushes up a screen every two beats; iris closes |
+| 33.75–35.63 | tunnel | bar 19 | 24 addons/textures/worlds/skins fly past the camera in 3D; "TUDO NUM SÓ LUGAR." |
+| 35.63–45.00 | end | bars 20–24 | in the quieter bar the fox gathers from scattered pixels and lands on 37.5; lockup, tagline, CTA, platform line, fade |
 
-Transitions (5 kinds): zoom-through, whip, iris, colour flood, blur swap + two dip/hard cuts on silences.
+Transitions (7 kinds): zoom-through, whip, iris, colour flood, object-becomes-world, push, blur swap; plus dip/hard cuts on silences. Old line: (5 kinds): zoom-through, whip, iris, colour flood, blur swap + two dip/hard cuts on silences.

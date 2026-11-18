@@ -1,0 +1,76 @@
+<template>
+  <style>
+    @font-face { font-family: "Anton"; src: url("assets/fonts/anton.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; background: #000; overflow: hidden; }
+    #u-glow { position: absolute; left: 460px; top: 40px; width: 1000px; height: 1000px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(138,63,240,0.55) 0%, rgba(46,6,89,0.2) 45%, rgba(0,0,0,0) 70%); }
+    #u-space { position: absolute; inset: 0; perspective: 900px; perspective-origin: 50% 50%; }
+    #u-world { position: absolute; left: 960px; top: 540px; width: 0; height: 0; transform-style: preserve-3d; }
+    .u-card { position: absolute; left: -220px; top: -124px; width: 440px; height: 248px; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 0 0 3px rgba(187,146,255,0.7), 0 0 40px rgba(111,14,207,0.5); }
+    .u-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #u-line { position: absolute; left: 0; top: 440px; width: 1920px; text-align: center; font-family: "Anton", sans-serif; font-size: 190px; line-height: 1;
+      color: #f2f0f5; text-shadow: 0 0 60px rgba(111,14,207,0.95), 0 0 20px rgba(0,0,0,0.8); }
+    #u-line span { display: inline-block; margin: 0 20px; }
+    #u-line .hot { color: #bb92ff; }
+    #u-black { position: absolute; inset: 0; background: #000; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="tunnel" data-width="1920" data-height="1080">
+    <div id="u-glow" data-layout-ignore></div>
+    <div id="u-space" data-layout-allow-overflow data-layout-ignore>
+      <div id="u-world">
+        <div id="u-c0" class="u-card" data-x="650" data-y="0" data-z="-500"><img src="assets/thumb/t00.jpg" alt="" /></div>
+        <div id="u-c1" class="u-card" data-x="-734" data-y="420" data-z="-717"><img src="assets/skins/k1.jpg" alt="" /></div>
+        <div id="u-c2" class="u-card" data-x="93" data-y="-658" data-z="-933"><img src="assets/thumb/t11.jpg" alt="" /></div>
+        <div id="u-c3" class="u-card" data-x="489" data-y="398" data-z="-1150"><img src="assets/img/s42.jpg" alt="" /></div>
+        <div id="u-c4" class="u-card" data-x="-983" data-y="-109" data-z="-1367"><img src="assets/skins/k3.jpg" alt="" /></div>
+        <div id="u-c5" class="u-card" data-x="590" data-y="-234" data-z="-1583"><img src="assets/thumb/t17.jpg" alt="" /></div>
+        <div id="u-c6" class="u-card" data-x="-201" data-y="466" data-z="-1800"><img src="assets/img/s27.jpg" alt="" /></div>
+        <div id="u-c7" class="u-card" data-x="-395" data-y="-475" data-z="-2017"><img src="assets/skins/k5.jpg" alt="" /></div>
+        <div id="u-c8" class="u-card" data-x="806" data-y="184" data-z="-2233"><img src="assets/thumb/t26.jpg" alt="" /></div>
+        <div id="u-c9" class="u-card" data-x="-928" data-y="239" data-z="-2450"><img src="assets/img/s39.jpg" alt="" /></div>
+        <div id="u-c10" class="u-card" data-x="480" data-y="-640" data-z="-2667"><img src="assets/skins/k7.jpg" alt="" /></div>
+        <div id="u-c11" class="u-card" data-x="288" data-y="574" data-z="-2883"><img src="assets/thumb/t33.jpg" alt="" /></div>
+        <div id="u-c12" class="u-card" data-x="-633" data-y="-229" data-z="-3100"><img src="assets/img/s51.jpg" alt="" /></div>
+        <div id="u-c13" class="u-card" data-x="723" data-y="-99" data-z="-3317"><img src="assets/skins/k2.jpg" alt="" /></div>
+        <div id="u-c14" class="u-card" data-x="-455" data-y="403" data-z="-3533"><img src="assets/thumb/t35.jpg" alt="" /></div>
+        <div id="u-c15" class="u-card" data-x="-127" data-y="-613" data-z="-3750"><img src="assets/img/s44.jpg" alt="" /></div>
+        <div id="u-c16" class="u-card" data-x="640" data-y="336" data-z="-3967"><img src="assets/skins/k4.jpg" alt="" /></div>
+        <div id="u-c17" class="u-card" data-x="-670" data-y="17" data-z="-4183"><img src="assets/thumb/t49.jpg" alt="" /></div>
+        <div id="u-c18" class="u-card" data-x="802" data-y="-498" data-z="-4400"><img src="assets/img/s56.jpg" alt="" /></div>
+        <div id="u-c19" class="u-card" data-x="-38" data-y="515" data-z="-4617"><img src="assets/skins/k6.jpg" alt="" /></div>
+        <div id="u-c20" class="u-card" data-x="-446" data-y="-333" data-z="-4833"><img src="assets/thumb/t50.jpg" alt="" /></div>
+        <div id="u-c21" class="u-card" data-x="870" data-y="73" data-z="-5050"><img src="assets/img/s37.jpg" alt="" /></div>
+        <div id="u-c22" class="u-card" data-x="-941" data-y="408" data-z="-5267"><img src="assets/skins/k8.jpg" alt="" /></div>
+        <div id="u-c23" class="u-card" data-x="218" data-y="-604" data-z="-5483"><img src="assets/thumb/t57.jpg" alt="" /></div>
+      </div>
+    </div>
+    <div id="u-line"><span>TUDO</span><span>NUM</span><span>SÓ</span><span class="hot">LUGAR.</span></div>
+    <div id="u-black"></div>
+  </div>
+  <script>
+    (function () {
+      const B = 60 / 128, BAR = B * 4;
+      const tl = gsap.timeline({ paused: true });
+
+      // Every addon, texture, world and skin pack flies past the camera.
+      document.querySelectorAll(".u-card").forEach((c, i) => {
+        const x = +c.dataset.x, y = +c.dataset.y, z = +c.dataset.z;
+        tl.fromTo(c, { x, y, z, rotationZ: (i % 2 ? 8 : -8) },
+          { x, y, z: z + 6200, rotationZ: (i % 2 ? -4 : 4), duration: BAR, ease: "power2.in" }, 0);
+      });
+      tl.fromTo("#u-world", { rotationZ: 0 }, { rotationZ: 24, duration: BAR, ease: "none" }, 0);
+      tl.fromTo("#u-glow", { scale: 0.6, opacity: 0 }, { scale: 1.2, opacity: 1, duration: BAR, ease: "power1.in" }, 0);
+
+      // The line, word by word, then dead still.
+      tl.fromTo("#u-line span", { opacity: 0, filter: "blur(10px)", scale: 1.3 },
+        { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.16, ease: "expo.out", stagger: B / 2 }, 0.05);
+
+      // Into the dark bar where the fox gathers.
+      tl.to("#u-line", { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, BAR - 0.2);
+      tl.to("#u-black", { opacity: 1, duration: 0.2, ease: "power2.in" }, BAR - 0.2);
+
+      window.__timelines["tunnel"] = tl;
+    })();
+  </script>
+</template>

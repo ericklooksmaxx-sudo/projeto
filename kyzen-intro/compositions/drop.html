@@ -11,6 +11,8 @@
       background: radial-gradient(circle, rgba(138,63,240,0.75) 0%, rgba(111,14,207,0.35) 30%, rgba(46,6,89,0.15) 50%, rgba(0,0,0,0) 68%); }
     #d-ring { position: absolute; left: 760px; top: 340px; width: 400px; height: 400px; border-radius: 50%;
       border: 8px solid #bb92ff; box-shadow: 0 0 40px rgba(187,146,255,0.8), inset 0 0 40px rgba(187,146,255,0.6); }
+    .d-ln { position: absolute; left: 960px; top: 538px; height: 4px; width: 420px; transform-origin: 0% 50%;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 35%, #e9dbff 70%, rgba(255,255,255,0) 100%); }
     .d-p { position: absolute; left: 960px; top: 520px; }
     #d-cam { position: absolute; inset: 0; }
     #d-logo-wrap { position: absolute; left: 420px; top: 150px; width: 1080px; height: 728px; }
@@ -30,6 +32,7 @@
     <div id="d-grid" data-layout-ignore></div>
     <div id="d-glow" data-layout-ignore></div>
     <div id="d-ring" data-layout-ignore></div>
+    <div id="d-lines" data-layout-ignore></div>
     <div id="d-parts" data-layout-ignore></div>
     <div id="d-cam">
       <div id="d-logo-wrap" data-layout-allow-overlap>
@@ -62,6 +65,17 @@
         tl.fromTo(el, { x: 0, y: 0, rotation: 0, opacity: 1, scale: 1 },
           { x: Math.cos(a) * r, y: Math.sin(a) * r * 0.75, rotation: (rnd() - 0.5) * 360, opacity: 0, scale: 0.4,
             duration: 0.9 + rnd() * 0.4, ease: "expo.out" }, 0);
+      }
+
+      // Speed lines burst from the centre.
+      const lines = document.getElementById("d-lines");
+      for (let i = 0; i < 32; i++) {
+        const el = document.createElement("div");
+        el.className = "d-ln"; el.id = "d-ln" + i;
+        lines.appendChild(el);
+        const ang = (i / 32) * 360 + rnd() * 6;
+        tl.fromTo(el, { rotation: ang, x: 0, scaleX: 0.2, opacity: 1 },
+          { rotation: ang, x: 0, scaleX: 1.6 + rnd() * 1.4, opacity: 0, duration: 0.45 + rnd() * 0.25, ease: "expo.out" }, 0);
       }
 
       // The slam.

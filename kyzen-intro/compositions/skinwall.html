@@ -1,0 +1,95 @@
+<template>
+  <style>
+    @font-face { font-family: "Anton"; src: url("assets/fonts/anton.woff2") format("woff2"); }
+    @font-face { font-family: "Work Sans"; font-weight: 700; src: url("assets/fonts/work-sans-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; background: #000; overflow: hidden; }
+    #w-pix { position: absolute; left: 942px; top: 522px; width: 36px; height: 36px; background: #8a3ff0; box-shadow: 0 0 40px 8px rgba(138,63,240,0.8); }
+    #w-ghost { position: absolute; left: 0; top: 150px; width: 1920px; text-align: center; font-family: "Anton", sans-serif; font-size: 760px; line-height: 1;
+      color: transparent; -webkit-text-stroke: 3px rgba(138,63,240,0.45); letter-spacing: 0.04em; opacity: 0; }
+    #w-glow { position: absolute; left: 160px; top: -260px; width: 1600px; height: 1600px; border-radius: 50%; opacity: 0;
+      background: radial-gradient(circle, rgba(111,14,207,0.6) 0%, rgba(46,6,89,0.25) 40%, rgba(0,0,0,0) 65%); }
+    #w-cam { position: absolute; inset: 0; }
+    .w-card { position: absolute; width: 440px; height: 248px; border-radius: 14px; overflow: hidden; opacity: 0;
+      box-shadow: 0 0 0 3px rgba(242,240,245,0.85), 0 20px 50px rgba(0,0,0,0.6); }
+    .w-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #w-label { position: absolute; left: 0; top: 196px; width: 1920px; text-align: center; font-family: "Work Sans", sans-serif; font-weight: 700;
+      font-size: 30px; letter-spacing: 0.4em; color: #e9dbff; }
+    #w-big { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+    .w-bigimg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; opacity: 0; }
+    #w-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 32%, rgba(0,0,0,0) 55%); }
+    #w-line { position: absolute; left: 0; top: 80px; width: 1920px; text-align: center; font-family: "Anton", sans-serif; font-size: 150px; line-height: 1;
+      color: #f2f0f5; text-shadow: 0 0 50px rgba(111,14,207,0.9); }
+    #w-line span { display: inline-block; margin: 0 18px; }
+    #w-line .hot { color: #bb92ff; }
+    #w-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="skinwall" data-width="1920" data-height="1080">
+    <div id="w-pix"></div>
+    <div id="w-glow" data-layout-ignore></div>
+    <div id="w-ghost" data-layout-ignore>SKINS</div>
+    <div id="w-cam" data-layout-allow-overlap>
+      <div id="w-label">PACKS DE SKINS</div>
+      <div id="w-c1" class="w-card" style="left: 56px; top: 278px"><img src="assets/skins/k1.jpg" alt="" /></div>
+      <div id="w-c2" class="w-card" style="left: 512px; top: 278px"><img src="assets/skins/k2.jpg" alt="" /></div>
+      <div id="w-c3" class="w-card" style="left: 968px; top: 278px"><img src="assets/skins/k3.jpg" alt="" /></div>
+      <div id="w-c4" class="w-card" style="left: 1424px; top: 278px"><img src="assets/skins/k4.jpg" alt="" /></div>
+      <div id="w-c5" class="w-card" style="left: 56px; top: 554px"><img src="assets/skins/k5.jpg" alt="" /></div>
+      <div id="w-c6" class="w-card" style="left: 512px; top: 554px"><img src="assets/skins/k6.jpg" alt="" /></div>
+      <div id="w-c7" class="w-card" style="left: 968px; top: 554px"><img src="assets/skins/k7.jpg" alt="" /></div>
+      <div id="w-c8" class="w-card" style="left: 1424px; top: 554px"><img src="assets/skins/k8.jpg" alt="" /></div>
+    </div>
+    <div id="w-big">
+      <img id="w-b1" class="w-bigimg" src="assets/skins/k2.jpg" alt="" />
+      <img id="w-b2" class="w-bigimg" src="assets/skins/k3.jpg" alt="" />
+      <img id="w-b3" class="w-bigimg" src="assets/skins/k1.jpg" alt="" />
+      <div id="w-shade"></div>
+      <div id="w-line"><span>PRA</span><span>TODO</span><span class="hot">ESTILO.</span></div>
+    </div>
+    <div id="w-flash"></div>
+  </div>
+  <script>
+    (function () {
+      const B = 60 / 128, BAR = B * 4, LAND = B;
+      const tl = gsap.timeline({ paused: true });
+
+      // Silence: the pixel winds up, then the hit.
+      tl.fromTo("#w-pix", { scale: 1.6, rotation: 45, opacity: 1 }, { scale: 0.4, rotation: 0, duration: LAND - 0.02, ease: "power2.in" }, 0);
+      tl.set("#w-pix", { opacity: 0 }, LAND);
+      tl.fromTo("#w-flash", { opacity: 0.9 }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, LAND);
+      tl.fromTo("#w-glow", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, LAND);
+      tl.fromTo("#w-ghost", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, LAND);
+      tl.fromTo("#w-label", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, LAND + 0.05);
+
+      // Eight real skin packs slam in, one per 8th note; the camera pushes in.
+      tl.fromTo("#w-cam", { scale: 1 }, { scale: 1.07, duration: BAR + 0.3, ease: "power1.inOut" }, LAND);
+      const order = [1, 6, 3, 8, 2, 5, 7, 4];
+      order.forEach((n, i) => {
+        const at = LAND + i * (B / 2);
+        tl.fromTo("#w-c" + n, { opacity: 0, scale: 1.7, filter: "blur(14px)", rotation: i % 2 ? 6 : -6 },
+          { opacity: 1, scale: 1, filter: "blur(0px)", rotation: 0, duration: 0.26, ease: "expo.out" }, at);
+        tl.fromTo("#w-cam", { x: i % 2 ? 10 : -10 }, { x: 0, duration: 0.12, ease: "power2.out", immediateRender: false }, at);
+      });
+
+      // One pack becomes the world.
+      const ZOOM = LAND + BAR;
+      tl.to(["#w-label", "#w-ghost"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, ZOOM - 0.05);
+      [1, 3, 4, 5, 6, 7, 8].forEach((n) => tl.to("#w-c" + n, { opacity: 0, filter: "blur(15px)", duration: 0.3, ease: "power2.in" }, ZOOM));
+      tl.to("#w-c2", { x: 960 - (512 + 220), y: 540 - (278 + 124), scale: 4.4, borderRadius: 0, duration: 0.55, ease: "power2.inOut" }, ZOOM);
+      tl.set("#w-big", { opacity: 1 }, ZOOM + 0.5);
+      tl.set("#w-b1", { opacity: 1 }, ZOOM + 0.5);
+      tl.set("#w-cam", { opacity: 0 }, ZOOM + 0.56);
+      tl.fromTo("#w-b1", { scale: 1.06 }, { scale: 1.0, duration: 0.6, ease: "power2.out" }, ZOOM + 0.5);
+      tl.fromTo("#w-line span", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power4.out", stagger: 0.08 }, ZOOM + 0.52);
+      // Two more packs cut in on the beats, the line stays put.
+      const c1 = LAND + BAR + B * 3, c2 = LAND + BAR + B * 3.5;
+      tl.set("#w-b2", { opacity: 1 }, c1);
+      tl.fromTo("#w-b2", { scale: 1.15 }, { scale: 1.02, duration: B / 2, ease: "power2.out" }, c1);
+      tl.set("#w-b3", { opacity: 1 }, c2);
+      tl.fromTo("#w-b3", { scale: 1.15 }, { scale: 1.02, duration: B / 2, ease: "power2.out" }, c2);
+      tl.fromTo("#w-flash", { opacity: 0.5 }, { opacity: 0, duration: 0.12, immediateRender: false }, c1);
+      tl.fromTo("#w-flash", { opacity: 0.5 }, { opacity: 0, duration: 0.12, immediateRender: false }, c2);
+
+      window.__timelines["skinwall"] = tl;
+    })();
+  </script>
+</template>
