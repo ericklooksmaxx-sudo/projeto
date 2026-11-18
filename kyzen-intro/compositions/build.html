@@ -1,0 +1,112 @@
+<template>
+  <style>
+    @font-face { font-family: "Anton"; src: url("assets/fonts/anton.woff2") format("woff2"); }
+    @font-face { font-family: "Work Sans"; font-weight: 700; src: url("assets/fonts/work-sans-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; background: #000; overflow: hidden; }
+    #b-stage { position: absolute; inset: 0; }
+    #b-slit { position: absolute; inset: 0; clip-path: inset(540px 0 540px 0); }
+    .b-img { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; opacity: 0; }
+    #b-shade { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(27,4,54,0.25) 0%, rgba(0,0,0,0.62) 80%); }
+    .b-edge { position: absolute; left: 0; top: 539px; width: 1920px; height: 2px;
+      background: linear-gradient(90deg, rgba(111,14,207,0) 0%, #bb92ff 30%, #ffffff 50%, #bb92ff 70%, rgba(111,14,207,0) 100%); }
+    #b-numwrap { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .b-num { position: absolute; left: 0; top: 330px; width: 1920px; text-align: center;
+      font-family: "Anton", sans-serif; font-size: 300px; line-height: 1; color: #f2f0f5; letter-spacing: 0.01em; }
+    #b-num { text-shadow: 0 0 60px rgba(111,14,207,0.85), 0 0 140px rgba(111,14,207,0.5); }
+    #b-num-r { color: #ff2bd6; mix-blend-mode: screen; opacity: 0; }
+    #b-num-c { color: #2be8ff; mix-blend-mode: screen; opacity: 0; }
+    #b-label { position: absolute; left: 0; top: 690px; width: 1920px; text-align: center;
+      font-family: "Work Sans", sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 0.42em; color: #d4b8ff; }
+    #b-pix { position: absolute; left: 942px; top: 522px; width: 36px; height: 36px; background: #8a3ff0;
+      box-shadow: 0 0 40px 8px rgba(138,63,240,0.8); opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="build" data-width="1920" data-height="1080">
+    <div id="b-stage">
+      <div id="b-slit">
+        <img id="b-i1" class="b-img" src="assets/img/s41.jpg" alt="" />
+        <img id="b-i2" class="b-img" src="assets/img/s31.jpg" alt="" />
+        <img id="b-i3" class="b-img" src="assets/img/s13.jpg" alt="" />
+        <img id="b-i4" class="b-img" src="assets/img/s02.jpg" alt="" />
+        <img id="b-i5" class="b-img" src="assets/img/s55.jpg" alt="" />
+        <img id="b-i6" class="b-img" src="assets/img/s04.jpg" alt="" />
+        <img id="b-i7" class="b-img" src="assets/img/s37.jpg" alt="" />
+        <img id="b-i8" class="b-img" src="assets/img/s46.jpg" alt="" />
+        <img id="b-i9" class="b-img" src="assets/img/s44.jpg" alt="" />
+        <img id="b-i10" class="b-img" src="assets/img/s43.jpg" alt="" />
+        <img id="b-i11" class="b-img" src="assets/img/s39.jpg" alt="" />
+        <img id="b-i12" class="b-img" src="assets/img/s42.jpg" alt="" />
+        <img id="b-i13" class="b-img" src="assets/img/s53.jpg" alt="" />
+        <img id="b-i14" class="b-img" src="assets/img/s29.jpg" alt="" />
+        <div id="b-shade"></div>
+      </div>
+      <div id="b-edge-t" class="b-edge"></div>
+      <div id="b-edge-b" class="b-edge"></div>
+      <div id="b-numwrap" data-layout-allow-overlap>
+        <div id="b-num-r" class="b-num">0</div>
+        <div id="b-num-c" class="b-num">0</div>
+        <div id="b-num" class="b-num">0</div>
+      </div>
+      <div id="b-label">ADDONS · TEXTURAS · MUNDOS · SKINS</div>
+    </div>
+    <div id="b-pix"></div>
+  </div>
+  <script>
+    (function () {
+      const B = 60 / 128, BAR = B * 4;
+      const tl = gsap.timeline({ paused: true });
+      const nums = ["#b-num", "#b-num-r", "#b-num-c"].map((s) => document.querySelector(s));
+      const fmt = (v) => Math.floor(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+      // Bar 1: a line draws, the counter blurs in.
+      tl.fromTo(".b-edge", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 0);
+      tl.fromTo("#b-label", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, B);
+
+      // Counter 0 -> 9.000, accelerating with the build.
+      const c = { v: 0 };
+      tl.fromTo(c, { v: 0 }, { v: 9000, duration: 6.75, ease: "power3.in",
+        onUpdate: () => { const t = fmt(c.v); nums.forEach((n) => (n.textContent = t)); } }, 0.2);
+
+      // The slit opens wider on every bar.
+      const slit = (h, at) => {
+        const m = 540 - h / 2;
+        tl.to("#b-slit", { clipPath: `inset(${m}px 0px ${m}px 0px)`, duration: 0.4, ease: "expo.out" }, at);
+        tl.to("#b-edge-t", { y: -h / 2, duration: 0.4, ease: "expo.out" }, at);
+        tl.to("#b-edge-b", { y: h / 2, duration: 0.4, ease: "expo.out" }, at);
+      };
+      slit(200, BAR);
+      slit(440, BAR * 2);
+      slit(1100, BAR * 3);
+
+      // Real addon shots: one per beat in bars 2-3, one per 8th note in bar 4.
+      const shots = [];
+      for (let i = 0; i < 8; i++) shots.push([BAR + i * B, B]);
+      for (let i = 0; i < 6; i++) shots.push([BAR * 3 + i * (B / 2), B / 2]);
+      shots.forEach(([at, len], i) => {
+        const id = "#b-i" + (i + 1);
+        tl.set(id, { opacity: 1 }, at);
+        tl.fromTo(id, { scale: 1.14 }, { scale: 1.0, duration: len, ease: "power2.out" }, at);
+        if (i < shots.length - 1) tl.set(id, { opacity: 0 }, at + len);
+      });
+
+      // Bar 4: RGB split + jitter on every 8th, the counter pushes forward.
+      tl.fromTo("#b-numwrap", { scale: 1 }, { scale: 1.32, duration: BAR * 0.75, ease: "power2.in" }, BAR * 3);
+      tl.to("#b-label", { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in" }, BAR * 3);
+      for (let i = 0; i < 6; i++) {
+        const at = BAR * 3 + i * (B / 2), d = 10 + (i % 3) * 6, s = i % 2 ? 1 : -1;
+        tl.set("#b-num-r", { opacity: 0.9, x: d * s }, at);
+        tl.set("#b-num-c", { opacity: 0.9, x: -d * s }, at);
+        tl.set("#b-slit", { x: 28 * s }, at);
+        tl.set(["#b-num-r", "#b-num-c"], { opacity: 0, x: 0 }, at + 0.07);
+        tl.set("#b-slit", { x: 0 }, at + 0.07);
+      }
+
+      // The half-beat of silence: everything cuts out, one pixel winds up.
+      const gap = BAR * 4 - B;
+      tl.set("#b-stage", { opacity: 0 }, gap);
+      tl.set("#b-pix", { opacity: 1 }, gap);
+      tl.fromTo("#b-pix", { scale: 1.6, rotation: 45 }, { scale: 0.45, rotation: 0, duration: B - 0.02, ease: "power2.in" }, gap);
+
+      window.__timelines["build"] = tl;
+    })();
+  </script>
+</template>

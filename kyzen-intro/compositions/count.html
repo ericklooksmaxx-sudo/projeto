@@ -1,0 +1,87 @@
+<template>
+  <style>
+    @font-face { font-family: "Anton"; src: url("assets/fonts/anton.woff2") format("woff2"); }
+    @font-face { font-family: "Work Sans"; font-weight: 700; src: url("assets/fonts/work-sans-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; background: #000; overflow: hidden; }
+    #k-wallbox { position: absolute; inset: 0; overflow: hidden; }
+    #k-wall { position: absolute; left: -500px; top: -160px; width: 3000px; height: 1400px; transform-origin: 50% 50%; }
+    .k-row { position: absolute; left: 0; display: flex; gap: 20px; }
+    .k-row img { width: 440px; height: 248px; border-radius: 14px; object-fit: cover; display: block; }
+    #k-row1 { top: 170px; } #k-row2 { top: 438px; } #k-row3 { top: 706px; }
+    #k-dim { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(10,2,22,0.78) 0%, rgba(10,2,22,0.9) 55%, rgba(0,0,0,0.97) 100%); }
+    #k-tint { position: absolute; inset: 0; background: #6f0ecf; mix-blend-mode: color; opacity: 0.55; }
+    .k-num { position: absolute; left: 0; top: 250px; width: 1920px; text-align: center; font-family: "Anton", sans-serif;
+      font-size: 400px; line-height: 1; color: #f2f0f5; }
+    #k-num { text-shadow: 0 0 70px rgba(111,14,207,0.95); }
+    .k-tint { mix-blend-mode: screen; opacity: 0; }
+    #k-num-r { color: #ff2bd6; } #k-num-c { color: #2be8ff; }
+    #k-label { position: absolute; left: 0; top: 680px; width: 1920px; text-align: center; font-family: "Work Sans", sans-serif;
+      font-weight: 700; font-size: 30px; letter-spacing: 0.34em; color: #e9dbff; }
+    #k-stamp { position: absolute; left: 760px; top: 770px; width: 400px; height: 104px; border-radius: 14px; background: #6f0ecf;
+      border: 4px solid #f2f0f5; box-shadow: 0 0 50px rgba(138,63,240,0.8); display: flex; align-items: center; justify-content: center;
+      font-family: "Anton", sans-serif; font-size: 64px; color: #fff; letter-spacing: 0.04em; }
+    #k-free-wrap { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .k-free { position: absolute; left: 0; top: 230px; width: 1920px; text-align: center; font-family: "Anton", sans-serif;
+      font-size: 560px; line-height: 1; color: #f2f0f5; }
+    #k-free { text-shadow: 0 0 80px rgba(111,14,207,0.95); }
+    #k-free-r { color: #ff2bd6; } #k-free-c { color: #2be8ff; }
+  </style>
+  <div id="root" data-composition-id="count" data-width="1920" data-height="1080">
+    <div id="k-wallbox" data-layout-allow-overflow>
+    <div id="k-wall" data-layout-ignore>
+      <div id="k-row1" class="k-row"><img src="assets/thumb/t00.jpg" alt="" /><img src="assets/thumb/t11.jpg" alt="" /><img src="assets/thumb/t17.jpg" alt="" /><img src="assets/thumb/t26.jpg" alt="" /><img src="assets/thumb/t33.jpg" alt="" /><img src="assets/thumb/t35.jpg" alt="" /><img src="assets/thumb/t49.jpg" alt="" /><img src="assets/thumb/t50.jpg" alt="" /><img src="assets/thumb/t57.jpg" alt="" /><img src="assets/thumb/t00.jpg" alt="" /><img src="assets/thumb/t11.jpg" alt="" /><img src="assets/thumb/t17.jpg" alt="" /></div>
+      <div id="k-row2" class="k-row"><img src="assets/thumb/t26.jpg" alt="" /><img src="assets/thumb/t33.jpg" alt="" /><img src="assets/thumb/t35.jpg" alt="" /><img src="assets/thumb/t49.jpg" alt="" /><img src="assets/thumb/t50.jpg" alt="" /><img src="assets/thumb/t57.jpg" alt="" /><img src="assets/thumb/t00.jpg" alt="" /><img src="assets/thumb/t11.jpg" alt="" /><img src="assets/thumb/t17.jpg" alt="" /><img src="assets/thumb/t26.jpg" alt="" /><img src="assets/thumb/t33.jpg" alt="" /><img src="assets/thumb/t35.jpg" alt="" /></div>
+      <div id="k-row3" class="k-row"><img src="assets/thumb/t49.jpg" alt="" /><img src="assets/thumb/t50.jpg" alt="" /><img src="assets/thumb/t57.jpg" alt="" /><img src="assets/thumb/t00.jpg" alt="" /><img src="assets/thumb/t11.jpg" alt="" /><img src="assets/thumb/t17.jpg" alt="" /><img src="assets/thumb/t26.jpg" alt="" /><img src="assets/thumb/t33.jpg" alt="" /><img src="assets/thumb/t35.jpg" alt="" /><img src="assets/thumb/t49.jpg" alt="" /><img src="assets/thumb/t50.jpg" alt="" /><img src="assets/thumb/t57.jpg" alt="" /></div>
+    </div>
+    <div id="k-dim"></div>
+    <div id="k-tint"></div>
+    </div>
+    <div id="k-numwrap" data-layout-allow-overlap>
+      <div id="k-num-r" class="k-num k-tint">9.000+</div>
+      <div id="k-num-c" class="k-num k-tint">9.000+</div>
+      <div id="k-num" class="k-num">9.000+</div>
+    </div>
+    <div id="k-label">ADDONS, TEXTURAS, MUNDOS E SKINS</div>
+    <div id="k-stamp">100% GRÁTIS</div>
+    <div id="k-free-wrap" data-layout-allow-overlap>
+      <div id="k-free-r" class="k-free k-tint">GRÁTIS.</div>
+      <div id="k-free-c" class="k-free k-tint">GRÁTIS.</div>
+      <div id="k-free" class="k-free">GRÁTIS.</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const B = 60 / 128, BAR = B * 4;
+      const tl = gsap.timeline({ paused: true });
+
+      // The wall of real addons keeps moving.
+      tl.set("#k-wall", { rotation: -7, scale: 1.1 }, 0);
+      tl.fromTo("#k-row1", { x: 0 }, { x: -560, duration: BAR, ease: "none" }, 0);
+      tl.fromTo("#k-row2", { x: -560 }, { x: 0, duration: BAR, ease: "none" }, 0);
+      tl.fromTo("#k-row3", { x: -100 }, { x: -660, duration: BAR, ease: "none" }, 0);
+      tl.fromTo("#k-wallbox", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 0);
+
+      // 9.000+ slams on the downbeat.
+      tl.fromTo("#k-numwrap", { scale: 1.7, filter: "blur(22px)", opacity: 0 }, { scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.3, ease: "expo.out" }, 0);
+      tl.fromTo("#k-num-r", { opacity: 0.9, x: 24 }, { opacity: 0, x: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#k-num-c", { opacity: 0.9, x: -24 }, { opacity: 0, x: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#k-label", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, B);
+      tl.fromTo("#k-stamp", { scale: 2.3, rotation: 6, opacity: 0 }, { scale: 1, rotation: -4, opacity: 1, duration: 0.36, ease: "back.out(1.7)" }, B * 2);
+
+      // The music dips: one word, stuttering on the beats.
+      tl.set("#k-free-wrap", { opacity: 0 }, 0);
+      tl.to(["#k-wallbox", "#k-numwrap", "#k-label", "#k-stamp"], { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, BAR - 0.1);
+      tl.set("#k-free-wrap", { opacity: 1 }, BAR);
+      tl.fromTo("#k-free", { filter: "blur(12px)" }, { filter: "blur(0px)", duration: 0.13, ease: "power3.out" }, BAR);
+      [0, 1, 2].forEach((i) => {
+        const at = BAR + i * B, d = 14 + i * 8, s = i % 2 ? -1 : 1;
+        tl.set("#k-free-wrap", { scale: 1 + i * 0.07 }, at);
+        tl.fromTo("#k-free-r", { opacity: 0.9, x: d * s }, { opacity: 0, x: 0, duration: 0.2, ease: "power3.out" }, at);
+        tl.fromTo("#k-free-c", { opacity: 0.9, x: -d * s }, { opacity: 0, x: 0, duration: 0.2, ease: "power3.out" }, at);
+      });
+      tl.set("#k-free-wrap", { opacity: 0 }, BAR + B * 3 - 0.01);
+
+      window.__timelines["count"] = tl;
+    })();
+  </script>
+</template>

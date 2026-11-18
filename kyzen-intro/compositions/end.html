@@ -1,0 +1,201 @@
+<template>
+  <style>
+    @font-face { font-family: "Anton"; src: url("assets/fonts/anton.woff2") format("woff2"); }
+    @font-face { font-family: "Work Sans"; font-weight: 500; src: url("assets/fonts/work-sans-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Work Sans"; font-weight: 700; src: url("assets/fonts/work-sans-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; background: #000; overflow: hidden; }
+    #e-bg { position: absolute; left: -240px; top: -870px; width: 2400px; height: 2400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(111,14,207,0.55) 0%, rgba(69,8,132,0.32) 22%, rgba(27,4,54,0.25) 38%, rgba(0,0,0,0) 60%); }
+    #e-grid { position: absolute; inset: -60px;
+      background-image: linear-gradient(rgba(138,63,240,0.13) 2px, transparent 2px), linear-gradient(90deg, rgba(138,63,240,0.13) 2px, transparent 2px);
+      background-size: 60px 60px;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 0%, rgba(0,0,0,0.4) 40%, transparent 72%);
+      mask-image: radial-gradient(ellipse at 50% 45%, #000 0%, rgba(0,0,0,0.4) 40%, transparent 72%); }
+    .e-mote { position: absolute; background: #8a3ff0; }
+    #e-ring { position: absolute; left: 760px; top: 270px; width: 400px; height: 400px; border-radius: 50%;
+      border: 8px solid #bb92ff; box-shadow: 0 0 40px rgba(187,146,255,0.8); opacity: 0; }
+    #e-fox { position: absolute; left: 840px; top: 326px; width: 240px; height: 288px; }
+    #e-foxglow { position: absolute; left: -120px; top: -100px; width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(187,146,255,0.55) 0%, rgba(138,63,240,0.25) 40%, rgba(0,0,0,0) 70%); }
+    .e-px { position: absolute; width: 24px; height: 24px; display: block; }
+    .e-k { box-shadow: inset 0 0 0 1px rgba(138,63,240,0.35); }
+    #e-word { position: absolute; left: 830px; top: 281px; width: 560px; height: 377px; }
+    #e-tag { position: absolute; left: 0; top: 700px; width: 1920px; text-align: center; font-family: "Work Sans", sans-serif;
+      font-weight: 500; font-size: 36px; letter-spacing: 0.01em; color: #f2f0f5; }
+    #e-tag span { display: inline-block; margin: 0 6px; }
+    #e-tag .hot { color: #bb92ff; font-weight: 700; }
+    #e-cta { position: absolute; left: 640px; top: 790px; width: 640px; height: 96px; border-radius: 999px;
+      background: linear-gradient(180deg, #8a3ff0 0%, #6f0ecf 100%); box-shadow: 0 0 0 2px rgba(233,219,255,0.6) inset, 0 18px 60px rgba(111,14,207,0.55);
+      display: flex; align-items: center; justify-content: center; gap: 22px;
+      font-family: "Work Sans", sans-serif; font-weight: 700; color: #fff; }
+    #e-cta-a { font-size: 28px; letter-spacing: 0.2em; }
+    #e-cta-arrow { font-size: 34px; color: #e9dbff; }
+    #e-cta-b { font-family: "Anton", sans-serif; font-weight: 400; font-size: 40px; letter-spacing: 0.04em; }
+    #e-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    #e-black { position: absolute; inset: 0; background: #000; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="end" data-width="1920" data-height="1080">
+    <div id="e-bg" data-layout-ignore></div>
+    <div id="e-grid" data-layout-ignore></div>
+    <div id="e-motes" data-layout-ignore></div>
+    <div id="e-ring" data-layout-ignore></div>
+    <div id="e-fox" data-layout-allow-overlap>
+      <div id="e-foxglow"></div>
+      <div id="e-foxpx">
+        <i id="e-f0" class="e-px e-k" style="left:0px;top:0px;background:#000000"></i>
+        <i id="e-f1" class="e-px e-k" style="left:24px;top:0px;background:#000000"></i>
+        <i id="e-f2" class="e-px e-k" style="left:192px;top:0px;background:#000000"></i>
+        <i id="e-f3" class="e-px e-k" style="left:216px;top:0px;background:#000000"></i>
+        <i id="e-f4" class="e-px e-k" style="left:0px;top:24px;background:#000000"></i>
+        <i id="e-f5" class="e-px" style="left:24px;top:24px;background:#dcb9ef"></i>
+        <i id="e-f6" class="e-px e-k" style="left:48px;top:24px;background:#000000"></i>
+        <i id="e-f7" class="e-px e-k" style="left:168px;top:24px;background:#000000"></i>
+        <i id="e-f8" class="e-px" style="left:192px;top:24px;background:#dcb9ef"></i>
+        <i id="e-f9" class="e-px e-k" style="left:216px;top:24px;background:#000000"></i>
+        <i id="e-f10" class="e-px e-k" style="left:0px;top:48px;background:#000000"></i>
+        <i id="e-f11" class="e-px" style="left:24px;top:48px;background:#dcb9ef"></i>
+        <i id="e-f12" class="e-px" style="left:48px;top:48px;background:#dcb9ef"></i>
+        <i id="e-f13" class="e-px" style="left:72px;top:48px;background:#7d3ea9"></i>
+        <i id="e-f14" class="e-px" style="left:144px;top:48px;background:#7d3ea9"></i>
+        <i id="e-f15" class="e-px" style="left:168px;top:48px;background:#dcb9ef"></i>
+        <i id="e-f16" class="e-px" style="left:192px;top:48px;background:#dcb9ef"></i>
+        <i id="e-f17" class="e-px e-k" style="left:216px;top:48px;background:#000000"></i>
+        <i id="e-f18" class="e-px" style="left:0px;top:72px;background:#7d3ea9"></i>
+        <i id="e-f19" class="e-px" style="left:24px;top:72px;background:#dcb9ef"></i>
+        <i id="e-f20" class="e-px" style="left:48px;top:72px;background:#7d3ea9"></i>
+        <i id="e-f21" class="e-px" style="left:72px;top:72px;background:#9b5cc4"></i>
+        <i id="e-f22" class="e-px" style="left:96px;top:72px;background:#9b5cc4"></i>
+        <i id="e-f23" class="e-px" style="left:120px;top:72px;background:#9b5cc4"></i>
+        <i id="e-f24" class="e-px" style="left:144px;top:72px;background:#9b5cc4"></i>
+        <i id="e-f25" class="e-px" style="left:168px;top:72px;background:#7d3ea9"></i>
+        <i id="e-f26" class="e-px" style="left:192px;top:72px;background:#dcb9ef"></i>
+        <i id="e-f27" class="e-px" style="left:216px;top:72px;background:#7d3ea9"></i>
+        <i id="e-f28" class="e-px" style="left:0px;top:96px;background:#7d3ea9"></i>
+        <i id="e-f29" class="e-px" style="left:24px;top:96px;background:#7d3ea9"></i>
+        <i id="e-f30" class="e-px" style="left:48px;top:96px;background:#9b5cc4"></i>
+        <i id="e-f31" class="e-px" style="left:72px;top:96px;background:#9b5cc4"></i>
+        <i id="e-f32" class="e-px" style="left:96px;top:96px;background:#9b5cc4"></i>
+        <i id="e-f33" class="e-px" style="left:120px;top:96px;background:#9b5cc4"></i>
+        <i id="e-f34" class="e-px" style="left:144px;top:96px;background:#9b5cc4"></i>
+        <i id="e-f35" class="e-px" style="left:168px;top:96px;background:#9b5cc4"></i>
+        <i id="e-f36" class="e-px" style="left:192px;top:96px;background:#7d3ea9"></i>
+        <i id="e-f37" class="e-px" style="left:216px;top:96px;background:#7d3ea9"></i>
+        <i id="e-f38" class="e-px" style="left:24px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f39" class="e-px" style="left:48px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f40" class="e-px" style="left:72px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f41" class="e-px" style="left:96px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f42" class="e-px" style="left:120px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f43" class="e-px" style="left:144px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f44" class="e-px" style="left:168px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f45" class="e-px" style="left:192px;top:120px;background:#9b5cc4"></i>
+        <i id="e-f46" class="e-px" style="left:0px;top:144px;background:#7d3ea9"></i>
+        <i id="e-f47" class="e-px" style="left:24px;top:144px;background:#9b5cc4"></i>
+        <i id="e-f48" class="e-px" style="left:48px;top:144px;background:#9b5cc4"></i>
+        <i id="e-f49" class="e-px e-k" style="left:72px;top:144px;background:#000000"></i>
+        <i id="e-f50" class="e-px" style="left:96px;top:144px;background:#9b5cc4"></i>
+        <i id="e-f51" class="e-px" style="left:120px;top:144px;background:#9b5cc4"></i>
+        <i id="e-f52" class="e-px e-k" style="left:144px;top:144px;background:#000000"></i>
+        <i id="e-f53" class="e-px" style="left:168px;top:144px;background:#9b5cc4"></i>
+        <i id="e-f54" class="e-px" style="left:192px;top:144px;background:#9b5cc4"></i>
+        <i id="e-f55" class="e-px" style="left:216px;top:144px;background:#7d3ea9"></i>
+        <i id="e-f56" class="e-px" style="left:0px;top:168px;background:#7d3ea9"></i>
+        <i id="e-f57" class="e-px" style="left:24px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f58" class="e-px" style="left:48px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f59" class="e-px" style="left:72px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f60" class="e-px" style="left:96px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f61" class="e-px" style="left:120px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f62" class="e-px" style="left:144px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f63" class="e-px" style="left:168px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f64" class="e-px" style="left:192px;top:168px;background:#9b5cc4"></i>
+        <i id="e-f65" class="e-px" style="left:216px;top:168px;background:#7d3ea9"></i>
+        <i id="e-f66" class="e-px" style="left:0px;top:192px;background:#7d3ea9"></i>
+        <i id="e-f67" class="e-px" style="left:24px;top:192px;background:#dcb9ef"></i>
+        <i id="e-f68" class="e-px" style="left:48px;top:192px;background:#dcb9ef"></i>
+        <i id="e-f69" class="e-px" style="left:72px;top:192px;background:#dcb9ef"></i>
+        <i id="e-f70" class="e-px" style="left:96px;top:192px;background:#9b5cc4"></i>
+        <i id="e-f71" class="e-px" style="left:120px;top:192px;background:#9b5cc4"></i>
+        <i id="e-f72" class="e-px" style="left:144px;top:192px;background:#dcb9ef"></i>
+        <i id="e-f73" class="e-px" style="left:168px;top:192px;background:#dcb9ef"></i>
+        <i id="e-f74" class="e-px" style="left:192px;top:192px;background:#dcb9ef"></i>
+        <i id="e-f75" class="e-px" style="left:216px;top:192px;background:#7d3ea9"></i>
+        <i id="e-f76" class="e-px" style="left:24px;top:216px;background:#7d3ea9"></i>
+        <i id="e-f77" class="e-px" style="left:48px;top:216px;background:#7d3ea9"></i>
+        <i id="e-f78" class="e-px" style="left:72px;top:216px;background:#dcb9ef"></i>
+        <i id="e-f79" class="e-px e-k" style="left:96px;top:216px;background:#000000"></i>
+        <i id="e-f80" class="e-px e-k" style="left:120px;top:216px;background:#000000"></i>
+        <i id="e-f81" class="e-px" style="left:144px;top:216px;background:#dcb9ef"></i>
+        <i id="e-f82" class="e-px" style="left:168px;top:216px;background:#7d3ea9"></i>
+        <i id="e-f83" class="e-px" style="left:192px;top:216px;background:#7d3ea9"></i>
+        <i id="e-f84" class="e-px" style="left:72px;top:240px;background:#7d3ea9"></i>
+        <i id="e-f85" class="e-px" style="left:96px;top:240px;background:#dcb9ef"></i>
+        <i id="e-f86" class="e-px" style="left:120px;top:240px;background:#dcb9ef"></i>
+        <i id="e-f87" class="e-px" style="left:144px;top:240px;background:#7d3ea9"></i>
+        <i id="e-f88" class="e-px" style="left:96px;top:264px;background:#7d3ea9"></i>
+        <i id="e-f89" class="e-px" style="left:120px;top:264px;background:#7d3ea9"></i>
+      </div>
+    </div>
+    <img id="e-word" src="assets/brand/kyzen-wordmark.png" alt="KYZEN" />
+    <div id="e-tag"><span>9.000+</span><span>addons,</span><span>texturas,</span><span>mundos</span><span>e</span><span>skins</span><span class="hot">grátis.</span></div>
+    <div id="e-cta"><span id="e-cta-a">BAIXE GRÁTIS</span><span id="e-cta-arrow">→</span><span id="e-cta-b">KYZENDLC.XYZ</span></div>
+    <div id="e-flash"></div>
+    <div id="e-black"></div>
+  </div>
+  <script>
+    (function () {
+      const B = 60 / 128;
+      const LAND = B; // the 22.5 s hit, one beat after this scene starts in the silence
+      const END = 7.97;
+      const tl = gsap.timeline({ paused: true });
+      let s = 11;
+      const rnd = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+
+      // Ambient: grid drifts, motes rise. Background only.
+      tl.fromTo("#e-grid", { opacity: 0, backgroundPosition: "0px 0px" }, { opacity: 1, backgroundPosition: "0px -240px", duration: END, ease: "none" }, 0);
+      tl.fromTo("#e-bg", { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, LAND);
+      const motes = document.getElementById("e-motes");
+      for (let i = 0; i < 16; i++) {
+        const m = document.createElement("div"), z = Math.round(6 + rnd() * 12);
+        m.className = "e-mote"; m.id = "e-m" + i;
+        m.style.width = z + "px"; m.style.height = z + "px";
+        m.style.left = Math.round(120 + rnd() * 1680) + "px"; m.style.top = Math.round(200 + rnd() * 820) + "px";
+        motes.appendChild(m);
+        tl.fromTo(m, { y: 0, opacity: 0 }, { y: -(80 + rnd() * 160), opacity: 0.25 + rnd() * 0.4, duration: END - LAND, ease: "none" }, LAND);
+      }
+
+      // The fox assembles out of scattered pixels during the silence and lands on the hit.
+      document.querySelectorAll("#e-foxpx .e-px").forEach((p) => {
+        const a = rnd() * Math.PI * 2, r = 380 + rnd() * 700, st = rnd() * 0.12;
+        tl.fromTo(p, { x: Math.cos(a) * r, y: Math.sin(a) * r * 0.7, rotation: (rnd() - 0.5) * 300, scale: 0.3 },
+          { x: 0, y: 0, rotation: 0, scale: 1, duration: LAND - st, ease: "power3.in" }, st);
+        tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none" }, st);
+      });
+      tl.fromTo("#e-foxglow", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, LAND);
+      tl.fromTo("#e-fox", { scale: 1.22 }, { scale: 1, duration: 0.4, ease: "expo.out" }, LAND);
+      tl.fromTo("#e-flash", { opacity: 0.85 }, { opacity: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, LAND);
+      tl.fromTo("#e-ring", { scale: 0.3, opacity: 1 }, { scale: 3.8, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, LAND);
+
+      // Lockup: fox slides left, wordmark wipes in beside it (bar 2 of the end card).
+      const LOCK = LAND + B * 2;
+      tl.to("#e-fox", { x: -310, duration: 0.55, ease: "power3.inOut" }, LOCK);
+      tl.fromTo("#e-word", { clipPath: "inset(0% 100% 0% 0%)", filter: "blur(10px)", x: -40 },
+        { clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", x: 0, duration: 0.5, ease: "power3.out" }, LOCK + 0.18);
+
+      // Tagline: word by word, grey to ink.
+      const TAG = LAND + B * 4;
+      tl.fromTo("#e-tag span", { opacity: 0, color: "#5a5466" }, { opacity: 1, color: "#f2f0f5", duration: 0.16, ease: "power2.out", stagger: 0.08 }, TAG);
+      tl.fromTo("#e-tag .hot", { color: "#5a5466" }, { color: "#bb92ff", duration: 0.16, ease: "power2.out" }, TAG + 0.48);
+
+      // CTA: the pill morphs open from a dot, then its text lands.
+      const CTA = LAND + B * 6;
+      tl.fromTo("#e-cta", { clipPath: "inset(0px 284px 0px 284px round 999px)", opacity: 0 },
+        { clipPath: "inset(0px 0px 0px 0px round 999px)", opacity: 1, duration: 0.4, ease: "power3.out" }, CTA);
+      tl.fromTo(["#e-cta-a", "#e-cta-arrow", "#e-cta-b"], { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power4.out", stagger: 0.07 }, CTA + 0.22);
+
+      // Out to black under the music fade.
+      tl.fromTo("#e-black", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.in" }, END - 0.52);
+
+      window.__timelines["end"] = tl;
+    })();
+  </script>
+</template>

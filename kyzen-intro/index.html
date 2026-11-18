@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Kyzen — Intro</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ground: #000;
+        --ink: #f2f0f5;
+        --accent: #6f0ecf;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+      #bg { position: absolute; inset: 0; background: var(--ground); z-index: 0; }
+      .scene { z-index: 1; }
+      #grain { position: absolute; inset: -128px; z-index: 50; pointer-events: none; opacity: 0.09; mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -0.2'/></filter><rect width='256' height='256' filter='url(%23n)'/></svg>");
+        background-size: 256px 256px; }
+      #scan { position: absolute; inset: 0; z-index: 51; pointer-events: none; opacity: 0.18;
+        background: repeating-linear-gradient(0deg, rgba(0,0,0,0.5) 0px, rgba(0,0,0,0.5) 1px, transparent 1px, transparent 4px); }
+      #vignette { position: absolute; inset: 0; z-index: 52; pointer-events: none;
+        background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%); }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="30"
+      data-width="1920"
+      data-height="1080"
+      data-motion-blur="on"
+    >
+      <div id="bg"></div>
+
+      <div id="build" class="scene" data-composition-id="build" data-composition-src="compositions/build.html"
+        data-start="0" data-duration="7.5" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="drop" class="scene" data-composition-id="drop" data-composition-src="compositions/drop.html"
+        data-start="7.5" data-duration="3.75" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="cats" class="scene" data-composition-id="cats" data-composition-src="compositions/cats.html"
+        data-start="11.25" data-duration="7.5" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="count" class="scene" data-composition-id="count" data-composition-src="compositions/count.html"
+        data-start="18.75" data-duration="3.281" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="end" class="scene" data-composition-id="end" data-composition-src="compositions/end.html"
+        data-start="22.031" data-duration="7.969" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+
+      <div id="grain" data-layout-ignore></div>
+      <div id="scan" data-layout-ignore></div>
+      <div id="vignette" data-layout-ignore></div>
+
+      <!-- Music: Spencer Newton, "Right Now (Original Mix)", CC BY 3.0 (Jamendo). File 82.5 s -> 112.5 s, drop at 7.5 s. -->
+      <audio id="music" class="clip" src="assets/audio/music.mp3" data-start="0" data-duration="30" data-track-index="2" data-volume="0.9"></audio>
+
+      <!-- Effects: each peak one frame after its picture. -->
+      <audio id="sfx-glitch-build" class="clip" src="assets/sfx/glitch-3.mp3" data-start="5.37" data-duration="1.9" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-drop" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="5.583" data-duration="2.12" data-track-index="3" data-volume="1"></audio>
+      <audio id="sfx-zoom" class="clip" src="assets/sfx/whoosh.mp3" data-start="11.12" data-duration="0.57" data-track-index="3" data-volume="0.7"></audio>
+      <audio id="sfx-whip" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="13.0" data-duration="0.57" data-track-index="3" data-volume="0.7"></audio>
+      <audio id="sfx-iris" class="clip" src="assets/sfx/whoosh.mp3" data-start="14.87" data-duration="0.57" data-track-index="3" data-volume="0.55"></audio>
+      <audio id="sfx-flood" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="14.37" data-duration="3.4" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-count" class="clip" src="assets/sfx/glitch-1.mp3" data-start="18.23" data-duration="1.6" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-end" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="20.473" data-duration="2.59" data-track-index="3" data-volume="1"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // Film grain: a new noise offset every frame (deterministic, a function of time).
+      let s = 3;
+      const rnd = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+      for (let f = 0; f < 450; f++) tl.set("#grain", { x: -Math.round(rnd() * 128), y: -Math.round(rnd() * 128) }, f / 15);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
