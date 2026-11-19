@@ -616,17 +616,23 @@ def build_env(it: I.Interp, tr: Tracer, opts) -> LuaTable:
     reg(G, "request", lambda *a: (tr.call(tr.new_proxy("request", pure=False), a)[0],))
     reg(G, "http_request", lambda *a: (tr.call(tr.new_proxy("http_request", pure=False), a)[0],))
     reg(G, "require", lambda *a: (tr.call(tr.new_proxy("require"), a)[0],))
+    reg(G, "collectgarbage", lambda opt=None, *a: (0,) if opt in (b"count", None) else ())
     G.h[b"_G"] = G
-    # remember which undefined globals the script reads (useful to spot missing API)
-    missing = tr.missing = {}
-    gm = LuaTable()
+    # Optionally track which undefined globals the script reads (handy when debugging
+    # missing API). This installs an __index metamethod on the global table, which
+    # some anti-tamper layers (e.g. Hercules) detect as "metamethod tampered", so it is
+    # OFF by default: undefined globals then read as nil naturally, with no metatable.
+    tr.missing = {}
+    if getattr(tr, "track_globals", False):
+        missing = tr.missing
+        gm = LuaTable()
 
-    def g_index(_t, k, *r):
-        if type(k) is bytes:
-            missing[k.decode("latin-1")] = missing.get(k.decode("latin-1"), 0) + 1
-        return (None,)
-    gm.h[b"__index"] = Builtin(g_index, "__index")
-    G.meta = gm
+        def g_index(_t, k, *r):
+            if type(k) is bytes:
+                missing[k.decode("latin-1")] = missing.get(k.decode("latin-1"), 0) + 1
+            return (None,)
+        gm.h[b"__index"] = Builtin(g_index, "__index")
+        G.meta = gm
     return G
 
 

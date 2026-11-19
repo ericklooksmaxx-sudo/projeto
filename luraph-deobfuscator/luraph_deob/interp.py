@@ -628,7 +628,9 @@ class Proto:
             raise Abort()
         it.call_depth += 1
         if it.call_depth > 7000:
-            it.call_depth = 0
+            # let the finally clauses unwind the counter back to the caller's depth;
+            # resetting to 0 here would leave it deeply negative after a pcall-caught overflow
+            it.call_depth -= 1
             raise LuaError(b"stack overflow")
         fr = Frame(self.nregs, fn.upvals, None, fn)
         r = fr.r

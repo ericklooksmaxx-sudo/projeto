@@ -1128,6 +1128,11 @@ def make_env(it: I.Interp, script_args=()):
                  ("setmetatable", lambda o=None, m=None, *r: (o,)),
                  ("sethook", lambda *a: ()), ("gethook", lambda *a: (None,)),
                  ("getlocal", lambda *a: (None,)), ("getupvalue", lambda *a: (None,)),
+                 ("setupvalue", lambda *a: ()), ("setlocal", lambda *a: ()),
+                 ("upvalueid", lambda *a: (LuaTable(),)), ("upvaluejoin", lambda *a: ()),
+                 # Luau-specific memory-category functions (their absence trips some anti-tamper, e.g. Hercules)
+                 ("setmemorycategory", lambda *a: ()), ("resetmemorycategory", lambda *a: ()),
+                 ("getmemorycategory", lambda *a: (b"",)), ("dumpheap", lambda *a: ()),
                  ("getregistry", lambda *a: (LuaTable(),))]:
         reg(D, n, f)
 

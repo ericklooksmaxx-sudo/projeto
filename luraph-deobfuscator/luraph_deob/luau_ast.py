@@ -112,7 +112,9 @@ _SYMBOLS = sorted(
 _ws_re = re.compile(rb"[ \t\r\n\f\v]+")
 _name_re = re.compile(rb"[A-Za-z_][A-Za-z0-9_]*")
 _num_re = re.compile(
-    rb"0[xX][0-9A-Fa-f_]+|0[bB][01_]+|(?:[0-9][0-9_]*(?:\.[0-9_]*)?|\.[0-9][0-9_]*)(?:[eE][+-]?[0-9]+)?"
+    # underscores are permitted as digit separators almost anywhere, including
+    # between the leading 0 and the base letter (e.g. `0_b1000_1`, seen in LPS)
+    rb"0[_]*[xX][0-9A-Fa-f_]+|0[_]*[bB][01_]+|(?:[0-9][0-9_]*(?:\.[0-9_]*)?|\.[0-9][0-9_]*)(?:[eE][+-]?[0-9_]+)?"
 )
 _longbr_re = re.compile(rb"\[(=*)\[")
 
