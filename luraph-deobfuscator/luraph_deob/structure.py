@@ -796,6 +796,15 @@ def cleanup(stmts, follow=(), loop_tail=False):
         elif t is A.While:
             s = A.While(s.cond, cleanup(s.body, (), True))
         res.append(s)
+    # drop a trailing `goto L` / `continue` that merely falls through to what follows
+    while res:
+        last = res[-1]
+        if type(last) is A.Goto and last.label in follow:
+            res = res[:-1]
+        elif type(last) is A.Continue and loop_tail:
+            res = res[:-1]
+        else:
+            break
     # tidy: flip empty-then ifs, merge else-if chains
     res = [_tidy_if(s) if type(s) is A.If else s for s in res]
     res = [_tidy_while(s) if type(s) is A.While else s for s in res]
