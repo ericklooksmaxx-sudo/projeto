@@ -34,6 +34,10 @@ class _Top:
 
 TOP = _Top()
 
+# Upper bound on a plausible instruction address. Real Luraph pcs are at most a few
+# thousand; anything beyond this came from TOP-tainted arithmetic and is garbage.
+_PC_SANITY = 1_000_000
+
 
 class Alt:
     __slots__ = ("vals",)
@@ -1457,6 +1461,12 @@ class Explorer:
                     continue
                 newpc = s2.vars.get(loop.pc_var)
                 pcs = self._pcs(newpc)
+                if jreg is not None and pcs:
+                    # indirect jump: a target register derived from TOP arithmetic can hold a
+                    # garbage address (e.g. 134419826) that is never a real instruction. Exploring
+                    # it wastes the whole budget chasing dead paths, so drop the clearly-absurd ones
+                    # (real pcs are small). Keep in-array and plausibly-not-yet-decrypted targets.
+                    pcs = [p for p in pcs if (p + 1) in oparr.h or -1 <= p <= _PC_SANITY]
                 if not pcs and jreg is not None and (fi.nregs is None or jreg < fi.nregs) \
                         and len(fi.jump_regs) < 10:
                     if jreg not in fi.jump_regs:
