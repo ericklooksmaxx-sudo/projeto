@@ -1,0 +1,65 @@
+-- This Script is Part of the Prometheus Obfuscator by levno-710
+--
+-- local_variable_declaration.lua
+--
+-- This Script contains the statement handler for the LocalVariableDeclaration
+
+local Ast = require("prometheus.ast");
+local AstKind = Ast.AstKind;
+
+local function isSideEffectFreeLiteral(expression)
+    local kind = expression.kind;
+    return kind == AstKind.NilExpression or kind == AstKind.BooleanExpression or
+        kind == AstKind.NumberExpression or kind == AstKind.StringExpression;
+end
+
+return function(self, statement, funcDepth)
+    local exprregs = {};
+    for i, expr in ipairs(statement.expressions) do
+        if(i == #statement.expressions and #statement.ids > #statement.expressions) then
+            local regs = self:compileExpression(expr, funcDepth, #statement.ids - #statement.expressions + 1);
+            for i, reg in ipairs(regs) do
+                table.insert(exprregs, reg);
+            end
+        else
+            if statement.ids[i] then
+                local reg = self:compileExpression(expr, funcDepth, 1)[1];
+                table.insert(exprregs, reg);
+            else
+                -- Initializers past the declared names are discarded, but
+                -- Lua still evaluates them for their effects and errors.
+                if not isSideEffectFreeLiteral(expr) then
+                    local reg = self:compileExpression(expr, funcDepth, 1)[1];
+                    self:freeRegister(reg, false);
+                end
+            end
+        end
+    end
+
+    if #exprregs == 0 then
+        for _=1, #statement.ids do
+            table.insert(exprregs, self:compileExpression(Ast.NilExpression(), funcDepth, 1)[1]);
+        end
+    end
+
+    for i, id in ipairs(statement.ids) do
+        if(exprregs[i]) then
+            if(self:isUpvalue(statement.scope, id)) then
+                local varreg = self:getVarRegister(statement.scope, id, funcDepth);
+                local varReg = self:getVarRegister(statement.scope, id, funcDepth, nil);
+                self:addStatement(self:setRegister(varReg, Ast.FunctionCallExpression(Ast.VariableExpression(self.allocUpvalFunction), {})), {varReg}, {}, false);
+                self:addStatement(self:setUpvalueMember(self:register(varReg), self:register(exprregs[i])), {}, {varReg, exprregs[i]}, true);
+                self:freeRegister(exprregs[i], false);
+            else
+                local varreg = self:getVarRegister(statement.scope, id, funcDepth, exprregs[i]);
+                self:addStatement(self:copyRegisters({varreg}, {exprregs[i]}), {varreg}, {exprregs[i]}, false);
+                self:freeRegister(exprregs[i], false);
+            end
+        end
+    end
+
+    if not self.scopeFunctionDepths[statement.scope] then
+        self.scopeFunctionDepths[statement.scope] = funcDepth;
+    end
+end;
+

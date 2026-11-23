@@ -1,0 +1,313 @@
+-- This Script is Part of the Prometheus Obfuscator by levno-710
+--
+-- pipeline.lua
+--
+-- This Script provides a configurable obfuscation pipeline that can obfuscate code using different modules
+-- These modules can simply be added to the pipeline.
+
+local Enums = require("prometheus.enums");
+local util = require("prometheus.util");
+local Parser = require("prometheus.parser");
+local analyzeBindings = require("prometheus.bindinganalysis");
+local renameVariables = require("prometheus.names");
+local Unparser = require("prometheus.unparser");
+local logger = require("logger");
+local Source = require("prometheus.source");
+
+local NameGenerators = require("prometheus.namegenerators");
+
+local Steps = require("prometheus.steps");
+local LuaVersion = Enums.LuaVersion;
+
+-- On Windows, os.clock can be used. On other systems, os.time must be used for benchmarking.
+local isWindows = package and package.config and type(package.config) == "string" and package.config:sub(1,1) == "\\";
+local function gettime()
+	if isWindows then
+		return os.clock();
+	else
+		return os.time();
+	end
+end
+
+local Pipeline = {
+	NameGenerators = NameGenerators;
+	Steps = Steps;
+	DefaultSettings = {
+		LuaVersion = LuaVersion.LuaU; -- The Lua Version to use for the Tokenizer, Parser and Unparser
+		PrettyPrint = false; -- Note that Pretty Print is currently not producing Pretty results
+		SourceMap = false;
+		SourceMapIncludeSources = true;
+		Seed = 0; -- The Seed. 0 or below uses the current time as a seed
+		VarNamePrefix = ""; -- The Prefix that every variable will start with
+	}
+}
+
+
+function Pipeline:new(settings)
+	local luaVersion = settings.luaVersion or settings.LuaVersion or Pipeline.DefaultSettings.LuaVersion;
+	local conventions = Enums.Conventions[luaVersion];
+	if(not conventions) then
+		logger:error("The Lua Version \"" .. luaVersion
+			.. "\" is not recognized by the Tokenizer! Please use one of the following: \"" .. table.concat(util.keys(Enums.Conventions), "\",\"") .. "\"");
+	end
+
+	local prettyPrint = settings.PrettyPrint or Pipeline.DefaultSettings.PrettyPrint;
+	local prefix = settings.VarNamePrefix or Pipeline.DefaultSettings.VarNamePrefix;
+	local seed = settings.Seed or 0;
+
+	local pipeline = {
+		LuaVersion = luaVersion;
+		PrettyPrint = prettyPrint;
+		SourceMap = settings.SourceMap == true;
+		SourceMapIncludeSources = settings.SourceMapIncludeSources ~= false;
+		VarNamePrefix = prefix;
+		Seed = seed;
+		parser = Parser:new({
+			LuaVersion = luaVersion;
+		});
+		unparser = Unparser:new({
+			LuaVersion = luaVersion;
+			PrettyPrint = prettyPrint;
+			SourceMap = settings.SourceMap == true;
+			SourceMapIncludeSources = settings.SourceMapIncludeSources ~= false;
+			Highlight = settings.Highlight;
+		});
+		namegenerator = Pipeline.NameGenerators.MangledShuffled;
+		conventions = conventions;
+		steps = {};
+	}
+
+	setmetatable(pipeline, self);
+	self.__index = self;
+
+	return pipeline;
+end
+
+function Pipeline:fromConfig(config)
+	config = config or {};
+	local pipeline = Pipeline:new({
+		LuaVersion = config.LuaVersion or LuaVersion.Lua51;
+		PrettyPrint = config.PrettyPrint or false;
+		SourceMap = config.SourceMap == true;
+		SourceMapIncludeSources = config.SourceMapIncludeSources ~= false;
+		VarNamePrefix = config.VarNamePrefix or "";
+		Seed = config.Seed or 0;
+	});
+
+	pipeline:setNameGenerator(config.NameGenerator or "MangledShuffled")
+
+	-- Add all Steps defined in Config
+	local steps = config.Steps or {};
+	for i, step in ipairs(steps) do
+		if type(step.Name) ~= "string" then
+			logger:error("Step.Name must be a String");
+		end
+		local constructor = pipeline.Steps[step.Name];
+		if not constructor then
+			logger:error(string.format("The Step \"%s\" was not found!", step.Name));
+		end
+		pipeline:addStep(constructor:new(step.Settings or {}));
+	end
+
+	return pipeline;
+end
+
+function Pipeline:addStep(step)
+	table.insert(self.steps, step);
+end
+
+function Pipeline:resetSteps(_)
+	self.steps = {};
+end
+
+function Pipeline:getSteps()
+	return self.steps;
+end
+
+function Pipeline:setOption(name, _)
+	assert(false, "TODO");
+	if(Pipeline.DefaultSettings[name] ~= nil) then
+
+	else
+		logger:error(string.format("\"%s\" is not a valid setting"));
+	end
+end
+
+function Pipeline:setLuaVersion(luaVersion)
+	local conventions = Enums.Conventions[luaVersion];
+	if(not conventions) then
+		logger:error("The Lua Version \"" .. luaVersion
+			.. "\" is not recognized by the Tokenizer! Please use one of the following: \"" .. table.concat(util.keys(Enums.Conventions), "\",\"") .. "\"");
+	end
+
+	self.parser = Parser:new({
+		luaVersion = luaVersion;
+	});
+	self.unparser = Unparser:new({
+		LuaVersion = luaVersion;
+		PrettyPrint = self.PrettyPrint;
+		SourceMap = self.SourceMap;
+		SourceMapIncludeSources = self.SourceMapIncludeSources;
+	});
+	self.conventions = conventions;
+end
+
+function Pipeline:getLuaVersion()
+	return self.luaVersion;
+end
+
+function Pipeline:setNameGenerator(nameGenerator)
+	if(type(nameGenerator) == "string") then
+		nameGenerator = Pipeline.NameGenerators[nameGenerator];
+	end
+
+	if(type(nameGenerator) == "function" or type(nameGenerator) == "table") then
+		self.namegenerator = nameGenerator;
+		return;
+	else
+		logger:error("The Argument to Pipeline:setNameGenerator must be a valid NameGenerator function or function name e.g: \"mangled\"")
+	end
+end
+
+function Pipeline:apply(code, filename)
+	local startTime = gettime();
+	filename = filename or "Anonymous Script";
+	logger:info(string.format("Applying Obfuscation Pipeline to %s ...", filename));
+
+	-- Seed the Random Generator
+	if(self.Seed > 0) then
+		math.randomseed(self.Seed);
+	else
+		--> use secure random number generator
+		local success, seed = pcall(function()
+			if not io or not io.popen then
+				error("io.popen is unavailable")
+			end
+			local handle = io.popen("openssl rand -hex 12")
+			if not handle then
+				error("Failed to execute openssl")
+			end
+			local seedStr = handle:read("*a")
+			local ok = handle:close()
+			if ok == false or ok == nil then
+				error("openssl command failed")
+			end
+			if not seedStr then
+				error("Failed to read from openssl")
+			end
+			seedStr = seedStr:gsub("%s+", "")
+			if #seedStr ~= 24 or not seedStr:match("^%x+$") then
+				error("Invalid openssl output")
+			end
+
+			local seedNum = 0;
+
+			--> NOTE: accumulate modulo 2147483647 so it fits in signed 32-bit integer without double overflow
+			for i = 1, #seedStr do
+				local char = seedStr:sub(i, i):lower()
+				local digit = char:match("%d") and (char:byte() - 48) or (char:byte() - 87)
+				seedNum = (seedNum * 16 + digit) % 2147483647
+			end
+
+			if seedNum == 0 then
+				seedNum = 1
+			end
+
+			return seedNum
+		end)
+
+		if success then
+			math.randomseed(seed)
+		else
+			logger:warn("OpenSSL is unavailable. Falling back to unix time.");
+			local now = (os and os.time) and os.time() or 1
+			local clock = (os and os.clock) and math.floor(os.clock() * 1000000) or 0
+			local fallback = (now + clock) % 2147483647
+			if fallback == 0 then
+				fallback = 1
+			end
+			math.randomseed(fallback)
+		end
+	end
+
+	logger:info("Parsing ...");
+	local parserStartTime = gettime();
+
+	local sourceLen = string.len(code);
+	local ast = self.parser:parse(code, filename);
+
+	local parserTimeDiff = gettime() - parserStartTime;
+	logger:info(string.format("Parsing Done in %.2f seconds", parserTimeDiff));
+
+	-- User Defined Steps
+	for i, step in ipairs(self.steps) do
+		local stepStartTime = gettime();
+		logger:info(string.format("Applying Step \"%s\" ...", step.Name or "Unnamed"));
+		local newAst = step:apply(ast, self);
+		if type(newAst) == "table" then
+			ast = newAst;
+		end
+		Source.fill(ast, Source.generated(step.Name or 'step'));
+		analyzeBindings(ast);
+		logger:info(string.format("Step \"%s\" Done in %.2f seconds", step.Name or "Unnamed", gettime() - stepStartTime));
+	end
+
+	-- Rename Variables Step
+	self:renameVariables(ast);
+
+	local map;
+	code, map = self:unparse(ast);
+
+	local timeDiff = gettime() - startTime;
+	logger:info(string.format("Obfuscation Done in %.2f seconds", timeDiff));
+
+	logger:info(string.format("Generated Code size is %.2f%% of the Source Code size", (string.len(code) / sourceLen)*100))
+
+	return code, map;
+end
+
+function Pipeline:unparse(ast)
+	local startTime = gettime();
+	logger:info("Generating Code ...");
+
+	-- Options can be changed directly by existing programmatic consumers.
+	self.unparser.sourceMap = self.SourceMap;
+	self.unparser.includeSources = self.SourceMapIncludeSources;
+	self.unparser.prettyPrint = self.PrettyPrint;
+	local unparsed, map = self.unparser:unparse(ast);
+
+	local timeDiff = gettime() - startTime;
+	logger:info(string.format("Code Generation Done in %.2f seconds", timeDiff));
+
+	return unparsed, map;
+end
+
+function Pipeline:renameVariables(ast)
+	analyzeBindings(ast);
+	local startTime = gettime();
+	logger:info("Renaming Variables ...");
+
+
+	local generatorFunction = self.namegenerator or Pipeline.NameGenerators.mangled;
+	if(type(generatorFunction) == "table") then
+		if (type(generatorFunction.prepare) == "function") then
+			generatorFunction.prepare(ast);
+		end
+		generatorFunction = generatorFunction.generateName;
+	end
+
+	if not self.unparser:isValidIdentifier(self.VarNamePrefix) and #self.VarNamePrefix ~= 0 then
+		logger:error(string.format("The Prefix \"%s\" is not a valid Identifier in %s", self.VarNamePrefix, self.LuaVersion));
+	end
+
+	renameVariables(ast, {
+		Keywords = self.conventions.Keywords;
+		generateName = generatorFunction;
+		prefix = self.VarNamePrefix;
+	});
+
+	local timeDiff = gettime() - startTime;
+	logger:info(string.format("Renaming Done in %.2f seconds", timeDiff));
+end
+
+return Pipeline;

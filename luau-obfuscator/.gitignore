@@ -1,0 +1,10 @@
+# Generated / test artifacts
+tests/out*.luau
+tests/boot*.luau
+tests/rich_*.luau
+tests/f_*.luau
+tests/v1.luau
+tests/v2.luau
+tests/_t_*.luau
+tests/*.kyzen.luau
+*.kyzen.luau
