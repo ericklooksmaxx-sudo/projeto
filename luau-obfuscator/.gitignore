@@ -8,3 +8,10 @@ tests/v2.luau
 tests/_t_*.luau
 tests/*.kyzen.luau
 *.kyzen.luau
+
+# Generated example outputs (keep demo.luau source only)
+examples/*.light.luau
+examples/*.medium.luau
+examples/*.max.luau
+examples/*.bootstrap.luau
+examples/*.fortress.luau
