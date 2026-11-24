@@ -1,0 +1,15 @@
+[Event "Teste: Belief x autor"]
+[Site "prob-chess"]
+[Date "2026.11.24"]
+[White "Claude"]
+[Black "Belief (persona mestre, 5s/lance, seed 2026)"]
+[Result "1-0"]
+[ECO "B02"]
+[Opening "Defesa Alekhine"]
+
+1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 dxe5 5. cxd5 exd4 6. Qxd4 c6 7. Nc3 cxd5
+8. Qxd5 Qxd5 9. Nxd5 e5 10. Nc7+ Kd8 11. Nxa8 Bb4+ 12. Bd2 Bxd2+ 13. Kxd2 Ke7
+14. Nc7 Rd8+ 15. Ke2 Bg4+ 16. f3 Na6 17. fxg4 Nxc7 18. Rd1 Nb5 19. Rxd8 Kxd8
+20. Nf3 e4 21. Nd4 Nxd4+ 22. Ke3 Nc6 23. Kxe4 Nb4 24. Bc4 f5+ 25. gxf5 b5
+26. Bxb5 g6 27. fxg6 Ke7 28. gxh7 Nc2 29. h8=Q Ne3 30. Kxe3 Kd6 31. Qd8+ Ke6
+32. Rf1 a6 33. Rf6+ Ke5 34. Qd4# 1-0
