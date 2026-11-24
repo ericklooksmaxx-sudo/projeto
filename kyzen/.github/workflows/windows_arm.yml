@@ -1,0 +1,54 @@
+name: Windows Arm64 Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_windows_arm:
+    name: Build Flutter (Windows Arm64)
+    runs-on: windows-11-arm
+    env:
+      PUB_ENVIRONMENT: "ci"
+      CL: "/D_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'master'
+          architecture: arm64
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Activate FastForge
+        run: dart pub global activate fastforge
+
+      - name: Add FastForge to path
+        run: echo "$env:USERPROFILE\.pub-cache\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Create .env.json
+        shell: bash
+        run: echo '${{ secrets.ENV_JSON }}' > .env.json
+
+      - name: Build Windows Arm64 release
+        run: flutter build windows --release --dart-define-from-file=.env.json
+
+      - name: Get short commit hash
+        id: vars
+        shell: bash
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Package Release
+        shell: pwsh
+        run: |
+          $sha = "${{ steps.vars.outputs.sha_short }}"
+          Compress-Archive -Path "build\windows\arm64\runner\Release\*" -DestinationPath "Kyzen_$sha`_arm64.zip"
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kyzen-Windows-Arm64
+          path: Kyzen_*_arm64.zip

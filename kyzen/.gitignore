@@ -1,0 +1,86 @@
+dist/
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Secrets
+.env.json
+
+# Kyzen
+/output_dlc
+.cxx
+settings_app.json
+prepare_src_release.py
+kyzen.csr
+kyzen.crt
+kyzen.key
+kyzen.pfx
+# the SignTool README still makes these names; keep them out of git too
+toolcoin.csr
+toolcoin.crt
+toolcoin.key
+toolcoin.pfx
+
+# Vitepress docs
+
+webdocs/.vitepress/dist/
+webdocs/.vitepress/cache/
+webdocs/node_modules/
+
+.vscode/settings.json
+.zed
+/l10n_json
+# Android
+.last_build_id
+android/build/
+
+codeberg_deploy_key*
+
+integration_test/test_brarchive/
+integration_test/legacy_brarchive_test/
+
+# Widget Preview related
+.widget_preview/

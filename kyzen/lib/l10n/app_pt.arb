@@ -1,0 +1,1540 @@
+{
+  "@@locale": "pt",
+  "home": "Início",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "Downloads",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "Configurações",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "Selecionar Idioma",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "Idioma",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "Download",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "Pesquisar...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "Padrão",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "Criadores",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Checando chaves",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "Login via API",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "Adicionadas {keyCount} novas chaves",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Nenhum resultado encontrado",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "Abrir",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "Limpar",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "Tentar novamente",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "queuePosition": "Em fila (Posição #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "Em fila #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Imagem salva em {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Erro ao baixar a imagem: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "Registro de alterações",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "Baixado",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "Tentar novamente o download",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "Baixar imagem",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "Fazer o download desta imagem?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "Assista ao trailer",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "Não foi possível abrir o trailer: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Aparência",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "Modo Escuro",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "Modo escuro ativado",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "Modo claro ativado",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "Esquema de cores",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "Padrão",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "Padrão (Roxo)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "Azul",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Verde",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Laranja",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Vermelho",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Verde-azulado",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Rosa",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Verde-limão",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "Filtros",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "Filtro:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "Mostrar skins",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Chaves",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "Atualizar automaticamente",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "Banco de dados personalizado",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "Login da conta",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "Extras",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "Cache",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "Limpou {size} MB de cache",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "Perguntas frequentes",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "Perguntas frequentes",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "Terminal",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "Por favor, adicione as chaves para este e aquele pacote!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "Quando as chaves serão atualizadas?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "Qual a diferença entre criptografado e descriptografado?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "Onde posso encontrar os pacotes baixados?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "O que é keys.tsv?",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion6": "Como posso usar itens de Persona?",
+  "@faqQuestion6": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion7": "Por que alguns pacotes de skins parecem estar corrompidos?",
+  "@faqQuestion7": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion8": "Qual é a finalidade da página \"Login da Conta\"?",
+  "@faqQuestion8": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion9": "O que significa o símbolo de visto?",
+  "@faqQuestion9": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "O processo de obtenção das chaves não é mágico: alguém ainda precisa comprar o pacote e compartilhar as chaves conosco. Sem que alguém o comprasse, não haveria chaves de descriptografia. Não é possível obtê-las de outra forma. Aguarde pacientemente ou compre o pacote.",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "Assim que decidirmos.",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "Criptografado: significa transformar o arquivo em palavras embaralhadas que parecem um amontoado de caracteres sem sentido. Ninguém consegue lê-lo sem uma chave especial. Conteúdo criptografado do Minecraft é impossível de jogar.\n\nDescriptografado: significa usar a chave especial para transformar o amontoado de caracteres sem sentido de volta ao conteúdo original. Agora o conteúdo do Minecraft pode ser usado.",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "Você pode encontrar os pacotes em Download/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "É um arquivo que armazena os UUIDs dos pacotes com suas respectivas chaves de descriptografia. Sem as chaves de descriptografia, os pacotes baixados não poderiam ser jogados.",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "faqAnswer6": "Não é possível. Existem alguns métodos, mas dada a complexidade envolvida, não é viável.",
+  "@faqAnswer6": {
+    "description": "Answer for FAQ question 6"
+  },
+  "faqAnswer7": "Alguns pacotes de skins (especialmente colaborações com franquias) usam geometria personalizada, cujo uso normal o Minecraft não permite, a menos que você compre o pacote. Você pode verificar se um pacote de skins usa geometria personalizada verificando se o arquivo \"geometry.json\" existe no pacote. Lembre-se de que esse problema não está relacionado à ferramenta de forma alguma.",
+  "@faqAnswer7": {
+    "description": "Answer for FAQ question 7"
+  },
+  "faqAnswer8": "A página de login da conta permite que você se autentique com sua conta Microsoft para carregar diretamente suas chaves do Minecraft do seu inventário. Isso é útil quando o Kyzen não tem uma chave disponível para um DLC específico, mas você o possui em sua conta. Assim que suas chaves forem carregadas, o DLC aparecerá disponível para download. Observe que as chaves são enviadas automaticamente para nosso banco de dados, onde serão posteriormente integradas ao banco de dados principal de chaves do Kyzen para que todos possam aproveitar o novo DLC. Portanto, use este recurso se quiser contribuir.",
+  "@faqAnswer8": {
+    "description": "Answer for FAQ question 8"
+  },
+  "faqAnswer9Checkmark": "A chave para este DLC já está disponível.",
+  "@faqAnswer9Checkmark": {
+    "description": "Answer for FAQ question 9. checkmark ok"
+  },
+  "faqAnswer9NoCheckmark": "O aplicativo não possui atualmente a chave para este DLC.",
+  "@faqAnswer9NoCheckmark": {
+    "description": "Answer for FAQ question 9. no checkmark"
+  },
+  "faqAnswer9ExtraInfo": "São necessárias chaves para desbloquear os DLCs.",
+  "@faqAnswer9ExtraInfo": {
+    "description": "Extra information for FAQ question 9"
+  },
+  "faqQuestionDownload": "Por que o botão de download está indisponível?",
+  "@faqQuestionDownload": {
+    "description": "Used on the item detail page"
+  },
+  "faqAnswerDownload": "A chave para desbloquear este DLC não está disponível. Aguarde pacientemente ou compre-o.",
+  "@faqAnswerDownload": {
+    "description": "Answer for faq download item detail page"
+  },
+  "faqQuestionKey": "Como faço para obter a chave?",
+  "@faqQuestionKey": {
+    "description": "used on the item detail page"
+  },
+  "faqAnswerKey": "Compre o DLC na sua conta e depois vá em Configurações > Login da conta > Clique em 'Iniciar autenticação' > clique em 'Carregar chaves', agora clique em 'Compartilhar' e compartilhe os arquivos de chave no chat do Bluecoin. As chaves serão adicionadas ao banco de dados do aplicativo. Se você não conseguir compartilhar o arquivo de chave no grupo, não se preocupe, as chaves são carregadas automaticamente para um banco de dados.",
+  "@faqAnswerKey": {
+    "description": "Answer for faq key item detail page"
+  },
+  "faqMoreHelp": "Mais ajuda",
+  "@faqMoreHelp": {
+    "description": "Used on the pop up dialog faq item detail page"
+  },
+  "faqNotAdlc": "Não é um DLC",
+  "@faqNotAdlc": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqNotAdlcDescription": "Este item não é um DLC.",
+  "@faqNotAdlcDescription": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqServerContent": "Conteúdo do servidor",
+  "@faqServerContent": {
+    "description": "Used on the faq item detail page"
+  },
+  "faqServerContentDescription": "Este item é exclusivo de um servidor específico e não pode ser baixado diretamente.",
+  "@faqServerContentDescription": {
+    "description": "Used on the faq item detail page"
+  },
+  "fileDeleted": "Arquivo excluído",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "Arquivos armazenados",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "Atualizar arquivos",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "Excluir arquivo",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "Tem certeza de que deseja excluir {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "CANCELAR",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "EXCLUIR",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "Download atual",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "Nenhum download ativo",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "Downloads concluídos",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "Limpar tudo",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "Importar para o Minecraft",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "openFileinExplorer": "Abrir no explorador de arquivos",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  },
+  "shareFile": "Compartilhar arquivo",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "Terminal de Depuração",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "Limpar registros",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "Ainda não há registros...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "saveLogs": "Salvar registros",
+  "@saveLogs": {
+    "description": "Used on debug page"
+  },
+  "logsSaved": "Registros salvos em {filePath}",
+  "@logsSaved": {
+    "description": "Message shown when logs are saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Documents/logs.txt"
+      }
+    }
+  },
+  "selectingFile": "Selecionando arquivo...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "Processando arquivo...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "Arquivo processado com sucesso!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "Nenhum arquivo selecionado",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "{count} chaves personalizadas carregadas",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "Nenhuma chave personalizada carregada",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "Importe um arquivo com o formato UUID=CHAVE",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "Itens {contentType}",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} Itens ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Itens do Criador",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "Este criador não tem conteúdo",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "Não há estatísticas disponíveis",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Falha ao carregar as estatísticas",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "Nenhum resultado encontrado",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Autenticação da Microsoft",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "Trocar código de autorização por token...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "Falha na autenticação: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Autenticação realizada com sucesso!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "falha ao trocar o código pelo token: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Nenhum código de autorização recebido",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "Nenhuma nova chave encontrada para copiar",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Chaves copiadas para a área de transferência!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "Nenhuma nova chave encontrada para compartilhar",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Chaves compartilhadas com sucesso!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "Verificando a autenticação existente...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "Já autenticado!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "Pronto para autenticar",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "Autenticar com o URL",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuthButton": "Autenticação completa",
+  "@completeAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "openAuthPageButton": "Abrir página de autenticação",
+  "@openAuthPageButton": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "Conclua a autenticação no seu navegador. Você será redirecionado de volta para o aplicativo.",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "copyUrl": "Copiar URL",
+  "@copyUrl": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "Não foi possível abrir a página de autenticação",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "Saindo da sessão...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "Sessão encerrada com sucesso",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "Utilizando sessão em cache...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "Carregando chaves do Minecraft...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Solicitando token do Xbox Live...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "A iniciar sessão no PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "Obtendo informações do usuário...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "Iniciando sessão de Minecraft...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "Carregando o inventário do Minecraft...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "Chaves {keyCount} carregadas com sucesso!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Erro ao carregar chaves: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Copiado para a área de transferência",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "Autenticado",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "Não autenticado",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "URL de autenticação",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "Chaves carregadas",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "Exportar somente chaves novas",
+  "@exportNewKeys": {
+    "description": "Used on the auth page and mcdecryptor page"
+  },
+  "loadKeysButton": "Carregar chaves",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "Sair",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "Iniciar autenticação",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Oi",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "copy": "Copiar",
+  "@copy": {
+    "description": "Used on the auth page"
+  },
+  "save": "Salvar",
+  "@save": {
+    "description": "Used on the auth page"
+  },
+  "share": "Compartilhar",
+  "@share": {
+    "description": "Used on the auth page"
+  },
+  "keysSaved": "Chaves salvas com sucesso",
+  "@keysSaved": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "Iniciando o download...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "Downloads concluídos",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Concluído!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Falha no download",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Baixando",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Processamento",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "Extraindo arquivo zip...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Descriptografando conteúdo...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Comprimindo pacote...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Limpando...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "Mostrar tudo",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "Somente disponível",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "Apenas não disponível",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "customColor": "Cor personalizada",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "Toque para alterar sua cor personalizada",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "Crie seu próprio esquema de cores",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "Escolha a cor",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "Selecione",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "Imagens",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "Salvar em PNG",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "Salvar na galeria",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "Compressão",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "Compressão normal",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "Sem compressão",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "Copiar UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "Abrir no Minecraft",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "Criador",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "addToCart": "Adicionar ao carrinho",
+  "@addToCart": {
+    "description": "Button to add an item to the cart"
+  },
+  "removeFromCart": "Remover do carrinho",
+  "@removeFromCart": {
+    "description": "Button to remove an item from the cart"
+  },
+  "addedToCart": "Adicionado ao carrinho",
+  "@addedToCart": {
+    "description": "Message shown when an item is added to the cart"
+  },
+  "removedFromCart": "Removido do carrinho",
+  "@removedFromCart": {
+    "description": "Message shown when an item is removed from the cart"
+  },
+  "authRequired": "Autenticação necessária",
+  "@authRequired": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "authRequiredDesc": "Você precisa estar totalmente autenticado para visualizar seu carrinho. Por favor, autentique-se na página de login da sua conta.",
+  "@authRequiredDesc": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "newUpdate": "Nova atualização",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "Novo DLC",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "Escondido",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "Persona",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "Skins",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "Mashups",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "Mundos",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "Texturas",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "Complementos",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "capes": "Capas",
+  "@capes": {
+    "description": "Used on the bottom sheet for the mojang creator"
+  },
+  "vibrantVisuals": "Visuais vibrantes",
+  "@vibrantVisuals": {
+    "description": "Used on the dropdown filter"
+  },
+  "favorites": "Favoritos",
+  "@favorites": {
+    "description": "Used on the dropdown filter"
+  },
+  "unfiltered": "Sem filtro",
+  "@unfiltered": {
+    "description": "Used on the dropdown filter"
+  },
+  "sorting": "Classificação",
+  "@sorting": {
+    "description": "Used on the dropdown filter"
+  },
+  "type": "Tipo",
+  "@type": {
+    "description": "Used on the dropdown filter"
+  },
+  "newFilter": "Novo",
+  "@newFilter": {
+    "description": "Used on the dropdown filter"
+  },
+  "other": "Outro",
+  "@other": {
+    "description": "Used on the dropdown filter"
+  },
+  "newest": "Mais recente",
+  "@newest": {
+    "description": "Used on the dropdown filter"
+  },
+  "oldest": "Mais antigo",
+  "@oldest": {
+    "description": "Used on the dropdown filter"
+  },
+  "mostRated": "Mais avaliado",
+  "@mostRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "leastRated": "Menos avaliado",
+  "@leastRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "Menu",
+  "@menu": {
+    "description": "tooltip for menu button"
+  },
+  "imageSavedToGallery": "Imagem salva na galeria: {filePath}",
+  "@imageSavedToGallery": {
+    "description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "vibrantVisualEnhanced": "Visuais vibrantes aprimorados",
+  "@vibrantVisualEnhanced": {
+    "description": "used on the item detail page"
+  },
+  "uuidCopied": "UUID copiado para a área de transferência",
+  "@uuidCopied": {
+    "description": "message shown when UUID is copied to clipboard"
+  },
+  "scrollRight": "Deslize para a direita",
+  "@scrollRight": {
+    "description": "tooltip for scrolling right for desktop"
+  },
+  "scrollLeft": "Deslize para a esquerda",
+  "@scrollLeft": {
+    "description": "tooltip for scrolling left for desktop"
+  },
+  "previousImage": "Imagem anterior",
+  "@previousImage": {
+    "description": "tooltip for previous image button for desktop"
+  },
+  "nextImage": "Próxima imagem",
+  "@nextImage": {
+    "description": "tooltip for next image button for desktop"
+  },
+  "favoriteEmpty": "Sua lista de favoritos está vazia",
+  "@favoriteEmpty": {
+    "description": "shown when there is no favorite items"
+  },
+  "favoriteDescription": "Toque no ícone de coração na página de detalhes de qualquer item para adicioná-lo aos seus favoritos e aumentar sua coleção",
+  "@favoriteDescription": {
+    "description": "shown when there is no favorite items"
+  },
+  "removeFromFavorites": "Remover dos favoritos",
+  "@removeFromFavorites": {
+    "description": "tooltip for removing item from favorites"
+  },
+  "addToFavorites": "Adicionar aos favoritos",
+  "@addToFavorites": {
+    "description": "tooltip for adding item to favorites"
+  },
+  "addedToFavorites": "Adicionado aos favoritos",
+  "@addedToFavorites": {
+    "description": "message shown when an item is added to favorites"
+  },
+  "removedFromFavorites": "Removido dos favoritos",
+  "@removedFromFavorites": {
+    "description": "message shown when an item is removed from favorites"
+  },
+  "noNewKeysFoundToSave": "Nenhuma chave encontrada para salvar",
+  "@noNewKeysFoundToSave": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "keysSavedSuccessfully": "As chaves foram salvas com sucesso na pasta Kyzen.",
+  "@keysSavedSuccessfully": {
+    "description": "Used on the Mcdecryptor page and auth page"
+  },
+  "entitlementKeys": "Chaves de autorização",
+  "@entitlementKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchBoughContent": "Pesquise o conteúdo que você comprou no Minecraft.",
+  "@searchBoughContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "saveKeys": "Salvar chaves",
+  "@saveKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "refresh": "Atualizar",
+  "@refresh": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchKeys": "Chaves de pesquisa",
+  "@searchKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadSkinPersona": "Carregar SkinPack/Persona",
+  "@loadSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionSkinPersona": "Inclua o pacote de skins e a persona na lista",
+  "@descriptionSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadOnlyNewKeys": "Carregar apenas chaves novas",
+  "@loadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionLoadOnlyNewKeys": "Carregar apenas o conteúdo que não está presente no banco de dados de chaves do aplicativo",
+  "@descriptionLoadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionExportNewKeys": "Se a opção \"salvar chaves\" deve exportar apenas chaves novas",
+  "@descriptionExportNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processedEntitlementKeys": "Processados ​​com sucesso ({countFiles} arquivos, {countKeys} chaves)",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "noResultsYet": "Ainda não há resultados",
+  "@noResultsYet": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "clickSearchKeysToLoadContent": "Clique em \"Palavras-chave de pesquisa\" para carregar seu conteúdo",
+  "@clickSearchKeysToLoadContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "tryadifferentSearch": "Tente um termo de pesquisa diferente",
+  "@tryadifferentSearch": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftNotInstalled": "Não foram encontrados caminhos de instalação válidos para o Minecraft. Certifique-se de que o Minecraft Bedrock Edition (UWP ou GDK) esteja instalado e tenha sido executado pelo menos uma vez.",
+  "@minecraftNotInstalled": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processingError": "Erros de processamento",
+  "@processingError": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "dismiss": "Dispensar",
+  "@dismiss": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "failedFiles": "Arquivos com falha:",
+  "@failedFiles": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftFont": "Fonte do Minecraft",
+  "@minecraftFont": {
+    "description": "Used to refer to the Minecraft font in the settings tab"
+  },
+  "usingMinecraftFont": "Usando fonte estilo Minecraft",
+  "@usingMinecraftFont": {
+    "description": "Used on the settings tab to indicate that the Minecraft font is being used"
+  },
+  "usingDefaultFont": "Usando a fonte padrão",
+  "@usingDefaultFont": {
+    "description": "Used on the settings tab to indicate that the default font is being used"
+  },
+  "dlcLanguage": "Idioma do DLC",
+  "@dlcLanguage": {
+    "description": "Used on the settings tab to refer to the language of the DLC content"
+  },
+  "dlcLangInfo": "Informações sobre o idioma do DLC",
+  "@dlcLangInfo": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "dlcLangInfoText": "Observe que alguns DLCs podem não ter tradução disponível. Isso depende exclusivamente da loja de aplicativos e não do aplicativo em si.",
+  "@dlcLangInfoText": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "pageSize": "Tamanho da página",
+  "@pageSize": {
+    "description": "Used on the settings tab to refer to the number of items shown per page in the item list"
+  },
+  "pageSizeInfo": "Informações sobre o tamanho da página",
+  "@pageSizeInfo": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "pageSizeInfoText": "Controla quantos itens são carregados de uma só vez. • Valores mais baixos: Melhor para conexões lentas (solicitações mais frequentes) • Valores mais altos: Melhor para conexões rápidas (menos solicitações) Todos os resultados permanecem acessíveis independentemente do tamanho da página. Itens adicionais são carregados automaticamente quando você chega ao final da lista.",
+  "@pageSizeInfoText": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "selectDlcLanguage": "Selecione o idioma do DLC",
+  "@selectDlcLanguage": {
+    "description": "Used on the settings tab for selecting the DLC language"
+  },
+  "downloadPathUpdated": "Caminho de download atualizado",
+  "@downloadPathUpdated": {
+    "description": "Used on the settings tab for showing a message when the download path is updated"
+  },
+  "downloadPathReset": "O caminho de download foi redefinido para o padrão.",
+  "@downloadPathReset": {
+    "description": "Used on the settings tab for showing a message when the download path is reset to default"
+  },
+  "resetDefaults": "Restaurar para as configurações padrão",
+  "@resetDefaults": {
+    "description": "Used on the settings tab for resetting the download path to default"
+  },
+  "chooseFolder": "Selecione a pasta",
+  "@chooseFolder": {
+    "description": "Used on the settings tab for choosing a custom download path"
+  },
+  "downloadPath": "Caminho de download",
+  "@downloadPath": {
+    "description": "Used on the settings tab to refer to the path where downloaded packs are saved"
+  },
+  "version": "Versão",
+  "@version": {
+    "description": "Used on the settings tab to refer to the app version"
+  },
+  "purchasing": "Compras",
+  "@purchasing": {
+    "description": "Used on the cart page when the user is purchasing a DLC pack"
+  },
+  "failedPurchase": "Falha na compra",
+  "@failedPurchase": {
+    "description": "Used on the cart page when the purchase of a DLC pack fails"
+  },
+  "allItemsSuccessfullyPurchased": "Todos os itens foram comprados com sucesso!",
+  "@allItemsSuccessfullyPurchased": {
+    "description": "Used on the cart page when all items in the cart are successfully purchased"
+  },
+  "insufficientFunds": "Fundos insuficientes para {insufficientFundsItems} item(ns)",
+  "@insufficientFunds": {
+    "description": "Used on the cart page when the user doesn't have enough funds to purchase the items in the cart",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "somePurchasesFailed": "Algumas compras falharam",
+  "@somePurchasesFailed": {
+    "description": "Used on the cart page when some items in the cart fail to be purchased but not all"
+  },
+  "numItemsAreNotPurchasable": "{numItems} item(ns) não estão disponíveis para compra",
+  "@numItemsAreNotPurchasable": {
+    "description": "Used on the cart page when some items in the cart are not purchasable",
+    "placeholders": {
+      "numItems": {
+        "type": "int",
+        "description": "Number of items that are not purchasable"
+      }
+    }
+  },
+  "purchaseComplete": "Compra concluída",
+  "@purchaseComplete": {
+    "description": "Used on the cart page when the purchase process is complete"
+  },
+  "confirmPurchase": "Confirmar compra",
+  "@confirmPurchase": {
+    "description": "Used on the cart page"
+  },
+  "confirmPurchaseMessage": "Tem certeza de que deseja comprar {itemsText}?",
+  "@confirmPurchaseMessage": {
+    "description": "Used on the cart page when confirming a purchase",
+    "placeholders": {
+      "itemsText": {
+        "type": "String",
+        "description": "Text describing the items being purchased, e.g. 'Skin Pack 1'"
+      }
+    }
+  },
+  "totalPrice": "Preço total:",
+  "@totalPrice": {
+    "description": "Used on the cart page to indicate the total price of the items being purchased"
+  },
+  "purchaseResults": "Resultados da compra",
+  "@purchaseResults": {
+    "description": "Used on the cart page to indicate the results of the purchase process"
+  },
+  "successfullyPurchased": "Compra realizada com sucesso: {successItems} item(ns)",
+  "@successfullyPurchased": {
+    "description": "Used on the cart page to indicate the number of items successfully purchased",
+    "placeholders": {
+      "successItems": {
+        "type": "int",
+        "description": "Number of items that were successfully purchased"
+      }
+    }
+  },
+  "alreadyOwnded": "Já possuído: {alreadyOwnedItems} item(ns)",
+  "@alreadyOwnded": {
+    "description": "Used on the cart page to indicate the number of items that were already owned",
+    "placeholders": {
+      "alreadyOwnedItems": {
+        "type": "int",
+        "description": "Number of items that were already owned"
+      }
+    }
+  },
+  "numItemsNotPurchasable": "Não disponível para compra: {notPurchasableItems} item(ns)",
+  "@numItemsNotPurchasable": {
+    "description": "Used on the cart page to indicate the number of items that were not purchasable",
+    "placeholders": {
+      "notPurchasableItems": {
+        "type": "int",
+        "description": "Number of items that were not purchasable"
+      }
+    }
+  },
+  "numItemsInsufficientFunds": "Fundos insuficientes: {insufficientFundsItems} item(ns)",
+  "@numItemsInsufficientFunds": {
+    "description": "Used on the cart page to indicate the number of items that couldn't be purchased due to insufficient funds",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "numItemsFailed": "Compras falhadas: {failedItemsCount} item(ns)",
+  "@numItemsFailed": {
+    "description": "Used on the cart page to indicate the number of items that failed to be purchased",
+    "placeholders": {
+      "failedItemsCount": {
+        "type": "int",
+        "description": "Number of items that failed to be purchased"
+      }
+    }
+  },
+  "clearCart": "Limpar carrinho",
+  "@clearCart": {
+    "description": "Used on the cart page to clear all items from the cart"
+  },
+  "clearCartConfirmation": "Tem certeza de que deseja remover todos os itens do seu carrinho?",
+  "@clearCartConfirmation": {
+    "description": "Confirmation message when clearing the cart"
+  },
+  "cartTitleNum": "Carrinho ({count})",
+  "@cartTitleNum": {
+    "description": "Used as the title of the cart page with the number of items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "cartisEmpty": "Seu carrinho está vazio",
+  "@cartisEmpty": {
+    "description": "Message shown when the cart is empty"
+  },
+  "cartEmptyDescription": "Toque no ícone do carrinho na página de detalhes de qualquer item para adicioná-lo ao seu carrinho e comprá-lo.",
+  "@cartEmptyDescription": {
+    "description": "Message shown when the cart is empty"
+  },
+  "purchasingInProgress": "Comprando...",
+  "@purchasingInProgress": {
+    "description": "Message shown when a purchase is in progress"
+  },
+  "purchaseAllnum": "Comprar tudo ({count})",
+  "@purchaseAllnum": {
+    "description": "Used on the cart page to purchase all items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "nowNewdlcFound": "Nenhum novo DLC encontrado",
+  "@nowNewdlcFound": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "nowNewDlcFoundDescription": "Todos os DLCs já estão presentes no banco de dados do aplicativo.",
+  "@nowNewDlcFoundDescription": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "noDlcFound": "Nenhum DLC encontrado",
+  "@noDlcFound": {
+    "description": "Used on the auth page when no dlc is found"
+  },
+  "noDlcAvailable": "Nenhum conteúdo DLC disponível",
+  "@noDlcAvailable": {
+    "description": "Used on the auth page dlc list"
+  },
+  "openDlcsList": "Abrir DLCs",
+  "@openDlcsList": {
+    "description": "Used on the auth page to open the list of dlcs"
+  },
+  "appUpdates": "Atualizações do aplicativo",
+  "@appUpdates": {
+    "description": "Used on the changelog page"
+  },
+  "appUpdatesDescription": "Veja as novidades das versões mais recentes do aplicativo.",
+  "@appUpdatesDescription": {
+    "description": "Used on the changelog page"
+  },
+  "socials": "Redes sociais",
+  "@socials": {
+    "description": "Used on the settings page"
+  },
+  "selectApp": "Selecione o aplicativo",
+  "@selectApp": {
+    "description": "Title for the app picker dialog"
+  },
+  "noAppsFound": "Nenhum aplicativo encontrado",
+  "@noAppsFound": {
+    "description": "Message shown when no apps are found"
+  },
+  "errorLoadingDlcs": "Erro ao carregar os DLCs",
+  "@errorLoadingDlcs": {
+    "description": "Message shown when there is an error loading DLCs"
+  },
+  "dlcs": "DLCs",
+  "@dlcs": {
+    "description": "Title for the DLCs list page"
+  },
+  "errorSavingKeys": "Erro ao salvar as chaves: {error}",
+  "@errorSavingKeys": {
+    "description": "Error message when saving keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorOpeningAuthPage": "Erro ao abrir a página de autenticação: {error}",
+  "@errorOpeningAuthPage": {
+    "description": "Error message when opening authentication page fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gettingEntityToken": "Obtendo token de entidade...",
+  "@gettingEntityToken": {
+    "description": "Status message during authentication"
+  },
+  "loadingMinecoinBalance": "Carregando saldo de Minecoin...",
+  "@loadingMinecoinBalance": {
+    "description": "Status message while loading Minecoin balance"
+  },
+  "completeAuthFirst": "Por favor, conclua a autenticação primeiro",
+  "@completeAuthFirst": {
+    "description": "Message instructing the user to authenticate first"
+  },
+  "sessionExpired": "Sessão expirada. Tente novamente.",
+  "@sessionExpired": {
+    "description": "Error message when session expires"
+  },
+  "accessDenied": "Acesso negado. Por favor, autentique-se novamente.",
+  "@accessDenied": {
+    "description": "Error message when access is denied"
+  },
+  "connectionTimeout": "Tempo limite de conexão excedido. Verifique sua conexão com a internet e tente novamente.",
+  "@connectionTimeout": {
+    "description": "Error message for connection timeout"
+  },
+  "serverError": "Erro no servidor. Tente novamente em alguns instantes.",
+  "@serverError": {
+    "description": "Error message for server errors"
+  },
+  "backToSettings": "Voltar às configurações",
+  "@backToSettings": {
+    "description": "Tooltip text to go back to settings"
+  },
+  "errorInitializingCart": "Erro ao inicializar o carrinho: {error}",
+  "@errorInitializingCart": {
+    "description": "Error message when cart initialization fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingCartItems": "Erro ao carregar os itens do carrinho: {error}",
+  "@errorLoadingCartItems": {
+    "description": "Error message when loading cart items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedLoadMoreItems": "Falha ao carregar mais itens: {error}",
+  "@failedLoadMoreItems": {
+    "description": "Error message when loading more items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSavingLog": "Erro ao salvar o registro de falhas: {error}",
+  "@errorSavingLog": {
+    "description": "Error message when saving logs fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToDeleteFile": "Falha ao excluir o arquivo",
+  "@failedToDeleteFile": {
+    "description": "Error message when deleting a file fails"
+  },
+  "failedToShareFile": "Falha ao compartilhar o arquivo: {error}",
+  "@failedToShareFile": {
+    "description": "Error message when sharing a file fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "personaWarning": "Itens de Persona não podem ser importados para o jogo (como emotes, itens cosméticos e capas).",
+  "@personaWarning": {
+    "description": "Warning message displayed for Persona items"
+  },
+  "initializingMcDec": "Inicializando o McDec...",
+  "@initializingMcDec": {
+    "description": "Status message shown during McDecryptor initialization"
+  },
+  "failedToSaveKeys": "Falha ao salvar as chaves: {error}",
+  "@failedToSaveKeys": {
+    "description": "Error message when saving keys fails in McDecryptor",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "itemDetailsTitle": "Detalhes do item",
+  "@itemDetailsTitle": {
+    "description": "Title of the item details sheet"
+  },
+  "byCreator": "Por {creator}",
+  "@byCreator": {
+    "description": "Prefix followed by the author name",
+    "placeholders": {
+      "creator": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSocials": "Não foi possível carregar os links de redes sociais. Usando as configurações padrão.",
+  "@couldNotLoadSocials": {
+    "description": "Error message when social links fail to load"
+  },
+  "sdCardExternalStorage": "Cartão SD / Armazenamento externo",
+  "@sdCardExternalStorage": {
+    "description": "Display name for SD card or external storage"
+  },
+  "customLocation": "Localização personalizada",
+  "@customLocation": {
+    "description": "Display name for custom location"
+  },
+  "couldNotOpenLink": "Não foi possível abrir o link: {error}",
+  "@couldNotOpenLink": {
+    "description": "Error message when opening link fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "minecraftPackage": "Pacote do Minecraft",
+  "@minecraftPackage": {
+    "description": "Setting item for Minecraft package"
+  },
+  "freeDroidWarnMessage": "O Google anunciou que, a partir de 2026/2027, todos os aplicativos em dispositivos Android certificados exigirão que os desenvolvedores forneçam seus dados pessoais de identidade diretamente ao Google. Como os desenvolvedores deste aplicativo não concordam com esse requisito, o aplicativo deixará de funcionar em dispositivos Android certificados após essa data.",
+  "freeDroidWarnDetails": "Detalhes",
+  "freeDroidWarnSolution": "Solução"
+}

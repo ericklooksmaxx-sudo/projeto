@@ -1,0 +1,27 @@
+{
+  "latest_version": "1.5.0",
+  "changelog": "- Added in-app update support",
+  "platforms": {
+    "android": {
+      "download_url": "https://example.com/releases/v1.5.0/kyzen-1.5.0.apk",
+      "is_direct_download": true,
+      "file_name": "kyzen-1.5.0.apk"
+    },
+    "linux": {
+      "download_url": "https://example.com/releases/v1.5.0/kyzen-1.5.0-linux.tar.gz",
+      "is_direct_download": true,
+      "file_name": "kyzen-1.5.0-linux.tar.gz"
+    },
+    "windows": {
+      "download_url": "https://example.com/releases/v1.5.0/kyzen-1.5.0-windows-x64.zip",
+      "is_direct_download": true,
+      "file_name": "kyzen-1.5.0-windows-x64.zip",
+      "zip_password": "123"
+    },
+    "windows_arm64": {
+      "download_url": "https://github.com/user/repo/releases/tag/v1.5.0",
+      "is_direct_download": false,
+      "file_name": "kyzen-1.5.0-windows-arm64.zip"
+    }
+  }
+}

@@ -1,0 +1,2096 @@
+{
+  "@@locale": "en",
+  "home": "Home",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "Downloads",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "Select Language",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "Download",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "Search...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "Default",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "Creators",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Checking keys",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "API Login",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "Added {keyCount} new keys",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "No results found",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "Open",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "Clear",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "queuePosition": "Queued (Position #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "Queued #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Image saved to {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Error downloading image: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "Changelog",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "Downloaded",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "Retry Download",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "Download Image",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "Download this image?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "Watch Trailer",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "Could not open trailer: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "Dark theme enabled",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "Light theme enabled",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "Color Scheme",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "Default",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "Default (Purple)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "Blue",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Green",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Orange",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Red",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Teal",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Pink",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Lime",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "Filters",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "Filter:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "Show skins",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Keys",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "Auto-update",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "Custom DB",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "Account login",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "Extras",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "Cache",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "Cleared {size} MB of cache",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "Faq",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "FAQ",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "Terminal",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "Please add the keys for this and that pack!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "When are the keys going to be updated?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "What's the difference between encrypted and decrypted?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "Where can I find the downloaded packs?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "What is keys.tsv?",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion6": "How can i use Persona items?",
+  "@faqQuestion6": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion7": "Why do some skin packs appear broken?",
+  "@faqQuestion7": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion8": "What's the purpose of the \"Account Login\" page?",
+  "@faqQuestion8": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion9": "What does the checkmark mean?",
+  "@faqQuestion9": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "The process of obtaining the keys is not magic: a person still has to buy the pack and share the keys with us. Without somebody buying it there would be no decryption keys in the first place. It is not possible to obtain them in any other way. Wait patiently or buy it.",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "Once we decide to.",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "Encrypted means turning the file into scrambled words that look like gibberish. No one can read it without a special key. Encrypted Minecraft contents are unplayable.\n\nDecrypted means using the special key to turn the gibberish back into the original content. Now the Minecraft contents can be used.",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "You can find the packs here Download/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "It's a file that stores the pack UUID's with their respective decryption keys. Without the decryption keys downloaded packs would be unplayable.",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "faqAnswer6": "U can't. They do exist some methods but given the complexity to be done, it is not feasible.",
+  "@faqAnswer6": {
+    "description": "Answer for FAQ question 6"
+  },
+  "faqAnswer7": "Some skin packs (especially franchise collabs) use custom geometry which Minecraft doesn't allow to be used normally unless u buy the skin pack. U can check if a skin pack uses custom geometry by checking if the file \"geometry.json\" exists in the pack. Keep in mind that this issue is not related to the tool in any way.",
+  "@faqAnswer7": {
+    "description": "Answer for FAQ question 7"
+  },
+  "faqAnswer8": "The account login page allows you to authenticate with your Microsoft account to directly load your Minecraft keys from your inventory.\nThis is useful when Kyzen doesn’t currently have a key available for a specific DLC but you do have it in your account, once your keys are loaded that DLC will appear available for download. \nNote that the keys are automatically uploaded to our database, where they will later be merged with Kyzen’s main key database so everyone can enjoy the new dlc, so please use this feature if u wanna contribute.",
+  "@faqAnswer8": {
+    "description": "Answer for FAQ question 8"
+  },
+  "faqAnswer9Checkmark": "The key for this DLC is available.",
+  "@faqAnswer9Checkmark": {
+    "description": "Answer for FAQ question 9. checkmark ok"
+  },
+  "faqAnswer9NoCheckmark": "The app currently does not have the key for this DLC.",
+  "@faqAnswer9NoCheckmark": {
+    "description": "Answer for FAQ question 9. no checkmark"
+  },
+  "faqAnswer9ExtraInfo": "Keys are required to unlock the DLCs.",
+  "@faqAnswer9ExtraInfo": {
+    "description": "Extra information for FAQ question 9"
+  },
+  "faqQuestionDownload": "Why is the download button unavailable?",
+  "@faqQuestionDownload": {
+    "description": "Used on the item detail page"
+  },
+  "faqAnswerDownload": "The key to unlock this dlc is not available, wait patiently or buy it.",
+  "@faqAnswerDownload": {
+    "description": "Answer for faq download item detail page"
+  },
+  "faqQuestionKey": "How do i get the key?",
+  "@faqQuestionKey": {
+    "description": "used on the item detail page"
+  },
+  "faqAnswerKey": "Buy the dlc on your account then go to settings > Account login > Click 'Start authentication' > click 'Load keys', now click 'Share' and share the keys files to the Bluecoin chat, the keys are going to be added to the app database. if u can't share the keys file to the group, don't worry, the keys get automatically uploaded to a database.",
+  "@faqAnswerKey": {
+    "description": "Answer for faq key item detail page"
+  },
+  "faqMoreHelp": "More help",
+  "@faqMoreHelp": {
+    "description": "Used on the pop up dialog faq item detail page"
+  },
+  "faqNotAdlc": "Not a DLC",
+  "@faqNotAdlc": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqNotAdlcDescription": "This item is not a DLC.",
+  "@faqNotAdlcDescription": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqServerContent": "Server content",
+  "@faqServerContent": {
+    "description": "Used on the faq item detail page"
+  },
+  "faqServerContentDescription": "This item is exclusive to a specific server and cannot be downloaded directly.",
+  "@faqServerContentDescription": {
+    "description": "Used on the faq item detail page"
+  },
+  "fileDeleted": "File deleted",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "Stored Files",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "Refresh files",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "Delete File",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "Are you sure you want to delete {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "CANCEL",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "DELETE",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "Current Download",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "No active downloads",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "Completed Downloads",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "Clear All",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "Import to Minecraft",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "openFileinExplorer": "Open in file explorer",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  },
+  "shareFile": "Share file",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "Debug Terminal",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "Clear logs",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "No logs yet...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "saveLogs": "Save logs",
+  "@saveLogs": {
+    "description": "Used on debug page"
+  },
+  "logsSaved": "Logs saved to {filePath}",
+  "@logsSaved": {
+    "description": "Message shown when logs are saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Documents/logs.txt"
+      }
+    }
+  },
+  "selectingFile": "Selecting file...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "Processing file...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "File processed successfully!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "No file selected",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "{count} custom keys loaded",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "No custom keys loaded",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "Import a file with UUID=KEY format",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "{contentType} Items",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} Items ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Creator Items",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "This creator has no content",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "No statistics available",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Failed to load statistics",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "No results found",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Microsoft Authentication",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "Exchanging authorization code for token...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "Authentication failed: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Authentication successful!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "Failed to exchange code for token: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "No authorization code received",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "No new keys found to copy",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Keys copied to clipboard!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "No new keys found to share",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Keys shared successfully!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "Checking existing authentication...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "Already authenticated!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "Ready to authenticate",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "Authenticate with the URL",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuthButton": "Complete Authentication",
+  "@completeAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "openAuthPageButton": "Open Auth Page",
+  "@openAuthPageButton": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "Complete authentication in your browser. You will be redirected back to the app.",
+  "copyUrl": "Copy URL",
+  "@copyUrl": {
+    "description": "Used on the auth page"
+  },
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "Could not open authentication page",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "Logging out...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "Logged out successfully",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "Using cached session...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "Loading Minecraft keys...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Requesting Xbox Live token...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "Logging in to PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "Getting user information...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "Starting Minecraft session...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "Loading Minecraft inventory...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "Successfully loaded {keyCount} keys!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Error loading keys: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Copied to clipboard",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "Authenticated",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "Not Authenticated",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "Authentication URL",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "Loaded Keys",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "Export only new keys",
+  "@exportNewKeys": {
+    "description": "Used on the auth page and mcdecryptor page"
+  },
+  "loadKeysButton": "Load Keys",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "Logout",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "Start Authentication",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Hi ",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "copy": "Copy",
+  "@copy": {
+    "description": "Used on the auth page"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Used on the auth page"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Used on the auth page"
+  },
+  "keysSaved": "Keys saved successfully",
+  "@keysSaved": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "Starting download...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "Downloads completed",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Completed!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Download failed",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Downloading",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Processing",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "Extracting zip file...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Decrypting contents...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Compressing pack...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Cleaning up...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "Show all",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "Only available",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "Only not available",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "customColor": "Custom Color",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "Tap to change your custom color",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "Create your own color scheme",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "Pick Color",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "Select",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "Images",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "Save to PNG",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "Save to Gallery",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "Compression",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "Normal Compression",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "No Compression",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "Copy UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "Open in Minecraft",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "Creator",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "addToCart": "Add to Cart",
+  "@addToCart": {
+    "description": "Button to add an item to the cart"
+  },
+  "removeFromCart": "Remove from Cart",
+  "@removeFromCart": {
+    "description": "Button to remove an item from the cart"
+  },
+  "addedToCart": "Added to cart",
+  "@addedToCart": {
+    "description": "Message shown when an item is added to the cart"
+  },
+  "removedFromCart": "Removed from cart",
+  "@removedFromCart": {
+    "description": "Message shown when an item is removed from the cart"
+  },
+  "authRequired": "Authentication required",
+  "@authRequired": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "authRequiredDesc": "You need to be fully authenticated to view your cart. Please authenticate from the Account login page.",
+  "@authRequiredDesc": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "newUpdate": "New update",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "New dlc",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "Hidden",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "Persona",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "Skins",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "Mashups",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "Worlds",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "Textures",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "Add-Ons",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "capes": "Capes",
+  "@capes": {
+    "description": "Used on the bottom sheet for the mojang creator"
+  },
+  "vibrantVisuals": "Vibrant visuals",
+  "@vibrantVisuals": {
+    "description": "Used on the dropdown filter"
+  },
+  "favorites": "Favorites",
+  "@favorites": {
+    "description": "Used on the dropdown filter"
+  },
+  "unfiltered": "Unfiltered",
+  "@unfiltered": {
+    "description": "Used on the dropdown filter"
+  },
+  "sorting": "Sorting",
+  "@sorting": {
+    "description": "Used on the dropdown filter"
+  },
+  "type": "Type",
+  "@type": {
+    "description": "Used on the dropdown filter"
+  },
+  "newFilter": "New",
+  "@newFilter": {
+    "description": "Used on the dropdown filter"
+  },
+  "other": "Other",
+  "@other": {
+    "description": "Used on the dropdown filter"
+  },
+  "newest": "Newest",
+  "@newest": {
+    "description": "Used on the dropdown filter"
+  },
+  "oldest": "Oldest",
+  "@oldest": {
+    "description": "Used on the dropdown filter"
+  },
+  "mostRated": "Most Rated",
+  "@mostRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "leastRated": "Least Rated",
+  "@leastRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "Menu",
+  "@menu": {
+    "description": "tooltip for menu button"
+  },
+  "imageSavedToGallery": "Image saved to gallery: {filePath}",
+  "@imageSavedToGallery": {
+    "description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "vibrantVisualEnhanced": "Vibrant Visuals Enhanced",
+  "@vibrantVisualEnhanced": {
+    "description": "used on the item detail page"
+  },
+  "uuidCopied": "UUID copied to clipboard",
+  "@uuidCopied": {
+    "description": "message shown when UUID is copied to clipboard"
+  },
+  "scrollRight": "Scroll right",
+  "@scrollRight": {
+    "description": "tooltip for scrolling right for desktop"
+  },
+  "scrollLeft": "Scroll left",
+  "@scrollLeft": {
+    "description": "tooltip for scrolling left for desktop"
+  },
+  "previousImage": "Previous image",
+  "@previousImage": {
+    "description": "tooltip for previous image button for desktop"
+  },
+  "nextImage": "Next image",
+  "@nextImage": {
+    "description": "tooltip for next image button for desktop"
+  },
+  "favoriteEmpty": "Your favorites list is empty",
+  "@favoriteEmpty": {
+    "description": "shown when there is no favorite items"
+  },
+  "favoriteDescription": "Tap the heart icon on any item's details page to add it to your favorites and build your collection",
+  "@favoriteDescription": {
+    "description": "shown when there is no favorite items"
+  },
+  "removeFromFavorites": "Remove from favorites",
+  "@removeFromFavorites": {
+    "description": "tooltip for removing item from favorites"
+  },
+  "addToFavorites": "Add to favorites",
+  "@addToFavorites": {
+    "description": "tooltip for adding item to favorites"
+  },
+  "addedToFavorites": "Added to favorites",
+  "@addedToFavorites": {
+    "description": "message shown when an item is added to favorites"
+  },
+  "removedFromFavorites": "Removed from favorites",
+  "@removedFromFavorites": {
+    "description": "message shown when an item is removed from favorites"
+  },
+  "noNewKeysFoundToSave": "No keys found to save",
+  "@noNewKeysFoundToSave": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "keysSavedSuccessfully": "Keys saved successfully into the Kyzen folder.",
+  "@keysSavedSuccessfully": {
+    "description": "Used on the Mcdecryptor page and auth page"
+  },
+  "entitlementKeys": "Entitlement Keys",
+  "@entitlementKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchBoughContent": "Search your Minecraft bought content.",
+  "@searchBoughContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "saveKeys": "Save Keys",
+  "@saveKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "refresh": "Refresh",
+  "@refresh": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchKeys": "Search Keys",
+  "@searchKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadSkinPersona": "Load SkinPack/Persona",
+  "@loadSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionSkinPersona": "Include skinpack and persona on the list",
+  "@descriptionSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadOnlyNewKeys": "Load only new keys",
+  "@loadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionLoadOnlyNewKeys": "Load only content not present on the app keys database",
+  "@descriptionLoadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionExportNewKeys": "Whether \"save keys\" should only export new keys",
+  "@descriptionExportNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processedEntitlementKeys": "Successfully Processed ({countFiles} files, {countKeys} keys)",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "noResultsYet": "No results yet",
+  "@noResultsYet": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "clickSearchKeysToLoadContent": "Click \"Search Keys\" to load your content",
+  "@clickSearchKeysToLoadContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "tryadifferentSearch": "Try a different search term",
+  "@tryadifferentSearch": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftNotInstalled": "No valid Minecraft installation paths found. Please ensure Minecraft Bedrock Edition (UWP or GDK) is installed and has been launched at least once.",
+  "@minecraftNotInstalled": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processingError": "Processing Errors",
+  "@processingError": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "dismiss": "Dismiss",
+  "@dismiss": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "failedFiles": "Failed Files:",
+  "@failedFiles": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftFont": "Minecraft Font",
+  "@minecraftFont": {
+    "description": "Used to refer to the Minecraft font in the settings tab"
+  },
+  "usingMinecraftFont": "Using Minecraft-style font",
+  "@usingMinecraftFont": {
+    "description": "Used on the settings tab to indicate that the Minecraft font is being used"
+  },
+  "usingDefaultFont": "Using default font",
+  "@usingDefaultFont": {
+    "description": "Used on the settings tab to indicate that the default font is being used"
+  },
+  "dlcLanguage": "DLC Language",
+  "@dlcLanguage": {
+    "description": "Used on the settings tab to refer to the language of the DLC content"
+  },
+  "dlcLangInfo": "DLC Language Info",
+  "@dlcLangInfo": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "dlcLangInfoText": "Note that some DLCs may not have a translation available. This solely depends on the marketplace and not by the app.",
+  "@dlcLangInfoText": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "pageSize": "Page Size",
+  "@pageSize": {
+    "description": "Used on the settings tab to refer to the number of items shown per page in the item list"
+  },
+  "pageSizeInfo": "Page Size Info",
+  "@pageSizeInfo": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "pageSizeInfoText": "Controls how many items load at once.\n\n • Lower values: Better for weak connections (more frequent requests)\n • Higher values: Better for fast connections (fewer requests)\n\nAll results remain accessible regardless of page size. Additional items load automatically when you reach the bottom of the list.",
+  "@pageSizeInfoText": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "selectDlcLanguage": "Select DLC language",
+  "@selectDlcLanguage": {
+    "description": "Used on the settings tab for selecting the DLC language"
+  },
+  "downloadPathUpdated": "Download path updated",
+  "@downloadPathUpdated": {
+    "description": "Used on the settings tab for showing a message when the download path is updated"
+  },
+  "downloadPathReset": "Download path reset to default",
+  "@downloadPathReset": {
+    "description": "Used on the settings tab for showing a message when the download path is reset to default"
+  },
+  "resetDefaults": "Reset to default",
+  "@resetDefaults": {
+    "description": "Used on the settings tab for resetting the download path to default"
+  },
+  "chooseFolder": "Choose folder",
+  "@chooseFolder": {
+    "description": "Used on the settings tab for choosing a custom download path"
+  },
+  "downloadPath": "Download Path",
+  "@downloadPath": {
+    "description": "Used on the settings tab to refer to the path where downloaded packs are saved"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "Used on the settings tab to refer to the app version"
+  },
+  "purchasing": "Purchasing",
+  "@purchasing": {
+    "description": "Used on the cart page when the user is purchasing a DLC pack"
+  },
+  "failedPurchase": "Failed to purchase",
+  "@failedPurchase": {
+    "description": "Used on the cart page when the purchase of a DLC pack fails"
+  },
+  "allItemsSuccessfullyPurchased": "All items purchased successfully!",
+  "@allItemsSuccessfullyPurchased": {
+    "description": "Used on the cart page when all items in the cart are successfully purchased"
+  },
+  "insufficientFunds": "Insufficient funds for {insufficientFundsItems} item(s)",
+  "@insufficientFunds": {
+    "description": "Used on the cart page when the user doesn't have enough funds to purchase the items in the cart",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "somePurchasesFailed": "Some purchases failed",
+  "@somePurchasesFailed": {
+    "description": "Used on the cart page when some items in the cart fail to be purchased but not all"
+  },
+  "numItemsAreNotPurchasable": "{numItems} item(s) are not purchasable",
+  "@numItemsAreNotPurchasable": {
+    "description": "Used on the cart page when some items in the cart are not purchasable",
+    "placeholders": {
+      "numItems": {
+        "type": "int",
+        "description": "Number of items that are not purchasable"
+      }
+    }
+  },
+  "purchaseComplete": "Purchase completed",
+  "@purchaseComplete": {
+    "description": "Used on the cart page when the purchase process is complete"
+  },
+  "confirmPurchase": "Confirm Purchase",
+  "@confirmPurchase": {
+    "description": "Used on the cart page"
+  },
+  "confirmPurchaseMessage": "Are you sure you want to purchase {itemsText}?",
+  "@confirmPurchaseMessage": {
+    "description": "Used on the cart page when confirming a purchase",
+    "placeholders": {
+      "itemsText": {
+        "type": "String",
+        "description": "Text describing the items being purchased, e.g. 'Skin Pack 1'"
+      }
+    }
+  },
+  "totalPrice": "Total Price:",
+  "@totalPrice": {
+    "description": "Used on the cart page to indicate the total price of the items being purchased"
+  },
+  "purchaseResults": "Purchase Results",
+  "@purchaseResults": {
+    "description": "Used on the cart page to indicate the results of the purchase process"
+  },
+  "successfullyPurchased": "Successfully purchased: {successItems} item(s)",
+  "@successfullyPurchased": {
+    "description": "Used on the cart page to indicate the number of items successfully purchased",
+    "placeholders": {
+      "successItems": {
+        "type": "int",
+        "description": "Number of items that were successfully purchased"
+      }
+    }
+  },
+  "alreadyOwnded": "Already owned: {alreadyOwnedItems} item(s)",
+  "@alreadyOwnded": {
+    "description": "Used on the cart page to indicate the number of items that were already owned",
+    "placeholders": {
+      "alreadyOwnedItems": {
+        "type": "int",
+        "description": "Number of items that were already owned"
+      }
+    }
+  },
+  "numItemsNotPurchasable": "Not purchasable: {notPurchasableItems} item(s)",
+  "@numItemsNotPurchasable": {
+    "description": "Used on the cart page to indicate the number of items that were not purchasable",
+    "placeholders": {
+      "notPurchasableItems": {
+        "type": "int",
+        "description": "Number of items that were not purchasable"
+      }
+    }
+  },
+  "numItemsInsufficientFunds": "Insufficient funds: {insufficientFundsItems} item(s)",
+  "@numItemsInsufficientFunds": {
+    "description": "Used on the cart page to indicate the number of items that couldn't be purchased due to insufficient funds",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "numItemsFailed": "Failed purchases: {failedItemsCount} item(s)",
+  "@numItemsFailed": {
+    "description": "Used on the cart page to indicate the number of items that failed to be purchased",
+    "placeholders": {
+      "failedItemsCount": {
+        "type": "int",
+        "description": "Number of items that failed to be purchased"
+      }
+    }
+  },
+  "clearCart": "Clear Cart",
+  "@clearCart": {
+    "description": "Used on the cart page to clear all items from the cart"
+  },
+  "clearCartConfirmation": "Are you sure you want to remove all items from your cart?",
+  "@clearCartConfirmation": {
+    "description": "Confirmation message when clearing the cart"
+  },
+  "cartTitleNum": "Cart ({count})",
+  "@cartTitleNum": {
+    "description": "Used as the title of the cart page with the number of items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "cartisEmpty": "Your cart is empty",
+  "@cartisEmpty": {
+    "description": "Message shown when the cart is empty"
+  },
+  "cartEmptyDescription": "Tap the cart icon on any item's details page to add it to your cart and purchase it",
+  "@cartEmptyDescription": {
+    "description": "Message shown when the cart is empty"
+  },
+  "purchasingInProgress": "Purchasing...",
+  "@purchasingInProgress": {
+    "description": "Message shown when a purchase is in progress"
+  },
+  "purchaseAllnum": "Purchase All ({count})",
+  "@purchaseAllnum": {
+    "description": "Used on the cart page to purchase all items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "nowNewdlcFound": "No New DLCs Found",
+  "@nowNewdlcFound": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "nowNewDlcFoundDescription": "All DLCs are already present on the app database",
+  "@nowNewDlcFoundDescription": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "noDlcFound": "No DLCs Found",
+  "@noDlcFound": {
+    "description": "Used on the auth page when no dlc is found"
+  },
+  "noDlcAvailable": "No DLC content available",
+  "@noDlcAvailable": {
+    "description": "Used on the auth page dlc list"
+  },
+  "openDlcsList": "Open DLCs",
+  "@openDlcsList": {
+    "description": "Used on the auth page to open the list of dlcs"
+  },
+  "appUpdates": "App Updates",
+  "@appUpdates": {
+    "description": "Used on the changelog page"
+  },
+  "appUpdatesDescription": "See what's new in recent versions of the app",
+  "@appUpdatesDescription": {
+    "description": "Used on the changelog page"
+  },
+  "socials": "Socials",
+  "@socials": {
+    "description": "Used on the settings page"
+  },
+  "selectApp": "Select App",
+  "@selectApp": {
+    "description": "Title for the app picker dialog"
+  },
+  "noAppsFound": "No apps found",
+  "@noAppsFound": {
+    "description": "Message shown when no apps are found"
+  },
+  "errorLoadingDlcs": "Error loading DLCs",
+  "@errorLoadingDlcs": {
+    "description": "Message shown when there is an error loading DLCs"
+  },
+  "dlcs": "DLCs",
+  "@dlcs": {
+    "description": "Title for the DLCs list page"
+  },
+  "errorSavingKeys": "Error saving keys: {error}",
+  "@errorSavingKeys": {
+    "description": "Error message when saving keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorOpeningAuthPage": "Error opening authentication page: {error}",
+  "@errorOpeningAuthPage": {
+    "description": "Error message when opening authentication page fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gettingEntityToken": "Getting entity token...",
+  "@gettingEntityToken": {
+    "description": "Status message during authentication"
+  },
+  "loadingMinecoinBalance": "Loading Minecoin balance...",
+  "@loadingMinecoinBalance": {
+    "description": "Status message while loading Minecoin balance"
+  },
+  "completeAuthFirst": "Please complete authentication first",
+  "@completeAuthFirst": {
+    "description": "Message instructing the user to authenticate first"
+  },
+  "sessionExpired": "Session expired. Please try again.",
+  "@sessionExpired": {
+    "description": "Error message when session expires"
+  },
+  "accessDenied": "Access denied. Please re-authenticate.",
+  "@accessDenied": {
+    "description": "Error message when access is denied"
+  },
+  "connectionTimeout": "Connection timeout. Please check your internet and try again.",
+  "@connectionTimeout": {
+    "description": "Error message for connection timeout"
+  },
+  "serverError": "Server error. Please try again in a few moments.",
+  "@serverError": {
+    "description": "Error message for server errors"
+  },
+  "backToSettings": "Back to Settings",
+  "@backToSettings": {
+    "description": "Tooltip text to go back to settings"
+  },
+  "errorInitializingCart": "Error initializing cart: {error}",
+  "@errorInitializingCart": {
+    "description": "Error message when cart initialization fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingCartItems": "Error loading cart items: {error}",
+  "@errorLoadingCartItems": {
+    "description": "Error message when loading cart items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedLoadMoreItems": "Failed to load more items: {error}",
+  "@failedLoadMoreItems": {
+    "description": "Error message when loading more items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSavingLog": "Error saving log: {error}",
+  "@errorSavingLog": {
+    "description": "Error message when saving logs fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToDeleteFile": "Failed to delete file",
+  "@failedToDeleteFile": {
+    "description": "Error message when deleting a file fails"
+  },
+  "failedToShareFile": "Failed to share file: {error}",
+  "@failedToShareFile": {
+    "description": "Error message when sharing a file fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "personaWarning": "Persona items cannot be imported in-game (such as emotes, cosmetics, and capes)",
+  "@personaWarning": {
+    "description": "Warning message displayed for Persona items"
+  },
+  "initializingMcDec": "Initializing McDec...",
+  "@initializingMcDec": {
+    "description": "Status message shown during McDecryptor initialization"
+  },
+  "failedToSaveKeys": "Failed to save keys: {error}",
+  "@failedToSaveKeys": {
+    "description": "Error message when saving keys fails in McDecryptor",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "itemDetailsTitle": "Item Details",
+  "@itemDetailsTitle": {
+    "description": "Title of the item details sheet"
+  },
+  "byCreator": "by {creator}",
+  "@byCreator": {
+    "description": "Prefix followed by the author name",
+    "placeholders": {
+      "creator": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSocials": "Could not load social links, using defaults",
+  "@couldNotLoadSocials": {
+    "description": "Error message when social links fail to load"
+  },
+  "sdCardExternalStorage": "SD Card / External Storage",
+  "@sdCardExternalStorage": {
+    "description": "Display name for SD card or external storage"
+  },
+  "customLocation": "Custom Location",
+  "@customLocation": {
+    "description": "Display name for custom location"
+  },
+  "couldNotOpenLink": "Could not open link: {error}",
+  "@couldNotOpenLink": {
+    "description": "Error message when opening link fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "minecraftPackage": "Minecraft Package",
+  "@minecraftPackage": {
+    "description": "Setting item for Minecraft package"
+  },
+  "freeDroidWarnMessage": "Google has announced that, starting in 2026/2027, all apps on certified Android devices will require the developer to submit personal identity details directly to Google. Since the developers of this app do not agree to this requirement, this app will no longer work on certified Android devices after that time.",
+  "@freeDroidWarnMessage": {
+    "description": "FreeDroidWarn deprecation notice for certified Android devices"
+  },
+  "freeDroidWarnDetails": "Details",
+  "@freeDroidWarnDetails": {
+    "description": "Details button on FreeDroidWarn dialog"
+  },
+  "freeDroidWarnSolution": "Solution",
+  "@freeDroidWarnSolution": {
+    "description": "Solution button on FreeDroidWarn dialog"
+  },
+  "unsupported3DTitle": "3D Preview Unsupported",
+  "@unsupported3DTitle": {
+    "description": "Title of the unsupported 3D preview dialog"
+  },
+  "unsupported3DMessage": "3D preview is unsupported on this device and has been disabled.",
+  "@unsupported3DMessage": {
+    "description": "Message shown when 3D preview is unsupported on the device"
+  },
+  "failedToLoadAnnouncements": "Failed to load announcements",
+  "@failedToLoadAnnouncements": {
+    "description": "Error message when announcements fail to load"
+  },
+  "noAnnouncementsAvailable": "No announcements available",
+  "@noAnnouncementsAvailable": {
+    "description": "Empty state for announcements"
+  },
+  "errorCopyingKeys": "Error copying keys: {error}",
+  "@errorCopyingKeys": {
+    "description": "Error message when copying keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSharingKeys": "Error sharing keys: {error}",
+  "@errorSharingKeys": {
+    "description": "Error message when sharing keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "skinAndPersonaAlwaysAvailable": "Skin and Persona items are always available",
+  "@skinAndPersonaAlwaysAvailable": {
+    "description": "Notice for skin and persona availability"
+  },
+  "changeFilterInSettingsNotice": "Change the filter in Settings to \"Show all\" or \"Only available\" to view them.",
+  "@changeFilterInSettingsNotice": {
+    "description": "Instruction to change filter in settings"
+  },
+  "faqQuestionUnavailable": "What does \"UNAVAILABLE\" mean?",
+  "@faqQuestionUnavailable": {
+    "description": "FAQ question about unavailable items"
+  },
+  "faqUnavailableDescription": "UNAVAILABLE: The app currently does not have the key for this DLC.",
+  "@faqUnavailableDescription": {
+    "description": "Description of UNAVAILABLE badge in FAQ"
+  },
+  "faqNoOverlayDescription": "No overlay: The key for this DLC is available for download.",
+  "@faqNoOverlayDescription": {
+    "description": "Description of normal item state in FAQ"
+  },
+  "reviewsCount": "({count} reviews)",
+  "@reviewsCount": {
+    "description": "Count of total reviews",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "viewPack": "View Pack",
+  "@viewPack": {
+    "description": "Button to view pack details"
+  },
+  "newReleases": "New Releases",
+  "@newReleases": {
+    "description": "Section title for new releases"
+  },
+  "scaryDlc": "Scary DLC",
+  "@scaryDlc": {
+    "description": "Section title for scary DLC"
+  },
+  "sounds": "Sounds",
+  "@sounds": {
+    "description": "Section title for sounds DLC"
+  },
+  "texturePacks": "Texture Packs",
+  "@texturePacks": {
+    "description": "Section title for texture packs"
+  },
+  "more": "More",
+  "@more": {
+    "description": "More button or link"
+  },
+  "failedToLoadDiscoverContent": "Failed to load discover content",
+  "@failedToLoadDiscoverContent": {
+    "description": "Error message when discovery content fails to load"
+  },
+  "imageNotAvailable": "Image not available",
+  "@imageNotAvailable": {
+    "description": "Placeholder when image fails to load"
+  },
+  "unavailableUppercase": "UNAVAILABLE",
+  "@unavailableUppercase": {
+    "description": "Unavailable badge label"
+  },
+  "keyServerConnectionFailed": "Key Server Connection Failed",
+  "@keyServerConnectionFailed": {
+    "description": "Title for key server connection failure dialog"
+  },
+  "unableToReachKeyServer": "Unable to reach the key server to download the latest keys",
+  "@unableToReachKeyServer": {
+    "description": "Subtitle for key server failure dialog"
+  },
+  "restrictedRegionOrNetwork": "Restricted Region or Network",
+  "@restrictedRegionOrNetwork": {
+    "description": "Header in key server failure dialog"
+  },
+  "restrictedRegionOrNetworkDescription": "If you are located in a region with internet restrictions or ISP censorship, access to the server may be blocked\\n\\nPlease enable a VPN or proxy and tap Retry to download new keys",
+  "@restrictedRegionOrNetworkDescription": {
+    "description": "Body in key server failure dialog"
+  },
+  "keyServerOfflineNote": "Note: You can still use the app with cached/offline keys, but certain dlcs may not be available until keys are updated",
+  "@keyServerOfflineNote": {
+    "description": "Offline note in key server failure dialog"
+  },
+  "continueOffline": "Continue Offline",
+  "@continueOffline": {
+    "description": "Button to continue using cached offline keys"
+  },
+  "retrying": "Retrying...",
+  "@retrying": {
+    "description": "Loading label while retrying"
+  },
+  "mcDecryptor": "McDecryptor",
+  "@mcDecryptor": {
+    "description": "Tool name for McDecryptor"
+  },
+  "notificationPermission": "Notification Permission",
+  "@notificationPermission": {
+    "description": "Title of notification permission dialog"
+  },
+  "notificationPermissionDescription": "Notification permission should be granted if you want background download to properly work",
+  "@notificationPermissionDescription": {
+    "description": "Content of notification permission dialog"
+  },
+  "openSettings": "Open Settings",
+  "@openSettings": {
+    "description": "Button to open application settings"
+  },
+  "loading3DPersona": "Loading 3D persona...",
+  "@loading3DPersona": {
+    "description": "Loading message for 3D persona preview"
+  },
+  "openFull3DViewer": "Open Full 3D Viewer",
+  "@openFull3DViewer": {
+    "description": "Tooltip to open full 3D viewer screen"
+  },
+  "manage": "Manage",
+  "@manage": {
+    "description": "Manage button label"
+  },
+  "signInWithMicrosoftDescription": "Sign in with Microsoft to access your bought DLCs",
+  "@signInWithMicrosoftDescription": {
+    "description": "Subtitle prompting Microsoft account sign in"
+  },
+  "downloadsAndStorage": "Downloads & Storage",
+  "@downloadsAndStorage": {
+    "description": "Settings tile title for downloads and storage"
+  },
+  "downloadsAndStorageSubtitle": "Custom path, zip compression, cache",
+  "@downloadsAndStorageSubtitle": {
+    "description": "Settings tile subtitle for downloads and storage"
+  },
+  "keysAndTools": "Keys & Tools",
+  "@keysAndTools": {
+    "description": "Settings tile title for keys and tools"
+  },
+  "supportAndCommunity": "Support & Community",
+  "@supportAndCommunity": {
+    "description": "Settings section title for support and community"
+  },
+  "frequentlyAskedQuestions": "Frequently asked questions",
+  "@frequentlyAskedQuestions": {
+    "description": "Subtitle for FAQ tile"
+  },
+  "aboutAndDiagnostics": "About & Diagnostics",
+  "@aboutAndDiagnostics": {
+    "description": "Settings section title for about and diagnostics"
+  },
+  "checkForUpdates": "Check for updates",
+  "@checkForUpdates": {
+    "description": "Tile title to check for application updates"
+  },
+  "youAreUsingTheLatestVersion": "You are using the latest version.",
+  "@youAreUsingTheLatestVersion": {
+    "description": "Notice when app is already up to date"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button or tooltip"
+  },
+  "ignore1Day": "Ignore 1 day",
+  "@ignore1Day": {
+    "description": "Button to postpone update prompt for one day"
+  },
+  "openInBrowser": "Open in Browser",
+  "@openInBrowser": {
+    "description": "Button to open external link in web browser"
+  },
+  "installApk": "Install APK",
+  "@installApk": {
+    "description": "Button to install downloaded APK"
+  },
+  "openFile": "Open File",
+  "@openFile": {
+    "description": "Button to open downloaded file"
+  },
+  "savedTo": "Saved to: {path}",
+  "@savedTo": {
+    "description": "Notice indicating file destination",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "zipPassword": "ZIP Password:",
+  "@zipPassword": {
+    "description": "Label for zip archive password"
+  },
+  "copyPassword": "Copy password",
+  "@copyPassword": {
+    "description": "Tooltip to copy archive password"
+  },
+  "unsupportedSkinFormat": "Unsupported Skin Format",
+  "@unsupportedSkinFormat": {
+    "description": "Dialog title when skin file format is not supported"
+  },
+  "invalidSkinFormatMessage": "Invalid skin format. Please select a valid Minecraft skin PNG (64x64, 128x128, or 64x32).",
+  "@invalidSkinFormatMessage": {
+    "description": "Error message when skin format is invalid"
+  },
+  "customPersonaSkinUpdated": "Custom 3D persona skin updated to \"{skinName}\"",
+  "@customPersonaSkinUpdated": {
+    "description": "Snackbar message when custom 3D persona skin is updated",
+    "placeholders": {
+      "skinName": {
+        "type": "String"
+      }
+    }
+  },
+  "resetPersonaSkinQuestion": "Reset 3D Persona Skin?",
+  "@resetPersonaSkinQuestion": {
+    "description": "Confirmation title to reset custom persona skin"
+  },
+  "resetPersonaSkinDescription": "This will restore the default 3D persona mannequin model.",
+  "@resetPersonaSkinDescription": {
+    "description": "Confirmation message to reset custom persona skin"
+  },
+  "reset": "Reset",
+  "@reset": {
+    "description": "Reset action button"
+  },
+  "resetPersonaSkinSuccess": "Reset to default 3D persona mannequin model",
+  "@resetPersonaSkinSuccess": {
+    "description": "Snackbar message when persona skin is reset"
+  },
+  "themeAndFont": "Theme & Font",
+  "@themeAndFont": {
+    "description": "Section title in appearance settings"
+  },
+  "options3D": "3D Options",
+  "@options3D": {
+    "description": "Section title for 3D settings"
+  },
+  "preview3D": "3D Preview",
+  "@preview3D": {
+    "description": "Title of 3D preview toggle"
+  },
+  "show3DPreviewSubtitle": "Show 3D preview for skins and emotes",
+  "@show3DPreviewSubtitle": {
+    "description": "Subtitle when 3D preview is enabled"
+  },
+  "hide3DPreviewSubtitle": "Hide 3D preview for skins and emotes",
+  "@hide3DPreviewSubtitle": {
+    "description": "Subtitle when 3D preview is disabled"
+  },
+  "adaptiveResolution": "Adaptive Resolution",
+  "@adaptiveResolution": {
+    "description": "Title of adaptive resolution toggle"
+  },
+  "adaptiveResolutionDescription": "Dynamically adjust 3D preview resolution (recommended for weaker devices)",
+  "@adaptiveResolutionDescription": {
+    "description": "Subtitle describing adaptive resolution feature"
+  },
+  "customCharacterSkin": "Custom Character Skin",
+  "@customCharacterSkin": {
+    "description": "Setting item for custom character skin"
+  },
+  "updating3DPersona": "Updating 3D persona...",
+  "@updating3DPersona": {
+    "description": "Status text while updating 3D persona skin"
+  },
+  "activeCustomSkin": "Active: {skinName}",
+  "@activeCustomSkin": {
+    "description": "Shows currently active custom skin name",
+    "placeholders": {
+      "skinName": {
+        "type": "String"
+      }
+    }
+  },
+  "defaultMannequin": "Default (Mannequin)",
+  "@defaultMannequin": {
+    "description": "Label for default mannequin model"
+  },
+  "chooseSkinPng": "Choose skin PNG",
+  "@chooseSkinPng": {
+    "description": "Tooltip to choose a skin PNG file"
+  },
+  "languages": "Languages",
+  "@languages": {
+    "description": "Section title for languages"
+  },
+  "downloadPathResetTitle": "Download path reset",
+  "@downloadPathResetTitle": {
+    "description": "Dialog title when download path is reset"
+  },
+  "downloadPathResetFallback": "Couldn't find {stale}, falling back to {fallback}",
+  "@downloadPathResetFallback": {
+    "description": "Dialog content when download path falls back to default",
+    "placeholders": {
+      "stale": {
+        "type": "String"
+      },
+      "fallback": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadLocation": "Download Location",
+  "@downloadLocation": {
+    "description": "Section title for download location settings"
+  },
+  "fileAndImageFormats": "File & Image Formats",
+  "@fileAndImageFormats": {
+    "description": "Section title for file and image format settings"
+  },
+  "temporaryFiles": "Temporary files",
+  "@temporaryFiles": {
+    "description": "Subtitle for cache setting"
+  },
+  "checkForKeysUpdate": "Check for keys update",
+  "@checkForKeysUpdate": {
+    "description": "Tile title to check for encryption key updates"
+  },
+  "filtersAndDisplay": "Filters & Display",
+  "@filtersAndDisplay": {
+    "description": "Section title for filter and display settings"
+  },
+  "tools": "Tools",
+  "@tools": {
+    "description": "Section title for tools settings"
+  },
+  "dark": "Dark",
+  "@dark": {
+    "description": "Dark theme mode label"
+  },
+  "light": "Light",
+  "@light": {
+    "description": "Light theme mode label"
+  },
+  "discovery": "Discovery",
+  "@discovery": {
+    "description": "Discovery search category"
+  },
+  "relevance": "Relevance",
+  "@relevance": {
+    "description": "Relevance sort order option"
+  },
+  "emotes": "Emotes",
+  "@emotes": {
+    "description": "Emotes category filter"
+  },
+  "failedToLoad3dPreview": "Failed to load 3D preview: {error}",
+  "@failedToLoad3dPreview": {
+    "description": "Error message when 3D preview fails to load",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "idle": "Idle",
+  "@idle": {
+    "description": "Tooltip to stop walking animation and return to idle pose"
+  },
+  "walk": "Walk",
+  "@walk": {
+    "description": "Tooltip to start walking animation"
+  },
+  "pauseTurntable": "Pause Turntable",
+  "@pauseTurntable": {
+    "description": "Tooltip to pause model turntable auto-rotation"
+  },
+  "autoRotate": "Auto Rotate",
+  "@autoRotate": {
+    "description": "Tooltip to start model turntable auto-rotation"
+  },
+  "switchToElytra": "Switch to Elytra",
+  "@switchToElytra": {
+    "description": "Tooltip to switch back equipment from cape to elytra"
+  },
+  "switchToCape": "Switch to Cape",
+  "@switchToCape": {
+    "description": "Tooltip to switch back equipment from elytra to cape"
+  },
+  "includedSkins": "Included Skins",
+  "@includedSkins": {
+    "description": "Header title for included skins"
+  },
+  "tapToExpand3dSkinPreview": "Tap to expand 3D skin preview ({current}/{total})",
+  "@tapToExpand3dSkinPreview": {
+    "description": "Hint text to expand 3D skin preview with counter",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "tapToPreview3dSkins": "Tap to preview 3D skins",
+  "@tapToPreview3dSkins": {
+    "description": "Hint text to preview 3D skins"
+  },
+  "tapToPreviewIncluded3dSkins": "Tap to preview included 3D skins",
+  "@tapToPreviewIncluded3dSkins": {
+    "description": "Hint text to preview included 3D skins"
+  },
+  "open3dViewer": "Open 3D Viewer",
+  "@open3dViewer": {
+    "description": "Tooltip to open full 3D skin viewer"
+  },
+  "downloadSkinPack": "Download skin pack",
+  "@downloadSkinPack": {
+    "description": "Tooltip to download skin pack"
+  },
+  "previousSkin": "Previous skin",
+  "@previousSkin": {
+    "description": "Tooltip to view previous skin in preview"
+  },
+  "nextSkin": "Next skin",
+  "@nextSkin": {
+    "description": "Tooltip to view next skin in preview"
+  },
+  "dragToRotate": "Drag to rotate",
+  "@dragToRotate": {
+    "description": "Hint text explaining how to rotate the 3D model"
+  },
+  "downloadingAndPreparingSkins": "Downloading & Preparing Skins: {percent}%",
+  "@downloadingAndPreparingSkins": {
+    "description": "Progress text when downloading and preparing 3D skins",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "preparing3dSkins": "Preparing 3D Skins...",
+  "@preparing3dSkins": {
+    "description": "Loading text while 3D skins are preparing"
+  },
+  "failedToLoadSkins": "Failed to load skins: {error}",
+  "@failedToLoadSkins": {
+    "description": "Error message when loading skins fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "viewer3d": "3D Viewer",
+  "@viewer3d": {
+    "description": "Title of the 3D Viewer screen"
+  },
+  "highQualityNativeDpr": "High Quality (Native DPR)",
+  "@highQualityNativeDpr": {
+    "description": "Tooltip for high quality native DPR rendering mode"
+  },
+  "balancedModeOptimized": "Balanced Mode (Optimized)",
+  "@balancedModeOptimized": {
+    "description": "Tooltip for balanced rendering mode"
+  },
+  "highQualityEnabledNative": "High Quality enabled (Native {dpr}x DPR)",
+  "@highQualityEnabledNative": {
+    "description": "Snackbar message when high quality mode is enabled",
+    "placeholders": {
+      "dpr": {
+        "type": "String"
+      }
+    }
+  },
+  "balancedModeEnabled": "Balanced mode enabled ({dpr}x DPR)",
+  "@balancedModeEnabled": {
+    "description": "Snackbar message when balanced mode is enabled",
+    "placeholders": {
+      "dpr": {
+        "type": "String"
+      }
+    }
+  },
+  "resetView": "Reset View",
+  "@resetView": {
+    "description": "Tooltip to reset 3D camera view"
+  },
+  "building3dModel": "Building 3D model...",
+  "@building3dModel": {
+    "description": "Loading text while 3D model is compiling"
+  },
+  "stand": "Stand",
+  "@stand": {
+    "description": "Pose chip label for standing pose"
+  },
+  "cape": "Cape",
+  "@cape": {
+    "description": "Equipment segment label for cape"
+  },
+  "elytra": "Elytra",
+  "@elytra": {
+    "description": "Equipment segment label for elytra"
+  },
+  "turntable": "Turntable",
+  "@turntable": {
+    "description": "FilterChip label for turntable auto-rotation"
+  },
+  "skin": "Skin",
+  "@skin": {
+    "description": "Default label for a skin"
+  },
+  "keysAreUpToDate": "Keys are up to date",
+  "@keysAreUpToDate": {
+    "description": "Message shown when decryption keys are already up to date"
+  },
+  "news": "News",
+  "@news": {
+    "description": "Bottom navigation bar label for news/announcements tab"
+  },
+  "stillUnableToReachServer": "Still unable to reach the server. Please check your VPN connection and try again",
+  "@stillUnableToReachServer": {
+    "description": "Error message when retry to reach key server fails"
+  }
+}

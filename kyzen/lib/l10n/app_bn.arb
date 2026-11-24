@@ -1,0 +1,677 @@
+{
+  "@@locale": "bn",
+  "home": "হোম",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "ডাউনলোড সমূহ",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "সেটিংস",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "ভাষা নির্বাচন করুন",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "ভাষা",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "ডাউনলোড",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "খুঁজুন...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "ডিফল্ট",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Key চেক করা হচ্ছে",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "API লগিন",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "creators": "ক্রিয়েটর সমূহ",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "addedNewKeys": "{keyCount} টা key অ্যাড করা হয়েছে",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "কোনো কিছু পাওয়া যায়নি",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "ওপেন",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "ক্লিয়ার",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "আবার চেষ্টা করুন",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "queuePosition": "অপেক্ষামান (অবস্থান #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "অপেক্ষামান #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "ইমেজ সেভ করা হয়েছে {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "ইমেজ ডাউনলোডে সমস্যা হয়েছে: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "চেঞ্জ লগ",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "ডাউনলোড হয়েছে",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "আবার ডাউনলোড করুন",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "ইমেজ ডাউনলোড করুন",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "এই ইমেজ ডাউনলোড করবেন?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "বাতিল",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "ট্রেইলার দেখুন",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "ট্রেইলার ওপেন করতে সমস্যা হয়েছে: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "ডার্ক মোড",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "ডার্ক মোড চালু আছে",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "লাইট থিম চালু আছে",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "কালার স্কিম",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "ডিফল্ট",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "ডিফল্ট (বেগুনি)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "নীল",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "সবুজ",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "কমলা",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "লাল",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "সমুদ্র নীল",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "গোলাপি",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "লেবু লেমুন",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "ফিল্টার সমূহ",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "ফিল্টার",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "স্কিনসমূহ দেখান",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Key সমূহ",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "অটো-আপডেট",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "কাস্টম DB",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "অ্যাকাউন্ট লগিন",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "অতিরিক্তসমূহ",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "ক্যাশে",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "{size} MB ক্যাশে মুছে ফেলা হয়েছে",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "Faq",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "FAQ",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "টার্মিনাল",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "অনুগ্রহ করে এই প্যাক এর Key যোগ করুন!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "Key সমূহ কখন আপডেট করা হবে?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "এনক্রিপ্টেড আর ডিক্রিপ্টেডের মাঝে পার্থক্য কী?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "ডাউনলোড করা প্যাকগুলো কোথায় পাবো?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "keys.tsv কী?",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "Key পাওয়ার প্রক্রিয়া কোনো যাদু না: কোনো একজনকে প্রথমে প্যাকটা কিনতে হবে এরপর আমাদের কাছে key গুলা শেয়ার করতে হবে। কেউ না কিনলে ডিক্রিপশন key পাওয়া যাবে না। আর তা ছাড়া পাওয়ার কোনো উপায় নেই। অপেক্ষা করুন বা নিজে কিনে ফেলুন।",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "যখন আমাদের মর্জি হবে।",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "এনক্রিপ্টেড মানে একটা ফাইলকে হযবরলে পরিণত করা। কেউ সেটা পড়তে পারবে না এক বিশেষ key ছাড়া। এনক্রিপ্টেড মাইনক্রাফট কন্টেন্ট খেলার মতো না। ডিক্রিপ্টেড মানে হচ্ছে বিশেষ key টা ব্যবহার করে হযবরল কে আসল রূপে নিয়ে আসা। এরপর মাইনক্রাফট কন্টেন্ট ব্যবহার করা যাবে।",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "আপনি প্যাকসমূহ এখানে ডাউনলোড বা Kyzen এ পাবেন।",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "ওটা একটা ফাইল যা প্যাকসমূহের এর UUID আর তার ডিক্রিপশন key সংরক্ষণ করে। ডিক্রিপশন key ছাড়া ডাউনলোড করা প্যাক খেলার যোগ্য অবস্থায় থাকবে না।",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "fileDeleted": "ফাইল ডিলিট করা হয়েছে",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "সংরক্ষিত ফাইলসমূহ",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "ফাইলসমূহ রিফ্রেশ করুন",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "ফাইল ডিলিট করুন",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "আপনি কি নিশ্চিত যে, আপনি {fileName} ডিলিট করতে চান?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "বাতিল",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "ডিলিট",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "বর্তমান ডাউনলোড",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "কোনো সচল ডাউনলোড নেই",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "শেষ হওয়া ডাউনলোড সমূহ",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "সব মুছে ফেলুন",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "মাইনক্রাফটে ইম্পোর্ট করুন",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "shareFile": "ফাইল শেয়ার করুন",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "ডিবাগ টার্মিনাল",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "Logs মুছে ফেলুন",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "কোনো logs নেই...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "selectingFile": "ফাইল নির্বাচন করা হচ্ছে...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "ফাইল প্রসেস করা হচ্ছে...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "ফাইল প্রসেস সফল!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "কোনো ফাইল সিলেক্ট করা হয়নি।",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "{count} টা কাস্টম key অ্যাড করা হয়েছে",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "কোনো কাস্টম key লোড করা হয়নি",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "একটা ফাইল ইম্পোর্ট করুন UUID=KEY ফরম্যাট সহ",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "{contentType} আইটেমসমূহ",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} আইটেমসমূহ ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "ক্রিয়েটর আইটেমসমূহ",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "এই ক্রিয়েটরের কোনো কন্টেন্ট নেই",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "কোনো statistics নেই",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Statistics লোড করা যাচ্ছে না",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "কোনো কিছু পাওয়া যায়নি",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "মাইক্রোসফট অথেন্টিকেশন",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "অথোরাইজেশন কোড বদল দেওয়া হচ্ছে টোকেন এর জন্য...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "অথেন্টিকেশন এ সমস্যা হয়েছে: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "অথেন্টিকেশন সফল!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "কোড বদল দিয়ে টোকেন নিতে সমস্যা হয়েছে: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "কোনো অথোরাইজেশন কোড পাওয়া যায়নি",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "কোনো নতুন key পাওয়া যায়নি কপি করার জন্য",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Key সমূহ ক্লিপবোর্ডে কপি করা হয়েছে!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "নতুন কোনো key পাওয়া যায়নি শেয়ার করার জন্য",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Key শেয়ার সফল!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "বর্তমান অথেন্টিকেশন চেক করা হচ্ছে...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "ইতোমধ্যে অথেন্টিকেশন করা আছে!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "অথেন্টিকেশনের জন্য প্রস্তুত",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "URL দিয়ে অথেন্টিকেট করুন",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "ব্রাউজারে অথেন্টিকেশন সম্পন্ন করুন। এরপর অ্যাপে ফিরিয়ে আনা হবে।",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "অথেন্টিকেশন পেজ ওপেন করা যাচ্ছে না",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "লগ আউট করা হচ্ছে...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "লগ আউট সফল",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "ক্যাশে সেশন ব্যবহৃত হচ্ছে...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "মাইনক্রাফটের key সমূহ লোড করা হচ্ছে...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Xbox লাইভ টোকেন রিকুয়েস্ট করা হচ্ছে...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "PlayFab এ লগিন করা হচ্ছে...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "ইউজার ইনফরমেশন সংগ্রহ করা হচ্ছে...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "মাইনক্রাফট সেশন শুরু করা হচ্ছে...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "মাইনক্রাফট ইনভেন্টরি লোড করা হচ্ছে...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "{keyCount} টা key সফলভাবে লোড করা হয়েছে!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Key লোড করতে সমস্যা হয়েছে: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "ক্লিপবোর্ডে কপি করা হয়েছে",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "অথেন্টিকেট হয়েছে",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "অথেন্টিকেট করা হয়নি",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "অথেন্টিকেশন URL",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "লোড করা key সমূহ",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "শুধু নতুন key এক্সপোর্ট করুন",
+  "@exportNewKeys": {
+    "description": "Used on the auth page"
+  },
+  "loadKeysButton": "Key লোড করুন",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "লগ আউট",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "অথেন্টিকেশন শুরু করুন",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Hi",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "ডাউনলোড শুরু করা হচ্ছে...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "ডাউনলোডসমূহ সম্পন্ন",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "সম্পন্ন!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "ডাউনলোডে সমস্যা হয়েছে",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "ডাউনলোড করা হচ্ছে",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "প্রোসেস করা হচ্ছে",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "ZIP ফাইল এক্সট্রাক্ট করা হচ্ছে...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "কন্টেন্টসমূহ ডিক্রিপ্ট করা হচ্ছে...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "প্যাক কম্প্রেস করা হচ্ছে...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "পরিষ্কার করা হচ্ছে...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "সব দেখান",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "শুধু লভ্যগুলো",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "শুধু অলভ্যগুলো",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  }
+}

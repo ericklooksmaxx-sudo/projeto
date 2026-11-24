@@ -1,0 +1,1540 @@
+{
+  "@@locale": "ar",
+  "home": "الصفحة الرئيسية",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "التحميلات",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "الإعدادات",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "اختر اللغة",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "اللغة",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "تحميل",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "بحث...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "افتراضي",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "مصممين",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "جاري تفحص الأكواد",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "جاري تسجيل الدخول",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "تمت إضافة {keyCount} أكواد جديدة",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "لم يتم العثور على شيء",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "فتح",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "مسح",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "ok": "موافق",
+  "@ok": {
+    "description": "OK button"
+  },
+  "queuePosition": "في قائمة الانتظار (الترتيب #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "في قائمة الانتظار #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "تم حفظ الصورة في {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "خطأ في تحميل الصورة: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "سجل التغييرات",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "تم التحميل",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "إعادة التحميل",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "تحميل الصورة",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "تحميل هذه الصورة؟",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "مشاهدة الإعلان",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "خطأ في تشغيل الإعلان: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "المظهر",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "الوضع الداكن",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "الوضع الداكن مفعل",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "الوضع الفاتح مفعل",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "مظهر الألوان",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "افتراضي",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "افتراضي (بنفسجي)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "أزرق",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "أخضر",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "برتقالي",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "أحمر",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "أخضر مزرق",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "زهري",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "ليموني",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "الفلاتر",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "الفلتر:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "إظهار السكنات",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "الأكواد",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "التحديث التلقائي",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "أكواد مخصصة",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "تسجيل دخول الحساب",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "أخرى",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "التخزين المؤقت",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "تم إفراغ {size} MB من التخزين المؤقت",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "حول",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "حول",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "موجه الأوامر",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "الرجاء إضافة الأكواد لهذه وتلك الملفات!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "متى سيتم تحديث الأكواد؟",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "ما الفرق بين المشفرة وغير المشفرة",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "أين أستطيع أن أجد الملفات المحملة؟",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "ما هو keys.tsv؟",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion6": "كيف يمكنني أن أستخدم عناصر الشخصيات (persona)؟",
+  "@faqQuestion6": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion7": "لماذا بعض حزم السكنات تبدو غير صالحة؟",
+  "@faqQuestion7": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion8": "ما هو الهدف من صفحة \"تسجيل الدخول بالحساب\"؟",
+  "@faqQuestion8": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "عملية اقتناء الأكواد ليست سحر: شخص ما لا يزال عليه أن يشتري الملفات ويشارك الأكواد معنا في المقام الأول. من غير الممكن اقتناء تلك الملفات بأي وسيلة أخرى. انتظر بصبر أو اشتري الملفات",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "عندما نقرر هذا.",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "التشفير يعني تحويل الملف إلى كلمات مخربطة تبدو كالقمامة. لا أحد يستطيع قراءتها بدون كود مخصص. ملفات ماين كرافت المشفرة لا يمكن استخدامها. فك التشفير يعني استخدام الكود المخصص لتحويل القمامة إلى محتواها الأصلي. الآن يمكنك استخدام ملفات ماين كرافت هذه.",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "تستطيع العثور على الملفات هنا Download/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "هو ملف يخزن عليه عناوين الملفات مع أكوادها المخصصة. بدون تلك الأكواد الملفات المحملة لا يمكن استخدامها",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "faqAnswer6": "أنت لا تستطيع،هناك بعض الطرق لفعلها لكن بصعوبة وغير ملائمة.",
+  "@faqAnswer6": {
+    "description": "Answer for FAQ question 6"
+  },
+  "faqAnswer7": "بعض حزم السكنات (خصوصاً التعاونات) تستخدم مجسمات مخصصة التي لا تسمح ماين كرافت باستخدامها بشكل طبيعي حتى تقوم بشراء حزمة السكنات تلك. يمكنك التحقق إذا حزمة السكنات (Skin Pack) تستخدم مجسم مخصص بالتفحص إذا كان ملف \"geometry.json\" موجود في الحزمة أم لا. تذكر أن هذه المشكلة ليس لها علاقة بهذه الأداة بأي شكل من الأشكال.",
+  "@faqAnswer7": {
+    "description": "Answer for FAQ question 7"
+  },
+  "faqAnswer8": "صفحة تسجيل الدخول تسمح لك بالتحقق بحسابك الخاص بMicrosoft من أجل حفظ أكواد الباكات التي اشتريتها في ماين كرافت. هذا مفيد عندما Kyzen لا يملك حالياً أي كود لDLC معينة لكنك تملك هذا الDLC في حسابك وعندما يتم تحميل الأكواد بنجاح سوف يكون الDlC متاح للتحميل. ملاحظة إن الأكواد تحفظ بشكل تلقائي في قاعدة بياناتنا والتي لاحقاً سيتم دمجها مع قاعدة الأكواد الأساسية لKyzen حتى يتمكن الجميع من الاستمتاع بهذه DLC لهذا رجاءً استخدم هذه الميزة إذا كنت ترغب في المساهمة.",
+  "@faqAnswer8": {
+    "description": "Answer for FAQ question 8"
+  },
+  "fileDeleted": "تم حذف الملف",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "الملفات المخزنة",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "إعادة التحقق من الملفات",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "حذف الملف",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "هل أنت متأكد أنك تريد حذف {fileName}؟",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "إلغاء",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "حذف",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "التحميل الجاري حاليا",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "لا يوجد تحميلات نشطة",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "التحميلات المكتملة",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "مسح الكل",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "استخراج إلى ماين كرافت",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "openFileinExplorer": "فتح في مستكشف الملفات",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  },
+  "shareFile": "مشاركة الملف",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "موجه الأوامر المخصص",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "مسح السجلات",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "لا يوجد سجلات...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "saveLogs": "حفظ السجلات",
+  "@saveLogs": {
+    "description": "Used on debug page"
+  },
+  "logsSaved": "تم حفظ السجلات في {filePath}",
+  "@logsSaved": {
+    "description": "Message shown when logs are saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Documents/logs.txt"
+      }
+    }
+  },
+  "selectingFile": "اختيار الملف...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "معالجة الملف...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "تمت معالجة الملف بنجاح!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "لم يتم اختيار أي ملف",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "{count} الأكواد المخصصة التي تم استخراجها",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "لم يتم استخراج أي كود مخصص",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "استخراج ملف بصيغة UUID=KEY",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "{contentType} عناصر",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} عناصر ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "عناصر المصممين",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "هذا المصمم لا يمتلك محتوى",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "لا يوجد إحصائيات متوفرة",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "خطأ في عرض الإحصائيات",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "لم يتم العثور على شيء",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "التحقق الخاص ب مايكروسوفت",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "جاري تبادل كود التحقق...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "فشل التحقق: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "تم التحقق بنجاح!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "فشل في مبادلة كود التحقق: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "لم يتم تلقي أي كود تحقق",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "لم يتم العثور على أكواد جديدة للنسخ",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "تم نسخ الأكواد إلى الحافظة!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "لم يتم العثور على أكواد جديدة للمشاركة",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "تمت مشاركة الأكواد بنجاح!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "جاري تفحص التحقق الحالي...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "تم التحقق بالفعل!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "جاهز للتحقق",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "التحقق باستخدام رابط خارجي",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuthButton": "إكمال التحقق",
+  "@completeAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "openAuthPageButton": "فتح صفحة التحقق",
+  "@openAuthPageButton": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "أكمل التحقق في متصفحك. سوف يتم إعادة توجيهك إلى التطبيق.",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "copyUrl": "نسخ الرابط",
+  "@copyUrl": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "لم يتم فتح صفحة التحقق",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "جاري تسجيل الخروج...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "تم تسجيل الخروج بنجاح",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "جاري استخدام جلسة التخزين المؤقت...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "جاري تحميل أكواد ماين كرافت...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "جاري طلب كود Xbox Live...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "جاري تسجيل الدخول إلى PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "جاري الحصول على معلومات المستخدم...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "جاري بدء جلسة ماين كرافت...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "جاري تحميل مخزن ماين كرافت",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "تم تحميل {keyCount} كود بنجاح!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "خطأ في تحميل الأكواد: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "تم النسخ إلى الحافظة",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "تم التحقق",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "لم يتم التحقق",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "رابط التحقق",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "الأكواد المحملة",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "استخراج فقط الأكواد الجديدة",
+  "@exportNewKeys": {
+    "description": "Used on the auth page and mcdecryptor page"
+  },
+  "loadKeysButton": "إدخال الأكواد",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "تسجيل الخروج",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "بدء التحقق",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "مرحبا",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "copy": "نسخ",
+  "@copy": {
+    "description": "Used on the auth page"
+  },
+  "save": "حفظ",
+  "@save": {
+    "description": "Used on the auth page"
+  },
+  "share": "مشاركة",
+  "@share": {
+    "description": "Used on the auth page"
+  },
+  "keysSaved": "تم حفظ الأكواد بنجاح",
+  "@keysSaved": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "جاري بدء التحميل...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "التحميلات المكتملة",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "اكتمل!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "فشل التحميل",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "جاري التحميل",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "جاري المعالجة",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "جاري استخراج الملف المضغوط...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "جاري فك تشفير المحتوى...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "جاري ضغط الملف...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "جاري التنظيف...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "إظهار الكل",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "فقط المتاحة",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "فقط غير المتاحة",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "customColor": "لون مخصص",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "اضغط لتغيير اللون المخصص",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "اصنع لون المظهر الخاص بك",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "اختيار لون",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "اختيار",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "الصور",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "حفظ بصيغة PNG",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "حفظ إلى المعرض",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "الضغط",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "الضغط العادي",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "بدون ضغط",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "نسخ UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "فتح في ماين كرافت",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "المصمم",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "addToCart": "إضافة إلى عربة التسوق",
+  "@addToCart": {
+    "description": "Button to add an item to the cart"
+  },
+  "removeFromCart": "إزالة من عربة التسوق",
+  "@removeFromCart": {
+    "description": "Button to remove an item from the cart"
+  },
+  "addedToCart": "تمت الإضافة إلى عربة التسوق",
+  "@addedToCart": {
+    "description": "Message shown when an item is added to the cart"
+  },
+  "removedFromCart": "تمت الإزالة من عربة التسوق",
+  "@removedFromCart": {
+    "description": "Message shown when an item is removed from the cart"
+  },
+  "authRequired": "يرجى إكمال التحقق من الحساب",
+  "@authRequired": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "authRequiredDesc": "أنت بحاجة إلى إنهاء التحقق من الحساب بشكل كامل لرؤية عربة التسوق. الرجاء التحقق من حسابك في صفحة تسجيل الدخول.",
+  "@authRequiredDesc": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "newUpdate": "تحديث جديد",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "حزمة DLC جديدة",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "مخفي",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "الشخصيات (Persona)",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "السكنات",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "تجميعة (Mashups)",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "العوالم",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "المظاهر (Textures)",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "الإضافات (Add-Ons)",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "vibrantVisuals": "تأثيرات بصرية(شادرات)",
+  "@vibrantVisuals": {
+    "description": "Used on the dropdown filter"
+  },
+  "favorites": "المفضلة",
+  "@favorites": {
+    "description": "Used on the dropdown filter"
+  },
+  "unfiltered": "غير مفلتر",
+  "@unfiltered": {
+    "description": "Used on the dropdown filter"
+  },
+  "sorting": "ترتيب",
+  "@sorting": {
+    "description": "Used on the dropdown filter"
+  },
+  "type": "النوع",
+  "@type": {
+    "description": "Used on the dropdown filter"
+  },
+  "newFilter": "جديد",
+  "@newFilter": {
+    "description": "Used on the dropdown filter"
+  },
+  "other": "أخرى",
+  "@other": {
+    "description": "Used on the dropdown filter"
+  },
+  "newest": "الأحدث",
+  "@newest": {
+    "description": "Used on the dropdown filter"
+  },
+  "oldest": "الأقدم",
+  "@oldest": {
+    "description": "Used on the dropdown filter"
+  },
+  "mostRated": "الأعلى تقييماً",
+  "@mostRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "leastRated": "الأدنى تقييماً",
+  "@leastRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "القائمة",
+  "@menu": {
+    "description": "tooltip for menu button"
+  },
+  "imageSavedToGallery": "تم حفظ الصورة في المعرض:{filePath}",
+  "@imageSavedToGallery": {
+    "description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "vibrantVisualEnhanced": "تأثيرات بصرية محسنة(شادرات)",
+  "@vibrantVisualEnhanced": {
+    "description": "used on the item detail page"
+  },
+  "uuidCopied": "تم نسخ UUID إلى المحفظة",
+  "@uuidCopied": {
+    "description": "message shown when UUID is copied to clipboard"
+  },
+  "scrollRight": "التصفح لليمين",
+  "@scrollRight": {
+    "description": "tooltip for scrolling right for desktop"
+  },
+  "scrollLeft": "التصفح لليسار",
+  "@scrollLeft": {
+    "description": "tooltip for scrolling left for desktop"
+  },
+  "previousImage": "الصورة السابقة",
+  "@previousImage": {
+    "description": "tooltip for previous image button for desktop"
+  },
+  "nextImage": "الصورة التالية",
+  "@nextImage": {
+    "description": "tooltip for next image button for desktop"
+  },
+  "favoriteEmpty": "قائمة المفضلة لديك فارغة",
+  "@favoriteEmpty": {
+    "description": "shown when there is no favorite items"
+  },
+  "favoriteDescription": "اضغط على أيقونة القلب في صفحة تفاصيل أي شيء لإضافته إلى قائمتك المفضلة وبناء مجموعتك",
+  "@favoriteDescription": {
+    "description": "shown when there is no favorite items"
+  },
+  "removeFromFavorites": "إزالة من المفضلة",
+  "@removeFromFavorites": {
+    "description": "tooltip for removing item from favorites"
+  },
+  "addToFavorites": "إضافة إلى المفضلة",
+  "@addToFavorites": {
+    "description": "tooltip for adding item to favorites"
+  },
+  "addedToFavorites": "تمت الإضافة إلى المفضلة",
+  "@addedToFavorites": {
+    "description": "message shown when an item is added to favorites"
+  },
+  "removedFromFavorites": "تمت الإزالة من المفضلة",
+  "@removedFromFavorites": {
+    "description": "message shown when an item is removed from favorites"
+  },
+  "noNewKeysFoundToSave": "لم يتم العثور على أكواد لحفظها",
+  "@noNewKeysFoundToSave": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "keysSavedSuccessfully": "تم حفظ الأكواد بنجاح في مجلد Kyzen.",
+  "@keysSavedSuccessfully": {
+    "description": "Used on the Mcdecryptor page and auth page"
+  },
+  "entitlementKeys": "أكواد الاستحقاق (Entitlement Keys)",
+  "@entitlementKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchBoughContent": "البحث عن محتوى ماين كرافت الذي اشتريته.",
+  "@searchBoughContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "saveKeys": "حفظ الأكواد",
+  "@saveKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "refresh": "إعادة التحميل",
+  "@refresh": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchKeys": "البحث عن الأكواد",
+  "@searchKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadSkinPersona": "حفظ سكن باك/شخصيات (SkinPack/Persona)",
+  "@loadSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionSkinPersona": "أضف السكن باك والشخصيات على القائمة",
+  "@descriptionSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadOnlyNewKeys": "حفظ الأكواد الجديدة فقط",
+  "@loadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionLoadOnlyNewKeys": "حفظ فقط المحتوى الغير معروض في قاعدة بيانات أكواد التطبيق",
+  "@descriptionLoadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionExportNewKeys": "في حال أنه يجب على \"حفظ الأكواد\" استخراج فقط الأكواد الجديدة",
+  "@descriptionExportNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processedEntitlementKeys": "تمت معالجة ({countFiles} ملف, {countKeys} كود) بنجاح",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "noResultsYet": "لا نتائج حالياً",
+  "@noResultsYet": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "clickSearchKeysToLoadContent": "اضغط على \"البحث عن الأكواد\" لتحميل وحفظ محتواك",
+  "@clickSearchKeysToLoadContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "tryadifferentSearch": "جرب مصطلح بحث آخر",
+  "@tryadifferentSearch": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftNotInstalled": "لم يتم العثور على مسار تثبيت صالح لماين كرافت. الرجاء التأكد أن ماين كرافت نسخة البيدروك (UWP أو GDK) مثبتة لديك وقمت بتشغيليها مرة واحدة على الأقل.",
+  "@minecraftNotInstalled": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processingError": "معالجة الأخطاء",
+  "@processingError": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "dismiss": "تجاهل",
+  "@dismiss": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "failedFiles": "الملفات الفاشلة:",
+  "@failedFiles": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftFont": "خط ماين كرافت",
+  "@minecraftFont": {
+    "description": "Used to refer to the Minecraft font in the settings tab"
+  },
+  "usingMinecraftFont": "جارِ استخدام الخط الخاص بماين كرافت",
+  "@usingMinecraftFont": {
+    "description": "Used on the settings tab to indicate that the Minecraft font is being used"
+  },
+  "usingDefaultFont": "جارِ استخدام الخط الافتراضي",
+  "@usingDefaultFont": {
+    "description": "Used on the settings tab to indicate that the default font is being used"
+  },
+  "dlcLanguage": "اللغة الخاصة بالمحتوى ( مابات/مودات )",
+  "@dlcLanguage": {
+    "description": "Used on the settings tab to refer to the language of the DLC content"
+  },
+  "dlcLangInfo": "معلومات اللغة الخاصة بالمحتوى",
+  "@dlcLangInfo": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "dlcLangInfoText": "ملاحظة : هنالك بعض المودات أو  المابات لا يوجد ترجمة متاحة لها. هذا يعتمد على المتجر الخاص بلعبة ماين كرافت وليس على التطبيق.",
+  "@dlcLangInfoText": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "pageSize": "حجم الصفحة",
+  "@pageSize": {
+    "description": "Used on the settings tab to refer to the number of items shown per page in the item list"
+  },
+  "pageSizeInfo": "معلومات حجم الصفحة",
+  "@pageSizeInfo": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "pageSizeInfoText": "للتحكم بعدد العناصر التي تظهر في الصفحة بنفس الوقت. • في حالة قيمة قليلة: أفضل بالنسبة للانترنت الضعيف (الأكثر طلباً) • في حالة قيمة عالية: أفضل للانترنت القوي والسريع (الأقل طلباً) جميع النتائج تبقى متاحة بغض النظر عن حجم الصفحة. تظهر المزيد من العناصر تلقائياً عندما تصل لآخر القائمة أو الصفحة",
+  "@pageSizeInfoText": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "selectDlcLanguage": "اختر لغة المحتوى",
+  "@selectDlcLanguage": {
+    "description": "Used on the settings tab for selecting the DLC language"
+  },
+  "downloadPathUpdated": "تم تحديث مسار التنزيلات",
+  "@downloadPathUpdated": {
+    "description": "Used on the settings tab for showing a message when the download path is updated"
+  },
+  "downloadPathReset": "تم استعادة مسار التنزيلات الافتراضي",
+  "@downloadPathReset": {
+    "description": "Used on the settings tab for showing a message when the download path is reset to default"
+  },
+  "resetDefaults": "إعادة إلى الافتراضي",
+  "@resetDefaults": {
+    "description": "Used on the settings tab for resetting the download path to default"
+  },
+  "chooseFolder": "اختر المجلد",
+  "@chooseFolder": {
+    "description": "Used on the settings tab for choosing a custom download path"
+  },
+  "downloadPath": "مسار التنزيلات",
+  "@downloadPath": {
+    "description": "Used on the settings tab to refer to the path where downloaded packs are saved"
+  },
+  "version": "الإصدار",
+  "@version": {
+    "description": "Used on the settings tab to refer to the app version"
+  },
+  "purchasing": "جارِ الشراء",
+  "@purchasing": {
+    "description": "Used on the cart page when the user is purchasing a DLC pack"
+  },
+  "failedPurchase": "فشلت عملية الشراء",
+  "@failedPurchase": {
+    "description": "Used on the cart page when the purchase of a DLC pack fails"
+  },
+  "allItemsSuccessfullyPurchased": "تم شراء جميع العناصر بنجاح",
+  "@allItemsSuccessfullyPurchased": {
+    "description": "Used on the cart page when all items in the cart are successfully purchased"
+  },
+  "insufficientFunds": "لا يوجد لديك نقود كافية ل {insufficientFundsItems} عنصر(عناصر)",
+  "@insufficientFunds": {
+    "description": "Used on the cart page when the user doesn't have enough funds to purchase the items in the cart",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "somePurchasesFailed": "فشلت بعض عمليات الشراء",
+  "@somePurchasesFailed": {
+    "description": "Used on the cart page when some items in the cart fail to be purchased but not all"
+  },
+  "numItemsAreNotPurchasable": "{numItems} عنصر(عناصر) غير قابل(قابلة) للشراء",
+  "@numItemsAreNotPurchasable": {
+    "description": "Used on the cart page when some items in the cart are not purchasable",
+    "placeholders": {
+      "numItems": {
+        "type": "int",
+        "description": "Number of items that are not purchasable"
+      }
+    }
+  },
+  "purchaseComplete": "اكتملت عملية الشراء",
+  "@purchaseComplete": {
+    "description": "Used on the cart page when the purchase process is complete"
+  },
+  "confirmPurchase": "تأكيد الشراء",
+  "@confirmPurchase": {
+    "description": "Used on the cart page"
+  },
+  "confirmPurchaseMessage": "هل أنت متأكد أنك تريد شراء {itemsText} ؟",
+  "@confirmPurchaseMessage": {
+    "description": "Used on the cart page when confirming a purchase",
+    "placeholders": {
+      "itemsText": {
+        "type": "String",
+        "description": "Text describing the items being purchased, e.g. 'Skin Pack 1'"
+      }
+    }
+  },
+  "totalPrice": "السعر الإجمالي:",
+  "@totalPrice": {
+    "description": "Used on the cart page to indicate the total price of the items being purchased"
+  },
+  "purchaseResults": "نتائج الشراء",
+  "@purchaseResults": {
+    "description": "Used on the cart page to indicate the results of the purchase process"
+  },
+  "successfullyPurchased": "تم شراء {successItems} عنصر(عناصر) بنجاح",
+  "@successfullyPurchased": {
+    "description": "Used on the cart page to indicate the number of items successfully purchased",
+    "placeholders": {
+      "successItems": {
+        "type": "int",
+        "description": "Number of items that were successfully purchased"
+      }
+    }
+  },
+  "alreadyOwnded": "أنت تملك بالفعل: {alreadyOwnedItems}",
+  "@alreadyOwnded": {
+    "description": "Used on the cart page to indicate the number of items that were already owned",
+    "placeholders": {
+      "alreadyOwnedItems": {
+        "type": "int",
+        "description": "Number of items that were already owned"
+      }
+    }
+  },
+  "numItemsNotPurchasable": "عنصر(عناصر) غير قابلة للشراء: {notPurchasableItems}",
+  "@numItemsNotPurchasable": {
+    "description": "Used on the cart page to indicate the number of items that were not purchasable",
+    "placeholders": {
+      "notPurchasableItems": {
+        "type": "int",
+        "description": "Number of items that were not purchasable"
+      }
+    }
+  },
+  "numItemsInsufficientFunds": "نقود غير كافية: {insufficientFundsItems} عنصر(عناصر)",
+  "@numItemsInsufficientFunds": {
+    "description": "Used on the cart page to indicate the number of items that couldn't be purchased due to insufficient funds",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "numItemsFailed": "فشل شراء: {failedItemsCount} عنصر(عناصر)",
+  "@numItemsFailed": {
+    "description": "Used on the cart page to indicate the number of items that failed to be purchased",
+    "placeholders": {
+      "failedItemsCount": {
+        "type": "int",
+        "description": "Number of items that failed to be purchased"
+      }
+    }
+  },
+  "clearCart": "إفراغ عربة التسوق",
+  "@clearCart": {
+    "description": "Used on the cart page to clear all items from the cart"
+  },
+  "clearCartConfirmation": "هل أنت متأكد أنك تريد إزالة جميع العناصر من عربة تسوقك؟",
+  "@clearCartConfirmation": {
+    "description": "Confirmation message when clearing the cart"
+  },
+  "cartTitleNum": "عربة التسوق ({count})",
+  "@cartTitleNum": {
+    "description": "Used as the title of the cart page with the number of items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "cartisEmpty": "عربة تسوقك فارغة",
+  "@cartisEmpty": {
+    "description": "Message shown when the cart is empty"
+  },
+  "cartEmptyDescription": "اضغط على علامة عربة التسوق في صفحة تفاصيل أي عنصر لإضافته إلى عربة تسوقك وشرائه",
+  "@cartEmptyDescription": {
+    "description": "Message shown when the cart is empty"
+  },
+  "purchasingInProgress": "جارِ الشراء...",
+  "@purchasingInProgress": {
+    "description": "Message shown when a purchase is in progress"
+  },
+  "purchaseAllnum": "شراء الكل ({count})",
+  "@purchaseAllnum": {
+    "description": "Used on the cart page to purchase all items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "nowNewdlcFound": "لم يتم العثور على محتوى جديد",
+  "@nowNewdlcFound": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "nowNewDlcFoundDescription": "جميع العناصر موجودة في قاعدة بيانات التطبيق بالفعل",
+  "@nowNewDlcFoundDescription": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "noDlcFound": "لم يتم العثور على شيء",
+  "@noDlcFound": {
+    "description": "Used on the auth page when no dlc is found"
+  },
+  "noDlcAvailable": "لم يتم العثور على محتوى متاح",
+  "@noDlcAvailable": {
+    "description": "Used on the auth page dlc list"
+  },
+  "openDlcsList": "فتح قائمة العناصر",
+  "@openDlcsList": {
+    "description": "Used on the auth page to open the list of dlcs"
+  },
+  "appUpdates": "تحديثات التطبيق",
+  "@appUpdates": {
+    "description": "Used on the changelog page"
+  },
+  "appUpdatesDescription": "لرؤية ما الجديد في النسخ الحديثة من التطبيق",
+  "@appUpdatesDescription": {
+    "description": "Used on the changelog page"
+  },
+  "faqQuestion9": "ما الذي تعنيه علامة \"صح\"؟",
+  "@faqQuestion9": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer9Checkmark": "كود فك التشفير لهذه الحزمة متاح.",
+  "@faqAnswer9Checkmark": {
+    "description": "Answer for FAQ question 9. checkmark ok"
+  },
+  "faqAnswer9NoCheckmark": "التطبيق لا يملك اي كود فك تشفير خاص بهذه الحزمة حاليا.",
+  "@faqAnswer9NoCheckmark": {
+    "description": "Answer for FAQ question 9. no checkmark"
+  },
+  "faqAnswer9ExtraInfo": "الأكواد ضرورية لفك تشفير الحزم والإضافات.",
+  "@faqAnswer9ExtraInfo": {
+    "description": "Extra information for FAQ question 9"
+  },
+  "faqQuestionDownload": "لماذا زر التحميل غير متاح؟",
+  "@faqQuestionDownload": {
+    "description": "Used on the item detail page"
+  },
+  "faqAnswerDownload": "كود فك التشفير الخاص بهذه الحزمة غير متاح، انتظر بصبر او قم بشرائه.",
+  "@faqAnswerDownload": {
+    "description": "Answer for faq download item detail page"
+  },
+  "faqQuestionKey": "كيف أحصل على كود فك التشفير؟",
+  "@faqQuestionKey": {
+    "description": "used on the item detail page"
+  },
+  "faqMoreHelp": "المزيد من المساعدة",
+  "@faqMoreHelp": {
+    "description": "Used on the pop up dialog faq item detail page"
+  },
+  "faqNotAdlc": "ليس حزمة",
+  "@faqNotAdlc": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqNotAdlcDescription": "هذا العنصر ليس حزمة.",
+  "@faqNotAdlcDescription": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqServerContent": "محتويات الخادم",
+  "@faqServerContent": {
+    "description": "Used on the faq item detail page"
+  },
+  "faqServerContentDescription": "هذا العنصر هو محتوى حصري لخادم معين ولا يمكن تحميله مباشرة.",
+  "@faqServerContentDescription": {
+    "description": "Used on the faq item detail page"
+  },
+  "capes": "رداءات",
+  "@capes": {
+    "description": "Used on the bottom sheet for the mojang creator"
+  },
+  "socials": "وسائل التواصل الاجتماعي",
+  "@socials": {
+    "description": "Used on the settings page"
+  },
+  "selectApp": "يرجى اختيار تطبيق",
+  "@selectApp": {
+    "description": "Title for the app picker dialog"
+  },
+  "noAppsFound": "لم يتم العثور على أي تطبيق",
+  "@noAppsFound": {
+    "description": "Message shown when no apps are found"
+  },
+  "errorLoadingDlcs": "حدث خطأ في تحميل المحتوى",
+  "@errorLoadingDlcs": {
+    "description": "Message shown when there is an error loading DLCs"
+  },
+  "dlcs": "الحزم (DLCs)",
+  "@dlcs": {
+    "description": "Title for the DLCs list page"
+  },
+  "errorSavingKeys": "حدث خطأ في حفظ الأكواد: {error}",
+  "@errorSavingKeys": {
+    "description": "Error message when saving keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorOpeningAuthPage": "حدث خطأ في فتح صفحة التحقق: {error}",
+  "@errorOpeningAuthPage": {
+    "description": "Error message when opening authentication page fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gettingEntityToken": "جار الحصول على التوكن...",
+  "@gettingEntityToken": {
+    "description": "Status message during authentication"
+  },
+  "loadingMinecoinBalance": "جار تحميل رصيد ماين كوين...",
+  "@loadingMinecoinBalance": {
+    "description": "Status message while loading Minecoin balance"
+  },
+  "completeAuthFirst": "الرجاء إكمال التحقق أولا",
+  "@completeAuthFirst": {
+    "description": "Message instructing the user to authenticate first"
+  },
+  "sessionExpired": "انتهت الجلسة. الرجاء المحاولة لاحقا.",
+  "@sessionExpired": {
+    "description": "Error message when session expires"
+  },
+  "accessDenied": "تم رفض الوصول. الرجاء إعادة طلب التحقق.",
+  "@accessDenied": {
+    "description": "Error message when access is denied"
+  },
+  "connectionTimeout": "انتهت مهلة الاتصال. الرجاء التحقق من اتصالك بالإنترنت والمحاولة لاحقا.",
+  "@connectionTimeout": {
+    "description": "Error message for connection timeout"
+  },
+  "serverError": "حدث خطأ في الخادم. الرجاء المحاولة مرة أخرى بعد عدة لحظات.",
+  "@serverError": {
+    "description": "Error message for server errors"
+  },
+  "backToSettings": "العودة إلى الإعدادات",
+  "@backToSettings": {
+    "description": "Tooltip text to go back to settings"
+  },
+  "errorInitializingCart": "حدث خطأ في تهيئة عربة التسوق: {error}",
+  "@errorInitializingCart": {
+    "description": "Error message when cart initialization fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingCartItems": "حدث خطأ في تحميل عناصر عربة التسوق: {error}",
+  "@errorLoadingCartItems": {
+    "description": "Error message when loading cart items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedLoadMoreItems": "فشل في تحميل عناصر أكثر: {error}",
+  "@failedLoadMoreItems": {
+    "description": "Error message when loading more items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSavingLog": "حدث خطأ في حفظ التقرير: {error}",
+  "@errorSavingLog": {
+    "description": "Error message when saving logs fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToDeleteFile": "فشل في حذف الملف",
+  "@failedToDeleteFile": {
+    "description": "Error message when deleting a file fails"
+  },
+  "failedToShareFile": "فشل في مشاركة الملف: {error}",
+  "@failedToShareFile": {
+    "description": "Error message when sharing a file fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "minecraftPackage": "حزمة ماين كرافت",
+  "@minecraftPackage": {
+    "description": "Setting item for Minecraft package"
+  },
+  "couldNotOpenLink": "لم يتم فتح الرابط: {error}",
+  "@couldNotOpenLink": {
+    "description": "Error message when opening link fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customLocation": "مكان مخصص",
+  "@customLocation": {
+    "description": "Display name for custom location"
+  },
+  "sdCardExternalStorage": "بطاقة الذاكرة / وحدة تخزين خارجية",
+  "@sdCardExternalStorage": {
+    "description": "Display name for SD card or external storage"
+  },
+  "couldNotLoadSocials": "لم يتم تحميل روابط التواصل الاجتماعي، سيتم استخدام الافتراضية",
+  "@couldNotLoadSocials": {
+    "description": "Error message when social links fail to load"
+  },
+  "byCreator": "من قبل {creator}",
+  "@byCreator": {
+    "description": "Prefix followed by the author name",
+    "placeholders": {
+      "creator": {
+        "type": "String"
+      }
+    }
+  },
+  "itemDetailsTitle": "خصائص العنصر",
+  "@itemDetailsTitle": {
+    "description": "Title of the item details sheet"
+  },
+  "failedToSaveKeys": "فشل في حفظ الأكواد: {error}",
+  "@failedToSaveKeys": {
+    "description": "Error message when saving keys fails in McDecryptor",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "initializingMcDec": "جار تهيئة McDec...",
+  "@initializingMcDec": {
+    "description": "Status message shown during McDecryptor initialization"
+  },
+  "personaWarning": "عناصر الشخصيات لا يمكن استخراجها داخل اللعبة (مثل الرقصات، العناصر الجمالية، والرداءات)",
+  "@personaWarning": {
+    "description": "Warning message displayed for Persona items"
+  },
+  "faqAnswerKey": "قم بشراء الحزمة في حسابك ثم اذهب إلى الإعدادات > تسجيل دخول الحساب > اضغط 'بدء التحقق' > اضغط 'تحميل الأكواد'، والآن اضغط 'مشاركة' وشارك ملفات الأكواد إلى محادثة Bluecoin، سيتم إضافة الأكواد إلى قاعدة بيانات التطبيق. إذا لا يمكنك مشاركة ملفات الأكواد إلى المحادثة، لا تقلق، سيتم رفع الأكواد تلقائيا إلى قاعدة البيانات.",
+  "@faqAnswerKey": {
+    "description": "Answer for faq key item detail page"
+  },
+  "freeDroidWarnMessage": "أعلنت Google أنه ابتداءً من عام 2026/2027، ستتطلب جميع التطبيقات على الأجهزة المعتمدة من Android من المطورين تقديم معلومات هويتهم الشخصية مباشرةً إلى Google. بما أن مطوري هذا التطبيق لا يوافقون على هذا الشرط، فلن يعمل هذا التطبيق على أجهزة Android المعتمدة بعد ذلك الوقت.",
+  "freeDroidWarnDetails": "تفاصيل",
+  "freeDroidWarnSolution": "حل"
+}

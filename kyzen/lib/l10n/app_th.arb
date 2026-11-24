@@ -1,0 +1,1065 @@
+{
+  "@@locale": "th",
+
+  "home": "หน้าแรก",
+  "@home": {"description": "used on bottom_navigation.dart"},
+  "downloads": "ดาวน์โหลด",
+  "@downloads": {"description": "used on bottom_navigation.dart"},
+  "settings": "ตั้งค่า",
+  "@settings": {"description": "used on bottom_navigation and on Settings tab"},
+  "selectLanguage": "เลือกภาษา",
+  "@selectLanguage": {"description": "used on the language selector"},
+  "language": "ภาษา",
+  "@language": {"description": "used on the language selector"},
+  "download": "โหลดเลย",
+  "@download": {"description": "used on the item detail page"},
+  "hintText": "ค้นหา...",
+  "@hintText": {"description": "used on the search bar"},
+  "default1": "เริ่มต้น",
+  "@default1": {"description": "used on the search bar"},
+  "creators": "ครีเอเตอร์",
+  "@creators": {"description": "used on the search bar"},
+  "checkingKeys": "กำลังเช็คคีย์...",
+  "@checkingKeys": {"description": "used on startup app"},
+  "apiLogin": "เข้าสู่ระบบ API",
+  "@apiLogin": {"description": "used on startup app"},
+  "addedNewKeys": "เพิ่มคีย์ใหม่ {keyCount} คีย์แล้วนะ",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "ไม่เจอนะจ๊ะ",
+  "@noResult": {"description": "when no dlc found"},
+
+  "open": "เปิด",
+  "@open": {"description": "open button"},
+  "clear": "ล้าง",
+  "@clear": {"description": "clear button"},
+  "retry": "ลองใหม่",
+  "@retry": {"description": "Used on the bottom sheet creator"},
+  "ok": "ตกลง",
+  "@ok": {"description": "OK button"},
+
+  "queuePosition": "รอคิวอยู่นะ (ตำแหน่ง #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+    "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+
+  "queuePosition2": "รอคิว #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+    "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+
+  "imageSaved": "เซฟรูปไว้ที่ {filePath} แล้วจ้า",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+
+  "errorDownloadingImage": "โหลดรูปไม่สำเร็จ: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+
+  "changelog": "อัปเดตอะไรบ้าง",
+  "@changelog": {"description": "used on the item detail page"},
+  "downloaded": "โหลดแล้ว",
+  "@downloaded": {"description": "used on the item detail page"},
+  "retryDownload": "โหลดใหม่ดิ",
+  "@retryDownload": {"description": "used on the item detail page"},
+  "downloadImage": "บันทึกรูป",
+  "@downloadImage": {"description": "used on the item detail page"},
+  "downloadImageQuestion": "เอาภาพนี้ป่ะ?",
+  "@downloadImageQuestion": {"description": "used on the item detail page"},
+  "cancel": "ยกเลิก",
+  "@cancel": {"description": "used on the item detail page"},
+  "trailer": "ดูตัวอย่าง",
+  "@trailer": {"description": "trailer button on item detail page"},
+  
+  "trailerError": "เปิดตัวอย่างไม่ได้วะ: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+
+  "appearance": "ธีม",
+  "@appearance": {"description": "Used on the settings tab"},
+
+  "darkMode": "โหมดมืด",
+  "@darkMode": {"description": "Used on the settings tab"},
+  "darkEnabled": "เปิดโหมดมืดแล้ว",
+  "@darkEnabled": {"description": "Used on the settings tab"},
+  "lightEnabled": "เปิดโหมดสว่างแล้ว",
+  "@lightEnabled": {"description": "Used on the settings tab"},
+
+  "colorScheme": "โทนสี",
+  "@colorScheme": {"description": "Used on the settings tab"},
+  "defaultColor": "ค่าตั้งต้น",
+  "@defaultColor": {"description": "Used on the settings tab"},
+  "defaultPurple": "ตั้งต้น (ม่วง)",
+  "@defaultPurple": {"description": "Used on the settings tab"},
+  "colorSchemeBlue": "ฟ้า",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "เขียว",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "ส้ม",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "แดง",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "ทีล",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "ชมพู",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "ไลม์",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+
+  "filters": "ฟิลเตอร์",
+  "@filters": {"description": "Used on the settings tab"},
+  "filter": "กรอง:",
+  "@filter": {"description": "Used on the settings tab"},
+
+  "showSkins": "โชว์สกิน",
+  "@showSkins": {"description": "Used on the settings tab"},
+
+  "keys": "คีย์",
+  "@keys": {"description": "Used on the settings tab"},
+  "autoUpdate": "อัปเดตอัตโนมัติ",
+  "@autoUpdate": {"description": "Used on the settings tab, auto update for the keys"},
+  "customDb": "DB แบบกำหนดเอง",
+  "@customDb": {"description": "Used on the settings tab"},
+  "accountLogin": "ล็อกอินบัญชี",
+  "@accountLogin": {"description": "Used on the settings tab"},
+  "extras": "เสริม",
+  "@extras": {"description": "Used on the settings tab"},
+  "cache": "แคช",
+  "@cache": {"description": "Used on the settings tab"},
+
+  "cacheCleared": "เคลียร์แคช {size} MB แล้ว",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+
+  "faq": "คำถามบ่อย",
+  "@faq": {"description": "Used on the settings tab"},
+  "faqUppercase": "FAQ",
+  "@faqUppercase": {"description": "Used on faq page"},
+  "terminal": "เทอร์มินัล",
+  "@terminal": {"description": "Used on the settings tab"},
+
+  "faqQuestion1": "ช่วยเพิ่มคีย์ให้ pack นี้หน่อยดิ!",
+  "@faqQuestion1": {"description": "Used on faq page"},
+
+  "faqQuestion2": "เมื่อไหร่จะอัปเดตคีย์อะ?",
+  "@faqQuestion2": {"description": "Used on faq page"},
+  
+  "faqQuestion3": "Encrypted กับ Decrypted ต่างกันยังไง?",
+  "@faqQuestion3": {"description": "Used on faq page"},
+  
+  "faqQuestion4": "หาไฟล์ pack ที่โหลดมาได้ที่ไหน?",
+  "@faqQuestion4": {"description": "Used on faq page"},
+  
+  "faqQuestion5": "keys.tsv คืออะไร?",
+  "@faqQuestion5": {"description": "Used on faq page"},
+
+  "faqQuestion6": "ใช้ไอเทม Persona ยังไง?",
+  "@faqQuestion6": {"description": "Used on faq page"},
+
+  "faqQuestion7": "ทำไมสกินบางอันพัง?",
+  "@faqQuestion7": {"description": "Used on faq page"},
+
+  "faqQuestion8": "หน้า \"Account Login\" มีไว้ทำไม?",
+  "@faqQuestion8": {"description": "Used on faq page"},
+
+  "faqQuestion9": "เครื่องหมายติ๊กถูกหมายความว่าไง?",
+  "@faqQuestion9": {"description": "Used on faq page"},
+
+  "faqAnswer1": "การได้คีย์มาไม่ได้วิเศษอะไรขนาดนั้นนะ คือต้องมีคนซื้อ pack แล้วแชร์คีย์มาให้ก่อน ถ้าไม่มีใครซื้อก็ไม่มีคีย์ให้ถอดรหัสตั้งแต่แรก ไม่มีทางอื่นได้คีย์มาหรอก รอหน่อยหรือไม่ก็ซื้อเองเลยจ้า",
+  "@faqAnswer1": {"description": "Answer for FAQ question 1"},
+  
+  "faqAnswer2": "ไว้เราสะดวกเมื่อไหร่ก็อัปเดตเมื่อนั้นแหละ",
+  "@faqAnswer2": {"description": "Answer for FAQ question 2"},
+  
+  "faqAnswer3": "Encrypted = ไฟล์ถูกทำให้เป็นตัวอักษรไร้สาระอ่านไม่ออก ไม่มีใครเปิดอ่านได้ถ้าไม่มีคีย์พิเศษ คอนเทนต์ Minecraft ที่เข้ารหัสแล้วเล่นไม่ได้นะ\\n\\nDecrypted = ใช้คีย์พิเศษแปลง gibberish กลับเป็นเนื้อหาเดิม เล่นได้ตามปกติ",
+  "@faqAnswer3": {"description": "Answer for FAQ question 3"},
+  
+  "faqAnswer4": "หาไฟล์ได้ที่ ดาวน์โหลด/Kyzen จ้า",
+  "@faqAnswer4": {"description": "Answer for FAQ question 4"},
+  
+  "faqAnswer5": "เป็นไฟล์เก็บ UUID ของ pack พร้อมคีย์ถอดรหัสประจำ pack นั้นๆ ถ้าไม่มีคีย์ถอดรหัส pack ที่โหลดมาก็เล่นไม่ได้เลย",
+  "@faqAnswer5": {"description": "Answer for FAQ question 5"},
+
+  "faqAnswer6": "ใช้ไม่ได้จ้า มีวิธีอยู่บ้างแต่มันซับซ้อนเกินกว่าจะทำได้จริง",
+  "@faqAnswer6": {"description": "Answer for FAQ question 6"},
+
+  "faqAnswer7": "สกินบางอัน (โดยเฉพาะคอลแล็บแฟรนไชส์) ใช้ custom geometry ที่ Minecraft ไม่อนุญาตให้ใช้ปกติเว้นแต่ซื้อสกินนั้น ลองเช็คว่ามีไฟล์ geometry.json ใน pack ไหม ปัญหานี้ไม่เกี่ยวกับแอปนะ",
+  "@faqAnswer7": {"description": "Answer for FAQ question 7"},
+
+  "faqAnswer8": "หน้า account login ให้คุณล็อกอินด้วยบัญชี Microsoft เพื่อโหลดคีย์ Minecraft จาก inventory ของคุณโดยตรง\\nมีประโยชน์เวลาที่ Kyzen ยังไม่มีคีย์สำหรับ DLC ไหน แต่คุณมีในบัญชีของคุณ เมื่อโหลดคีย์แล้ว DLC นั้นจะขึ้นว่าโหลดได้\\nคีย์จะถูกอัปโหลดไปยังฐานข้อมูลเราอัตโนมัติเพื่อรวมกับฐานข้อมูลหลักของ Kyzen ให้ทุกคนโหลด DLC ใหม่ๆ ได้ ช่วยกันใช้ฟีเจอร์นี้ด้วยนะถ้าอยาก contribute",
+  "@faqAnswer8": {"description": "Answer for FAQ question 8"},
+
+  "faqAnswer9Checkmark": "มีคีย์สำหรับ DLC นี้แล้ว",
+  "@faqAnswer9Checkmark": {"description": "Answer for FAQ question 9. checkmark ok"},
+
+  "faqAnswer9NoCheckmark": "แอปยังไม่มีคีย์สำหรับ DLC นี้",
+  "@faqAnswer9NoCheckmark": {"description": "Answer for FAQ question 9. no checkmark"},
+
+  "faqAnswer9ExtraInfo": "ต้องมีคีย์ถึงจะปลดล็อก DLC ได้นะ",
+  "@faqAnswer9ExtraInfo": {"description": "Extra information for FAQ question 9"},
+
+  "faqQuestionDownload": "ทำไมกดปุ่มดาวน์โหลดไม่ได้?",
+  "@faqQuestionDownload": {"description": "Used on the item detail page"},
+  "faqAnswerDownload": "คีย์ปลดล็อก DLC นี้ยังไม่ว่าง รอหน่อยหรือซื้อเลยจ้า",
+  "@faqAnswerDownload": {"description": "Answer for faq download item detail page"},
+  "faqQuestionKey": "หาคีย์ยังไง?",
+  "@faqQuestionKey": {"description": "used on the item detail page"},
+  "faqAnswerKey": "ซื้อ DLC ในบัญชีคุณก่อน แล้วไป settings > Account login > กด 'Start authentication' > กด 'Load keys' แล้วกด 'Share' แชร์ไฟล์คีย์ไปที่ Bluecoin chat คีย์จะถูกเพิ่มเข้าไปในฐานข้อมูลแอป ถ้าแชร์ไม่ได้ก็ไม่ต้องห่วง คีย์มันอัปโหลดอัตโนมัติอยู่แล้ว",
+  "@faqAnswerKey": {"description": "Answer for faq key item detail page"},
+  "faqMoreHelp": "ช่วยเหลือเพิ่มเติม",
+  "@faqMoreHelp": {"description": "Used on the pop up dialog faq item detail page"},
+  "faqNotAdlc": "ไม่ใช่ DLC",
+  "@faqNotAdlc": {"description": "used on the item detail page for non-dlc items"},
+  "faqNotAdlcDescription": "อันนี้ไม่ใช่ DLC นะจ๊ะ",
+  "@faqNotAdlcDescription": {"description": "used on the item detail page for non-dlc items"},
+  "faqServerContent": "คอนเทนต์เซิฟเวอร์",
+  "@faqServerContent": {"description": "Used on the faq item detail page"},
+  "faqServerContentDescription": "ไอเทมนี้เป็น exclusive ของเซิฟเวอร์นั้นๆ ไม่สามารถโหลดโดยตรงได้",
+  "@faqServerContentDescription": {"description": "Used on the faq item detail page"},
+
+  "fileDeleted": "ลบไฟล์แล้ว",
+  "@fileDeleted": {"description": "Used on the downloads tab"},
+
+  "storedFiles": "ไฟล์ที่เก็บไว้",
+  "@storedFiles": {"description": "Used on the downloads tab"},
+  "refreshFiles": "รีเฟรชไฟล์",
+  "@refreshFiles": {"description": "Used on the downloads tab"},
+
+  "deleteFile": "ลบไฟล์",
+  "@deleteFile": {"description": "Title for delete file confirmation dialog"},
+  
+  "deleteFileConfirmation": "แน่ใจนะว่าจะลบ {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  
+  "cancelUppercase": "ยกเลิก",
+  "@cancelUppercase": {"description": "Cancel button"},
+  
+  "deleteUppercase": "ลบ",
+  "@deleteUppercase": {"description": "Delete button"},
+
+  "currentDownload": "กำลังโหลด",
+  "@currentDownload": {"description": "Used on the downloads tab"},
+  "noActiveDownloads": "ไม่มีการโหลดตอนนี้",
+  "@noActiveDownloads": {"description": "Used on the downloads tab"},
+  "completedDownloads": "โหลดเสร็จแล้ว",
+  "@completedDownloads": {"description": "Used on the downloads tab"},
+  "clearAll": "ล้างทั้งหมด",
+  "@clearAll": {"description": "Used on the downloads tab"},
+  "importToMc": "นำเข้า Minecraft",
+  "@importToMc": {"description": "Used on the downloads tab"},
+  "openFileinExplorer": "เปิดใน file explorer",
+  "@openFileinExplorer": {"description": "Used on the downloads tab but only for desktop"},
+  "shareFile": "แชร์ไฟล์",
+  "@shareFile": {"description": "Used on the downloads tab"},
+
+  "debugTerminal": "ดีบักเทอร์มินัล",
+  "@debugTerminal": {"description": "Used on debug page"},
+  "clearLogs": "ล้างล็อก",
+  "@clearLogs": {"description": "Used on debug page"},
+  "noLogs": "ยังไม่มีล็อก...",
+  "@noLogs": {"description": "Used on debug page"},
+  "saveLogs": "เซฟล็อก",
+  "@saveLogs": {"description": "Used on debug page"},
+  "logsSaved": "เซฟล็อกไว้ที่ {filePath} แล้ว",
+  "@logsSaved": {
+    "description": "Message shown when logs are saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Documents/logs.txt"
+      }
+    }
+  },
+
+  "selectingFile": "กำลังเลือกไฟล์...",
+  "@selectingFile": {"description": "Used on the custom db page"},
+  "processingFile": "กำลังประมวลผล...",
+  "@processingFile": {"description": "Used on the custom db page"},
+  "fileProcessed": "ประมวลผลไฟล์สำเร็จ!",
+  "@fileProcessed": {"description": "Used on the custom db page"},
+  "noFileSelected": "ยังไม่เลือกไฟล์",
+  "@noFileSelected": {"description": "Used on the custom db page"},
+
+  "customKeysLoaded": "โหลด custom keys {count} คีย์แล้ว",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  
+  "noCustomKeysLoaded": "ไม่มีการโหลด custom keys",
+  "@noCustomKeysLoaded": {"description": "Used on the custom db page"},
+  
+  "importFileFormat": "นำเข้าไฟล์รูปแบบ UUID=KEY",
+  "@importFileFormat": {"description": "Used on the custom db page"},
+
+  "creatorItemsWithType": "ไอเทม {contentType}",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "ไอเทม {contentType} ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "ไอเทมครีเอเตอร์",
+  "@creatorItemsDefault": {"description": "Used on the bottom sheet creator"},
+  "noItemCreator": "ครีเอเตอร์นี้ยังไม่มีคอนเทนต์",
+  "@noItemCreator": {"description": "Used on the bottom sheet creator"},
+  "noStatistic": "ไม่มีสถิติให้ดู",
+  "@noStatistic": {"description": "Used on the bottom sheet creator"},
+  "failedLoadStatistic": "โหลดสถิติไม่สำเร็จ",
+  "@failedLoadStatistic": {"description": "Used on the bottom sheet creator"},
+  "noResultsFound": "ไม่เจอผลลัพธ์",
+  "@noResultsFound": {"description": "Used on the bottom sheet creator"},
+
+  "microsoftAuth": "ยืนยันตัวตน Microsoft",
+  "@microsoftAuth": {"description": "Used on the auth page"},
+  "exchangingToken": "กำลังแลก authorization code เป็น token...",
+  "@exchangingToken": {"description": "Used on the auth page"},
+  "authenticationFailed": "ยืนยันตัวตนไม่สำเร็จ: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "ยืนยันตัวตนสำเร็จ!",
+  "@authenticationSuccessful": {"description": "Used on the auth page"},
+  "failedToExchangeToken": "แลก code เป็น token ไม่ได้: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "ไม่ได้รับ authorization code",
+  "@noAuthorizationCodeReceived": {"description": "Used on the auth page"},
+  "noNewKeysCopy": "ไม่พบคีย์ใหม่ให้คัดลอก",
+  "@noNewKeysCopy": {"description": "Used on the auth page"},
+  "keysCopyClipboard": "คัดลอกคีย์ไปคลิปบอร์ดแล้ว!",
+  "@keysCopyClipboard": {"description": "Used on the auth page"},
+  "noNewKeysShare": "ไม่พบคีย์ใหม่ให้แชร์",
+  "@noNewKeysShare": {"description": "Used on the auth page"},
+  "keysShared": "แชร์คีย์สำเร็จ!",
+  "@keysShared": {"description": "Used on the auth page"},
+
+  "authCheck": "กำลังตรวจสอบการยืนยันตัวตนที่มีอยู่...",
+  "@authCheck": {"description": "Used on the auth page"},
+  "alreadyAuth": "ยืนยันตัวตนแล้ว!",
+  "@alreadyAuth": {"description": "Used on the auth page"},
+  "readyAuth": "พร้อมยืนยันตัวตน",
+  "@readyAuth": {"description": "Used on the auth page"},
+  "authURL": "ยืนยันตัวตนด้วย URL",
+  "@authURL": {"description": "Used on the auth page"},
+  "completeAuthButton": "ยืนยันตัวตนเสร็จสิ้น",
+  "@completeAuthButton": {"description": "Used on the auth page"},
+  "openAuthPageButton": "เปิดหน้า Auth",
+  "@openAuthPageButton": {"description": "Used on the auth page"},
+  "completeAuth": "ยืนยันตัวตนในเบราว์เซอร์ของคุณ แล้วคุณจะถูกพากลับมาที่แอป",
+  "copyUrl": "คัดลอก URL",
+  "@copyUrl": {"description": "Used on the auth page"},
+  "@completeAuth": {"description": "Used on the auth page"},
+  "authPageFail": "เปิดหน้า authentication ไม่ได้",
+  "@authPageFail": {"description": "Used on the auth page"},
+  "logout": "กำลังออกจากระบบ...",
+  "@logout": {"description": "Used on the auth page"},
+  "logoutOk": "ออกจากระบบสำเร็จ",
+  "@logoutOk": {"description": "Used on the auth page"},
+
+  "usingCachedSession": "ใช้เซสชันที่แคชไว้...",
+  "@usingCachedSession": {"description": "Used on the auth page"},
+  "loadingMinecraftKeys": "กำลังโหลดคีย์ Minecraft...",
+  "@loadingMinecraftKeys": {"description": "Used on the auth page"},
+  "requestingXboxLiveToken": "กำลังขอ Xbox Live token...",
+  "@requestingXboxLiveToken": {"description": "Used on the auth page"},
+  "loggingInToPlayFab": "กำลังล็อกอิน PlayFab...",
+  "@loggingInToPlayFab": {"description": "Used on the auth page"},
+  "gettingUserInformation": "กำลังดึงข้อมูลผู้ใช้...",
+  "@gettingUserInformation": {"description": "Used on the auth page"},
+  "startingMinecraftSession": "กำลังเริ่มเซสชัน Minecraft...",
+  "@startingMinecraftSession": {"description": "Used on the auth page"},
+  "loadingMinecraftInventory": "กำลังโหลด inventory Minecraft...",
+  "@loadingMinecraftInventory": {"description": "Used on the auth page"},
+  "successfullyLoadedKeys": "โหลด {keyCount} คีย์สำเร็จ!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "โหลดคีย์ผิดพลาด: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "คัดลอกไปคลิปบอร์ดแล้ว",
+  "@copyClipboard": {"description": "Used on the auth page"},
+  "authOk": "ยืนยันตัวตนแล้ว",
+  "@authOk": {"description": "Used on the auth page"},
+  "authNotOk": "ยังไม่ยืนยันตัวตน",
+  "@authNotOk": {"description": "Used on the auth page"},
+  "urlAuth": "URL ยืนยันตัวตน",
+  "@urlAuth": {"description": "Used on the auth page"},
+  "loadedKeys": "คีย์ที่โหลดแล้ว",
+  "@loadedKeys": {"description": "Used on the auth page"},
+  "exportNewKeys": "ส่งออกเฉพาะคีย์ใหม่",
+  "@exportNewKeys": {"description": "Used on the auth page and mcdecryptor page"},
+  "loadKeysButton": "โหลดคีย์",
+  "@loadKeysButton": {"description": "Used on the auth page"},
+  "logoutButton": "ออกจากระบบ",
+  "@logoutButton": {"description": "Used on the auth page"},
+  "startAuthButton": "เริ่มการยืนยันตัวตน",
+  "@startAuthButton": {"description": "Used on the auth page"},
+  "greetings": "สวัสดี ",
+  "@greetings": {"description": "Used on the auth page"},
+  "copy": "คัดลอก",
+  "@copy": {"description": "Used on the auth page"},
+  "save": "เซฟ",
+  "@save": {"description": "Used on the auth page"},
+  "share": "แชร์",
+  "@share": {"description": "Used on the auth page"},
+  "keysSaved": "เซฟคีย์สำเร็จ",
+  "@keysSaved": {"description": "Used on the auth page"},
+
+  "startingDownload": "กำลังเริ่มดาวน์โหลด...",
+  "@startingDownload": {"description": "Used on the download service"},
+
+  "downloadsCompleted": "ดาวน์โหลดเสร็จหมดแล้ว",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "เสร็จ!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "โหลดไม่สำเร็จ",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "กำลังโหลด",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "กำลังประมวลผล",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+
+  "extractingZipFile": "กำลังแตกไฟล์ zip...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "กำลังถอดรหัส...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "กำลังบีบอัด pack...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "กำลังทำความสะอาด...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+
+  "showAll": "แสดงทั้งหมด",
+  "@showAll": {"description": "Used for key filter"},
+  "onlyAvailable": "มีเท่านั้น",
+  "@onlyAvailable": {"description": "Used for key filter"}, 
+  "onlyNotAvailable": "ที่ไม่มี",
+  "@onlyNotAvailable": {"description": "Used for key filter"},
+
+  "customColor": "สีกำหนดเอง",
+  "@customColor": {"description": "Used on the settings tab"},
+  "changeCustomColor": "แตะเพื่อเปลี่ยนสี",
+  "@changeCustomColor": {"description": "Used on the settings tab"},
+  "createCustomColor": "สร้างโทนสีของคุณเอง",
+  "@createCustomColor": {"description": "Used on the settings tab"},
+  "pickColor": "เลือกสี",
+  "@pickColor": {"description": "Used on the settings tab"},
+  "selectColor": "เลือก",
+  "@selectColor": {"description": "Button to select color on color picker dialog"},
+
+  "images": "รูปภาพ",
+  "@images": {"description": "Used on the Images section of the settings tab"},
+  "saveToPng": "เซฟเป็น PNG",
+  "@saveToPng": {"description": "Button to save image as PNG on the settings tab"},
+  "saveToGallery": "เซฟลงแกลอรี",
+  "@saveToGallery": {"description": "Button to save image to gallery on the settings tab"},
+
+  "compression": "การบีบอัด",
+  "@compression": {"description": "Used on the settings tab"},
+  "normalCompression": "บีบอัดปกติ",
+  "@normalCompression": {"description": "Used on the settings tab"},
+  "noCompression": "ไม่บีบอัด",
+  "@noCompression": {"description": "Used on the settings tab"},
+
+  "copyUUID": "คัดลอก UUID",
+  "@copyUUID": {"description": "Button to copy UUID to clipboard on the item detail page"},
+  "openInMinecraft": "เปิดใน Minecraft",
+  "@openInMinecraft": {"description": "Button to open the item pack in Minecraft on the item detail page"},
+  "creator": "ครีเอเตอร์",
+  "@creator": {"description": "Button to open the bottom sheet creator on the item detail page"},
+  "addToCart": "เพิ่มลงตะกร้า",
+  "@addToCart": {"description": "Button to add an item to the cart"},
+  "removeFromCart": "เอาออกจากตะกร้า",
+  "@removeFromCart": {"description": "Button to remove an item from the cart"},
+  "addedToCart": "เพิ่มลงตะกร้าแล้ว",
+  "@addedToCart": {"description": "Message shown when an item is added to the cart"},
+  "removedFromCart": "เอาออกจากตะกร้าแล้ว",
+  "@removedFromCart": {"description": "Message shown when an item is removed from the cart"},
+  "authRequired": "ต้องยืนยันตัวตนก่อน",
+  "@authRequired": {"description": "Message shown when trying to add an item to the cart without being authenticated"},
+  "authRequiredDesc": "นายต้องยืนยันตัวตนก่อนถึงจะดูตะกร้าได้ ไปที่หน้า Account login แล้วยืนยันตัวตนก่อนนะ",
+  "@authRequiredDesc": {"description": "Message shown when trying to add an item to the cart without being authenticated"},
+
+  "newUpdate": "อัปเดตล่าสุด",
+  "@newUpdate": {"description": "Used on the dropdown filter"},
+  "newDlc": "DLC ใหม่",
+  "@newDlc": {"description": "Used on the dropdown filter"},
+  "hidden": "ซ่อน",
+  "@hidden": {"description": "Used on the dropdown filter"},
+  "persona": "Persona",
+  "@persona": {"description": "Used on the dropdown filter"},
+  "skins": "สกิน",
+  "@skins": {"description": "Used on the dropdown filter"},
+  "mashups": "Mashups",
+  "@mashups": {"description": "Used on the dropdown filter"},
+  "worlds": "โลก",
+  "@worlds": {"description": "Used on the dropdown filter"},
+  "textures": "พื้นผิว",
+  "@textures": {"description": "Used on the dropdown filter"},
+  "addons": "Add-Ons",
+  "@addons": {"description": "Used on the dropdown filter"},
+  "capes": "เคป",
+  "@capes": {"description": "Used on the bottom sheet for the mojang creator"},
+  "vibrantVisuals": "Vibrant Visuals",
+  "@vibrantVisuals": {"description": "Used on the dropdown filter"},
+  "favorites": "รายการโปรด",
+  "@favorites": {"description": "Used on the dropdown filter"},
+  "unfiltered": "ไม่กรอง",
+  "@unfiltered": {"description": "Used on the dropdown filter"},
+  "sorting": "เรียงลำดับ",
+  "@sorting": {"description": "Used on the dropdown filter"},
+  "type": "ประเภท",
+  "@type": {"description": "Used on the dropdown filter"},
+  "newFilter": "ใหม่",
+  "@newFilter": {"description": "Used on the dropdown filter"},
+  "other": "อื่นๆ",
+  "@other": {"description": "Used on the dropdown filter"},
+  "newest": "ล่าสุด",
+  "@newest": {"description": "Used on the dropdown filter"},
+  "oldest": "เก่าสุด",
+  "@oldest": {"description": "Used on the dropdown filter"},
+  "mostRated": "เรตติ้งมากสุด",
+  "@mostRated": {"description": "Used on the dropdown filter"},
+  "leastRated": "เรตติ้งน้อยสุด",
+  "@leastRated": {"description": "Used on the dropdown filter"},
+
+  "menu": "เมนู",
+  "@menu": {"description": "tooltip for menu button"},
+
+  "imageSavedToGallery": "เซฟรูปไว้ในแกลอรี: {filePath}",
+  "@imageSavedToGallery": {"description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+
+  "vibrantVisualEnhanced": "Vibrant Visuals Enhanced",
+  "@vibrantVisualEnhanced": {"description": "used on the item detail page"},
+
+  "uuidCopied": "คัดลอก UUID ไปคลิปบอร์ดแล้ว",
+  "@uuidCopied": {"description": "message shown when UUID is copied to clipboard"},
+
+  "scrollRight": "เลื่อนขวา",
+  "@scrollRight": {"description": "tooltip for scrolling right for desktop"},
+  "scrollLeft": "เลื่อนซ้าย",
+  "@scrollLeft": {"description": "tooltip for scrolling left for desktop"},
+  "previousImage": "รูปก่อนหน้า",
+  "@previousImage": {"description": "tooltip for previous image button for desktop"},
+  "nextImage": "รูปถัดไป",
+  "@nextImage": {"description": "tooltip for next image button for desktop"},
+
+  "favoriteEmpty": "ยังไม่มีรายการโปรดเลย",
+  "@favoriteEmpty": {"description": "shown when there is no favorite items"},
+  "favoriteDescription": "กดไอคอนหัวใจที่หน้ารายละเอียดสินค้าเพื่อเพิ่มเข้าสู่รายการโปรดนะ",
+  "@favoriteDescription": {"description": "shown when there is no favorite items"},
+  "removeFromFavorites": "ลบออกจากรายการโปรด",
+  "@removeFromFavorites": {"description": "tooltip for removing item from favorites"},
+  "addToFavorites": "เพิ่มในรายการโปรด",
+  "@addToFavorites": {"description": "tooltip for adding item to favorites"},
+  "addedToFavorites": "เพิ่มในรายการโปรดแล้ว",
+  "@addedToFavorites": {"description": "message shown when an item is added to favorites"},
+  "removedFromFavorites": "เอาออกจากรายการโปรดแล้ว",
+  "@removedFromFavorites": {"description": "message shown when an item is removed from favorites"},
+
+  "noNewKeysFoundToSave": "ไม่พบคีย์ใหม่ให้เซฟ",
+  "@noNewKeysFoundToSave": {"description": "Used on the Mcdecryptor page"},
+  "keysSavedSuccessfully": "เซฟคีย์ลงในโฟลเดอร์ Kyzen เรียบร้อย",
+  "@keysSavedSuccessfully": {"description": "Used on the Mcdecryptor page and auth page"},
+  "entitlementKeys": "Entitlement Keys",
+  "@entitlementKeys": {"description": "Used on the Mcdecryptor page"},
+  "searchBoughContent": "ค้นหาคอนเทนต์ที่คุณซื้อใน Minecraft",
+  "@searchBoughContent": {"description": "Used on the Mcdecryptor page"},
+  "saveKeys": "เซฟคีย์",
+  "@saveKeys": {"description": "Used on the Mcdecryptor page"},
+  "refresh": "รีเฟรช",
+  "@refresh": {"description": "Used on the Mcdecryptor page"},
+  "searchKeys": "ค้นหาคีย์",
+  "@searchKeys": {"description": "Used on the Mcdecryptor page"},
+  "loadSkinPersona": "โหลด SkinPack/Persona",
+  "@loadSkinPersona": {"description": "Used on the Mcdecryptor page"},
+  "descriptionSkinPersona": "รวม skinpack และ persona ในลิสต์ด้วย",
+  "@descriptionSkinPersona": {"description": "Used on the Mcdecryptor page"},
+  "loadOnlyNewKeys": "โหลดเฉพาะคีย์ใหม่",
+  "@loadOnlyNewKeys": {"description": "Used on the Mcdecryptor page"},
+  "descriptionLoadOnlyNewKeys": "โหลดเฉพาะคอนเทนต์ที่ยังไม่มีในฐานข้อมูลคีย์ของแอป",
+  "@descriptionLoadOnlyNewKeys": {"description": "Used on the Mcdecryptor page"},
+  "descriptionExportNewKeys": "ว่าจะให้ \"เซฟคีย์\" ส่งออกเฉพาะคีย์ใหม่หรือเปล่า",
+  "@descriptionExportNewKeys": {"description": "Used on the Mcdecryptor page"},
+  "processedEntitlementKeys": "ประมวลผลสำเร็จ ({countFiles} ไฟล์, {countKeys} คีย์)",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10" 
+      }
+    }
+  },
+  "noResultsYet": "ยังไม่มีผลลัพธ์",
+  "@noResultsYet": {"description": "Used on the Mcdecryptor page"},
+  "clickSearchKeysToLoadContent": "กด \"ค้นหาคีย์\" เพื่อโหลดคอนเทนต์ของคุณ",
+  "@clickSearchKeysToLoadContent": {"description": "Used on the Mcdecryptor page"},
+  "tryadifferentSearch": "ลองค้นหาคำอื่นดู",
+  "@tryadifferentSearch": {"description": "Used on the Mcdecryptor page"},
+  "minecraftNotInstalled": "ไม่พบพาธติดตั้ง Minecraft ที่ถูกต้อง กรุณาให้แน่ใจว่าได้ติดตั้ง Minecraft Bedrock Edition (UWP หรือ GDK) และเปิดมันอย่างน้อยสักครั้ง",
+  "@minecraftNotInstalled": {"description": "Used on the Mcdecryptor page"},
+  "processingError": "ข้อผิดพลาดตอนประมวลผล",
+  "@processingError": {"description": "Used on the Mcdecryptor page"},
+  "dismiss": "ปิด",
+  "@dismiss": {"description": "Used on the Mcdecryptor page"},
+  "failedFiles": "ไฟล์ที่ล้มเหลว:",
+  "@failedFiles": {"description": "Used on the Mcdecryptor page"},
+
+  "minecraftFont": "ฟอนต์ Minecraft",
+  "@minecraftFont": {"description": "Used to refer to the Minecraft font in the settings tab"},
+  "usingMinecraftFont": "กำลังใช้ฟอนต์สไตล์ Minecraft",
+  "@usingMinecraftFont": {"description": "Used on the settings tab to indicate that the Minecraft font is being used"},
+  "usingDefaultFont": "กำลังใช้ฟอนต์ปกติ",
+  "@usingDefaultFont": {"description": "Used on the settings tab to indicate that the default font is being used"},
+  "dlcLanguage": "ภาษา DLC",
+  "@dlcLanguage": {"description": "Used on the settings tab to refer to the language of the DLC content"},
+  "dlcLangInfo": "ข้อมูลภาษา DLC",
+  "@dlcLangInfo": {"description": "Used on the settings tab to provide information about the DLC language setting"},
+  "dlcLangInfoText": "หมายเหตุ: DLC บางอันอาจไม่มีแปลภาษา อันนี้ขึ้นอยู่กับ marketplace ไม่ใช่แอปนะ",
+  "@dlcLangInfoText": {"description": "Used on the settings tab to provide information about the DLC language setting"},
+  "pageSize": "จำนวนต่อหน้า",
+  "@pageSize": {"description": "Used on the settings tab to refer to the number of items shown per page in the item list"},
+  "pageSizeInfo": "ข้อมูลจำนวนต่อหน้า",
+  "@pageSizeInfo": {"description": "Used on the settings tab to provide information about the page size setting"},
+  "pageSizeInfoText": "กำหนดว่าจะโหลดกี่รายการในแต่ละครั้ง\\n\\n • ค่าน้อย: เหมาะกับเน็ตช้า (เรียกขอข้อมูลบ่อยขึ้น)\\n • ค่าเยอะ: เหมาะกับเน็ตแรง (เรียกขอข้อมูลน้อยลง)\\n\\nผลลัพธ์ทั้งหมดยังคงเข้าถึงได้ไม่ว่าจะตั้งค่าเท่าไหร่ รายการเพิ่มเติมจะโหลดอัตโนมัติเมื่อเลื่อนมาถึงด้านล่าง",
+  "@pageSizeInfoText": {"description": "Used on the settings tab to provide information about the page size setting"},
+  "selectDlcLanguage": "เลือกภาษา DLC",
+  "@selectDlcLanguage": {"description": "Used on the settings tab for selecting the DLC language"},
+  "downloadPathUpdated": "อัปเดตพาธโหลดแล้ว",
+  "@downloadPathUpdated": {"description": "Used on the settings tab for showing a message when the download path is updated"},
+  "downloadPathReset": "รีเซ็ตพาธโหลดกลับเป็นค่าเริ่มต้น",
+  "@downloadPathReset": {"description": "Used on the settings tab for showing a message when the download path is reset to default"},
+  "resetDefaults": "รีเซ็ตเป็นค่าตั้งต้น",
+  "@resetDefaults": {"description": "Used on the settings tab for resetting the download path to default"},
+  "chooseFolder": "เลือกโฟลเดอร์",
+  "@chooseFolder": {"description": "Used on the settings tab for choosing a custom download path"},
+  "downloadPath": "พาธดาวน์โหลด",
+  "@downloadPath": {"description": "Used on the settings tab to refer to the path where downloaded packs are saved"},
+  "version": "เวอร์ชัน",
+  "@version": {"description": "Used on the settings tab to refer to the app version"},
+
+  "purchasing": "กำลังซื้อ",
+  "@purchasing": {"description": "Used on the cart page when the user is purchasing a DLC pack"},
+  "failedPurchase": "ซื้อไม่สำเร็จ",
+  "@failedPurchase": {"description": "Used on the cart page when the purchase of a DLC pack fails"},
+  "allItemsSuccessfullyPurchased": "ซื้อทั้งหมดสำเร็จแล้ว!",
+  "@allItemsSuccessfullyPurchased": {"description": "Used on the cart page when all items in the cart are successfully purchased"},
+  "insufficientFunds": "ตังไม่พอสำหรับ {insufficientFundsItems} รายการ",
+  "@insufficientFunds": {
+    "description": "Used on the cart page when the user doesn't have enough funds to purchase the items in the cart",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "somePurchasesFailed": "บางรายการซื้อไม่สำเร็จ",
+  "@somePurchasesFailed": {"description": "Used on the cart page when some items in the cart fail to be purchased but not all"},
+  "numItemsAreNotPurchasable": "{numItems} รายการไม่สามารถซื้อได้",
+  "@numItemsAreNotPurchasable": {
+    "description": "Used on the cart page when some items in the cart are not purchasable",
+    "placeholders": {
+      "numItems": {
+        "type": "int",
+        "description": "Number of items that are not purchasable"
+      }
+    }
+  },
+  "purchaseComplete": "ซื้อเสร็จแล้ว",
+  "@purchaseComplete": {"description": "Used on the cart page when the purchase process is complete"},
+  "confirmPurchase": "ยืนยันการซื้อ",
+  "@confirmPurchase": {"description": "Used on the cart page"},
+  "confirmPurchaseMessage": "แน่ใจนะว่าจะซื้อ {itemsText}?",
+  "@confirmPurchaseMessage": {
+    "description": "Used on the cart page when confirming a purchase",
+    "placeholders": {
+      "itemsText": {
+        "type": "String",
+        "description": "Text describing the items being purchased, e.g. 'Skin Pack 1'"
+      }
+    }
+  },
+  "totalPrice": "ราคารวม:",
+  "@totalPrice": {"description": "Used on the cart page to indicate the total price of the items being purchased"},
+  "purchaseResults": "ผลการซื้อ",
+  "@purchaseResults": {"description": "Used on the cart page to indicate the results of the purchase process"},
+  "successfullyPurchased": "ซื้อสำเร็จ: {successItems} รายการ",
+  "@successfullyPurchased": {
+    "description": "Used on the cart page to indicate the number of items successfully purchased",
+    "placeholders": {
+      "successItems": {
+        "type": "int",
+        "description": "Number of items that were successfully purchased"
+      }
+    }
+  },
+  "alreadyOwnded": "มีอยู่แล้ว: {alreadyOwnedItems} รายการ",
+  "@alreadyOwnded": {
+    "description": "Used on the cart page to indicate the number of items that were already owned",
+    "placeholders": {
+      "alreadyOwnedItems": {
+        "type": "int",
+        "description": "Number of items that were already owned"
+      }
+    }
+  },
+  "numItemsNotPurchasable": "ซื้อไม่ได้: {notPurchasableItems} รายการ",
+  "@numItemsNotPurchasable": {
+    "description": "Used on the cart page to indicate the number of items that were not purchasable",
+    "placeholders": {
+      "notPurchasableItems": {
+        "type": "int",
+        "description": "Number of items that were not purchasable"
+      }
+    }
+  },
+  "numItemsInsufficientFunds": "ตังไม่พอ: {insufficientFundsItems} รายการ",
+  "@numItemsInsufficientFunds": {
+    "description": "Used on the cart page to indicate the number of items that couldn't be purchased due to insufficient funds",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "numItemsFailed": "ซื้อล้มเหลว: {failedItemsCount} รายการ",
+  "@numItemsFailed": {
+    "description": "Used on the cart page to indicate the number of items that failed to be purchased",
+    "placeholders": {
+      "failedItemsCount": {
+        "type": "int",
+        "description": "Number of items that failed to be purchased"
+      }
+    }
+  },
+  "clearCart": "ล้างตะกร้า",
+  "@clearCart": {"description": "Used on the cart page to clear all items from the cart"},
+  "clearCartConfirmation": "เอาของทั้งหมดออกจากตะกร้าจริงๆ ปะ?",
+  "@clearCartConfirmation": {"description": "Confirmation message when clearing the cart"},
+  "cartTitleNum": "ตะกร้า ({count})",
+  "@cartTitleNum": {
+    "description": "Used as the title of the cart page with the number of items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "cartisEmpty": "ตะกร้าว่างอยู่นะ",
+  "@cartisEmpty": {"description": "Message shown when the cart is empty"},
+  "cartEmptyDescription": "กดไอคอนตะกร้าที่หน้ารายละเอียดสินค้าเพื่อเพิ่มแล้วซื้อได้เลย",
+  "@cartEmptyDescription": {"description": "Message shown when the cart is empty"},
+  "purchasingInProgress": "กำลังซื้อ...",
+  "@purchasingInProgress": {"description": "Message shown when a purchase is in progress"},
+  "purchaseAllnum": "ซื้อทั้งหมด ({count})",
+  "@purchaseAllnum": {
+    "description": "Used on the cart page to purchase all items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+
+  "nowNewdlcFound": "ไม่พบ DLC ใหม่",
+  "@nowNewdlcFound": {"description": "Used on the auth page when no new dlc is found"},
+  "nowNewDlcFoundDescription": "DLC ทั้งหมดมีอยู่ในฐานข้อมูลแอปแล้ว",
+  "@nowNewDlcFoundDescription": {"description": "Used on the auth page when no new dlc is found"},
+  "noDlcFound": "ไม่พบ DLC",
+  "@noDlcFound": {"description": "Used on the auth page when no dlc is found"},
+  "noDlcAvailable":"ไม่มี DLC ให้ใช้",
+  "@noDlcAvailable": {"description": "Used on the auth page dlc list"},
+  "openDlcsList": "เปิดรายการ DLC",
+  "@openDlcsList": {"description": "Used on the auth page to open the list of dlcs"},
+
+  "appUpdates": "อัปเดตแอป",
+  "@appUpdates": {"description": "Used on the changelog page"},
+  "appUpdatesDescription": "ดูว่ามีอะไรใหม่ในเวอร์ชันล่าสุดบ้าง",
+  "@appUpdatesDescription": {"description": "Used on the changelog page"},
+
+  "socials": "โซเชียล",
+  "@socials": {"description": "Used on the settings page"},
+
+  "selectApp": "เลือกแอป",
+  "@selectApp": {"description": "Title for the app picker dialog"},
+  "noAppsFound": "ไม่พบแอป",
+  "@noAppsFound": {"description": "Message shown when no apps are found"},
+  "errorLoadingDlcs": "โหลด DLC ผิดพลาด",
+  "@errorLoadingDlcs": {"description": "Message shown when there is an error loading DLCs"},
+  "dlcs": "DLCs",
+  "@dlcs": {"description": "Title for the DLCs list page"},
+  "errorSavingKeys": "เซฟคีย์ผิดพลาด: {error}",
+  "@errorSavingKeys": {
+    "description": "Error message when saving keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorOpeningAuthPage": "เปิดหน้า authentication ผิดพลาด: {error}",
+  "@errorOpeningAuthPage": {
+    "description": "Error message when opening authentication page fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gettingEntityToken": "กำลังรับ entity token...",
+  "@gettingEntityToken": {"description": "Status message during authentication"},
+  "loadingMinecoinBalance": "กำลังโหลดยอด Minecoin...",
+  "@loadingMinecoinBalance": {"description": "Status message while loading Minecoin balance"},
+  "completeAuthFirst": "กรุณายืนยันตัวตนก่อน",
+  "@completeAuthFirst": {"description": "Message instructing the user to authenticate first"},
+  "sessionExpired": "เซสชันหมดอายุแล้ว กรุณาลองใหม่",
+  "@sessionExpired": {"description": "Error message when session expires"},
+  "accessDenied": "ไม่อนุญาต กรุณายืนยันตัวตนอีกครั้ง",
+  "@accessDenied": {"description": "Error message when access is denied"},
+  "connectionTimeout": "การเชื่อมต่อหมดเวลา เช็คเน็ตแล้วลองใหม่นะ",
+  "@connectionTimeout": {"description": "Error message for connection timeout"},
+  "serverError": "เซิฟเวอร์มีปัญหา กรุณาลองใหม่สักครู่",
+  "@serverError": {"description": "Error message for server errors"},
+  "backToSettings": "กลับไปตั้งค่า",
+  "@backToSettings": {"description": "Tooltip text to go back to settings"},
+  "errorInitializingCart": "เริ่มต้นตะกร้าผิดพลาด: {error}",
+  "@errorInitializingCart": {
+    "description": "Error message when cart initialization fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingCartItems": "โหลดรายการในตะกร้าผิดพลาด: {error}",
+  "@errorLoadingCartItems": {
+    "description": "Error message when loading cart items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedLoadMoreItems": "โหลดรายการเพิ่มไม่สำเร็จ: {error}",
+  "@failedLoadMoreItems": {
+    "description": "Error message when loading more items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSavingLog": "เซฟล็อกผิดพลาด: {error}",
+  "@errorSavingLog": {
+    "description": "Error message when saving logs fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToDeleteFile": "ลบไฟล์ไม่สำเร็จ",
+  "@failedToDeleteFile": {"description": "Error message when deleting a file fails"},
+  "failedToShareFile": "แชร์ไฟล์ไม่สำเร็จ: {error}",
+  "@failedToShareFile": {
+    "description": "Error message when sharing a file fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "personaWarning": "ไอเทม Persona ไม่สามารถนำเข้าในเกมได้ (เช่น อีโมท เครื่องสำอาง เคป)",
+  "@personaWarning": {"description": "Warning message displayed for Persona items"},
+  "initializingMcDec": "กำลังเริ่มต้น McDec...",
+  "@initializingMcDec": {"description": "Status message shown during McDecryptor initialization"},
+  "failedToSaveKeys": "เซฟคีย์ไม่สำเร็จ: {error}",
+  "@failedToSaveKeys": {
+    "description": "Error message when saving keys fails in McDecryptor",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "itemDetailsTitle": "รายละเอียดไอเทม",
+  "@itemDetailsTitle": {"description": "Title of the item details sheet"},
+  "byCreator": "โดย {creator}",
+  "@byCreator": {
+    "description": "Prefix followed by the author name",
+    "placeholders": {
+      "creator": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSocials": "โหลดลิงก์โซเชียลไม่สำเร็จ ใช้ค่าเริ่มต้นแทน",
+  "@couldNotLoadSocials": {"description": "Error message when social links fail to load"},
+  "sdCardExternalStorage": "SD Card / ที่เก็บภายนอก",
+  "@sdCardExternalStorage": {"description": "Display name for SD card or external storage"},
+  "customLocation": "ตำแหน่งที่กำหนดเอง",
+  "@customLocation": {"description": "Display name for custom location"},
+  "couldNotOpenLink": "เปิดลิงก์ไม่ได้: {error}",
+  "@couldNotOpenLink": {
+    "description": "Error message when opening link fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "minecraftPackage": "แพ็กเกจ Minecraft",
+  "@minecraftPackage": {"description": "Setting item for Minecraft package"}
+}

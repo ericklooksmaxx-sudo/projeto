@@ -1,0 +1,1540 @@
+{
+  "@@locale": "zh",
+  "home": "首页",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "下载",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "设置",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "选择语言",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "语言",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "下载",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "搜索...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "默认",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "创作者",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "检查密钥中",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "API 登录",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "已添加 {keyCount} 个新密钥",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "未找到结果",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "打开",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "清除",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "重试",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "queuePosition": "排队中 (位置 #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "排队中 #{count}",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "图片已保存至 {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "图片下载失败: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "更新日志",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "已下载",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "重新下载",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "下载图片",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "下载此图片?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "取消",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "观看预告片",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "无法播放预告片: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "外观",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "深色模式",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "深色主题已启用",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "浅色主题已启用",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "配色方案",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "默认",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "默认 (紫色)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "蓝色",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "绿色",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "橙色",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "红色",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "青绿色",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "粉色",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "黄绿色",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "筛选器",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "筛选器:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "显示皮肤",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "密钥",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "自动更新",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "自定义数据库",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "账户登录",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "扩展功能",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "缓存",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "已清除 {size} MB 缓存",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "常见问题解答",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "常见问题解答",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "终端",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "请添加这个包的密钥！",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "密钥什么时候更新?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "加密和未加密有什么区别?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "哪里能找到下载的包?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "什么是 keys.tsv?",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion6": "我如何使用角色装扮物品？",
+  "@faqQuestion6": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion7": "为什么有些导入到游戏的皮肤包出现损坏？",
+  "@faqQuestion7": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion8": "“账户登录”页面是做什么的？",
+  "@faqQuestion8": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "获取密钥并非魔法：仍需有人购买市场包并分享密钥。没有人购买就不会有解密密钥，这是唯一获取方式。请耐心等待或自行购买。",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "当我们决定更新时。",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "加密是将文件转为乱码的过程，没有密钥无法读取。加密的 Minecraft 内容无法使用。\n\n未加密是使用密钥还原内容的过程，此时 Minecraft 内容可正常使用。",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "已下载的市场包位于 Download/Kyzen 目录",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "这是存储市场包的 UUID 及对应解密密钥的文件。无解密密钥时下载的市场包将无法使用。",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "faqAnswer6": "做不到。虽然有一些方法，但考虑到其复杂性，并不可行。",
+  "@faqAnswer6": {
+    "description": "Answer for FAQ question 6"
+  },
+  "faqAnswer7": "一些皮肤包(尤其是联动合作项目)使用自定义模型，Minecraft不允许正常使用，除非你购买该皮肤包。你可以通过检查皮肤包中是否存在文件“geometry.json ”来判断这个皮肤包是否使用自定义模型。请记住，这个问题与Kyzen没有任何关系。",
+  "@faqAnswer7": {
+    "description": "Answer for FAQ question 7"
+  },
+  "faqAnswer8": "“账户登录”页面允许您使用Microsoft帐户进行身份验证，以便直接从您的库存中加载Minecraft密钥。当Kyzen目前没有特定市场包的可用密钥，但您的帐户中有该密钥时，这非常有用，一旦您的密钥被加载，该市场包将显示为可用以允许下载。请注意，这些密钥会自动上传到我们的数据库，之后它们会与Kyzen的主密钥数据库合并，这样每个人都可以享受新的市场包，所以如果你想贡献一份力量，请使用这个功能。",
+  "@faqAnswer8": {
+    "description": "Answer for FAQ question 8"
+  },
+  "fileDeleted": "文件已删除",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "已存文件",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "刷新文件",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "删除文件",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "确定删除 {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "取消",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "删除",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "当前下载",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "没有正在进行的下载",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "已完成下载",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "全部清除",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "导入到 Minecraft",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "openFileinExplorer": "在文件资源管理器中打开",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  },
+  "shareFile": "分享文件",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "调试终端",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "清除日志",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "暂无日志...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "saveLogs": "保存日志",
+  "@saveLogs": {
+    "description": "Used on debug page"
+  },
+  "logsSaved": "日志已保存到 {filePath}",
+  "@logsSaved": {
+    "description": "Message shown when logs are saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Documents/logs.txt"
+      }
+    }
+  },
+  "selectingFile": "选择文件中...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "处理文件中...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "文件处理成功！",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "未选择文件",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "已加载 {count} 个自定义密钥",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "未加载自定义密钥",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "导入 UUID=KEY 格式文件",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "{contentType} 项目",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} 项目 ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "创作者项目",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "该创作者暂无内容",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "暂无统计数据",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "统计信息加载失败",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "未找到结果",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Microsoft 身份验证",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "兑换授权令牌中...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "身份验证失败: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "身份验证成功！",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "令牌兑换失败: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "未收到授权码",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "无新密钥可复制",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "密钥已复制到剪贴板！",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "无新密钥可分享",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "密钥分享成功！",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "正在检查现有身份验证...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "已通过身份验证！",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "准备进行身份验证",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "使用 URL 进行身份验证",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuthButton": "完整身份验证",
+  "@completeAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "openAuthPageButton": "打开授权页面",
+  "@openAuthPageButton": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "请在浏览器完成身份验证，完成后您将被重定向回应用程序。",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "copyUrl": "复制链接",
+  "@copyUrl": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "无法打开身份验证页面",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "退出登录中...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "已成功登出",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "使用缓存会话中...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "加载 Minecraft 密钥中...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "请求 Xbox Live 令牌中...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "登录 PlayFab 中...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "获取用户信息中...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "启动 Minecraft 会话中...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "加载 Minecraft 库存中...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "成功加载 {keyCount} 个密钥！",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "密钥加载失败: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "已复制到剪贴板",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "已验证",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "未经验证",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "身份验证URL链接",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "已加载密钥",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "仅导出新密钥",
+  "@exportNewKeys": {
+    "description": "Used on the auth page and mcdecryptor page"
+  },
+  "loadKeysButton": "加载密钥",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "退出登录",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "开始身份验证",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "你好",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "copy": "复制",
+  "@copy": {
+    "description": "Used on the auth page"
+  },
+  "save": "保存",
+  "@save": {
+    "description": "Used on the auth page"
+  },
+  "share": "分享",
+  "@share": {
+    "description": "Used on the auth page"
+  },
+  "keysSaved": "密钥已成功保存",
+  "@keysSaved": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "开始下载...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "下载已完成",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "已完成！",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "下载失败",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "下载中",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "处理中",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "解压 ZIP 文件中...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "解密内容中...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "压缩资源包中...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "清理中...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "显示全部",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "仅显示可用",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "仅显示不可用",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "customColor": "自定义颜色",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "点击更改自定义颜色",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "创建您自己的配色方案",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "选择颜色",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "选择",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "图片",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "保存为PNG格式",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "保存到相册",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "压缩",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "正常压缩",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "无压缩",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "复制 UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "在 Minecraft 中打开",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "创作者",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "addToCart": "添加到购物车",
+  "@addToCart": {
+    "description": "Button to add an item to the cart"
+  },
+  "removeFromCart": "从购物车移除",
+  "@removeFromCart": {
+    "description": "Button to remove an item from the cart"
+  },
+  "addedToCart": "加入购物车",
+  "@addedToCart": {
+    "description": "Message shown when an item is added to the cart"
+  },
+  "removedFromCart": "已从购物车中移除",
+  "@removedFromCart": {
+    "description": "Message shown when an item is removed from the cart"
+  },
+  "authRequired": "需要身份验证",
+  "@authRequired": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "authRequiredDesc": "您需要完成身份验证才能查看购物车。请从账户登录页面进行身份验证。",
+  "@authRequiredDesc": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "newUpdate": "新更新",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "新市场包",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "隐藏",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "角色装扮",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "皮肤",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "混搭包",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "世界",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "材质包",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "附加包",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "vibrantVisuals": "灵动视效",
+  "@vibrantVisuals": {
+    "description": "Used on the dropdown filter"
+  },
+  "favorites": "收藏夹",
+  "@favorites": {
+    "description": "Used on the dropdown filter"
+  },
+  "unfiltered": "未过滤",
+  "@unfiltered": {
+    "description": "Used on the dropdown filter"
+  },
+  "sorting": "排序",
+  "@sorting": {
+    "description": "Used on the dropdown filter"
+  },
+  "type": "类型",
+  "@type": {
+    "description": "Used on the dropdown filter"
+  },
+  "newFilter": "新内容",
+  "@newFilter": {
+    "description": "Used on the dropdown filter"
+  },
+  "other": "其他",
+  "@other": {
+    "description": "Used on the dropdown filter"
+  },
+  "newest": "时间由近及远",
+  "@newest": {
+    "description": "Used on the dropdown filter"
+  },
+  "oldest": "时间由远及近",
+  "@oldest": {
+    "description": "Used on the dropdown filter"
+  },
+  "mostRated": "评级从高到低",
+  "@mostRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "leastRated": "评级从低到高",
+  "@leastRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "菜单",
+  "@menu": {
+    "description": "tooltip for menu button"
+  },
+  "imageSavedToGallery": "图片已保存到图库: {filePath}",
+  "@imageSavedToGallery": {
+    "description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "vibrantVisualEnhanced": "灵动视效",
+  "@vibrantVisualEnhanced": {
+    "description": "used on the item detail page"
+  },
+  "uuidCopied": "UUID已复制到剪贴板",
+  "@uuidCopied": {
+    "description": "message shown when UUID is copied to clipboard"
+  },
+  "scrollRight": "向右滚动",
+  "@scrollRight": {
+    "description": "tooltip for scrolling right for desktop"
+  },
+  "scrollLeft": "向左滚动",
+  "@scrollLeft": {
+    "description": "tooltip for scrolling left for desktop"
+  },
+  "previousImage": "上一张图片",
+  "@previousImage": {
+    "description": "tooltip for previous image button for desktop"
+  },
+  "nextImage": "下一张图片",
+  "@nextImage": {
+    "description": "tooltip for next image button for desktop"
+  },
+  "favoriteEmpty": "您的收藏夹列表是空的",
+  "@favoriteEmpty": {
+    "description": "shown when there is no favorite items"
+  },
+  "favoriteDescription": "点击任意商品详情页上的心形图标，即可将其添加到收藏夹，打造您的专属收藏。",
+  "@favoriteDescription": {
+    "description": "shown when there is no favorite items"
+  },
+  "removeFromFavorites": "从收藏夹中删除",
+  "@removeFromFavorites": {
+    "description": "tooltip for removing item from favorites"
+  },
+  "addToFavorites": "添加到收藏夹",
+  "@addToFavorites": {
+    "description": "tooltip for adding item to favorites"
+  },
+  "addedToFavorites": "已添加到收藏夹",
+  "@addedToFavorites": {
+    "description": "message shown when an item is added to favorites"
+  },
+  "removedFromFavorites": "已从收藏夹中删除",
+  "@removedFromFavorites": {
+    "description": "message shown when an item is removed from favorites"
+  },
+  "noNewKeysFoundToSave": "没有找到要保存的密钥",
+  "@noNewKeysFoundToSave": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "keysSavedSuccessfully": "密钥已成功保存到 Kyzen 文件夹。",
+  "@keysSavedSuccessfully": {
+    "description": "Used on the Mcdecryptor page and auth page"
+  },
+  "entitlementKeys": "授权密钥",
+  "@entitlementKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchBoughContent": "搜索您在Minecraft中购买的内容。",
+  "@searchBoughContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "saveKeys": "保存密钥",
+  "@saveKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "refresh": "刷新",
+  "@refresh": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchKeys": "搜索密钥",
+  "@searchKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadSkinPersona": "加载皮肤包/角色装扮",
+  "@loadSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionSkinPersona": "将皮肤包和角色装扮也添加到列表中",
+  "@descriptionSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadOnlyNewKeys": "仅加载新密钥",
+  "@loadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionLoadOnlyNewKeys": "仅加载应用密钥数据库中不存在的内容",
+  "@descriptionLoadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionExportNewKeys": "“保存密钥”是否应该只导出新密钥",
+  "@descriptionExportNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processedEntitlementKeys": "已成功处理({countFiles}个文件，{countKeys}个密钥)",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "noResultsYet": "暂无结果",
+  "@noResultsYet": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "clickSearchKeysToLoadContent": "点击“搜索密钥”加载您的内容",
+  "@clickSearchKeysToLoadContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "tryadifferentSearch": "尝试不同的搜索词",
+  "@tryadifferentSearch": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftNotInstalled": "找不到有效的Minecraft安装路径。请确保Minecraft基岩版(UWP或GDK)已安装，并已启动至少一次。",
+  "@minecraftNotInstalled": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processingError": "处理错误",
+  "@processingError": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "dismiss": "关闭",
+  "@dismiss": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "failedFiles": "失败的文件:",
+  "@failedFiles": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftFont": "Minecraft字体",
+  "@minecraftFont": {
+    "description": "Used to refer to the Minecraft font in the settings tab"
+  },
+  "usingMinecraftFont": "使用Minecraft风格的字体",
+  "@usingMinecraftFont": {
+    "description": "Used on the settings tab to indicate that the Minecraft font is being used"
+  },
+  "usingDefaultFont": "使用默认字体",
+  "@usingDefaultFont": {
+    "description": "Used on the settings tab to indicate that the default font is being used"
+  },
+  "dlcLanguage": "市场包语言",
+  "@dlcLanguage": {
+    "description": "Used on the settings tab to refer to the language of the DLC content"
+  },
+  "dlcLangInfo": "市场包语言信息",
+  "@dlcLangInfo": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "dlcLangInfoText": "请注意，部分市场包可能没有提供翻译版本。这完全取决于Minecraft市场，而非Kyzen应用本身。",
+  "@dlcLangInfoText": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "pageSize": "页面大小",
+  "@pageSize": {
+    "description": "Used on the settings tab to refer to the number of items shown per page in the item list"
+  },
+  "pageSizeInfo": "页面大小信息",
+  "@pageSizeInfo": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "pageSizeInfoText": "控制一次加载的项目数量。\n• 值越低：越适合网络连接较弱的情况（请求频率越高）\n• 值越高：越适合网络连接较快的情况（请求频率越低）\n无论页面大小如何，所有结果始终可用。当您滚动到列表底部时，会自动加载其他项目。",
+  "@pageSizeInfoText": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "selectDlcLanguage": "选择市场包语言",
+  "@selectDlcLanguage": {
+    "description": "Used on the settings tab for selecting the DLC language"
+  },
+  "downloadPathUpdated": "下载路径已更新",
+  "@downloadPathUpdated": {
+    "description": "Used on the settings tab for showing a message when the download path is updated"
+  },
+  "downloadPathReset": "下载路径已重置为默认",
+  "@downloadPathReset": {
+    "description": "Used on the settings tab for showing a message when the download path is reset to default"
+  },
+  "resetDefaults": "重置为默认",
+  "@resetDefaults": {
+    "description": "Used on the settings tab for resetting the download path to default"
+  },
+  "chooseFolder": "选择文件夹",
+  "@chooseFolder": {
+    "description": "Used on the settings tab for choosing a custom download path"
+  },
+  "downloadPath": "下载路径",
+  "@downloadPath": {
+    "description": "Used on the settings tab to refer to the path where downloaded packs are saved"
+  },
+  "version": "版本",
+  "@version": {
+    "description": "Used on the settings tab to refer to the app version"
+  },
+  "purchasing": "购买",
+  "@purchasing": {
+    "description": "Used on the cart page when the user is purchasing a DLC pack"
+  },
+  "failedPurchase": "购买失败",
+  "@failedPurchase": {
+    "description": "Used on the cart page when the purchase of a DLC pack fails"
+  },
+  "allItemsSuccessfullyPurchased": "所有商品购买成功",
+  "@allItemsSuccessfullyPurchased": {
+    "description": "Used on the cart page when all items in the cart are successfully purchased"
+  },
+  "insufficientFunds": "资金不足，无法购买 {insufficientFundsItems} 件商品",
+  "@insufficientFunds": {
+    "description": "Used on the cart page when the user doesn't have enough funds to purchase the items in the cart",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "somePurchasesFailed": "部分购买失败",
+  "@somePurchasesFailed": {
+    "description": "Used on the cart page when some items in the cart fail to be purchased but not all"
+  },
+  "numItemsAreNotPurchasable": "{numItems} 件商品不可购买",
+  "@numItemsAreNotPurchasable": {
+    "description": "Used on the cart page when some items in the cart are not purchasable",
+    "placeholders": {
+      "numItems": {
+        "type": "int",
+        "description": "Number of items that are not purchasable"
+      }
+    }
+  },
+  "purchaseComplete": "购买已完成",
+  "@purchaseComplete": {
+    "description": "Used on the cart page when the purchase process is complete"
+  },
+  "confirmPurchase": "确认购买",
+  "@confirmPurchase": {
+    "description": "Used on the cart page"
+  },
+  "confirmPurchaseMessage": "您确定要购买{itemsText}吗？",
+  "@confirmPurchaseMessage": {
+    "description": "Used on the cart page when confirming a purchase",
+    "placeholders": {
+      "itemsText": {
+        "type": "String",
+        "description": "Text describing the items being purchased, e.g. 'Skin Pack 1'"
+      }
+    }
+  },
+  "totalPrice": "总价：",
+  "@totalPrice": {
+    "description": "Used on the cart page to indicate the total price of the items being purchased"
+  },
+  "purchaseResults": "购买结果",
+  "@purchaseResults": {
+    "description": "Used on the cart page to indicate the results of the purchase process"
+  },
+  "successfullyPurchased": "已成功购买：{successItems} 件商品",
+  "@successfullyPurchased": {
+    "description": "Used on the cart page to indicate the number of items successfully purchased",
+    "placeholders": {
+      "successItems": {
+        "type": "int",
+        "description": "Number of items that were successfully purchased"
+      }
+    }
+  },
+  "alreadyOwnded": "已拥有：{alreadyOwnedItems} 件商品",
+  "@alreadyOwnded": {
+    "description": "Used on the cart page to indicate the number of items that were already owned",
+    "placeholders": {
+      "alreadyOwnedItems": {
+        "type": "int",
+        "description": "Number of items that were already owned"
+      }
+    }
+  },
+  "numItemsNotPurchasable": "不可购买：{notPurchasableItems} 件商品",
+  "@numItemsNotPurchasable": {
+    "description": "Used on the cart page to indicate the number of items that were not purchasable",
+    "placeholders": {
+      "notPurchasableItems": {
+        "type": "int",
+        "description": "Number of items that were not purchasable"
+      }
+    }
+  },
+  "numItemsInsufficientFunds": "资金不足：{insufficientFundsItems} 项",
+  "@numItemsInsufficientFunds": {
+    "description": "Used on the cart page to indicate the number of items that couldn't be purchased due to insufficient funds",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "numItemsFailed": "购买失败：{failedItemsCount} 件商品",
+  "@numItemsFailed": {
+    "description": "Used on the cart page to indicate the number of items that failed to be purchased",
+    "placeholders": {
+      "failedItemsCount": {
+        "type": "int",
+        "description": "Number of items that failed to be purchased"
+      }
+    }
+  },
+  "clearCart": "清空购物车",
+  "@clearCart": {
+    "description": "Used on the cart page to clear all items from the cart"
+  },
+  "clearCartConfirmation": "您确定要从购物车中移除所有商品吗？",
+  "@clearCartConfirmation": {
+    "description": "Confirmation message when clearing the cart"
+  },
+  "cartTitleNum": "购物车（{count}）",
+  "@cartTitleNum": {
+    "description": "Used as the title of the cart page with the number of items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "cartisEmpty": "您的购物车是空的。",
+  "@cartisEmpty": {
+    "description": "Message shown when the cart is empty"
+  },
+  "cartEmptyDescription": "点击任意商品详情页上的购物车图标，即可将其添加到购物车并购买。",
+  "@cartEmptyDescription": {
+    "description": "Message shown when the cart is empty"
+  },
+  "purchasingInProgress": "购买...",
+  "@purchasingInProgress": {
+    "description": "Message shown when a purchase is in progress"
+  },
+  "purchaseAllnum": "购买全部（{count}）",
+  "@purchaseAllnum": {
+    "description": "Used on the cart page to purchase all items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "nowNewdlcFound": "未发现新的市场包",
+  "@nowNewdlcFound": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "nowNewDlcFoundDescription": "所有市场包都已存在于应用程序数据库中。",
+  "@nowNewDlcFoundDescription": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "noDlcFound": "未找到市场包",
+  "@noDlcFound": {
+    "description": "Used on the auth page when no dlc is found"
+  },
+  "noDlcAvailable": "暂无市场包内容",
+  "@noDlcAvailable": {
+    "description": "Used on the auth page dlc list"
+  },
+  "openDlcsList": "打开市场包",
+  "@openDlcsList": {
+    "description": "Used on the auth page to open the list of dlcs"
+  },
+  "appUpdates": "应用更新",
+  "@appUpdates": {
+    "description": "Used on the changelog page"
+  },
+  "appUpdatesDescription": "看看应用最新版本新增了哪些功能。",
+  "@appUpdatesDescription": {
+    "description": "Used on the changelog page"
+  },
+  "faqQuestion9": "勾选标记是什么意思？",
+  "@faqQuestion9": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer9Checkmark": "此市场包的密钥已可用",
+  "@faqAnswer9Checkmark": {
+    "description": "Answer for FAQ question 9. checkmark ok"
+  },
+  "faqAnswer9NoCheckmark": "该APP应用当前没有此市场包的密钥",
+  "@faqAnswer9NoCheckmark": {
+    "description": "Answer for FAQ question 9. no checkmark"
+  },
+  "faqAnswer9ExtraInfo": "需要密钥才能解锁市场包",
+  "@faqAnswer9ExtraInfo": {
+    "description": "Extra information for FAQ question 9"
+  },
+  "faqQuestionDownload": "为什么下载按钮不可用？",
+  "@faqQuestionDownload": {
+    "description": "Used on the item detail page"
+  },
+  "faqAnswerDownload": "解锁此市场包的密钥不可用，请耐心等待或直接购买它。",
+  "@faqAnswerDownload": {
+    "description": "Answer for faq download item detail page"
+  },
+  "faqQuestionKey": "我怎么才能拿到密钥？",
+  "@faqQuestionKey": {
+    "description": "used on the item detail page"
+  },
+  "faqAnswerKey": "在你的账户上购买该市场包，然后前往 设置 > 账户登录 > 点击‘开始认证’ > 点击‘加载密钥’，现在点击‘分享’并将密钥文件分享到 Bluecoin 聊天群，这些密钥将被添加到应用数据库中。如果你无法将密钥文件分享到群里，不用担心，密钥会自动上传到数据库。",
+  "@faqAnswerKey": {
+    "description": "Answer for faq key item detail page"
+  },
+  "faqMoreHelp": "更多帮助",
+  "@faqMoreHelp": {
+    "description": "Used on the pop up dialog faq item detail page"
+  },
+  "faqNotAdlc": "非市场包内容",
+  "@faqNotAdlc": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqNotAdlcDescription": "此物品不是市场包",
+  "@faqNotAdlcDescription": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqServerContent": "服务器内容",
+  "@faqServerContent": {
+    "description": "Used on the faq item detail page"
+  },
+  "faqServerContentDescription": "此物品仅限特定服务器使用，无法直接下载。",
+  "@faqServerContentDescription": {
+    "description": "Used on the faq item detail page"
+  },
+  "capes": "披风",
+  "@capes": {
+    "description": "Used on the bottom sheet for the mojang creator"
+  },
+  "socials": "社交媒体",
+  "@socials": {
+    "description": "Used on the settings page"
+  },
+  "selectApp": "选择APP应用",
+  "@selectApp": {
+    "description": "Title for the app picker dialog"
+  },
+  "noAppsFound": "未找到APP应用",
+  "@noAppsFound": {
+    "description": "Message shown when no apps are found"
+  },
+  "errorLoadingDlcs": "加载市场包时错误",
+  "@errorLoadingDlcs": {
+    "description": "Message shown when there is an error loading DLCs"
+  },
+  "dlcs": "市场包",
+  "@dlcs": {
+    "description": "Title for the DLCs list page"
+  },
+  "errorSavingKeys": "保存密钥时出错: {error}",
+  "@errorSavingKeys": {
+    "description": "Error message when saving keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorOpeningAuthPage": "打开认证页面时出错: {error}",
+  "@errorOpeningAuthPage": {
+    "description": "Error message when opening authentication page fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gettingEntityToken": "获取实体令牌中......",
+  "@gettingEntityToken": {
+    "description": "Status message during authentication"
+  },
+  "loadingMinecoinBalance": "正在加载Minecoin余额......",
+  "@loadingMinecoinBalance": {
+    "description": "Status message while loading Minecoin balance"
+  },
+  "completeAuthFirst": "请先完成身份验证",
+  "@completeAuthFirst": {
+    "description": "Message instructing the user to authenticate first"
+  },
+  "sessionExpired": "会话已过期，请重试。",
+  "@sessionExpired": {
+    "description": "Error message when session expires"
+  },
+  "accessDenied": "访问被拒绝，请重新认证。",
+  "@accessDenied": {
+    "description": "Error message when access is denied"
+  },
+  "connectionTimeout": "连接超时，请检查您的网络并重试。",
+  "@connectionTimeout": {
+    "description": "Error message for connection timeout"
+  },
+  "serverError": "服务器错误，请稍后再试。",
+  "@serverError": {
+    "description": "Error message for server errors"
+  },
+  "backToSettings": "返回设置",
+  "@backToSettings": {
+    "description": "Tooltip text to go back to settings"
+  },
+  "errorInitializingCart": "购物车初始化失败: {error}",
+  "@errorInitializingCart": {
+    "description": "Error message when cart initialization fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingCartItems": "加载购物车商品时出错: {error}",
+  "@errorLoadingCartItems": {
+    "description": "Error message when loading cart items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedLoadMoreItems": "加载更多物品时失败: {error}",
+  "@failedLoadMoreItems": {
+    "description": "Error message when loading more items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSavingLog": "保存日志时出错: {error}",
+  "@errorSavingLog": {
+    "description": "Error message when saving logs fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToDeleteFile": "删除文件失败",
+  "@failedToDeleteFile": {
+    "description": "Error message when deleting a file fails"
+  },
+  "failedToShareFile": "分享文件失败: {error}",
+  "@failedToShareFile": {
+    "description": "Error message when sharing a file fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "personaWarning": "角色创建器装扮内容无法导入到游戏中（例如表情、外观和披风）",
+  "@personaWarning": {
+    "description": "Warning message displayed for Persona items"
+  },
+  "initializingMcDec": "正在初始化解密器......",
+  "@initializingMcDec": {
+    "description": "Status message shown during McDecryptor initialization"
+  },
+  "failedToSaveKeys": "保存密钥失败: {error}",
+  "@failedToSaveKeys": {
+    "description": "Error message when saving keys fails in McDecryptor",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "itemDetailsTitle": "商品详情",
+  "@itemDetailsTitle": {
+    "description": "Title of the item details sheet"
+  },
+  "byCreator": "由 {creator} 制作",
+  "@byCreator": {
+    "description": "Prefix followed by the author name",
+    "placeholders": {
+      "creator": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSocials": "无法加载社交链接，正在使用默认设置",
+  "@couldNotLoadSocials": {
+    "description": "Error message when social links fail to load"
+  },
+  "sdCardExternalStorage": "SD卡或外部存储",
+  "@sdCardExternalStorage": {
+    "description": "Display name for SD card or external storage"
+  },
+  "customLocation": "自定义位置",
+  "@customLocation": {
+    "description": "Display name for custom location"
+  },
+  "couldNotOpenLink": "无法打开链接: {error}",
+  "@couldNotOpenLink": {
+    "description": "Error message when opening link fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "minecraftPackage": "Minecraft包装",
+  "@minecraftPackage": {
+    "description": "Setting item for Minecraft package"
+  },
+  "freeDroidWarnMessage": "Google（谷歌）宣布，自 2026/2027 年起，所有在经过 Google 认证的 Android 设备上运行的应用，其开发者都必须直接向 Google 提交个人身份信息。由于本应用的开发者不同意此项要求，届时本应用将无法在经过 Google 认证的 Android 设备上继续运行。",
+  "freeDroidWarnDetails": "详情",
+  "freeDroidWarnSolution": "解决方案"
+}

@@ -1,0 +1,1540 @@
+{
+  "@@locale": "ru",
+  "home": "Главная",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "Загрузки",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "Настройки",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "Выбрать язык",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "Язык",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "Скачать",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "Поиск...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "По умолчанию",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "Авторы",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Проверка ключей",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "Подключение API",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "Добавлено {keyCount} новых ключей",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Ничего не найдено",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "Открыть",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "Очистить",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "Повторить",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "ok": "ОК",
+  "@ok": {
+    "description": "OK button"
+  },
+  "queuePosition": "В очереди (Позиция #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "В очереди #{count}",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Изображение сохранено по пути {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Ошибка загрузки изображения: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "История изменений",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "Загружено",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "Повторить загрузку",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "Скачать изображение",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "Скачать это изображение?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "Отмена",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "Смотреть трейлер",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "Не удалось открыть трейлер: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Внешний вид",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "Тема",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "Тёмная тема",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "Светлая тема",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "Цветовая схема",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "По умолчанию",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "По умолчанию (Фиолетовый)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "Синий",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Зелёный",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Оранжевый",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Красный",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Бирюзовый",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Розовый",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Лаймовый",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "Фильтры",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "Фильтр:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "Показывать скины",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Ключи",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "Авто-обновление",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "Пользовательская БД",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "Вход в аккаунт",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "Дополнительно",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "Кэш",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "Очищено {size} МБ кэша",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "ЧаВо",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "ЧАВО",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "Терминал",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "Пожалуйста, добавьте ключи для этого и того пакета!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "Когда ключи будут обновлены?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "В чем разница между зашифрованным и расшифрованным?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "Где я могу найти загруженные пакеты?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "Что такое keys.tsv?",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion6": "Как использовать аксессуары (Persona)?",
+  "@faqQuestion6": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion7": "Почему некоторые наборы скинов выглядят сломанными?",
+  "@faqQuestion7": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion8": "Для чего нужна страница «Вход в аккаунт»?",
+  "@faqQuestion8": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion9": "Что означает галочка?",
+  "@faqQuestion9": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "Процесс получения ключей - это не магия: человек всё равно должен купить пакет и поделиться с нами ключами. Если никто не купит, то и ключей для расшифровки не будет. Получить их каким-либо другим способом невозможно. Ждите терпеливо или покупайте сами.",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "Когда мы решим.",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "Зашифрованный означает, что файл превращается в набор бессмысленных символов. Никто не может прочитать его без специального ключа. Зашифрованные материалы Minecraft нельзя использовать.\n\nРасшифрованный означает использование специального ключа для преобразования бессмысленных символов обратно в исходное содержимое. Теперь материалы Minecraft можно использовать.",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "Вы можете найти пакеты здесь: Downloads/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "Это файл, который хранит UUID пакетов с соответствующими ключами дешифровки. Без ключей дешифровки загруженные пакеты нельзя будет использовать.",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "faqAnswer6": "Нельзя. Существуют некоторые методы, но учитывая сложность их реализации, это нецелесообразно.",
+  "@faqAnswer6": {
+    "description": "Answer for FAQ question 6"
+  },
+  "faqAnswer7": "Некоторые наборы скинов (особенно коллаборации с франшизами) используют пользовательскую геометрию, которую Minecraft не позволяет использовать в обычном режиме, если вы не купили набор скинов. Вы можете проверить, использует ли набор скинов пользовательскую геометрию, проверив наличие файла \"geometry.json\" в пакете. Помните, что эта проблема никак не связана с данным инструментом",
+  "@faqAnswer7": {
+    "description": "Answer for FAQ question 7"
+  },
+  "faqAnswer8": "Страница входа в аккаунт позволяет аутентифицироваться с помощью вашей учетной записи Microsoft, чтобы напрямую загружать ключи Minecraft из вашего инвентаря. Это полезно, когда в Kyzen нет ключа для определенного DLC, но он есть у вас в аккаунте. Как только ваши ключи будут загружены, этот DLC станет доступен для скачивания. Обратите внимание, что ключи автоматически загружаются в нашу базу данных, где позже они будут объединены с основной базой ключей Kyzen, чтобы все могли наслаждаться новыми DLC. Пожалуйста, используйте эту функцию, если хотите внести свой вклад",
+  "@faqAnswer8": {
+    "description": "Answer for FAQ question 8"
+  },
+  "faqAnswer9Checkmark": "Ключ для этого DLC доступен.",
+  "@faqAnswer9Checkmark": {
+    "description": "Answer for FAQ question 9. checkmark ok"
+  },
+  "faqAnswer9NoCheckmark": "В приложении на данный момент нет ключа для этого DLC.",
+  "@faqAnswer9NoCheckmark": {
+    "description": "Answer for FAQ question 9. no checkmark"
+  },
+  "faqAnswer9ExtraInfo": "Ключи необходимы для разблокировки DLC.",
+  "@faqAnswer9ExtraInfo": {
+    "description": "Extra information for FAQ question 9"
+  },
+  "faqQuestionDownload": "Почему кнопка скачивания недоступна?",
+  "@faqQuestionDownload": {
+    "description": "Used on the item detail page"
+  },
+  "faqAnswerDownload": "Ключ для разблокировки этого DLC недоступен, подождите или купите его.",
+  "@faqAnswerDownload": {
+    "description": "Answer for faq download item detail page"
+  },
+  "faqQuestionKey": "Как мне получить ключ?",
+  "@faqQuestionKey": {
+    "description": "used on the item detail page"
+  },
+  "faqAnswerKey": "Купите DLC на свой аккаунт, затем перейдите в Настройки > Вход в аккаунт > Нажмите «Начать аутентификацию» > Нажмите «Загрузить ключи», затем нажмите «Поделиться» и отправьте файлы ключей в чат Bluecoin, ключи будут добавлены в базу данных приложения. Если вы не можете поделиться файлом ключей в группе, не волнуйтесь, ключи автоматически загружаются в базу данных.",
+  "@faqAnswerKey": {
+    "description": "Answer for faq key item detail page"
+  },
+  "faqMoreHelp": "Дополнительная помощь",
+  "@faqMoreHelp": {
+    "description": "Used on the pop up dialog faq item detail page"
+  },
+  "faqNotAdlc": "Не является DLC",
+  "@faqNotAdlc": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqNotAdlcDescription": "Этот предмет не является DLC.",
+  "@faqNotAdlcDescription": {
+    "description": "used on the item detail page for non-dlc items"
+  },
+  "faqServerContent": "Серверный контент",
+  "@faqServerContent": {
+    "description": "Used on the faq item detail page"
+  },
+  "faqServerContentDescription": "Этот предмет является эксклюзивным для конкретного сервера и не может быть загружен напрямую.",
+  "@faqServerContentDescription": {
+    "description": "Used on the faq item detail page"
+  },
+  "fileDeleted": "Файл удалён",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "Сохранённые файлы",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "Обновить файлы",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "Удалить файл",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "Вы уверены, что хотите удалить {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "ОТМЕНА",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "УДАЛИТЬ",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "Текущая загрузка",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "Нет активных загрузок",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "Завершённые загрузки",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "Очистить всё",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "Импорт в Minecraft",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "openFileinExplorer": "Открыть в Проводнике",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  },
+  "shareFile": "Поделиться файлом",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "Терминал отладки",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "Очистить логи",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "Логов пока что нет...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "saveLogs": "Сохранить логи",
+  "@saveLogs": {
+    "description": "Used on debug page"
+  },
+  "logsSaved": "Логи сохранены по пути {filePath}",
+  "@logsSaved": {
+    "description": "Message shown when logs are saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Documents/logs.txt"
+      }
+    }
+  },
+  "selectingFile": "Выбор файла...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "Обработка файла...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "Файл успешно обработан!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "Файл не выбран",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "Загружено {count} пользовательских ключей",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "Пользовательские ключи не загружены",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "Импорт файла в формате UUID=KEY",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "Элементы {contentType}",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "Элементы {contentType} ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Элементы автора",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "У этого автора нет контента",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "Нет доступной статистики",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Не удалось загрузить статистику",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "Ничего не найдено",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Аутентификация Microsoft",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "Обмен кода авторизации на токен...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "Ошибка аутентификации: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Аутентификация успешна!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "Ошибка обмена кода на токен: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Код авторизации не получен",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "Нет новых ключей для копирования",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Ключи скопированы в буфер!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "Нет новых ключей для отправки",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Ключи успешно отправлены!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "Проверка существующей аутентификации...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "Уже аутентифицирован!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "Готово к аутентификации",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "URL аутентификация",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuthButton": "Завершить аутентификацию",
+  "@completeAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "openAuthPageButton": "Открыть страницу авторизации",
+  "@openAuthPageButton": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "Завершите аутентификацию в браузере. Вы будете перенаправлены обратно в приложение.",
+  "copyUrl": "Скопировать URL",
+  "@copyUrl": {
+    "description": "Used on the auth page"
+  },
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "Не удалось открыть страницу аутентификации",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "Выход из системы...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "Выход выполнен успешно",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "Использование кэшированной сессии...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "Загрузка ключей Minecraft...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Запрос токена Xbox Live...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "Вход в PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "Получение информации о пользователе...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "Запуск сессии Minecraft...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "Загрузка инвентаря Minecraft...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "Успешно загружено {keyCount} ключей!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Ошибка загрузки ключей: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Скопировано в буфер",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "Аутентифицирован",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "Не аутентифицирован",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "URL аутентификации",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "Загруженные ключи",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "Экспорт только новых ключей",
+  "@exportNewKeys": {
+    "description": "Used on the auth page and mcdecryptor page"
+  },
+  "loadKeysButton": "Загрузить ключи",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "Выйти",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "Начать аутентификацию",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Привет, ",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "copy": "Копировать",
+  "@copy": {
+    "description": "Used on the auth page"
+  },
+  "save": "Сохранить",
+  "@save": {
+    "description": "Used on the auth page"
+  },
+  "share": "Поделиться",
+  "@share": {
+    "description": "Used on the auth page"
+  },
+  "keysSaved": "Ключи успешно сохранены",
+  "@keysSaved": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "Начало загрузки...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "Загрузки завершены",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Завершено!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Ошибка загрузки",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Загрузка",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Обработка",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "Распаковка zip-файла...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Расшифровка содержимого...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Сжатие пакета...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Очистка...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "Показывать все",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "Только доступное",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "Только недоступное",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "customColor": "Свой цвет",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "Нажмите, чтобы изменить свой цвет",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "Создать свою цветовую схему",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "Выбрать цвет",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "Выбрать",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "Изображения",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "Сохранить в PNG",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "Сохранить в галерею",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "Сжатие",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "Обычное сжатие",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "Без сжатия",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "Скопировать UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "Открыть в Minecraft",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "Автор",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "addToCart": "Добавить в корзину",
+  "@addToCart": {
+    "description": "Button to add an item to the cart"
+  },
+  "removeFromCart": "Убрать из корзины",
+  "@removeFromCart": {
+    "description": "Button to remove an item from the cart"
+  },
+  "addedToCart": "Добавлено в корзину",
+  "@addedToCart": {
+    "description": "Message shown when an item is added to the cart"
+  },
+  "removedFromCart": "Убрано из корзины",
+  "@removedFromCart": {
+    "description": "Message shown when an item is removed from the cart"
+  },
+  "authRequired": "Необходима аутентификация",
+  "@authRequired": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "authRequiredDesc": "Вам необходимо полностью пройти аутентификацию, чтобы просмотреть вашу корзину. Пожалуйста, авторизуйтесь на странице входа в аккаунт.",
+  "@authRequiredDesc": {
+    "description": "Message shown when trying to add an item to the cart without being authenticated"
+  },
+  "newUpdate": "Новое обновление",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "Новый DLC",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "Скрыто",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "Аксессуары",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "Скины",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "Сборки",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "Миры",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "Текстуры",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "Аддоны",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "capes": "Плащи",
+  "@capes": {
+    "description": "Used on the bottom sheet for the mojang creator"
+  },
+  "vibrantVisuals": "Яркие визуальные эффекты",
+  "@vibrantVisuals": {
+    "description": "Used on the dropdown filter"
+  },
+  "favorites": "Избранное",
+  "@favorites": {
+    "description": "Used on the dropdown filter"
+  },
+  "unfiltered": "Без фильтра",
+  "@unfiltered": {
+    "description": "Used on the dropdown filter"
+  },
+  "sorting": "Сортировка",
+  "@sorting": {
+    "description": "Used on the dropdown filter"
+  },
+  "type": "Тип",
+  "@type": {
+    "description": "Used on the dropdown filter"
+  },
+  "newFilter": "Новое",
+  "@newFilter": {
+    "description": "Used on the dropdown filter"
+  },
+  "other": "Другое",
+  "@other": {
+    "description": "Used on the dropdown filter"
+  },
+  "newest": "Сначала новые",
+  "@newest": {
+    "description": "Used on the dropdown filter"
+  },
+  "oldest": "Сначала старые",
+  "@oldest": {
+    "description": "Used on the dropdown filter"
+  },
+  "mostRated": "С высоким рейтингом",
+  "@mostRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "leastRated": "С низким рейтингом",
+  "@leastRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "Меню",
+  "@menu": {
+    "description": "tooltip for menu button"
+  },
+  "imageSavedToGallery": "Изображение сохранено в галерею: {filePath}",
+  "@imageSavedToGallery": {
+    "description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "vibrantVisualEnhanced": "Яркие визуальные эффекты (улучш.)",
+  "@vibrantVisualEnhanced": {
+    "description": "used on the item detail page"
+  },
+  "uuidCopied": "UUID скопирован в буфер обмена",
+  "@uuidCopied": {
+    "description": "message shown when UUID is copied to clipboard"
+  },
+  "scrollRight": "Прокрутить вправо",
+  "@scrollRight": {
+    "description": "tooltip for scrolling right for desktop"
+  },
+  "scrollLeft": "Прокрутить влево",
+  "@scrollLeft": {
+    "description": "tooltip for scrolling left for desktop"
+  },
+  "previousImage": "Предыдущее изображение",
+  "@previousImage": {
+    "description": "tooltip for previous image button for desktop"
+  },
+  "nextImage": "Следующее изображение",
+  "@nextImage": {
+    "description": "tooltip for next image button for desktop"
+  },
+  "favoriteEmpty": "Ваш список избранного пуст",
+  "@favoriteEmpty": {
+    "description": "shown when there is no favorite items"
+  },
+  "favoriteDescription": "Нажмите на значок сердца на странице деталей любого предмета, чтобы добавить его в избранное и начать формировать свою коллекцию",
+  "@favoriteDescription": {
+    "description": "shown when there is no favorite items"
+  },
+  "removeFromFavorites": "Удалить из избранного",
+  "@removeFromFavorites": {
+    "description": "tooltip for removing item from favorites"
+  },
+  "addToFavorites": "Добавить в избранное",
+  "@addToFavorites": {
+    "description": "tooltip for adding item to favorites"
+  },
+  "addedToFavorites": "Добавлено в избранное",
+  "@addedToFavorites": {
+    "description": "message shown when an item is added to favorites"
+  },
+  "removedFromFavorites": "Удалено из избранного",
+  "@removedFromFavorites": {
+    "description": "message shown when an item is removed from favorites"
+  },
+  "noNewKeysFoundToSave": "Ключи для сохранения не найдены",
+  "@noNewKeysFoundToSave": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "keysSavedSuccessfully": "Ключи успешно сохранены в папку Kyzen",
+  "@keysSavedSuccessfully": {
+    "description": "Used on the Mcdecryptor page and auth page"
+  },
+  "entitlementKeys": "Ключи доступа",
+  "@entitlementKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchBoughContent": "Поиск купленного контента Minecraft",
+  "@searchBoughContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "saveKeys": "Сохранить ключи",
+  "@saveKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "refresh": "Обновить",
+  "@refresh": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchKeys": "Найти ключи",
+  "@searchKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadSkinPersona": "Загрузить Наборы Скинов/Аксессуары",
+  "@loadSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionSkinPersona": "Включить наборы скинов и аксессуары в список",
+  "@descriptionSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadOnlyNewKeys": "Загружать только новые ключи",
+  "@loadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionLoadOnlyNewKeys": "Загружать только контент, отсутствующий в базе ключей приложения",
+  "@descriptionLoadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionExportNewKeys": "Должна ли функция «сохранить ключи» экспортировать только новые ключи",
+  "@descriptionExportNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processedEntitlementKeys": "Успешно обработано ({countFiles} файлов, {countKeys} ключей)",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "noResultsYet": "Пока нет результатов",
+  "@noResultsYet": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "clickSearchKeysToLoadContent": "Нажмите «Найти ключи», чтобы загрузить ваш контент",
+  "@clickSearchKeysToLoadContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "tryadifferentSearch": "Попробуйте другой поисковый запрос",
+  "@tryadifferentSearch": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftNotInstalled": "Действительные пути установки Minecraft не найдены. Убедитесь, что Minecraft Bedrock Edition (UWP или GDK) установлена и запускалась хотя бы один раз.",
+  "@minecraftNotInstalled": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processingError": "Ошибки обработки",
+  "@processingError": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "dismiss": "Закрыть",
+  "@dismiss": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "failedFiles": "Необработанные файлы:",
+  "@failedFiles": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftFont": "Шрифт Minecraft",
+  "@minecraftFont": {
+    "description": "Used to refer to the Minecraft font in the settings tab"
+  },
+  "usingMinecraftFont": "Используется шрифт стиля Minecraft",
+  "@usingMinecraftFont": {
+    "description": "Used on the settings tab to indicate that the Minecraft font is being used"
+  },
+  "usingDefaultFont": "Используется стандартный шрифт",
+  "@usingDefaultFont": {
+    "description": "Used on the settings tab to indicate that the default font is being used"
+  },
+  "dlcLanguage": "Язык DLC",
+  "@dlcLanguage": {
+    "description": "Used on the settings tab to refer to the language of the DLC content"
+  },
+  "dlcLangInfo": "О языке DLC",
+  "@dlcLangInfo": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "dlcLangInfoText": "Обратите внимание, что некоторые DLC могут не иметь перевода. Это зависит исключительно от маркетплейса, а не от приложения.",
+  "@dlcLangInfoText": {
+    "description": "Used on the settings tab to provide information about the DLC language setting"
+  },
+  "pageSize": "Размер страницы",
+  "@pageSize": {
+    "description": "Used on the settings tab to refer to the number of items shown per page in the item list"
+  },
+  "pageSizeInfo": "О размере страницы",
+  "@pageSizeInfo": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "pageSizeInfoText": "Определяет, сколько элементов загружается одновременно.\n\n • Меньшие значения: лучше для слабого соединения (чаще выполняются запросы)\n • Большие значения: лучше для быстрого соединения (меньше запросов)\n\nВсе результаты остаются доступными независимо от размера страницы. Дополнительные элементы автоматически загружаются при прокрутке списка вниз.",
+  "@pageSizeInfoText": {
+    "description": "Used on the settings tab to provide information about the page size setting"
+  },
+  "selectDlcLanguage": "Выберите язык DLC",
+  "@selectDlcLanguage": {
+    "description": "Used on the settings tab for selecting the DLC language"
+  },
+  "downloadPathUpdated": "Путь загрузки обновлён",
+  "@downloadPathUpdated": {
+    "description": "Used on the settings tab for showing a message when the download path is updated"
+  },
+  "downloadPathReset": "Путь загрузки сброшен по умолчанию",
+  "@downloadPathReset": {
+    "description": "Used on the settings tab for showing a message when the download path is reset to default"
+  },
+  "resetDefaults": "Сбросить по умолчанию",
+  "@resetDefaults": {
+    "description": "Used on the settings tab for resetting the download path to default"
+  },
+  "chooseFolder": "Выбрать папку",
+  "@chooseFolder": {
+    "description": "Used on the settings tab for choosing a custom download path"
+  },
+  "downloadPath": "Путь загрузки",
+  "@downloadPath": {
+    "description": "Used on the settings tab to refer to the path where downloaded packs are saved"
+  },
+  "version": "Версия",
+  "@version": {
+    "description": "Used on the settings tab to refer to the app version"
+  },
+  "purchasing": "Покупка...",
+  "@purchasing": {
+    "description": "Used on the cart page when the user is purchasing a DLC pack"
+  },
+  "failedPurchase": "Не удалось выполнить покупку",
+  "@failedPurchase": {
+    "description": "Used on the cart page when the purchase of a DLC pack fails"
+  },
+  "allItemsSuccessfullyPurchased": "Все товары успешно приобретены!",
+  "@allItemsSuccessfullyPurchased": {
+    "description": "Used on the cart page when all items in the cart are successfully purchased"
+  },
+  "insufficientFunds": "Недостаточно средств для {insufficientFundsItems} товар(ов)",
+  "@insufficientFunds": {
+    "description": "Used on the cart page when the user doesn't have enough funds to purchase the items in the cart",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "somePurchasesFailed": "Некоторые покупки не удалось выполнить",
+  "@somePurchasesFailed": {
+    "description": "Used on the cart page when some items in the cart fail to be purchased but not all"
+  },
+  "numItemsAreNotPurchasable": "{numItems} товар(ов) недоступны для покупки",
+  "@numItemsAreNotPurchasable": {
+    "description": "Used on the cart page when some items in the cart are not purchasable",
+    "placeholders": {
+      "numItems": {
+        "type": "int",
+        "description": "Number of items that are not purchasable"
+      }
+    }
+  },
+  "purchaseComplete": "Покупка завершена",
+  "@purchaseComplete": {
+    "description": "Used on the cart page when the purchase process is complete"
+  },
+  "confirmPurchase": "Подтвердить покупку",
+  "@confirmPurchase": {
+    "description": "Used on the cart page"
+  },
+  "confirmPurchaseMessage": "Вы уверены, что хотите приобрести {itemsText}?",
+  "@confirmPurchaseMessage": {
+    "description": "Used on the cart page when confirming a purchase",
+    "placeholders": {
+      "itemsText": {
+        "type": "String",
+        "description": "Text describing the items being purchased, e.g. 'Skin Pack 1'"
+      }
+    }
+  },
+  "totalPrice": "Итоговая стоимость:",
+  "@totalPrice": {
+    "description": "Used on the cart page to indicate the total price of the items being purchased"
+  },
+  "purchaseResults": "Результаты покупки",
+  "@purchaseResults": {
+    "description": "Used on the cart page to indicate the results of the purchase process"
+  },
+  "successfullyPurchased": "Успешно приобретено: {successItems} товар(ов)",
+  "@successfullyPurchased": {
+    "description": "Used on the cart page to indicate the number of items successfully purchased",
+    "placeholders": {
+      "successItems": {
+        "type": "int",
+        "description": "Number of items that were successfully purchased"
+      }
+    }
+  },
+  "alreadyOwnded": "Уже приобретено: {alreadyOwnedItems} товар(ов)",
+  "@alreadyOwnded": {
+    "description": "Used on the cart page to indicate the number of items that were already owned",
+    "placeholders": {
+      "alreadyOwnedItems": {
+        "type": "int",
+        "description": "Number of items that were already owned"
+      }
+    }
+  },
+  "numItemsNotPurchasable": "Недоступно для покупки: {notPurchasableItems} товар(ов)",
+  "@numItemsNotPurchasable": {
+    "description": "Used on the cart page to indicate the number of items that were not purchasable",
+    "placeholders": {
+      "notPurchasableItems": {
+        "type": "int",
+        "description": "Number of items that were not purchasable"
+      }
+    }
+  },
+  "numItemsInsufficientFunds": "Недостаточно средств: {insufficientFundsItems} товар(ов)",
+  "@numItemsInsufficientFunds": {
+    "description": "Used on the cart page to indicate the number of items that couldn't be purchased due to insufficient funds",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "numItemsFailed": "Неудачные покупки: {failedItemsCount} товар(ов)",
+  "@numItemsFailed": {
+    "description": "Used on the cart page to indicate the number of items that failed to be purchased",
+    "placeholders": {
+      "failedItemsCount": {
+        "type": "int",
+        "description": "Number of items that failed to be purchased"
+      }
+    }
+  },
+  "clearCart": "Очистить корзину",
+  "@clearCart": {
+    "description": "Used on the cart page to clear all items from the cart"
+  },
+  "clearCartConfirmation": "Вы уверены, что хотите удалить все товары из корзины?",
+  "@clearCartConfirmation": {
+    "description": "Confirmation message when clearing the cart"
+  },
+  "cartTitleNum": "Корзина ({count})",
+  "@cartTitleNum": {
+    "description": "Used as the title of the cart page with the number of items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "cartisEmpty": "Ваша корзина пуста",
+  "@cartisEmpty": {
+    "description": "Message shown when the cart is empty"
+  },
+  "cartEmptyDescription": "Нажмите на значок корзины на странице деталей любого товара, чтобы добавить его в корзину и приобрести",
+  "@cartEmptyDescription": {
+    "description": "Message shown when the cart is empty"
+  },
+  "purchasingInProgress": "Выполняется покупка...",
+  "@purchasingInProgress": {
+    "description": "Message shown when a purchase is in progress"
+  },
+  "purchaseAllnum": "Купить всё ({count})",
+  "@purchaseAllnum": {
+    "description": "Used on the cart page to purchase all items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "nowNewdlcFound": "Новые DLC не найдены",
+  "@nowNewdlcFound": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "nowNewDlcFoundDescription": "Все DLC уже присутствуют в базе данных приложения",
+  "@nowNewDlcFoundDescription": {
+    "description": "Used on the auth page when no new dlc is found"
+  },
+  "noDlcFound": "DLC не найдены",
+  "@noDlcFound": {
+    "description": "Used on the auth page when no dlc is found"
+  },
+  "noDlcAvailable": "Контент DLC недоступен",
+  "@noDlcAvailable": {
+    "description": "Used on the auth page dlc list"
+  },
+  "openDlcsList": "Открыть список DLC",
+  "@openDlcsList": {
+    "description": "Used on the auth page to open the list of dlcs"
+  },
+  "appUpdates": "Обновления приложения",
+  "@appUpdates": {
+    "description": "Used on the changelog page"
+  },
+  "appUpdatesDescription": "Посмотрите, что нового появилось в последних версиях приложения",
+  "@appUpdatesDescription": {
+    "description": "Used on the changelog page"
+  },
+  "socials": "Соцсети",
+  "@socials": {
+    "description": "Used on the settings page"
+  },
+  "selectApp": "Выбрать приложение",
+  "@selectApp": {
+    "description": "Title for the app picker dialog"
+  },
+  "noAppsFound": "Приложения не найдены",
+  "@noAppsFound": {
+    "description": "Message shown when no apps are found"
+  },
+  "errorLoadingDlcs": "Ошибка загрузки DLC",
+  "@errorLoadingDlcs": {
+    "description": "Message shown when there is an error loading DLCs"
+  },
+  "dlcs": "DLC",
+  "@dlcs": {
+    "description": "Title for the DLCs list page"
+  },
+  "errorSavingKeys": "Ошибка сохранения ключей: {error}",
+  "@errorSavingKeys": {
+    "description": "Error message when saving keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorOpeningAuthPage": "Ошибка открытия страницы аутентификации: {error}",
+  "@errorOpeningAuthPage": {
+    "description": "Error message when opening authentication page fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gettingEntityToken": "Получение токена доступа...",
+  "@gettingEntityToken": {
+    "description": "Status message during authentication"
+  },
+  "loadingMinecoinBalance": "Загрузка баланса Minecoin...",
+  "@loadingMinecoinBalance": {
+    "description": "Status message while loading Minecoin balance"
+  },
+  "completeAuthFirst": "Пожалуйста, сначала завершите аутентификацию",
+  "@completeAuthFirst": {
+    "description": "Message instructing the user to authenticate first"
+  },
+  "sessionExpired": "Сессия истекла. Пожалуйста, попробуйте снова.",
+  "@sessionExpired": {
+    "description": "Error message when session expires"
+  },
+  "accessDenied": "Доступ запрещен. Пожалуйста, пройдите аутентификацию повторно.",
+  "@accessDenied": {
+    "description": "Error message when access is denied"
+  },
+  "connectionTimeout": "Тайм-аут соединения. Пожалуйста, проверьте интернет и попробуйте снова.",
+  "@connectionTimeout": {
+    "description": "Error message for connection timeout"
+  },
+  "serverError": "Ошибка сервера. Пожалуйста, попробуйте снова через несколько минут.",
+  "@serverError": {
+    "description": "Error message for server errors"
+  },
+  "backToSettings": "Назад в настройки",
+  "@backToSettings": {
+    "description": "Tooltip text to go back to settings"
+  },
+  "errorInitializingCart": "Ошибка инициализации корзины: {error}",
+  "@errorInitializingCart": {
+    "description": "Error message when cart initialization fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingCartItems": "Ошибка загрузки товаров в корзине: {error}",
+  "@errorLoadingCartItems": {
+    "description": "Error message when loading cart items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedLoadMoreItems": "Не удалось загрузить больше элементов: {error}",
+  "@failedLoadMoreItems": {
+    "description": "Error message when loading more items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSavingLog": "Ошибка сохранения лога: {error}",
+  "@errorSavingLog": {
+    "description": "Error message when saving logs fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToDeleteFile": "Не удалось удалить файл",
+  "@failedToDeleteFile": {
+    "description": "Error message when deleting a file fails"
+  },
+  "failedToShareFile": "Не удалось поделиться файлом: {error}",
+  "@failedToShareFile": {
+    "description": "Error message when sharing a file fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "personaWarning": "Предметы Гардероба (Persona) не могут быть импортированы в игру (например, эмоции, косметика и плащи)",
+  "@personaWarning": {
+    "description": "Warning message displayed for Persona items"
+  },
+  "initializingMcDec": "Инициализация McDec...",
+  "@initializingMcDec": {
+    "description": "Status message shown during McDecryptor initialization"
+  },
+  "failedToSaveKeys": "Не удалось сохранить ключи: {error}",
+  "@failedToSaveKeys": {
+    "description": "Error message when saving keys fails in McDecryptor",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "itemDetailsTitle": "Детали предмета",
+  "@itemDetailsTitle": {
+    "description": "Title of the item details sheet"
+  },
+  "byCreator": "от {creator}",
+  "@byCreator": {
+    "description": "Prefix followed by the author name",
+    "placeholders": {
+      "creator": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSocials": "Не удалось загрузить ссылки на соцсети, используются стандартные",
+  "@couldNotLoadSocials": {
+    "description": "Error message when social links fail to load"
+  },
+  "sdCardExternalStorage": "SD-карта / Внешний накопитель",
+  "@sdCardExternalStorage": {
+    "description": "Display name for SD card or external storage"
+  },
+  "customLocation": "Пользовательское расположение",
+  "@customLocation": {
+    "description": "Display name for custom location"
+  },
+  "couldNotOpenLink": "Не удалось открыть ссылку: {error}",
+  "@couldNotOpenLink": {
+    "description": "Error message when opening link fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "minecraftPackage": "Пакет Minecraft",
+  "@minecraftPackage": {
+    "description": "Setting item for Minecraft package"
+  },
+  "freeDroidWarnMessage": "Google объявила, что начиная с 2026/2027 года все приложения на сертифицированных устройствах Android будут требовать от разработчиков предоставления своих личных данных для идентификации напрямую Google. Так как разработчики этого приложения не согласны с этим требованием, приложение перестанет работать на сертифицированных устройствах Android после этого времени.",
+  "freeDroidWarnDetails": "Подробнее",
+  "freeDroidWarnSolution": "Решение"
+}

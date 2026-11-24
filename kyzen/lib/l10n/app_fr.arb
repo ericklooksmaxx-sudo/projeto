@@ -1,0 +1,680 @@
+{
+  "@@locale": "fr",
+  "home": "Accueil",
+  "@home": {
+    "description": "utilisé dans bottom_navigation.dart"
+  },
+  "downloads": "Téléchargements",
+  "@downloads": {
+    "description": "utilisé dans bottom_navigation.dart"
+  },
+  "settings": "Paramètres",
+  "@settings": {
+    "description": "utilisé dans bottom_navigation et dans l'onglet Paramètres"
+  },
+  "selectLanguage": "Choisir la langue",
+  "@selectLanguage": {
+    "description": "utilisé dans le sélecteur de langue"
+  },
+  "language": "Langue",
+  "@language": {
+    "description": "utilisé dans le sélecteur de langue"
+  },
+  "download": "Télécharger",
+  "@download": {
+    "description": "utilisé sur la page de détails d'un élément"
+  },
+  "hintText": "Rechercher...",
+  "@hintText": {
+    "description": "utilisé dans la barre de recherche"
+  },
+  "default1": "Par défaut",
+  "@default1": {
+    "description": "utilisé dans la barre de recherche"
+  },
+  "creators": "Créateurs",
+  "@creators": {
+    "description": "utilisé dans la barre de recherche"
+  },
+  "checkingKeys": "Vérification des clés",
+  "@checkingKeys": {
+    "description": "utilisé au démarrage de l'application"
+  },
+  "apiLogin": "Connexion API",
+  "@apiLogin": {
+    "description": "utilisé au démarrage de l'application"
+  },
+  "addedNewKeys": "{keyCount} nouvelles clés ajoutées",
+  "@addedNewKeys": {
+    "description": "Message toast affichant combien de nouvelles clés ont été ajoutées",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Aucun résultat trouvé",
+  "@noResult": {
+    "description": "quand aucun DLC trouvé"
+  },
+  "open": "Ouvrir",
+  "@open": {
+    "description": "bouton ouvrir"
+  },
+  "clear": "Effacer",
+  "@clear": {
+    "description": "bouton effacer"
+  },
+  "retry": "Réessayer",
+  "@retry": {
+    "description": "utilisé dans le panneau inférieur du créateur"
+  },
+  "queuePosition": "En file d'attente (Position n°{count})",
+  "@queuePosition": {
+    "description": "Position dans la file d'attente",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "En file d'attente n°{count})",
+  "@queuePosition2": {
+    "description": "Position dans la file d'attente",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Image enregistrée dans {filePath}",
+  "@imageSaved": {
+    "description": "Message affiché quand une image est enregistrée avec succès",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Erreur lors du téléchargement de l'image : {error}",
+  "@errorDownloadingImage": {
+    "description": "Message d'erreur affiché si le téléchargement échoue",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Erreur réseau"
+      }
+    }
+  },
+  "changelog": "Journal des modifications",
+  "@changelog": {
+    "description": "utilisé sur la page de détails"
+  },
+  "downloaded": "Téléchargé",
+  "@downloaded": {
+    "description": "utilisé sur la page de détails"
+  },
+  "retryDownload": "Réessayer le téléchargement",
+  "@retryDownload": {
+    "description": "utilisé sur la page de détails"
+  },
+  "downloadImage": "Télécharger l'image",
+  "@downloadImage": {
+    "description": "utilisé sur la page de détails"
+  },
+  "downloadImageQuestion": "Télécharger cette image ?",
+  "@downloadImageQuestion": {
+    "description": "utilisé sur la page de détails"
+  },
+  "cancel": "Annuler",
+  "@cancel": {
+    "description": "utilisé sur la page de détails"
+  },
+  "trailer": "Regarder la bande-annonce",
+  "@trailer": {
+    "description": "bouton de bande-annonce sur la page de détails"
+  },
+  "trailerError": "Impossible d'ouvrir la bande-annonce : {error}",
+  "@trailerError": {
+    "description": "Message d'erreur pour la bande-annonce",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Erreur de bande-annonce"
+      }
+    }
+  },
+  "appearance": "Apparence",
+  "@appearance": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "darkMode": "Mode sombre",
+  "@darkMode": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "darkEnabled": "Thème sombre activé",
+  "@darkEnabled": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "lightEnabled": "Thème clair activé",
+  "@lightEnabled": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "colorScheme": "Schéma de couleurs",
+  "@colorScheme": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "defaultColor": "Par défaut",
+  "@defaultColor": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "defaultPurple": "Par défaut (Violet)",
+  "@defaultPurple": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "colorSchemeBlue": "Bleu",
+  "@colorSchemeBlue": {
+    "description": "Nom d'affichage du thème bleu"
+  },
+  "colorSchemeGreen": "Vert",
+  "@colorSchemeGreen": {
+    "description": "Nom d'affichage du thème vert"
+  },
+  "colorSchemeOrange": "Orange",
+  "@colorSchemeOrange": {
+    "description": "Nom d'affichage du thème orange"
+  },
+  "colorSchemeRed": "Rouge",
+  "@colorSchemeRed": {
+    "description": "Nom d'affichage du thème rouge"
+  },
+  "colorSchemeTeal": "Turquoise",
+  "@colorSchemeTeal": {
+    "description": "Nom d'affichage du thème turquoise"
+  },
+  "colorSchemePink": "Rose",
+  "@colorSchemePink": {
+    "description": "Nom d'affichage du thème rose"
+  },
+  "colorSchemeLime": "Citron vert",
+  "@colorSchemeLime": {
+    "description": "Nom d'affichage du thème citron vert"
+  },
+  "filters": "Filtres",
+  "@filters": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "filter": "Filtre :",
+  "@filter": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "showSkins": "Afficher les skins",
+  "@showSkins": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "keys": "Clés",
+  "@keys": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "autoUpdate": "Mise à jour auto",
+  "@autoUpdate": {
+    "description": "Mise à jour automatique des clés"
+  },
+  "customDb": "Base de données personnalisée",
+  "@customDb": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "accountLogin": "Connexion au compte",
+  "@accountLogin": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "extras": "Extras",
+  "@extras": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "cache": "Cache",
+  "@cache": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "cacheCleared": "{size} Mo de cache supprimé",
+  "@cacheCleared": {
+    "description": "Message affiché lors du nettoyage du cache",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "FAQ",
+  "@faq": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "faqUppercase": "FAQ",
+  "@faqUppercase": {
+    "description": "utilisé dans la page FAQ"
+  },
+  "terminal": "Terminal",
+  "@terminal": {
+    "description": "utilisé dans l'onglet paramètres"
+  },
+  "faqQuestion1": "Ajoutez les clés pour ce pack et celui-là !",
+  "@faqQuestion1": {
+    "description": "utilisé dans la page FAQ"
+  },
+  "faqQuestion2": "Quand les clés seront-elles mises à jour ?",
+  "@faqQuestion2": {
+    "description": "utilisé dans la page FAQ"
+  },
+  "faqQuestion3": "Quelle est la différence entre chiffré et déchiffré ?",
+  "@faqQuestion3": {
+    "description": "utilisé dans la page FAQ"
+  },
+  "faqQuestion4": "Où puis-je trouver les packs téléchargés ?",
+  "@faqQuestion4": {
+    "description": "utilisé dans la page FAQ"
+  },
+  "faqQuestion5": "Qu'est-ce que keys.tsv ?",
+  "@faqQuestion5": {
+    "description": "utilisé dans la page FAQ"
+  },
+  "faqAnswer1": "Le processus d’obtention des clés n’a rien de magique : une personne doit acheter le pack et partager les clés avec nous. Sans quelqu’un pour l’acheter, il n’y aurait tout simplement pas de clés de déchiffrement. Il n’y a pas d’autre moyen de les obtenir. Patientez ou achetez-le.",
+  "@faqAnswer1": {
+    "description": "Réponse à la question 1"
+  },
+  "faqAnswer2": "Quand nous le déciderons.",
+  "@faqAnswer2": {
+    "description": "Réponse à la question 2"
+  },
+  "faqAnswer3": "Chiffré signifie que le fichier a été transformé en texte illisible. Personne ne peut le lire sans une clé spéciale. Les contenus Minecraft chiffrés sont injouables.\n\nDéchiffré signifie que cette clé spéciale a été utilisée pour rendre le contenu lisible à nouveau. Les contenus Minecraft peuvent alors être utilisés.",
+  "@faqAnswer3": {
+    "description": "Réponse à la question 3"
+  },
+  "faqAnswer4": "Vous pouvez trouver les packs ici : Download/Kyzen",
+  "@faqAnswer4": {
+    "description": "Réponse à la question 4"
+  },
+  "faqAnswer5": "C’est un fichier qui stocke les UUID des packs avec leurs clés de déchiffrement respectives. Sans ces clés, les packs téléchargés seraient inutilisables.",
+  "@faqAnswer5": {
+    "description": "Réponse à la question 5"
+  },
+  "fileDeleted": "Fichier supprimé",
+  "@fileDeleted": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "storedFiles": "Fichiers enregistrés",
+  "@storedFiles": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "refreshFiles": "Rafraîchir les fichiers",
+  "@refreshFiles": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "deleteFile": "Supprimer le fichier",
+  "@deleteFile": {
+    "description": "Titre de la boîte de confirmation de suppression"
+  },
+  "deleteFileConfirmation": "Voulez-vous vraiment supprimer {fileName} ?",
+  "@deleteFileConfirmation": {
+    "description": "Message de confirmation pour supprimer un fichier",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Nom du fichier à supprimer"
+      }
+    }
+  },
+  "cancelUppercase": "ANNULER",
+  "@cancelUppercase": {
+    "description": "Bouton Annuler"
+  },
+  "deleteUppercase": "SUPPRIMER",
+  "@deleteUppercase": {
+    "description": "Bouton Supprimer"
+  },
+  "currentDownload": "Téléchargement en cours",
+  "@currentDownload": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "noActiveDownloads": "Aucun téléchargement en cours",
+  "@noActiveDownloads": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "completedDownloads": "Téléchargements terminés",
+  "@completedDownloads": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "clearAll": "Tout effacer",
+  "@clearAll": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "importToMc": "Importer dans Minecraft",
+  "@importToMc": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "shareFile": "Partager le fichier",
+  "@shareFile": {
+    "description": "utilisé dans l’onglet téléchargements"
+  },
+  "debugTerminal": "Terminal de débogage",
+  "@debugTerminal": {
+    "description": "utilisé sur la page de débogage"
+  },
+  "clearLogs": "Effacer les journaux",
+  "@clearLogs": {
+    "description": "utilisé sur la page de débogage"
+  },
+  "noLogs": "Aucun journal pour le moment...",
+  "@noLogs": {
+    "description": "utilisé sur la page de débogage"
+  },
+  "selectingFile": "Sélection du fichier...",
+  "@selectingFile": {
+    "description": "utilisé sur la page base de données personnalisée"
+  },
+  "processingFile": "Traitement du fichier...",
+  "@processingFile": {
+    "description": "utilisé sur la page base de données personnalisée"
+  },
+  "fileProcessed": "Fichier traité avec succès !",
+  "@fileProcessed": {
+    "description": "utilisé sur la page base de données personnalisée"
+  },
+  "noFileSelected": "Aucun fichier sélectionné",
+  "@noFileSelected": {
+    "description": "utilisé sur la page base de données personnalisée"
+  },
+  "customKeysLoaded": "{count} clés personnalisées chargées",
+  "@customKeysLoaded": {
+    "description": "utilisé sur la page base de données personnalisée",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Nombre de clés personnalisées chargées"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "Aucune clé personnalisée chargée",
+  "@noCustomKeysLoaded": {
+    "description": "utilisé sur la page base de données personnalisée"
+  },
+  "importFileFormat": "Importer un fichier au format UUID=CLÉ",
+  "@importFileFormat": {
+    "description": "utilisé sur la page base de données personnalisée"
+  },
+  "creatorItemsWithType": "Éléments {contentType}",
+  "@creatorItemsWithType": {
+    "description": "Utilisé dans le panneau inférieur du créateur",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "Éléments {contentType} ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Utilisé dans le panneau inférieur du créateur",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Éléments du créateur",
+  "@creatorItemsDefault": {
+    "description": "Utilisé dans le panneau inférieur du créateur"
+  },
+  "noItemCreator": "Ce créateur n’a aucun contenu",
+  "@noItemCreator": {
+    "description": "Utilisé dans le panneau inférieur du créateur"
+  },
+  "noStatistic": "Aucune statistique disponible",
+  "@noStatistic": {
+    "description": "Utilisé dans le panneau inférieur du créateur"
+  },
+  "failedLoadStatistic": "Échec du chargement des statistiques",
+  "@failedLoadStatistic": {
+    "description": "Utilisé dans le panneau inférieur du créateur"
+  },
+  "noResultsFound": "Aucun résultat trouvé",
+  "@noResultsFound": {
+    "description": "Utilisé dans le panneau inférieur du créateur"
+  },
+  "microsoftAuth": "Authentification Microsoft",
+  "@microsoftAuth": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "exchangingToken": "Échange du code d’autorisation contre un jeton...",
+  "@exchangingToken": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "authenticationFailed": "Échec de l’authentification : {error}",
+  "@authenticationFailed": {
+    "description": "Utilisé sur la page d’authentification",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Authentification réussie !",
+  "@authenticationSuccessful": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "failedToExchangeToken": "Échec de l’échange du code : {error}",
+  "@failedToExchangeToken": {
+    "description": "Utilisé sur la page d’authentification",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Aucun code d’autorisation reçu",
+  "@noAuthorizationCodeReceived": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "noNewKeysCopy": "Aucune nouvelle clé à copier",
+  "@noNewKeysCopy": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "keysCopyClipboard": "Clés copiées dans le presse-papiers !",
+  "@keysCopyClipboard": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "noNewKeysShare": "Aucune nouvelle clé à partager",
+  "@noNewKeysShare": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "keysShared": "Clés partagées avec succès !",
+  "@keysShared": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "authCheck": "Vérification de l’authentification existante...",
+  "@authCheck": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "alreadyAuth": "Déjà authentifié !",
+  "@alreadyAuth": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "readyAuth": "Prêt à s’authentifier",
+  "@readyAuth": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "authURL": "Authentifiez-vous via l’URL",
+  "@authURL": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "completeAuth": "Terminez l’authentification dans votre navigateur. Vous serez redirigé vers l’application.",
+  "@completeAuth": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "authPageFail": "Impossible d’ouvrir la page d’authentification",
+  "@authPageFail": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "logout": "Déconnexion...",
+  "@logout": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "logoutOk": "Déconnecté avec succès",
+  "@logoutOk": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "usingCachedSession": "Session en cache utilisée...",
+  "@usingCachedSession": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "loadingMinecraftKeys": "Chargement des clés Minecraft...",
+  "@loadingMinecraftKeys": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "requestingXboxLiveToken": "Demande du jeton Xbox Live...",
+  "@requestingXboxLiveToken": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "loggingInToPlayFab": "Connexion à PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "gettingUserInformation": "Récupération des informations utilisateur...",
+  "@gettingUserInformation": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "startingMinecraftSession": "Démarrage de la session Minecraft...",
+  "@startingMinecraftSession": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "loadingMinecraftInventory": "Chargement de l’inventaire Minecraft...",
+  "@loadingMinecraftInventory": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "successfullyLoadedKeys": "{keyCount} clés chargées avec succès !",
+  "@successfullyLoadedKeys": {
+    "description": "Utilisé sur la page d’authentification",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Erreur lors du chargement des clés : {error}",
+  "@errorLoadingKeys": {
+    "description": "Utilisé sur la page d’authentification",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Erreur réseau"
+      }
+    }
+  },
+  "copyClipboard": "Copié dans le presse-papiers",
+  "@copyClipboard": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "authOk": "Authentifié",
+  "@authOk": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "authNotOk": "Non authentifié",
+  "@authNotOk": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "urlAuth": "URL d’authentification",
+  "@urlAuth": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "loadedKeys": "Clés chargées",
+  "@loadedKeys": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "exportNewKeys": "Exporter uniquement les nouvelles clés",
+  "@exportNewKeys": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "loadKeysButton": "Charger les clés",
+  "@loadKeysButton": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "logoutButton": "Déconnexion",
+  "@logoutButton": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "startAuthButton": "Démarrer l’authentification",
+  "@startAuthButton": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "greetings": "Salut ",
+  "@greetings": {
+    "description": "Utilisé sur la page d’authentification"
+  },
+  "startingDownload": "Démarrage du téléchargement...",
+  "@startingDownload": {
+    "description": "Utilisé par le service de téléchargement"
+  },
+  "downloadsCompleted": "Téléchargements terminés",
+  "@downloadsCompleted": {
+    "description": "Statut quand tous les téléchargements sont terminés"
+  },
+  "completed": "Terminé !",
+  "@completed": {
+    "description": "Statut final"
+  },
+  "downloadFailed": "Échec du téléchargement",
+  "@downloadFailed": {
+    "description": "Statut en cas d'échec"
+  },
+  "downloading": "Téléchargement",
+  "@downloading": {
+    "description": "Statut en cours de téléchargement"
+  },
+  "processing": "Traitement",
+  "@processing": {
+    "description": "Statut pendant le traitement du fichier"
+  },
+  "extractingZipFile": "Extraction du fichier zip...",
+  "@extractingZipFile": {
+    "description": "Message lors de l’extraction d’un fichier zip"
+  },
+  "decryptingContents": "Déchiffrement du contenu...",
+  "@decryptingContents": {
+    "description": "Message pendant le déchiffrement du contenu"
+  },
+  "compressingPack": "Compression du pack...",
+  "@compressingPack": {
+    "description": "Message pendant la compression finale"
+  },
+  "cleaningUp": "Nettoyage...",
+  "@cleaningUp": {
+    "description": "Message pendant le nettoyage des fichiers temporaires"
+  },
+  "showAll": "Afficher tout",
+  "@showAll": {
+    "description": "Utilisé pour le filtre de clés"
+  },
+  "onlyAvailable": "Seulement disponibles",
+  "@onlyAvailable": {
+    "description": "Utilisé pour le filtre de clés"
+  },
+  "onlyNotAvailable": "Seulement non disponibles",
+  "@onlyNotAvailable": {
+    "description": "Utilisé pour le filtre de clés"
+  },
+  "freeDroidWarnMessage": "Google a annoncé qu’à partir de 2026/2027, toutes les applications sur les appareils Android certifiés exigeront que les développeurs transmettent leurs informations d’identité personnelles directement à Google. Comme les développeurs de cette application n’acceptent pas cette exigence, l’application cessera de fonctionner sur les appareils Android certifiés après cette date.",
+  "freeDroidWarnDetails": "Détails",
+  "freeDroidWarnSolution": "Solution"
+}

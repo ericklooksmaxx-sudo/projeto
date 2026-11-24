@@ -1,0 +1,42 @@
+{
+  "announcements": [
+    {
+      "id": "1",
+      "title": "Welcome to Kyzen v1.5!",
+      "body": "with more more features, added New Announcements tab and auto updater.",
+      "date": "2026-07-26T14:00:00Z",
+      "image_url": "https://i.ibb.co/kgcs3WSC/news-kyzen.jpg",
+      "links": [
+        {
+          "label": "Join Discord",
+          "url": "https://discord.gg/XHgyapNEx8"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "test announcement 2",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "date": "2026-07-25T10:00:00Z"
+    },
+    {
+      "id": "3",
+      "title": "test announcement 3",
+      "body": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "date": "2026-07-24T10:00:00Z",
+      "links": [
+        {
+          "label": "free Unlimited minecoins ",
+          "url": "https://discord.gg/XHgyapNEx8"
+        }
+      ]
+      
+    },
+    {
+      "id": "4",
+      "title": "test announcement 4",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "date": "2026-07-23T10:00:00Z"
+    }
+  ]
+}

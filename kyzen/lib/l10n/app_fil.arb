@@ -1,0 +1,777 @@
+{
+  "@@locale": "fil",
+  "home": "Bahay",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "Mga download",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "Mga setting",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "Piliin ang Wika",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "Wika",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "I-download",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "Hanapin...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "Default",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "Mga tagalikha",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Sinusuri ang mga susi",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "Pag-login sa API",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "Nagdagdag ng {keyCount} ng mga bagong key",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Walang nakitang resulta",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "Bukas",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "Maaliwalas",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "Subukan muli",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "queuePosition": "Nakapila (Posisyon #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "Nakapila #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Na-save ang larawan sa {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Error sa pag-download ng larawan: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "Mga Pinagbago (Changelog)",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "Na-download",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "Subukan muli ang pag-download",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "I-download ang Larawan",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "I-download ang larawang ito?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "Kanselahin",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "Panoorin ang Trailer",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "Hindi mabuksan ang trailer: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Hitsura",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "Naka-enable ang madilim na tema",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "Banayad na tema ay pinagana",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "Kulay Scheme",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "Default",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "Default (Purple)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "Asul",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Berde",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Kahel",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Pula",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Teal",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Rosas",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Dayap",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "Mga filter",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "Salain:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "Ipakita ang mga skins",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Mga susi",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "Auto-update",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "Custom na DB",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "Pag-login sa account",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "Mga extra",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "Cache",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "Na-clear ang {size} MB ng cache",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "Faq",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "FAQ",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "Terminal",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "Pakidagdag ang mga susi para dito at sa paketeng iyon!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "Kailan maa-update ang mga susi?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "Ano ang pagkakaiba sa pagitan ng naka-encrypt at naka-decrypt?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "Saan ko mahahanap ang mga na-download na pack?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "Ano ang keys.tsv",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "Ang proseso ng pagkuha ng mga susi ay hindi magic: kailangan pa ring bilhin ng isang tao ang pakete at ibahagi ang mga susi sa amin. Kung walang bibili nito, walang mga decryption key sa unang lugar. Ito ay hindi",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "Sa sandaling nagpasya kaming.",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "Nangangahulugan ang naka-encrypt na gawing mga scrambled na salita ang file na mukhang walang kwenta. Walang makakabasa nito nang walang espesyal na susi. Ang mga naka-encrypt na nilalaman ng Minecraft ay hindi nape-play. Ang ibig sabihin ng decrypted ay ang paggamit ng espesyal",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "Maaari mong mahanap ang mga pack dito Download/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "Ito ay isang file na nag-iimbak ng mga UUID ng pack kasama ng kani-kanilang mga decryption key, kung wala ang mga decryption key, ang mga na-download na pack ay hindi mailalaro",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "fileDeleted": "Tinanggal ang file",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "Mga Naka-imbak na File",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "I-refresh ang mga file",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "Tanggalin ang file",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "Sigurado ka bang gusto mong tanggalin ang {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "KANSELAHIN",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "I-DELETE",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "Kasalukuyang Download",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "Walang aktibong pag-download",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "Mga Nakumpletong Pag-download",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "I-clear ang Lahat",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "Mag-import sa Minecraft",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "shareFile": "Ibahagi ang file",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "Debug Terminal",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "I-clear ang mga log",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "Wala pang log...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "selectingFile": "Pinipili ang file...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "Pinoproseso ang file...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "Matagumpay na naproseso ang file!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "Walang napiling file",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "Na-load ang {count} custom na key",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "Walang na-load na custom na key.",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "Mag-import ng file na may UUID=KEY na format",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "{contentType} Mga Item",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} Mga Item ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Mga Item ng Tagapaglikha",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "Walang content ang creator na ito",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "Walang available na static",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Nabigong mag-load ng statics",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "Walang nakitang resulta",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Microsoft Authentication",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "Pagpapalitan ng authorization code para sa token...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "Nabigo ang pagpapatotoo: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Matagumpay ang pagpapatotoo!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "Nabigong palitan ang code para sa token: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Walang natanggap na authorization code",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "Walang nakitang mga bagong key upang kopyahin",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Nakopya ang mga key sa clipboard!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "Walang nakitang mga bagong key upang ibahagi",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Matagumpay na naibahagi ang mga susi!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "Sinusuri ang kasalukuyang pagpapatunay...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "Na-authenticate na",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "Handa nang magpatotoo",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "Patotohanan gamit ang URL",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "Kumpletuhin ang pagpapatunay sa iyong browser. Ire-redirect ka pabalik sa aplikasyon",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "Hindi binuksan ng Cloud ang pahina ng pagpapatunay",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "Nagla-log out...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "Matagumpay na naka-log out",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "Gamit ang naka-cache na session",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "Nilo-load ang mga Minecraft key...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Humihiling ng Xbox Live token",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "Nagla-log in sa PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "Pagkuha ng impormasyon ng user...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "Sinisimulan ang sesyon ng Minecraft...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "Nilo-load ang imbentaryo ng Minecraft...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "Matagumpay na na-load ang {keyCount} na mga key!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Error sa paglo-load ng mga key: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Kinopya sa clipboard",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "Napatotohanan",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "Hindi Na-authenticate",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "URL ng pagpapatunay",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "Mga Na-load na Susi",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "I-export lamang ang mga bagong key",
+  "@exportNewKeys": {
+    "description": "Used on the auth page"
+  },
+  "loadKeysButton": "Mag-load ng mga susi",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "Mag-logout",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "Simulan ang Authentication",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Hi",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "Sinisimulan ang pag-download...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "Nakumpleto ang mga pag-download",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Comeplted!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Nabigo ang pag-download",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Nagda-download",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Pinoproseso",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "Pag-extract ng zip file",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Nagde-decrypt ng mga nilalaman...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Kino-compress ang pack...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Naglilinis...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "Ipakita ang lahat",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "Available lang",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "Hindi lang available",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "customColor": "Pasadyang kulay",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "I-tap para baguhin ang iyong custom na kulay",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "Lumikha ng iyong sariling scheme ng kulay",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "Pumili ng mga kulay",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "Pumili",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "Mga imahe",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "I-save sa PNG",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "I-save sa gallery",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "Compression",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "Normal na Compression",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "Walang Compression",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "Kopyahin ang UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "Buksan sa Minecraft",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "Tagapaglikha",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "newUpdate": "Bagong update",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "Bagong dlc",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "Nakatago",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "Persona",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "Skins",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "Mga Mashup",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "mga mundo",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "Mga texture",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "Mga Add-On",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "Menu",
+  "@menu": {
+    "description": "tooltip for menu button"
+  },
+  "openFileinExplorer": "Buksan sa file explorer",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  }
+}

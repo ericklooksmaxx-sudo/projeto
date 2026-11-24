@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 127 127">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0, .st1 {
+        fill: #9699aa;
+      }
+
+      .st1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <polygon class="st1" points="77.5 14.5 77.5 14.5 77.5 .6 63.5 .6 49.5 .6 49.5 14.5 49.5 14.5 49.5 28.5 63.5 28.5 77.5 28.5 91.5 28.5 91.5 14.5 77.5 14.5"/>
+  <polygon class="st1" points="35.5 28.5 21.5 28.5 21.5 42.5 35.5 42.5 35.5 28.5 49.5 28.5 49.5 14.5 35.5 14.5 35.5 28.5"/>
+  <rect class="st0" x="7.6" y="42.5" width="14" height="14"/>
+  <polygon class="st1" points="119.4 28.5 119.4 14.5 105.5 14.5 105.5 28.5 91.5 28.5 91.5 42.5 105.5 42.5 105.5 28.5 119.4 28.5"/>
+  <polygon class="st1" points="119.4 70.5 119.4 56.5 119.4 42.5 105.5 42.5 105.5 56.5 105.5 70.5 105.5 70.5 105.5 84.5 105.5 84.5 105.5 98.5 119.4 98.5 119.4 84.5 119.5 84.5 119.5 70.5 119.4 70.5"/>
+  <rect class="st0" x="91.5" y="98.5" width="14" height="14"/>
+  <polygon class="st1" points="63.5 112.5 49.5 112.5 35.5 112.5 35.5 126.4 49.5 126.4 63.5 126.4 77.5 126.4 91.5 126.4 91.5 112.5 77.5 112.5 63.5 112.5"/>
+  <rect class="st0" x="21.5" y="98.5" width="14" height="14"/>
+  <polygon class="st1" points="21.5 70.5 21.5 70.5 21.5 56.5 7.6 56.5 7.6 70.5 7.6 70.5 7.6 84.5 21.5 84.5 21.5 70.5"/>
+  <rect class="st0" x="7.5" y="84.5" width="14" height="14"/>
+  <rect class="st0" x="44.8" y="51.8" width="14" height="14"/>
+  <polygon class="st1" points="58.8 93.8 72.8 93.8 72.8 79.8 72.8 65.8 58.8 65.8 58.8 79.8 58.8 93.8"/>
+</svg>

@@ -1,0 +1,159 @@
+name: kyzen
+description: "Kyzen — Minecraft Bedrock marketplace packs on your device."
+publish_to: 'none'
+version: 1.6.2+8
+
+environment:
+  sdk: ^3.9.0
+  flutter: ">=3.47.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_gpu:
+    sdk: flutter
+  pointycastle: ^4.0.0
+  path:
+  uuid:
+  permission_handler:
+  pool:
+  ffi:
+  provider:
+  downloadsfolder: ^2.0.0-pre.2
+  device_info_plus:
+  http:
+  convert:
+  path_provider:
+  url_launcher:
+  auto_size_text:
+  cached_network_image_ce:
+  app_links:
+  file_picker: ^13.1.0
+  crypto: ^3.0.6
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  flutter_local_notifications: ^23.0.0-dev.2
+  flutter_foreground_task: ^11.0.1
+  native_zip:
+    path: packages/flutter_native_zip
+  gal:
+  win32_registry:
+  material_ui: ^1.8.0
+  cupertino_ui: any
+
+  flutter_scene: ^0.24.3
+  vector_math: ^2.4.2
+  hooks: ^2.2.0
+  flex_color_picker: ^4.0.0
+  flex_seed_scheme: 5.0.1
+  image: ^4.12.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints:
+  change_app_package_name: ^1.5.0
+  flutter_launcher_icons:
+  husky: ^0.1.7
+  fastforge: ^0.6.12
+  lint_staged:
+    git:
+      url: https://github.com/hyiso/lint_staged
+      ref: b1458d27f3ab7f1d3302bc973b5917c437d42a3f
+
+dependency_overrides:
+  archive: ^4.0.7
+
+
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/icon.png"
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/icon_foreground.png"
+
+flutter:
+  # "flutter gen-l10n" to gen the localization for the language
+  uses-material-design: true
+  generate: true
+  assets:
+    - flutter_scene_generated/
+    - assets/materials/
+    - assets/kyzen/
+    - assets/keys.tsv
+    - assets/addon.png
+    - assets/skin.png
+    - assets/texture.png
+    - assets/world.png
+    - assets/creator.png
+    - assets/mashup.png
+    - assets/persona.png
+    - assets/avatar.png
+    - assets/hidden.png
+    - assets/minecoin.png
+    - assets/new_update.png
+    - assets/new_dlc.png
+    - assets/heart.png
+    - assets/empty-wishlist.png
+    - assets/vibrant.png
+    - assets/axe.png
+    - assets/time.png
+    - assets/star.png
+    - assets/cart.png
+    - assets/bee.gif
+    - assets/no_content.png
+    - assets/steve_sleep.gif
+    - assets/me.jpg
+    - assets/hearth.gif
+    - assets/dev_menu.png
+    - assets/api.png
+    - assets/dev_terminal.png
+    - assets/cape.png
+    - assets/elytra.png
+    - assets/mc_icon.png
+    - assets/win_icon_notf.png
+    - assets/relevance.png
+    - assets/scary.png
+    - assets/persona.glb
+    - assets/emote.png
+    - assets/sound_note.png
+    - assets/playfab.png
+    - assets/head.png
+    - assets/persona_head.png
+    - assets/microslop.png
+    - path: flutter_scene_generated/metal_ios/
+      platforms:
+        - ios
+    - path: flutter_scene_generated/metal_desktop/
+      platforms:
+        - macos
+    - path: flutter_scene_generated/opengl_es_vulkan/
+      platforms:
+        - android
+        - linux
+        - windows
+    - path: flutter_scene_generated/opengl_es/
+      platforms:
+        - web
+
+  fonts:
+    - family: MinecraftFont
+      fonts:
+        - asset: fonts/MinecraftSeven.ttf
+    - family: Anton
+      fonts:
+        - asset: fonts/Anton-Regular.ttf
+          weight: 400
+    - family: WorkSans
+      fonts:
+        - asset: fonts/WorkSans-Regular.ttf
+          weight: 400
+        - asset: fonts/WorkSans-SemiBold.ttf
+          weight: 600
+        - asset: fonts/WorkSans-Bold.ttf
+          weight: 700
+
+lint_staged:
+  'lib/**.dart': dart format && dart fix --apply

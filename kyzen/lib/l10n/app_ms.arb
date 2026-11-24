@@ -1,0 +1,1065 @@
+{
+  "@@locale": "ms",
+
+  "home": "Laman Utama",
+  "@home": {"description": "used on bottom_navigation.dart"},
+  "downloads": "Muat Turun",
+  "@downloads": {"description": "used on bottom_navigation.dart"},
+  "settings": "Tetapan",
+  "@settings": {"description": "used on bottom_navigation and on Settings tab"},
+  "selectLanguage": "Pilih Bahasa",
+  "@selectLanguage": {"description": "used on the language selector"},
+  "language": "Bahasa",
+  "@language": {"description": "used on the language selector"},
+  "download": "Muat Turun",
+  "@download": {"description": "used on the item detail page"},
+  "hintText": "Cari...",
+  "@hintText": {"description": "used on the search bar"},
+  "default1": "Lalai",
+  "@default1": {"description": "used on the search bar"},
+  "creators": "Pencipta",
+  "@creators": {"description": "used on the search bar"},
+  "checkingKeys": "Menyemak kunci",
+  "@checkingKeys": {"description": "used on startup app"},
+  "apiLogin": "Log Masuk API",
+  "@apiLogin": {"description": "used on startup app"},
+  "addedNewKeys": "Menambah {keyCount} kunci baharu",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Tiada hasil dijumpai",
+  "@noResult": {"description": "when no dlc found"},
+
+  "open": "Buka",
+  "@open": {"description": "open button"},
+  "clear": "Kosongkan",
+  "@clear": {"description": "clear button"},
+  "retry": "Cuba Semula",
+  "@retry": {"description": "Used on the bottom sheet creator"},
+  "ok": "OK",
+  "@ok": {"description": "OK button"},
+
+  "queuePosition": "Dalam Baris Gilir (Kedudukan #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+    "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+
+  "queuePosition2": "Dalam Baris Gilir #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+    "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+
+  "imageSaved": "Imej disimpan ke {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+
+  "errorDownloadingImage": "Ralat memuat turun imej: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+
+  "changelog": "Log Perubahan",
+  "@changelog": {"description": "used on the item detail page"},
+  "downloaded": "Telah Dimuat Turun",
+  "@downloaded": {"description": "used on the item detail page"},
+  "retryDownload": "Cuba Muat Turun Semula",
+  "@retryDownload": {"description": "used on the item detail page"},
+  "downloadImage": "Muat Turun Imej",
+  "@downloadImage": {"description": "used on the item detail page"},
+  "downloadImageQuestion": "Muat turun imej ini?",
+  "@downloadImageQuestion": {"description": "used on the item detail page"},
+  "cancel": "Batal",
+  "@cancel": {"description": "used on the item detail page"},
+  "trailer": "Tonton Treler",
+  "@trailer": {"description": "trailer button on item detail page"},
+  
+  "trailerError": "Tidak dapat membuka treler: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+
+  "appearance": "Penampilan",
+  "@appearance": {"description": "Used on the settings tab"},
+
+  "darkMode": "Mod Gelap",
+  "@darkMode": {"description": "Used on the settings tab"},
+  "darkEnabled": "Tema gelap diaktifkan",
+  "@darkEnabled": {"description": "Used on the settings tab"},
+  "lightEnabled": "Tema cerah diaktifkan",
+  "@lightEnabled": {"description": "Used on the settings tab"},
+
+  "colorScheme": "Skema Warna",
+  "@colorScheme": {"description": "Used on the settings tab"},
+  "defaultColor": "Lalai",
+  "@defaultColor": {"description": "Used on the settings tab"},
+  "defaultPurple": "Lalai (Ungu)",
+  "@defaultPurple": {"description": "Used on the settings tab"},
+  "colorSchemeBlue": "Biru",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Hijau",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Jingga",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Merah",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Biru Kehijauan",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Merah Jambu",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Hijau Limau",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+
+  "filters": "Penapis",
+  "@filters": {"description": "Used on the settings tab"},
+  "filter": "Penapis:",
+  "@filter": {"description": "Used on the settings tab"},
+
+  "showSkins": "Tunjukkan kulit",
+  "@showSkins": {"description": "Used on the settings tab"},
+
+  "keys": "Kunci",
+  "@keys": {"description": "Used on the settings tab"},
+  "autoUpdate": "Kemas Kini Automatik",
+  "@autoUpdate": {"description": "Used on the settings tab, auto update for the keys"},
+  "customDb": "Pangkalan Data Tersuai",
+  "@customDb": {"description": "Used on the settings tab"},
+  "accountLogin": "Log masuk akaun",
+  "@accountLogin": {"description": "Used on the settings tab"},
+  "extras": "Tambahan",
+  "@extras": {"description": "Used on the settings tab"},
+  "cache": "Cache",
+  "@cache": {"description": "Used on the settings tab"},
+
+  "cacheCleared": "Mengosongkan {size} MB cache",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+
+  "faq": "Soalan Lazim",
+  "@faq": {"description": "Used on the settings tab"},
+  "faqUppercase": "SOALAN LAZIM",
+  "@faqUppercase": {"description": "Used on faq page"},
+  "terminal": "Terminal",
+  "@terminal": {"description": "Used on the settings tab"},
+
+  "faqQuestion1": "Sila tambah kunci untuk pek ini dan itu!",
+  "@faqQuestion1": {"description": "Used on faq page"},
+
+  "faqQuestion2": "Bilakah kunci akan dikemas kini?",
+  "@faqQuestion2": {"description": "Used on faq page"},
+  
+  "faqQuestion3": "Apakah perbezaan antara disulitkan dan dinyahsulit?",
+  "@faqQuestion3": {"description": "Used on faq page"},
+  
+  "faqQuestion4": "Di manakah saya boleh mencari pek yang telah dimuat turun?",
+  "@faqQuestion4": {"description": "Used on faq page"},
+  
+  "faqQuestion5": "Apakah itu keys.tsv?",
+  "@faqQuestion5": {"description": "Used on faq page"},
+
+  "faqQuestion6": "Bagaimanakah saya boleh menggunakan item Persona?",
+  "@faqQuestion6": {"description": "Used on faq page"},
+
+  "faqQuestion7": "Mengapakah sesetengah pek kulit kelihatan rosak?",
+  "@faqQuestion7": {"description": "Used on faq page"},
+
+  "faqQuestion8": "Apakah tujuan halaman \"Log Masuk Akaun\"?",
+  "@faqQuestion8": {"description": "Used on faq page"},
+
+  "faqQuestion9": "Apakah maksud tanda semak?",
+  "@faqQuestion9": {"description": "Used on faq page"},
+
+  "faqAnswer1": "Proses mendapatkan kunci bukanlah sihir: seseorang masih perlu membeli pek tersebut dan berkongsi kunci dengan kami. Tanpa sesiapa yang membelinya, tiada kunci nyahsulit akan wujud pada mulanya. Ia tidak boleh diperoleh dengan cara lain. Tunggu dengan sabar atau belilah.",
+  "@faqAnswer1": {"description": "Answer for FAQ question 1"},
+  
+  "faqAnswer2": "Apabila kami memutuskan untuk berbuat demikian.",
+  "@faqAnswer2": {"description": "Answer for FAQ question 2"},
+  
+  "faqAnswer3": "Disulitkan bermaksud menukar fail menjadi perkataan bercelaru yang kelihatan seperti karut. Tiada siapa yang boleh membacanya tanpa kunci khas. Kandungan Minecraft yang disulitkan tidak boleh dimainkan.\n\nDinyahsulit bermaksud menggunakan kunci khas untuk menukar semula bahan bercelaru kepada kandungan asal. Kini kandungan Minecraft boleh digunakan.",
+  "@faqAnswer3": {"description": "Answer for FAQ question 3"},
+  
+  "faqAnswer4": "Anda boleh mencari pek di sini Download/Kyzen",
+  "@faqAnswer4": {"description": "Answer for FAQ question 4"},
+  
+  "faqAnswer5": "Ia adalah fail yang menyimpan UUID pek dengan kunci nyahsulit masing-masing. Tanpa kunci nyahsulit, pek yang dimuat turun tidak akan boleh dimainkan.",
+  "@faqAnswer5": {"description": "Answer for FAQ question 5"},
+
+  "faqAnswer6": "Anda tidak boleh. Memang wujud beberapa kaedah tetapi disebabkan kerumitan untuk melakukannya, ia tidak praktikal.",
+  "@faqAnswer6": {"description": "Answer for FAQ question 6"},
+
+  "faqAnswer7": "Sesetengah pek kulit (terutamanya kolaborasi francais) menggunakan geometri tersuai yang Minecraft tidak benarkan untuk digunakan secara biasa melainkan anda membeli pek kulit tersebut. Anda boleh menyemak sama ada pek kulit menggunakan geometri tersuai dengan memeriksa sama ada fail \"geometry.json\" wujud dalam pek tersebut. Perlu diingat bahawa isu ini tidak berkaitan dengan alat ini dengan apa cara sekalipun.",
+  "@faqAnswer7": {"description": "Answer for FAQ question 7"},
+
+  "faqAnswer8": "Halaman log masuk akaun membolehkan anda mengesahkan dengan akaun Microsoft anda untuk memuatkan kunci Minecraft anda secara terus daripada inventori anda.\nIni berguna apabila Kyzen tidak mempunyai kunci yang tersedia untuk DLC tertentu pada masa ini tetapi anda memilikinya dalam akaun anda, sebaik sahaja kunci anda dimuatkan, DLC tersebut akan kelihatan tersedia untuk dimuat turun. \nPerhatikan bahawa kunci dimuat naik secara automatik ke pangkalan data kami, di mana ia akan digabungkan kemudian dengan pangkalan data kunci utama Kyzen supaya semua orang boleh menikmati DLC baharu, jadi sila gunakan ciri ini jika anda ingin menyumbang.",
+  "@faqAnswer8": {"description": "Answer for FAQ question 8"},
+
+  "faqAnswer9Checkmark": "Kunci untuk DLC ini tersedia.",
+  "@faqAnswer9Checkmark": {"description": "Answer for FAQ question 9. checkmark ok"},
+
+  "faqAnswer9NoCheckmark": "Aplikasi ini tidak mempunyai kunci untuk DLC ini pada masa ini.",
+  "@faqAnswer9NoCheckmark": {"description": "Answer for FAQ question 9. no checkmark"},
+
+  "faqAnswer9ExtraInfo": "Kunci diperlukan untuk membuka kunci DLC.",
+  "@faqAnswer9ExtraInfo": {"description": "Extra information for FAQ question 9"},
+
+  "faqQuestionDownload": "Mengapakah butang muat turun tidak tersedia?",
+  "@faqQuestionDownload": {"description": "Used on the item detail page"},
+  "faqAnswerDownload": "Kunci untuk membuka DLC ini tidak tersedia, tunggu dengan sabar atau belilah.",
+  "@faqAnswerDownload": {"description": "Answer for faq download item detail page"},
+  "faqQuestionKey": "Bagaimanakah saya boleh mendapatkan kunci?",
+  "@faqQuestionKey": {"description": "used on the item detail page"},
+  "faqAnswerKey": "Beli DLC pada akaun anda kemudian pergi ke tetapan > Log masuk akaun > Klik 'Mula pengesahan' > klik 'Muat kunci', kini klik 'Kongsi' dan kongsikan fail kunci ke sembang Bluecoin, kunci akan ditambah ke pangkalan data aplikasi. Jika anda tidak boleh berkongsi fail kunci ke kumpulan, jangan risau, kunci akan dimuat naik secara automatik ke pangkalan data.",
+  "@faqAnswerKey": {"description": "Answer for faq key item detail page"},
+  "faqMoreHelp": "Bantuan lanjut",
+  "@faqMoreHelp": {"description": "Used on the pop up dialog faq item detail page"},
+  "faqNotAdlc": "Bukan DLC",
+  "@faqNotAdlc": {"description": "used on the item detail page for non-dlc items"},
+  "faqNotAdlcDescription": "Item ini bukan DLC.",
+  "@faqNotAdlcDescription": {"description": "used on the item detail page for non-dlc items"},
+  "faqServerContent": "Kandungan pelayan",
+  "@faqServerContent": {"description": "Used on the faq item detail page"},
+  "faqServerContentDescription": "Item ini eksklusif untuk pelayan tertentu dan tidak boleh dimuat turun secara terus.",
+  "@faqServerContentDescription": {"description": "Used on the faq item detail page"},
+
+  "fileDeleted": "Fail dipadamkan",
+  "@fileDeleted": {"description": "Used on the downloads tab"},
+
+  "storedFiles": "Fail Tersimpan",
+  "@storedFiles": {"description": "Used on the downloads tab"},
+  "refreshFiles": "Muat semula fail",
+  "@refreshFiles": {"description": "Used on the downloads tab"},
+
+  "deleteFile": "Padam Fail",
+  "@deleteFile": {"description": "Title for delete file confirmation dialog"},
+  
+  "deleteFileConfirmation": "Adakah anda pasti mahu memadam {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  
+  "cancelUppercase": "BATAL",
+  "@cancelUppercase": {"description": "Cancel button"},
+  
+  "deleteUppercase": "PADAM",
+  "@deleteUppercase": {"description": "Delete button"},
+
+  "currentDownload": "Muat Turun Semasa",
+  "@currentDownload": {"description": "Used on the downloads tab"},
+  "noActiveDownloads": "Tiada muat turun aktif",
+  "@noActiveDownloads": {"description": "Used on the downloads tab"},
+  "completedDownloads": "Muat Turun Selesai",
+  "@completedDownloads": {"description": "Used on the downloads tab"},
+  "clearAll": "Kosongkan Semua",
+  "@clearAll": {"description": "Used on the downloads tab"},
+  "importToMc": "Import ke Minecraft",
+  "@importToMc": {"description": "Used on the downloads tab"},
+  "openFileinExplorer": "Buka dalam penjelajah fail",
+  "@openFileinExplorer": {"description": "Used on the downloads tab but only for desktop"},
+  "shareFile": "Kongsi fail",
+  "@shareFile": {"description": "Used on the downloads tab"},
+
+  "debugTerminal": "Terminal Nyahpepijat",
+  "@debugTerminal": {"description": "Used on debug page"},
+  "clearLogs": "Kosongkan log",
+  "@clearLogs": {"description": "Used on debug page"},
+  "noLogs": "Belum ada log...",
+  "@noLogs": {"description": "Used on debug page"},
+  "saveLogs": "Simpan log",
+  "@saveLogs": {"description": "Used on debug page"},
+  "logsSaved": "Log disimpan ke {filePath}",
+  "@logsSaved": {
+    "description": "Message shown when logs are saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Documents/logs.txt"
+      }
+    }
+  },
+
+  "selectingFile": "Memilih fail...",
+  "@selectingFile": {"description": "Used on the custom db page"},
+  "processingFile": "Memproses fail...",
+  "@processingFile": {"description": "Used on the custom db page"},
+  "fileProcessed": "Fail berjaya diproses!",
+  "@fileProcessed": {"description": "Used on the custom db page"},
+  "noFileSelected": "Tiada fail dipilih",
+  "@noFileSelected": {"description": "Used on the custom db page"},
+
+  "customKeysLoaded": "{count} kunci tersuai dimuatkan",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  
+  "noCustomKeysLoaded": "Tiada kunci tersuai dimuatkan",
+  "@noCustomKeysLoaded": {"description": "Used on the custom db page"},
+  
+  "importFileFormat": "Import fail dengan format UUID=KEY",
+  "@importFileFormat": {"description": "Used on the custom db page"},
+
+  "creatorItemsWithType": "Item {contentType}",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "Item {contentType} ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Item Pencipta",
+  "@creatorItemsDefault": {"description": "Used on the bottom sheet creator"},
+  "noItemCreator": "Pencipta ini tiada kandungan",
+  "@noItemCreator": {"description": "Used on the bottom sheet creator"},
+  "noStatistic": "Tiada statistik tersedia",
+  "@noStatistic": {"description": "Used on the bottom sheet creator"},
+  "failedLoadStatistic": "Gagal memuatkan statistik",
+  "@failedLoadStatistic": {"description": "Used on the bottom sheet creator"},
+  "noResultsFound": "Tiada hasil dijumpai",
+  "@noResultsFound": {"description": "Used on the bottom sheet creator"},
+
+  "microsoftAuth": "Pengesahan Microsoft",
+  "@microsoftAuth": {"description": "Used on the auth page"},
+  "exchangingToken": "Menukar kod kebenaran untuk token...",
+  "@exchangingToken": {"description": "Used on the auth page"},
+  "authenticationFailed": "Pengesahan gagal: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Pengesahan berjaya!",
+  "@authenticationSuccessful": {"description": "Used on the auth page"},
+  "failedToExchangeToken": "Gagal menukar kod untuk token: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Tiada kod kebenaran diterima",
+  "@noAuthorizationCodeReceived": {"description": "Used on the auth page"},
+  "noNewKeysCopy": "Tiada kunci baharu dijumpai untuk disalin",
+  "@noNewKeysCopy": {"description": "Used on the auth page"},
+  "keysCopyClipboard": "Kunci disalin ke papan keratan!",
+  "@keysCopyClipboard": {"description": "Used on the auth page"},
+  "noNewKeysShare": "Tiada kunci baharu dijumpai untuk dikongsi",
+  "@noNewKeysShare": {"description": "Used on the auth page"},
+  "keysShared": "Kunci berjaya dikongsi!",
+  "@keysShared": {"description": "Used on the auth page"},
+
+  "authCheck": "Menyemak pengesahan sedia ada...",
+  "@authCheck": {"description": "Used on the auth page"},
+  "alreadyAuth": "Sudah disahkan!",
+  "@alreadyAuth": {"description": "Used on the auth page"},
+  "readyAuth": "Bersedia untuk mengesahkan",
+  "@readyAuth": {"description": "Used on the auth page"},
+  "authURL": "Sahkan dengan URL",
+  "@authURL": {"description": "Used on the auth page"},
+  "completeAuthButton": "Lengkapkan Pengesahan",
+  "@completeAuthButton": {"description": "Used on the auth page"},
+  "openAuthPageButton": "Buka Halaman Pengesahan",
+  "@openAuthPageButton": {"description": "Used on the auth page"},
+  "completeAuth": "Lengkapkan pengesahan dalam pelayar anda. Anda akan dialihkan semula ke aplikasi.",
+  "copyUrl": "Salin URL",
+  "@copyUrl": {"description": "Used on the auth page"},
+  "@completeAuth": {"description": "Used on the auth page"},
+  "authPageFail": "Tidak dapat membuka halaman pengesahan",
+  "@authPageFail": {"description": "Used on the auth page"},
+  "logout": "Sedang log keluar...",
+  "@logout": {"description": "Used on the auth page"},
+  "logoutOk": "Berjaya log keluar",
+  "@logoutOk": {"description": "Used on the auth page"},
+
+  "usingCachedSession": "Menggunakan sesi cache...",
+  "@usingCachedSession": {"description": "Used on the auth page"},
+  "loadingMinecraftKeys": "Memuatkan kunci Minecraft...",
+  "@loadingMinecraftKeys": {"description": "Used on the auth page"},
+  "requestingXboxLiveToken": "Meminta token Xbox Live...",
+  "@requestingXboxLiveToken": {"description": "Used on the auth page"},
+  "loggingInToPlayFab": "Sedang log masuk ke PlayFab...",
+  "@loggingInToPlayFab": {"description": "Used on the auth page"},
+  "gettingUserInformation": "Mendapatkan maklumat pengguna...",
+  "@gettingUserInformation": {"description": "Used on the auth page"},
+  "startingMinecraftSession": "Memulakan sesi Minecraft...",
+  "@startingMinecraftSession": {"description": "Used on the auth page"},
+  "loadingMinecraftInventory": "Memuatkan inventori Minecraft...",
+  "@loadingMinecraftInventory": {"description": "Used on the auth page"},
+  "successfullyLoadedKeys": "Berjaya memuatkan {keyCount} kunci!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Ralat memuatkan kunci: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Disalin ke papan keratan",
+  "@copyClipboard": {"description": "Used on the auth page"},
+  "authOk": "Disahkan",
+  "@authOk": {"description": "Used on the auth page"},
+  "authNotOk": "Tidak Disahkan",
+  "@authNotOk": {"description": "Used on the auth page"},
+  "urlAuth": "URL Pengesahan",
+  "@urlAuth": {"description": "Used on the auth page"},
+  "loadedKeys": "Kunci Dimuatkan",
+  "@loadedKeys": {"description": "Used on the auth page"},
+  "exportNewKeys": "Eksport kunci baharu sahaja",
+  "@exportNewKeys": {"description": "Used on the auth page and mcdecryptor page"},
+  "loadKeysButton": "Muat Kunci",
+  "@loadKeysButton": {"description": "Used on the auth page"},
+  "logoutButton": "Log Keluar",
+  "@logoutButton": {"description": "Used on the auth page"},
+  "startAuthButton": "Mula Pengesahan",
+  "@startAuthButton": {"description": "Used on the auth page"},
+  "greetings": "Hai ",
+  "@greetings": {"description": "Used on the auth page"},
+  "copy": "Salin",
+  "@copy": {"description": "Used on the auth page"},
+  "save": "Simpan",
+  "@save": {"description": "Used on the auth page"},
+  "share": "Kongsi",
+  "@share": {"description": "Used on the auth page"},
+  "keysSaved": "Kunci berjaya disimpan",
+  "@keysSaved": {"description": "Used on the auth page"},
+
+  "startingDownload": "Memulakan muat turun...",
+  "@startingDownload": {"description": "Used on the download service"},
+
+  "downloadsCompleted": "Muat turun selesai",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Selesai!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Muat turun gagal",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Memuat turun",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Memproses",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+
+  "extractingZipFile": "Mengekstrak fail zip...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Menyahsulit kandungan...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Memampatkan pek...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Mengemas...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+
+  "showAll": "Tunjukkan semua",
+  "@showAll": {"description": "Used for key filter"},
+  "onlyAvailable": "Tersedia sahaja",
+  "@onlyAvailable": {"description": "Used for key filter"}, 
+  "onlyNotAvailable": "Tidak tersedia sahaja",
+  "@onlyNotAvailable": {"description": "Used for key filter"},
+
+  "customColor": "Warna Tersuai",
+  "@customColor": {"description": "Used on the settings tab"},
+  "changeCustomColor": "Ketik untuk menukar warna tersuai anda",
+  "@changeCustomColor": {"description": "Used on the settings tab"},
+  "createCustomColor": "Cipta skema warna anda sendiri",
+  "@createCustomColor": {"description": "Used on the settings tab"},
+  "pickColor": "Pilih Warna",
+  "@pickColor": {"description": "Used on the settings tab"},
+  "selectColor": "Pilih",
+  "@selectColor": {"description": "Button to select color on color picker dialog"},
+
+  "images": "Imej",
+  "@images": {"description": "Used on the Images section of the settings tab"},
+  "saveToPng": "Simpan ke PNG",
+  "@saveToPng": {"description": "Button to save image as PNG on the settings tab"},
+  "saveToGallery": "Simpan ke Galeri",
+  "@saveToGallery": {"description": "Button to save image to gallery on the settings tab"},
+
+  "compression": "Pemampatan",
+  "@compression": {"description": "Used on the settings tab"},
+  "normalCompression": "Pemampatan Biasa",
+  "@normalCompression": {"description": "Used on the settings tab"},
+  "noCompression": "Tiada Pemampatan",
+  "@noCompression": {"description": "Used on the settings tab"},
+
+  "copyUUID": "Salin UUID",
+  "@copyUUID": {"description": "Button to copy UUID to clipboard on the item detail page"},
+  "openInMinecraft": "Buka dalam Minecraft",
+  "@openInMinecraft": {"description": "Button to open the item pack in Minecraft on the item detail page"},
+  "creator": "Pencipta",
+  "@creator": {"description": "Button to open the bottom sheet creator on the item detail page"},
+  "addToCart": "Tambah ke Troli",
+  "@addToCart": {"description": "Button to add an item to the cart"},
+  "removeFromCart": "Buang dari Troli",
+  "@removeFromCart": {"description": "Button to remove an item from the cart"},
+  "addedToCart": "Ditambah ke troli",
+  "@addedToCart": {"description": "Message shown when an item is added to the cart"},
+  "removedFromCart": "Dibuang dari troli",
+  "@removedFromCart": {"description": "Message shown when an item is removed from the cart"},
+  "authRequired": "Pengesahan diperlukan",
+  "@authRequired": {"description": "Message shown when trying to add an item to the cart without being authenticated"},
+  "authRequiredDesc": "Anda perlu disahkan sepenuhnya untuk melihat troli anda. Sila sahkan dari halaman Log masuk akaun.",
+  "@authRequiredDesc": {"description": "Message shown when trying to add an item to the cart without being authenticated"},
+
+  "newUpdate": "Kemas kini baharu",
+  "@newUpdate": {"description": "Used on the dropdown filter"},
+  "newDlc": "DLC baharu",
+  "@newDlc": {"description": "Used on the dropdown filter"},
+  "hidden": "Tersembunyi",
+  "@hidden": {"description": "Used on the dropdown filter"},
+  "persona": "Persona",
+  "@persona": {"description": "Used on the dropdown filter"},
+  "skins": "Kulit",
+  "@skins": {"description": "Used on the dropdown filter"},
+  "mashups": "Mashup",
+  "@mashups": {"description": "Used on the dropdown filter"},
+  "worlds": "Dunia",
+  "@worlds": {"description": "Used on the dropdown filter"},
+  "textures": "Tekstur",
+  "@textures": {"description": "Used on the dropdown filter"},
+  "addons": "Tambahan (Add-On)",
+  "@addons": {"description": "Used on the dropdown filter"},
+  "capes": "Jubah",
+  "@capes": {"description": "Used on the bottom sheet for the mojang creator"},
+  "vibrantVisuals": "Visual Pancaragam",
+  "@vibrantVisuals": {"description": "Used on the dropdown filter"},
+  "favorites": "Kegemaran",
+  "@favorites": {"description": "Used on the dropdown filter"},
+  "unfiltered": "Tidak Ditapis",
+  "@unfiltered": {"description": "Used on the dropdown filter"},
+  "sorting": "Pengisihan",
+  "@sorting": {"description": "Used on the dropdown filter"},
+  "type": "Jenis",
+  "@type": {"description": "Used on the dropdown filter"},
+  "newFilter": "Baharu",
+  "@newFilter": {"description": "Used on the dropdown filter"},
+  "other": "Lain-lain",
+  "@other": {"description": "Used on the dropdown filter"},
+  "newest": "Terbaharu",
+  "@newest": {"description": "Used on the dropdown filter"},
+  "oldest": "Terlama",
+  "@oldest": {"description": "Used on the dropdown filter"},
+  "mostRated": "Paling Banyak Dinilai",
+  "@mostRated": {"description": "Used on the dropdown filter"},
+  "leastRated": "Paling Sedikit Dinilai",
+  "@leastRated": {"description": "Used on the dropdown filter"},
+
+  "menu": "Menu",
+  "@menu": {"description": "tooltip for menu button"},
+
+  "imageSavedToGallery": "Imej disimpan ke galeri: {filePath}",
+  "@imageSavedToGallery": {"description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+
+  "vibrantVisualEnhanced": "Visual Pancaragam Dipertingkat",
+  "@vibrantVisualEnhanced": {"description": "used on the item detail page"},
+
+  "uuidCopied": "UUID disalin ke papan keratan",
+  "@uuidCopied": {"description": "message shown when UUID is copied to clipboard"},
+
+  "scrollRight": "Tatal ke kanan",
+  "@scrollRight": {"description": "tooltip for scrolling right for desktop"},
+  "scrollLeft": "Tatal ke kiri",
+  "@scrollLeft": {"description": "tooltip for scrolling left for desktop"},
+  "previousImage": "Imej sebelumnya",
+  "@previousImage": {"description": "tooltip for previous image button for desktop"},
+  "nextImage": "Imej seterusnya",
+  "@nextImage": {"description": "tooltip for next image button for desktop"},
+
+  "favoriteEmpty": "Senarai kegemaran anda kosong",
+  "@favoriteEmpty": {"description": "shown when there is no favorite items"},
+  "favoriteDescription": "Ketik ikon hati pada halaman butiran mana-mana item untuk menambahnya ke kegemaran anda dan membina koleksi anda",
+  "@favoriteDescription": {"description": "shown when there is no favorite items"},
+  "removeFromFavorites": "Buang dari kegemaran",
+  "@removeFromFavorites": {"description": "tooltip for removing item from favorites"},
+  "addToFavorites": "Tambah ke kegemaran",
+  "@addToFavorites": {"description": "tooltip for adding item to favorites"},
+  "addedToFavorites": "Ditambah ke kegemaran",
+  "@addedToFavorites": {"description": "message shown when an item is added to favorites"},
+  "removedFromFavorites": "Dibuang dari kegemaran",
+  "@removedFromFavorites": {"description": "message shown when an item is removed from favorites"},
+
+  "noNewKeysFoundToSave": "Tiada kunci dijumpai untuk disimpan",
+  "@noNewKeysFoundToSave": {"description": "Used on the Mcdecryptor page"},
+  "keysSavedSuccessfully": "Kunci berjaya disimpan ke dalam folder Kyzen.",
+  "@keysSavedSuccessfully": {"description": "Used on the Mcdecryptor page and auth page"},
+  "entitlementKeys": "Kunci Kelayakan",
+  "@entitlementKeys": {"description": "Used on the Mcdecryptor page"},
+  "searchBoughContent": "Cari kandungan Minecraft yang anda beli.",
+  "@searchBoughContent": {"description": "Used on the Mcdecryptor page"},
+  "saveKeys": "Simpan Kunci",
+  "@saveKeys": {"description": "Used on the Mcdecryptor page"},
+  "refresh": "Muat Semula",
+  "@refresh": {"description": "Used on the Mcdecryptor page"},
+  "searchKeys": "Cari Kunci",
+  "@searchKeys": {"description": "Used on the Mcdecryptor page"},
+  "loadSkinPersona": "Muat SkinPack/Persona",
+  "@loadSkinPersona": {"description": "Used on the Mcdecryptor page"},
+  "descriptionSkinPersona": "Sertakan skinpack dan persona dalam senarai",
+  "@descriptionSkinPersona": {"description": "Used on the Mcdecryptor page"},
+  "loadOnlyNewKeys": "Muat kunci baharu sahaja",
+  "@loadOnlyNewKeys": {"description": "Used on the Mcdecryptor page"},
+  "descriptionLoadOnlyNewKeys": "Muat hanya kandungan yang tiada dalam pangkalan data kunci aplikasi",
+  "@descriptionLoadOnlyNewKeys": {"description": "Used on the Mcdecryptor page"},
+  "descriptionExportNewKeys": "Sama ada \"simpan kunci\" hanya patut mengeksport kunci baharu",
+  "@descriptionExportNewKeys": {"description": "Used on the Mcdecryptor page"},
+  "processedEntitlementKeys": "Berjaya Diproses ({countFiles} fail, {countKeys} kunci)",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10" 
+      }
+    }
+  },
+  "noResultsYet": "Belum ada hasil",
+  "@noResultsYet": {"description": "Used on the Mcdecryptor page"},
+  "clickSearchKeysToLoadContent": "Klik \"Cari Kunci\" untuk memuatkan kandungan anda",
+  "@clickSearchKeysToLoadContent": {"description": "Used on the Mcdecryptor page"},
+  "tryadifferentSearch": "Cuba istilah carian yang berbeza",
+  "@tryadifferentSearch": {"description": "Used on the Mcdecryptor page"},
+  "minecraftNotInstalled": "Tiada laluan pemasangan Minecraft yang sah dijumpai. Sila pastikan Minecraft Bedrock Edition (UWP atau GDK) telah dipasang dan telah dilancarkan sekurang-kurangnya sekali.",
+  "@minecraftNotInstalled": {"description": "Used on the Mcdecryptor page"},
+  "processingError": "Ralat Pemprosesan",
+  "@processingError": {"description": "Used on the Mcdecryptor page"},
+  "dismiss": "Tutup",
+  "@dismiss": {"description": "Used on the Mcdecryptor page"},
+  "failedFiles": "Fail Gagal:",
+  "@failedFiles": {"description": "Used on the Mcdecryptor page"},
+
+  "minecraftFont": "Fon Minecraft",
+  "@minecraftFont": {"description": "Used to refer to the Minecraft font in the settings tab"},
+  "usingMinecraftFont": "Menggunakan fon gaya Minecraft",
+  "@usingMinecraftFont": {"description": "Used on the settings tab to indicate that the Minecraft font is being used"},
+  "usingDefaultFont": "Menggunakan fon lalai",
+  "@usingDefaultFont": {"description": "Used on the settings tab to indicate that the default font is being used"},
+  "dlcLanguage": "Bahasa DLC",
+  "@dlcLanguage": {"description": "Used on the settings tab to refer to the language of the DLC content"},
+  "dlcLangInfo": "Maklumat Bahasa DLC",
+  "@dlcLangInfo": {"description": "Used on the settings tab to provide information about the DLC language setting"},
+  "dlcLangInfoText": "Perhatikan bahawa sesetengah DLC mungkin tidak mempunyai terjemahan yang tersedia. Ini bergantung sepenuhnya pada pasaran dan bukan oleh aplikasi.",
+  "@dlcLangInfoText": {"description": "Used on the settings tab to provide information about the DLC language setting"},
+  "pageSize": "Saiz Halaman",
+  "@pageSize": {"description": "Used on the settings tab to refer to the number of items shown per page in the item list"},
+  "pageSizeInfo": "Maklumat Saiz Halaman",
+  "@pageSizeInfo": {"description": "Used on the settings tab to provide information about the page size setting"},
+  "pageSizeInfoText": "Mengawal bilangan item yang dimuatkan serentak.\n\n  Nilai lebih rendah: Lebih baik untuk sambungan lemah (lebih kerap permintaan)\n  Nilai lebih tinggi: Lebih baik untuk sambungan pantas (kurang permintaan)\n\nSemua hasil kekal boleh diakses tanpa mengira saiz halaman. Item tambahan dimuatkan secara automatik apabila anda mencapai bahagian bawah senarai.",
+  "@pageSizeInfoText": {"description": "Used on the settings tab to provide information about the page size setting"},
+  "selectDlcLanguage": "Pilih bahasa DLC",
+  "@selectDlcLanguage": {"description": "Used on the settings tab for selecting the DLC language"},
+  "downloadPathUpdated": "Laluan muat turun dikemas kini",
+  "@downloadPathUpdated": {"description": "Used on the settings tab for showing a message when the download path is updated"},
+  "downloadPathReset": "Laluan muat turun ditetapkan semula ke lalai",
+  "@downloadPathReset": {"description": "Used on the settings tab for showing a message when the download path is reset to default"},
+  "resetDefaults": "Tetapkan semula ke lalai",
+  "@resetDefaults": {"description": "Used on the settings tab for resetting the download path to default"},
+  "chooseFolder": "Pilih folder",
+  "@chooseFolder": {"description": "Used on the settings tab for choosing a custom download path"},
+  "downloadPath": "Laluan Muat Turun",
+  "@downloadPath": {"description": "Used on the settings tab to refer to the path where downloaded packs are saved"},
+  "version": "Versi",
+  "@version": {"description": "Used on the settings tab to refer to the app version"},
+
+  "purchasing": "Membeli",
+  "@purchasing": {"description": "Used on the cart page when the user is purchasing a DLC pack"},
+  "failedPurchase": "Gagal membeli",
+  "@failedPurchase": {"description": "Used on the cart page when the purchase of a DLC pack fails"},
+  "allItemsSuccessfullyPurchased": "Semua item berjaya dibeli!",
+  "@allItemsSuccessfullyPurchased": {"description": "Used on the cart page when all items in the cart are successfully purchased"},
+  "insufficientFunds": "Dana tidak mencukupi untuk {insufficientFundsItems} item",
+  "@insufficientFunds": {
+    "description": "Used on the cart page when the user doesn't have enough funds to purchase the items in the cart",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "somePurchasesFailed": "Sesetengah pembelian gagal",
+  "@somePurchasesFailed": {"description": "Used on the cart page when some items in the cart fail to be purchased but not all"},
+  "numItemsAreNotPurchasable": "{numItems} item tidak boleh dibeli",
+  "@numItemsAreNotPurchasable": {
+    "description": "Used on the cart page when some items in the cart are not purchasable",
+    "placeholders": {
+      "numItems": {
+        "type": "int",
+        "description": "Number of items that are not purchasable"
+      }
+    }
+  },
+  "purchaseComplete": "Pembelian selesai",
+  "@purchaseComplete": {"description": "Used on the cart page when the purchase process is complete"},
+  "confirmPurchase": "Sahkan Pembelian",
+  "@confirmPurchase": {"description": "Used on the cart page"},
+  "confirmPurchaseMessage": "Adakah anda pasti mahu membeli {itemsText}?",
+  "@confirmPurchaseMessage": {
+    "description": "Used on the cart page when confirming a purchase",
+    "placeholders": {
+      "itemsText": {
+        "type": "String",
+        "description": "Text describing the items being purchased, e.g. 'Skin Pack 1'"
+      }
+    }
+  },
+  "totalPrice": "Jumlah Harga:",
+  "@totalPrice": {"description": "Used on the cart page to indicate the total price of the items being purchased"},
+  "purchaseResults": "Keputusan Pembelian",
+  "@purchaseResults": {"description": "Used on the cart page to indicate the results of the purchase process"},
+  "successfullyPurchased": "Berjaya dibeli: {successItems} item",
+  "@successfullyPurchased": {
+    "description": "Used on the cart page to indicate the number of items successfully purchased",
+    "placeholders": {
+      "successItems": {
+        "type": "int",
+        "description": "Number of items that were successfully purchased"
+      }
+    }
+  },
+  "alreadyOwnded": "Sudah dimiliki: {alreadyOwnedItems} item",
+  "@alreadyOwnded": {
+    "description": "Used on the cart page to indicate the number of items that were already owned",
+    "placeholders": {
+      "alreadyOwnedItems": {
+        "type": "int",
+        "description": "Number of items that were already owned"
+      }
+    }
+  },
+  "numItemsNotPurchasable": "Tidak boleh dibeli: {notPurchasableItems} item",
+  "@numItemsNotPurchasable": {
+    "description": "Used on the cart page to indicate the number of items that were not purchasable",
+    "placeholders": {
+      "notPurchasableItems": {
+        "type": "int",
+        "description": "Number of items that were not purchasable"
+      }
+    }
+  },
+  "numItemsInsufficientFunds": "Dana tidak mencukupi: {insufficientFundsItems} item",
+  "@numItemsInsufficientFunds": {
+    "description": "Used on the cart page to indicate the number of items that couldn't be purchased due to insufficient funds",
+    "placeholders": {
+      "insufficientFundsItems": {
+        "type": "int",
+        "description": "Number of items that couldn't be purchased due to insufficient funds"
+      }
+    }
+  },
+  "numItemsFailed": "Pembelian gagal: {failedItemsCount} item",
+  "@numItemsFailed": {
+    "description": "Used on the cart page to indicate the number of items that failed to be purchased",
+    "placeholders": {
+      "failedItemsCount": {
+        "type": "int",
+        "description": "Number of items that failed to be purchased"
+      }
+    }
+  },
+  "clearCart": "Kosongkan Troli",
+  "@clearCart": {"description": "Used on the cart page to clear all items from the cart"},
+  "clearCartConfirmation": "Adakah anda pasti mahu membuang semua item dari troli anda?",
+  "@clearCartConfirmation": {"description": "Confirmation message when clearing the cart"},
+  "cartTitleNum": "Troli ({count})",
+  "@cartTitleNum": {
+    "description": "Used as the title of the cart page with the number of items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+  "cartisEmpty": "Troli anda kosong",
+  "@cartisEmpty": {"description": "Message shown when the cart is empty"},
+  "cartEmptyDescription": "Ketik ikon troli pada halaman butiran mana-mana item untuk menambahnya ke troli anda dan membelinya",
+  "@cartEmptyDescription": {"description": "Message shown when the cart is empty"},
+  "purchasingInProgress": "Sedang membeli...",
+  "@purchasingInProgress": {"description": "Message shown when a purchase is in progress"},
+  "purchaseAllnum": "Beli Semua ({count})",
+  "@purchaseAllnum": {
+    "description": "Used on the cart page to purchase all items in the cart",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of items in the cart"
+      }
+    }
+  },
+
+  "nowNewdlcFound": "Tiada DLC Baharu Dijumpai",
+  "@nowNewdlcFound": {"description": "Used on the auth page when no new dlc is found"},
+  "nowNewDlcFoundDescription": "Semua DLC sudah ada dalam pangkalan data aplikasi",
+  "@nowNewDlcFoundDescription": {"description": "Used on the auth page when no new dlc is found"},
+  "noDlcFound": "Tiada DLC Dijumpai",
+  "@noDlcFound": {"description": "Used on the auth page when no dlc is found"},
+  "noDlcAvailable":"Tiada kandungan DLC tersedia",
+  "@noDlcAvailable": {"description": "Used on the auth page dlc list"},
+  "openDlcsList": "Buka DLC",
+  "@openDlcsList": {"description": "Used on the auth page to open the list of dlcs"},
+
+  "appUpdates": "Kemas Kini Aplikasi",
+  "@appUpdates": {"description": "Used on the changelog page"},
+  "appUpdatesDescription": "Lihat perkara baharu dalam versi terkini aplikasi",
+  "@appUpdatesDescription": {"description": "Used on the changelog page"},
+
+  "socials": "Media Sosial",
+  "@socials": {"description": "Used on the settings page"},
+
+  "selectApp": "Pilih Aplikasi",
+  "@selectApp": {"description": "Title for the app picker dialog"},
+  "noAppsFound": "Tiada aplikasi dijumpai",
+  "@noAppsFound": {"description": "Message shown when no apps are found"},
+  "errorLoadingDlcs": "Ralat memuatkan DLC",
+  "@errorLoadingDlcs": {"description": "Message shown when there is an error loading DLCs"},
+  "dlcs": "DLC",
+  "@dlcs": {"description": "Title for the DLCs list page"},
+  "errorSavingKeys": "Ralat menyimpan kunci: {error}",
+  "@errorSavingKeys": {
+    "description": "Error message when saving keys fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorOpeningAuthPage": "Ralat membuka halaman pengesahan: {error}",
+  "@errorOpeningAuthPage": {
+    "description": "Error message when opening authentication page fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "gettingEntityToken": "Mendapatkan token entiti...",
+  "@gettingEntityToken": {"description": "Status message during authentication"},
+  "loadingMinecoinBalance": "Memuatkan baki Minecoin...",
+  "@loadingMinecoinBalance": {"description": "Status message while loading Minecoin balance"},
+  "completeAuthFirst": "Sila lengkapkan pengesahan dahulu",
+  "@completeAuthFirst": {"description": "Message instructing the user to authenticate first"},
+  "sessionExpired": "Sesi telah tamat. Sila cuba lagi.",
+  "@sessionExpired": {"description": "Error message when session expires"},
+  "accessDenied": "Akses dinafikan. Sila sahkan semula.",
+  "@accessDenied": {"description": "Error message when access is denied"},
+  "connectionTimeout": "Sambungan tamat masa. Sila semak internet anda dan cuba lagi.",
+  "@connectionTimeout": {"description": "Error message for connection timeout"},
+  "serverError": "Ralat pelayan. Sila cuba lagi sebentar lagi.",
+  "@serverError": {"description": "Error message for server errors"},
+  "backToSettings": "Kembali ke Tetapan",
+  "@backToSettings": {"description": "Tooltip text to go back to settings"},
+  "errorInitializingCart": "Ralat memulakan troli: {error}",
+  "@errorInitializingCart": {
+    "description": "Error message when cart initialization fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingCartItems": "Ralat memuatkan item troli: {error}",
+  "@errorLoadingCartItems": {
+    "description": "Error message when loading cart items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedLoadMoreItems": "Gagal memuatkan lebih banyak item: {error}",
+  "@failedLoadMoreItems": {
+    "description": "Error message when loading more items fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSavingLog": "Ralat menyimpan log: {error}",
+  "@errorSavingLog": {
+    "description": "Error message when saving logs fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToDeleteFile": "Gagal memadam fail",
+  "@failedToDeleteFile": {"description": "Error message when deleting a file fails"},
+  "failedToShareFile": "Gagal berkongsi fail: {error}",
+  "@failedToShareFile": {
+    "description": "Error message when sharing a file fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "personaWarning": "Item Persona tidak boleh diimport dalam permainan (seperti emot, kosmetik, dan jubah)",
+  "@personaWarning": {"description": "Warning message displayed for Persona items"},
+  "initializingMcDec": "Memulakan McDec...",
+  "@initializingMcDec": {"description": "Status message shown during McDecryptor initialization"},
+  "failedToSaveKeys": "Gagal menyimpan kunci: {error}",
+  "@failedToSaveKeys": {
+    "description": "Error message when saving keys fails in McDecryptor",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "itemDetailsTitle": "Butiran Item",
+  "@itemDetailsTitle": {"description": "Title of the item details sheet"},
+  "byCreator": "oleh {creator}",
+  "@byCreator": {
+    "description": "Prefix followed by the author name",
+    "placeholders": {
+      "creator": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotLoadSocials": "Tidak dapat memuatkan pautan sosial, menggunakan lalai",
+  "@couldNotLoadSocials": {"description": "Error message when social links fail to load"},
+  "sdCardExternalStorage": "Kad SD / Storan Luaran",
+  "@sdCardExternalStorage": {"description": "Display name for SD card or external storage"},
+  "customLocation": "Lokasi Tersuai",
+  "@customLocation": {"description": "Display name for custom location"},
+  "couldNotOpenLink": "Tidak dapat membuka pautan: {error}",
+  "@couldNotOpenLink": {
+    "description": "Error message when opening link fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "minecraftPackage": "Pakej Minecraft",
+  "@minecraftPackage": {"description": "Setting item for Minecraft package"}
+}

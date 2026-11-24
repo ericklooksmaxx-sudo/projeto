@@ -1,0 +1,777 @@
+{
+  "@@locale": "uk",
+  "home": "Головна",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "Завантаження",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "Налаштування",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "Вибрати Мову",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "Мова",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "Завантажити",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "Пошук...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "За замовчуванням",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "Автори",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Перевірка ключів",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "API Вхід",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "Додано {keyCount} нових ключів",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Нічого не знайдено",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "Відкрити",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "Очистити",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "Повторити",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "queuePosition": "В черзі (Позиція №{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "В черзі №{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Зображення збережено за шляхом {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Помилка завантаження зображення: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "Історія змін",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "Завантажено",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "Повторити Завантаження",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "Завантажити Зображення",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "Завантажити це зображення?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "Скасувати",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "Дивитись Трейлер",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "Не вдалося відкрити трейлер: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Зовнішній Вигляд",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "Тема",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "Темна тема",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "Світла тема",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "Кольорова схема",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "За замовчуванням",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "За замовчуванням (Фіолетовий)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "Синій",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Зелений",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Помаранчевий",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Червоний",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Бірюзовий",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Рожевий",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Лаймовий",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "Фільтри",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "Фільтр:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "Показувати скіни",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Ключі",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "Авто-оновлення",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "Користувацька БД",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "Вхід в акаунт",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "Додатково",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "Кеш",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "Очищено {size} МБ кешу",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "ЧаПи",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "ЧАПИ",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "Термінал",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "Будь ласка, додайте ключі для цього і того пакету!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "Коли ключі будуть оновлені?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "У чому різниця між зашифрованим і розшифрованим?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "Де я можу знайти завантажені пакети?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "Що таке keys.tsv?",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "Процес отримання ключів — це не магія: людина все одно має купити пакет і поділитися з нами ключами. Якщо ніхто не купить, то і ключів для розшифровки не буде. Отримати їх яким-небудь іншим способом неможливо. Чекайте терпляче або купуйте самі.",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "Коли ми вирішимо оновити і точка",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "Зашифрований означає, що файл перетворюється на набір безглуздих символів. Ніхто не може прочитати його без спеціального ключа. Зашифровані матеріали Minecraft не можна використовувати.\n\nРозшифрований означає використання спеціального ключа для перетворення безглуздих символів назад у вміст. Тепер матеріали Minecraft можна використовувати.",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "Ви можете знайти пакети тут: Downloads/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "Це файл, який зберігає UUID пакетів з відповідними ключами дешифрування. Без ключів дешифрування завантажені пакети не можна буде використовувати.",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "fileDeleted": "Файл видалено",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "Збережені Файли",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "Оновити файли",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "Видалити файл",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "Ви впевнені, що хочете видалити {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "СКАСУВАТИ",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "ВИДАЛИТИ",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "Поточне Завантаження",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "Немає активних завантажень",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "Завершені Завантаження",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "Очистити Все",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "Імпорт в Minecraft",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "shareFile": "Поділитися файлом",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "Термінал Зневадження",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "Очистити Логи",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "Логів поки що немає...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "selectingFile": "Вибір файлу...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "Обробка файлу...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "Файл успішно оброблено!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "Файл не вибрано",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "Завантажено {count} користувацьких ключів",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "Користувацькі ключі не завантажено",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "Імпорт файлу у форматі UUID=KEY",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "Елементи {contentType}",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "Елементи {contentType} ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Елементи Автора",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "У цього автора немає контенту",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "Немає доступної статистики",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Не вдалося завантажити статистику",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "Нічого не знайдено",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Аутентифікація Microsoft",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "Обмін коду авторизації на токен...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "Помилка аутентифікації: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Аутентифікація успішна!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "Помилка обміну коду на токен: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Код авторизації не отримано",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "Немає нових ключів для копіювання",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Ключі скопійовано в буфер!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "Немає нових ключів для відправки",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Ключі успішно відправлено!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "Перевірка існуючої аутентифікації...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "Вже аутентифіковано!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "Готовий до аутентифікації",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "Аутентифікація за URL",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "Завершіть аутентифікацію в браузері. Вас буде перенаправлено назад в додаток.",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "Не вдалося відкрити сторінку аутентифікації",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "Вихід з системи...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "Вихід виконано успішно",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "Використання кешованої сесії...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "Завантаження ключів Minecraft...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Запит токена Xbox Live...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "Вхід в PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "Отримання інформації про користувача...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "Запуск сесії Minecraft...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "Завантаження інвентарю Minecraft...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "Успішно завантажено {keyCount} ключів!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Помилка завантаження ключів: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Скопійовано в буфер",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "Аутентифіковано",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "Не аутентифіковано",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "URL аутентифікації",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "Завантажені ключі",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "Експорт лише нових ключів",
+  "@exportNewKeys": {
+    "description": "Used on the auth page"
+  },
+  "loadKeysButton": "Завантажити ключі",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "Вийти",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "Почати аутентифікацію",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Вітаю, ",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "Початок завантаження...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "Завантаження завершено",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Завершено!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Помилка завантаження",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Завантаження",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Обробка",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "Розпаковка zip-файлу...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Розшифровка вмісту...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Стиснення пакета...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Очищення...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "Показувати все",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "Лише доступне",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "Лише недоступне",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "openFileinExplorer": "Відкрити у Провіднику",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  },
+  "customColor": "Свій колір",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "Натисніть, щоб змінити свій колір",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "Створити свою кольорову схему",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "Вибрати колір",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "Вибрати",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "Зображення",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "Зберегти в PNG",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "Зберегти в галерею",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "Стиснення",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "Звичайне стиснення",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "Без стиснення",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "Скопіювати UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "Відкрити в Minecraft",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "Автор",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "newUpdate": "Нове оновлення",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "Новий DLC",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "Приховано",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "Аксесуари",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "Збірки",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "Скіни",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "Світи",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "Текстури",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "Аддони",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "Меню",
+  "@menu": {
+    "description": "tooltip for menu button"
+  }
+}

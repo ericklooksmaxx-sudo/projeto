@@ -1,0 +1,62 @@
+name: Codeberg Mirror
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: codeberg-mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    name: Mirror to Codeberg
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout private repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.CODEBERG_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t rsa,ed25519 codeberg.org >> ~/.ssh/known_hosts
+
+      # NOTE: the Codeberg remote is still named toolcoin.git — that is the
+      # repository path, not the brand. Rename the repo there and change these
+      # two URLs together, or the mirror pushes nowhere.
+      - name: Push
+        run: |
+          git config --global user.name "mirror bot"
+          git config --global user.email "mirror-bot@noreply.codeberg.org"
+
+          TEMP_DIR=$(mktemp -d)
+          echo "Cloning Codeberg repo..."
+          git clone --depth 1 git@codeberg.org:applemeal234912239012/toolcoin.git "$TEMP_DIR" || {
+            echo "Initial clone failed or repo empty, initializing new main branch..."
+            cd "$TEMP_DIR"
+            git init -b main
+            git remote add origin git@codeberg.org:applemeal234912239012/toolcoin.git
+          }
+
+          cd "$TEMP_DIR"
+          # Clean existing files (except .git)
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' -exec rm -rf {} +
+
+          # Copy source tree from workspace
+          rsync -a --exclude='.git' "$GITHUB_WORKSPACE/" "$TEMP_DIR/"
+
+          cd "$TEMP_DIR"
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "Update mirror ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))"
+            git push -u origin main
+          else
+            echo "No changes detected to commit to Codeberg mirror."
+          fi

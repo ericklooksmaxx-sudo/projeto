@@ -1,0 +1,1009 @@
+{
+  "@@locale": "fa",
+  "home": "خانه",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "دانلود‌ها",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "تنظیمات",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "انتخاب زبان",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "زبان",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "دانلودها",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "جستجو",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "پیش فرض",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "سازندگان",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "بررسی کلیدها",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "ورود به ای پی آی",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "{keyCount} کلید جدید اضافه شد",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "هیچ نتیجه ای یافت نشد",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "باز کردن",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "پاک کردن",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "تلاش مجدد",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "queuePosition": "در صف (شماره #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "در صف #{count}",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "تصویر در {filePath} ذخیره شد",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "مشکلی درحال دانلود تصویر پیش آمد:{error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "تغییرات انجام شده",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "دانلود شد‌‌ها",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "تلاش مجدد برای دانلود",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "دانلود تصویر",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "میخوای این تصویر رو دانلود کنی؟",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "لغو",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "تماشای تریلر",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "نمیتوان تریلر را باز کرد: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "ظاهر",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "حالت شب",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "حالت شب فعال شد",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "حالت روز",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "طرح رنگ",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "پیش فرض",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "پیش فرض(بنفش)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "آبی",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "سبز",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "نارنجی",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "قرمز",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "فیروزه‌ای",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "صورتی",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "سبز لیمویی",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "فیلترها",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "فیلتر:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "نشان دادن اسکین ها",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "کلیدها",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "بروزرسانی خودکار",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "دیتابیس سفارشی",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "وارد شدن به حساب کاربری",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "موارد اضافی",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "حافظه پنهان",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "{size} مگ از حافظه پنهان خالی شد",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "سوال های پرسیده شده",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "سوال های پرسیده شده",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "ترمینال",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "لطفا کلیدهای این پک هارو اضافه کنید!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "کی قراره کلیدها بروزرسانی بشوند ؟",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "فرق رمزگذاری شده و رمزگشایی شده چیه ؟",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "کجا میتونم پک‌های دانلود شده ام رو پیدا کنم؟",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "keys.tsv چیه؟",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "فرایند گرفتن کلید جادو جنبل نیست، باید یک نفر پک رو بخره و کلیدهارو با ما به اشتراک بزاره، اگر کسی پک رو بخره هیچ کلید رمزگشایی شده ای وجود نخواهد داشت، هیچ راه دیگه ای هم برای به دست آوردن کلید ها وجود نداره پس لطفاً صبور باشید یا پک رو بخرید",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "موقعی که تصمیم بگیریم",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "رمزگذاری شده یعنی فایل به کلمات درهم تبدیل شده که شبیه به هذیونه، هیچکس نمیتونه بخونش بدون یک کلید خاص ، محتوای رمزگذاری شده ماینکرفت غیرقابل استفاده هست ، رمزگشایی شده یعنی تبدیل اون کلمات درهم به محتوای دست نخورده ، حالا میتونید با محتوای رمزگشایی شده از این محتواها استفاده کنید",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "شما میتونید پک هارا اینجا پیدا کنید\nدانلود/تولکوین",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "یک فایلی هست که «یو یو آی دی» پک ها به همراه کلید رمزگشایی آنها ذخیره میشه، بدون کلیدهای رمزگشایی شده پک‌های دانلود شده غیرقابل استفاده خواهند بود",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "fileDeleted": "فایل حذف شد",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "فایل های ذخیره شده",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "رفرش/تازه کردن فایل ها",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "حذف فایل",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "مطمعنی که میخوای {fileName} رو حذف کنی؟",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "لغو",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "حذف",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "دانلود فعلی",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "هیچ دانلود فعالی وجود ندارد",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "دانلود های تکمیل شده",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "پاک کردن همه",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "وارد کردن به ماینکرفت",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "shareFile": "به اشتراک گذاشتن فایل",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "مشکل زدایی ترمینال",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "پاک کردن لاگها",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "هنوز هیچ لاگی ثبت نشده...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "selectingFile": "انتخاب کردن فایل...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "پردازش فایل...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "فایل با موفقیت پردازش شد",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "هیچ فایلی انتخاب نشده",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "{count} کلید سفارشی بارگذاری شد",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "هیچ کلید سفارشی‌ای بارگذاری نشد",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "یک فایل با فرمت UUID=KEY وارد کنید",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "{contentType} موارد",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} موارد ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "موارد سازنده",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "این سازنده هیچ محتوایی ندارد",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "هیچ آماری در دسترس نیست",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "بارگذاری آمار ناموفق بود",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "هیچ نتیجه ای یافت نشد",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "احراز هویت مایکروسافت",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "معادله کردن کد احراز هویت برای توکن",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "احراز هویت ناموفق بود: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "احراز هویت موفق آمیز بود!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "معادله کد برای توکن با مشکلی مواجه شد : {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "هیچ کد احراز هویتی دریافت نشد",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "هیچ کلید جدیدی برای کپی پیدا نشد",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "کلیدها کپی شدند به کلیپ بورد",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "هیچ کلید جدیدی برای به اشتراک گذاری پیدا نشد",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "کلیدها با موفقیت به اشتراک گذاشته شدند",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "درحال بررسی احراز هویت موجود",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "از قبل احراز هویت شده آید!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "آماده برای احراز هویت",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "احراز هویت با لینک",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "احراز هویت را درون مرورگر خود کامل کنید، بعد از آن به برنامه بازگردانده میشوید",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "نمیتوان صفحه احراز هویت را باز کرد",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "درحال خارج شدن از حساب",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "از حساب با موفقیت خارج شدید",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "استفاده از جلسه ذخیره شده...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "بارگیری کلیدهای ماینکرفت...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "درخواست کردن برای توکن ایکس باکس لایو...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "درحال وارد شدن به پلی‌فب...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "درحال گرفتن اطلاعات کاربر",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "درحال شروع کردن جلسه ماینکرفت",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "درحال پردازش ایونتوری ماینکرفت",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "{keyCount} کلید با موفقیت پردازش شد",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "مشکلی درحال پردازش کلیدها پیش آمد: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "کپی شد به کلیپ بورد",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "احراز هویت شده",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "احراز هویت نشده",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "لینک احراز هویت",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "کلیدهای بارگذاری شده",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "خروجی گرفتن از کلید های جدید",
+  "@exportNewKeys": {
+    "description": "Used on the auth page and mcdecryptor page"
+  },
+  "loadKeysButton": "بارگذاری کلیدها",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "خارج شدن از حساب",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "شروع احراز هویت",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "سلام رفیق ",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "درحال شروع دانلود",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "دانلود تکمیل شد",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "تکمیل شد",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "دانلود ناموفق بود",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "درحال دانلود",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "درحال پردازش",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "استخراج فایل زیپ",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "رمزگشایی محتوا‌ها",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "فشرده سازی پک",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "درحال پاک کردن...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "نشان دادن همه",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "فقط آنهایی که موجودند",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "فقط آنهایی که موجود نیستند",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "faqQuestion6": "چطور می‌تونم از آیتم‌های شخصیت استفاده کنم؟",
+  "@faqQuestion6": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion7": "چرا بعضی بسته‌های اسکین خراب به نظر می‌رسند؟",
+  "@faqQuestion7": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion8": "هدف صفحه \"ورود به حساب کاربری\" چیست؟",
+  "@faqQuestion8": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer6": "تو نمی‌تونی. روش‌هایی وجود دارن، اما با توجه به پیچیدگی انجام کار، عملی نیست.",
+  "@faqAnswer6": {
+    "description": "Answer for FAQ question 6"
+  },
+  "faqAnswer7": "بعضی بسته‌های اسکین (به‌خصوص همکاری‌های فرنچایز) از هندسه سفارشی استفاده می‌کنن که ماینکرفت اجازه استفاده عادی از اون رو نمی‌ده مگر اینکه بسته اسکین رو بخری.  \nمی‌تونی بررسی کنی که آیا یک بسته اسکین از هندسه سفارشی استفاده می‌کنه یا نه، با نگاه کردن به وجود فایل geometry.json داخل بسته.  \nیادت باشه این مشکل هیچ ارتباطی با ابزار نداره.",
+  "@faqAnswer7": {
+    "description": "Answer for FAQ question 7"
+  },
+  "faqAnswer8": "صفحه ورود به حساب کاربری به شما اجازه می‌دهد با حساب مایکروسافت خود احراز هویت کنید تا کلیدهای ماینکرفت‌تان مستقیماً از موجودی‌تان بارگذاری شوند. این قابلیت زمانی مفید است که Kyzen در حال حاضر برای یک DLC خاص کلیدی نداشته باشد اما شما آن را در حساب خود داشته باشید؛ وقتی کلیدها بارگذاری شوند، آن DLC برای دانلود در دسترس قرار می‌گیرد. توجه داشته باشید که کلیدها به‌طور خودکار در پایگاه داده ما آپلود می‌شوند و بعداً با پایگاه داده اصلی کلیدهای Kyzen ادغام خواهند شد تا همه بتوانند از DLC جدید لذت ببرند، پس لطفاً اگر می‌خواهید مشارکت کنید از این ویژگی استفاده کنید.",
+  "@faqAnswer8": {
+    "description": "Answer for FAQ question 8"
+  },
+  "openFileinExplorer": "باز کردن در فایل اکسپلورر",
+  "@openFileinExplorer": {
+    "description": "Used on the downloads tab but only for desktop"
+  },
+  "copy": "کپی",
+  "@copy": {
+    "description": "Used on the auth page"
+  },
+  "save": "ذخیره",
+  "@save": {
+    "description": "Used on the auth page"
+  },
+  "share": "اشتراک گذاری",
+  "@share": {
+    "description": "Used on the auth page"
+  },
+  "keysSaved": "کلیدها با موفقیت ذخیره شدند",
+  "@keysSaved": {
+    "description": "Used on the auth page"
+  },
+  "customColor": "رنگ سفارشی",
+  "@customColor": {
+    "description": "Used on the settings tab"
+  },
+  "changeCustomColor": "برای تغییر رنگ سفارشی خود ضربه بزن.",
+  "@changeCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "createCustomColor": "طرح رنگی خودت را بساز.",
+  "@createCustomColor": {
+    "description": "Used on the settings tab"
+  },
+  "pickColor": "انتخاب رنگ",
+  "@pickColor": {
+    "description": "Used on the settings tab"
+  },
+  "selectColor": "انتخاب",
+  "@selectColor": {
+    "description": "Button to select color on color picker dialog"
+  },
+  "images": "تصاویر",
+  "@images": {
+    "description": "Used on the Images section of the settings tab"
+  },
+  "saveToPng": "ذخیره به شکل PNG",
+  "@saveToPng": {
+    "description": "Button to save image as PNG on the settings tab"
+  },
+  "saveToGallery": "ذخیره در گالری",
+  "@saveToGallery": {
+    "description": "Button to save image to gallery on the settings tab"
+  },
+  "compression": "فشرده سازی",
+  "@compression": {
+    "description": "Used on the settings tab"
+  },
+  "normalCompression": "فشرده سازی نرمال",
+  "@normalCompression": {
+    "description": "Used on the settings tab"
+  },
+  "noCompression": "بدون فشرده سازی",
+  "@noCompression": {
+    "description": "Used on the settings tab"
+  },
+  "copyUUID": "کپی UUID",
+  "@copyUUID": {
+    "description": "Button to copy UUID to clipboard on the item detail page"
+  },
+  "openInMinecraft": "باز کردن در ماینکرافت",
+  "@openInMinecraft": {
+    "description": "Button to open the item pack in Minecraft on the item detail page"
+  },
+  "creator": "سازنده",
+  "@creator": {
+    "description": "Button to open the bottom sheet creator on the item detail page"
+  },
+  "newUpdate": "آپدیت جدیپ",
+  "@newUpdate": {
+    "description": "Used on the dropdown filter"
+  },
+  "newDlc": "DLC جدید",
+  "@newDlc": {
+    "description": "Used on the dropdown filter"
+  },
+  "hidden": "مخفی ها",
+  "@hidden": {
+    "description": "Used on the dropdown filter"
+  },
+  "persona": "شخصیت",
+  "@persona": {
+    "description": "Used on the dropdown filter"
+  },
+  "skins": "اسکین‌ها",
+  "@skins": {
+    "description": "Used on the dropdown filter"
+  },
+  "mashups": "مش آپ",
+  "@mashups": {
+    "description": "Used on the dropdown filter"
+  },
+  "worlds": "جهان ها",
+  "@worlds": {
+    "description": "Used on the dropdown filter"
+  },
+  "textures": "تکسچرها",
+  "@textures": {
+    "description": "Used on the dropdown filter"
+  },
+  "addons": "ادان ها",
+  "@addons": {
+    "description": "Used on the dropdown filter"
+  },
+  "vibrantVisuals": "ویبرانت ویژوال",
+  "@vibrantVisuals": {
+    "description": "Used on the dropdown filter"
+  },
+  "favorites": "مورد علاقه‌ها",
+  "@favorites": {
+    "description": "Used on the dropdown filter"
+  },
+  "unfiltered": "بدون فیلتر",
+  "@unfiltered": {
+    "description": "Used on the dropdown filter"
+  },
+  "sorting": "مرتب سازی",
+  "@sorting": {
+    "description": "Used on the dropdown filter"
+  },
+  "type": "نوع",
+  "@type": {
+    "description": "Used on the dropdown filter"
+  },
+  "newFilter": "جدید",
+  "@newFilter": {
+    "description": "Used on the dropdown filter"
+  },
+  "other": "دیگر",
+  "@other": {
+    "description": "Used on the dropdown filter"
+  },
+  "newest": "جدیدترین",
+  "@newest": {
+    "description": "Used on the dropdown filter"
+  },
+  "oldest": "قدیمی ترین",
+  "@oldest": {
+    "description": "Used on the dropdown filter"
+  },
+  "mostRated": "بیشترین امتیاز",
+  "@mostRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "leastRated": "کمترین امتیاز",
+  "@leastRated": {
+    "description": "Used on the dropdown filter"
+  },
+  "menu": "منو",
+  "@menu": {
+    "description": "tooltip for menu button"
+  },
+  "imageSavedToGallery": "تصویر در گالری ذخیره شد : {filePath}",
+  "@imageSavedToGallery": {
+    "description": "Message shown when an image is saved to gallery",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "vibrantVisualEnhanced": "ارتقای ویبرانت ویژوال",
+  "@vibrantVisualEnhanced": {
+    "description": "used on the item detail page"
+  },
+  "uuidCopied": "UUID در کلیپ بورد کپی شد",
+  "@uuidCopied": {
+    "description": "message shown when UUID is copied to clipboard"
+  },
+  "scrollRight": "اسکرول به راست",
+  "@scrollRight": {
+    "description": "tooltip for scrolling right for desktop"
+  },
+  "scrollLeft": "اسکرول به چپ",
+  "@scrollLeft": {
+    "description": "tooltip for scrolling left for desktop"
+  },
+  "previousImage": "تصویر قبلی",
+  "@previousImage": {
+    "description": "tooltip for previous image button for desktop"
+  },
+  "nextImage": "تصویر بعدی",
+  "@nextImage": {
+    "description": "tooltip for next image button for desktop"
+  },
+  "favoriteEmpty": "لیست مورد علاقه‌ها خالی است",
+  "@favoriteEmpty": {
+    "description": "shown when there is no favorite items"
+  },
+  "favoriteDescription": "روی آیکون قلب در صفحه جزئیات هر آیتم ضربه بزن تا به علاقه‌مندی‌ها اضافه شود و مجموعه‌ات ساخته شود.",
+  "@favoriteDescription": {
+    "description": "shown when there is no favorite items"
+  },
+  "removeFromFavorites": "حذف از علاقمندی ها",
+  "@removeFromFavorites": {
+    "description": "tooltip for removing item from favorites"
+  },
+  "addToFavorites": "افزودن به علاقمندی ها",
+  "@addToFavorites": {
+    "description": "tooltip for adding item to favorites"
+  },
+  "addedToFavorites": "به علاقمندی ها اضافه شد",
+  "@addedToFavorites": {
+    "description": "message shown when an item is added to favorites"
+  },
+  "removedFromFavorites": "از علاقمندی ها حذف شد",
+  "@removedFromFavorites": {
+    "description": "message shown when an item is removed from favorites"
+  },
+  "noNewKeysFoundToSave": "کلیدی برای ذخیره پیدا نشد",
+  "@noNewKeysFoundToSave": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "keysSavedSuccessfully": "کلید ها با موفقیت در پوشه Kyzen ذخیره شدند",
+  "@keysSavedSuccessfully": {
+    "description": "Used on the Mcdecryptor page and auth page"
+  },
+  "entitlementKeys": "کلیدهای مالکیت",
+  "@entitlementKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchBoughContent": "جستجوی محتوای خریداری‌شده‌ی ماینکرافت",
+  "@searchBoughContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "saveKeys": "ذخیره کلید ها",
+  "@saveKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "refresh": "تازه سازی",
+  "@refresh": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "searchKeys": "جستجوی کلید ها",
+  "@searchKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadSkinPersona": "بارگذاری اسکین پک، آیتم شخصیت",
+  "@loadSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionSkinPersona": "اسکین‌پک و آیتم شخصیت را در فهرست قرار بده.",
+  "@descriptionSkinPersona": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "loadOnlyNewKeys": "فقط بارگذاری کلیدهای جدید",
+  "@loadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionLoadOnlyNewKeys": "بارگذاری فقط محتوایی که در پایگاه داده کلیدهای اپلیکیشن وجود ندارد.",
+  "@descriptionLoadOnlyNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "descriptionExportNewKeys": "این‌که «ذخیره کلیدها» فقط کلیدهای جدید را صادر کند یا نه.",
+  "@descriptionExportNewKeys": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processedEntitlementKeys": "با موفقیت پردازش شد ({countFiles} فایل، {countKeys} کلید)",
+  "@processedEntitlementKeys": {
+    "description": "Used on the Mcdecryptor page",
+    "placeholders": {
+      "countFiles": {
+        "type": "int",
+        "example": "5"
+      },
+      "countKeys": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "noResultsYet": "هنوز هیچ نتیجه‌ای یافت نشده",
+  "@noResultsYet": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "clickSearchKeysToLoadContent": "روی «جستجوی کلیدها» کلیک کن تا محتوایت بارگذاری شود.",
+  "@clickSearchKeysToLoadContent": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "tryadifferentSearch": "عبارت جستجوی دیگری را امتحان کن.",
+  "@tryadifferentSearch": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "minecraftNotInstalled": "هیچ مسیر نصب معتبر ماینکرافت پیدا نشد. لطفاً مطمئن شوید که Minecraft Bedrock Edition (نسخه UWP یا GDK) نصب شده و حداقل یک بار اجرا شده باشد.",
+  "@minecraftNotInstalled": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "processingError": "خطاهای پردازش",
+  "@processingError": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "dismiss": "رد کردن",
+  "@dismiss": {
+    "description": "Used on the Mcdecryptor page"
+  },
+  "failedFiles": "فایل‌های ناموفق:",
+  "@failedFiles": {
+    "description": "Used on the Mcdecryptor page"
+  }
+}

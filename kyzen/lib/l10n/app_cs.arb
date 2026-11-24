@@ -1,0 +1,680 @@
+{
+  "@@locale": "cs",
+  "home": "Domov",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "Stažení",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "Nastavení",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "Vyberte jazyk",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "Jazyk",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "Stáhnout",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "Vyhledávání...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "Výchozí",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "Tvůrci",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Kontrola klíčů",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "Přihlášení k API",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "Přidáno {keyCount} nových klíčů",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Nenalezeny žádné výsledky",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "OTEVŘENO",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "Jasný",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "Zkusit znovu",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "queuePosition": "Zařazeno do fronty (Position {count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "Fronta #{count})",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Obrázek uložen do {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Chyba při stahování obrázku: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "Seznam změn",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "Staženo",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "Zkusit stáhnout znovu",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "Stáhnout obrázek",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "Stáhnout tento obrázek?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "Zrušit",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "Sledovat upoutávku",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "Nepodařilo se otevřít upoutávku: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Vzhled",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "Tmavý režim",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "Tmavý motiv povolen",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "Světlý motiv povolen",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "Barevné schéma",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "Výchozí",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "Výchozí (fialová)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "Zapomenout",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Zelený",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Pomerančový",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Červený",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Tyrkysová",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Růžový",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Jako",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "Filtry",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "Filtr:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "Zobrazit skiny",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Klíče",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "Automatická aktualizace",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "Vlastní databáze",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "Přihlášení k účtu",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "Doplňky",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "Mezipaměť",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "Vymazána mezipaměť {size} MB",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faq": "Často kladené otázky",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "faqUppercase": "Často kladené otázky",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "terminal": "Terminál",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "Prosím, přidejte klíče k tomuto a tamtomu balíčku!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "Kdy budou klíče aktualizovány?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "Jaký je rozdíl mezi šifrovaným a dešifrovaným",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "Kde najdu stažené balíčky?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "Co je keys.tsv",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "Proces získávání klíčů není magie: člověk si stále musí balíček koupit a sdílet s námi klíče. Bez toho, aby si je někdo koupil, by v první řadě neexistovaly žádné dešifrovací klíče. Je to tak není možné je získat jiným způsobem. Trpělivě počkejte nebo si je kupte",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "Jakmile jsme se pro to rozhodli.",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "Zašifrování znamená převedení souboru na zmačkaná slova, která vypadají jako nesmysl. Nikdo si je nemůže přečíst bez speciálního klíče. Zašifrovaný obsah Minecraftu je nehratelný. Dešifrování znamená použití speciálního klíče k převedení nesmyslu zpět do původní podoby. Nyní lze obsah Minecraftu použít.",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "Balíčky najdete zde Download/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "Je to soubor, který ukládá UUID balíčků s příslušnými dešifrovacími klíči. Bez dešifrovacích klíčů by stažené balíčky nebylo možné přehrát.",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "fileDeleted": "Soubor smazán",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "Uložené soubory",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "Obnovit soubory",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "Smazat soubor",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "Opravdu chcete smazat soubor {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "ZRUŠIT",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "VYMAZAT",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "Aktuální stahování",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "Žádné aktivní stahování",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "Dokončené stahování",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "Vymazat vše",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "Importovat do Minecraftu",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "shareFile": "Sdílet soubor",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "Ladicí terminál",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "Vymazat protokoly",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "Zatím žádné protokoly...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "selectingFile": "Výběr souboru...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "Zpracování souboru...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "Soubor byl úspěšně zpracován!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "Žádný výběr souboru",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "{count} načteny vlastní klíče",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "Žádné vlastní klíče nejsou načteny",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "Importovat soubor s formátem UUID=KEY",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "Položky typu {contentType}",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} položek ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Položky pro tvůrce",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "Tento tvůrce nemá žádný obsah",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "Žádné statické údaje k dispozici",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Nepodařilo se načíst statické údaje",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "Nenalezeny žádné výsledky",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Ověřování Microsoftu",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "Výměna autorizačního kódu za token...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "Ověření se nezdařilo: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Ověření úspěšné!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "Výměna kódu za token se nezdařilo: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Nebyl přijat autorizační kód",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "Nebyly nalezeny žádné nové klíče ke kopírování.",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Klíče zkopírovány do schránky!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "Nenalezeny žádné nové klíče ke sdílení",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Klíče byly úspěšně sdíleny!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "Kontrola stávajícího ověřování...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "Již ověřeno!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "Připraveno k ověření",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "Ověření pomocí URL adresy",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "Dokončete ověření ve vašem prohlížeči. Budete přesměrováni zpět do aplikace.",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "Nepodařilo se otevřít ověřovací stránku",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "Odhlašování...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "Úspěšně odhlášen/a",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "Používání relace uložené v mezipaměti",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "Načítání klíčů Minecraftu...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Žádost o token Xbox Live...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "Přihlášení do PlayFabu",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "Získávání informací o uživateli...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "Zahájení hry Minecraft...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "Načítání inventáře Minecraftu...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "Úspěšně vytvořeno {keyCount} klíčů!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Chyba při načítání klíčů: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Zkopírováno do schránky",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "Ověřeno",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "Neověřeno",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "URL ověřování",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "Nabité klíče",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "Exportovat pouze nové klíče",
+  "@exportNewKeys": {
+    "description": "Used on the auth page"
+  },
+  "loadKeysButton": "Načíst klíče",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "Odhlásit se",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "Spustit ověřování",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Ahoj",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "Zahájení stahování...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "Stahování dokončeno",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Dokončeno!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Stahování se nezdařilo",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Stahování",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Zpracování",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "Extrahování zip souboru...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Dešifrování obsahu...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Kompresní balení...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Úklid...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "Zobrazit vše",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "K dispozici pouze",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "Pouze není k dispozici",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  },
+  "freeDroidWarnMessage": "Společnost Google oznámila, že od roku 2026/2027 budou všechny aplikace na certifikovaných zařízeních Android vyžadovat, aby vývojář odeslal své osobní identifikační údaje přímo společnosti Google. Jelikož vývojáři této aplikace s tímto požadavkem nesouhlasí, aplikace po tomto datu přestane na certifikovaných zařízeních Android fungovat.",
+  "freeDroidWarnDetails": "Podrobnosti",
+  "freeDroidWarnSolution": "Řešení"
+}

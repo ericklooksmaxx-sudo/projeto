@@ -1,0 +1,22 @@
+material {
+  name: "unlit_cutout",
+  shading_model: unlit,
+  blending: opaque,
+  culling: none,
+  parameters: [
+    { type: sampler2d, name: base_color_texture, hint: default_white },
+    { type: vec4, name: base_color_factor, default: [1, 1, 1, 1] },
+  ],
+}
+
+fragment {
+  void Surface(inout MaterialInputs material) {
+    vec2 uv = GetUV0();
+    vec4 base = texture(base_color_texture, uv);
+    if (base.a < 0.5) {
+      discard;
+    }
+    vec3 color = SRGBToLinear(base.rgb) * material_params.base_color_factor.rgb;
+    material.base_color = vec4(color, 1.0);
+  }
+}

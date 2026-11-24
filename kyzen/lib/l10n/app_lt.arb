@@ -1,0 +1,677 @@
+{
+  "@@locale": "lt",
+  "home": "Namai",
+  "@home": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "downloads": "Atsisiuntimai",
+  "@downloads": {
+    "description": "used on bottom_navigation.dart"
+  },
+  "settings": "Nustatymai",
+  "@settings": {
+    "description": "used on bottom_navigation and on Settings tab"
+  },
+  "selectLanguage": "Pasirinkti kalbą",
+  "@selectLanguage": {
+    "description": "used on the language selector"
+  },
+  "language": "Kalba",
+  "@language": {
+    "description": "used on the language selector"
+  },
+  "download": "Atsisiųsti",
+  "@download": {
+    "description": "used on the item detail page"
+  },
+  "hintText": "Ieškoti...",
+  "@hintText": {
+    "description": "used on the search bar"
+  },
+  "default1": "Numatytasis",
+  "@default1": {
+    "description": "used on the search bar"
+  },
+  "creators": "Kūrėjai",
+  "@creators": {
+    "description": "used on the search bar"
+  },
+  "checkingKeys": "Tikrinami raktai",
+  "@checkingKeys": {
+    "description": "used on startup app"
+  },
+  "apiLogin": "API prisijungimas",
+  "@apiLogin": {
+    "description": "used on startup app"
+  },
+  "addedNewKeys": "Pridėta {keyCount} naujų raktų",
+  "@addedNewKeys": {
+    "description": "Toast message showing how many new keys were added",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noResult": "Nerasta rezultatų",
+  "@noResult": {
+    "description": "when no dlc found"
+  },
+  "open": "Atidaryti",
+  "@open": {
+    "description": "open button"
+  },
+  "clear": "Išvalyti",
+  "@clear": {
+    "description": "clear button"
+  },
+  "retry": "Pakartoti",
+  "@retry": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "queuePosition": "Įtraukta į eilę (Pozicija #{count})",
+  "@queuePosition": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "queuePosition2": "Įtraukta į eilę #{count}",
+  "@queuePosition2": {
+    "description": "Queue position",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "imageSaved": "Paveikslėlis išsaugotas {filePath}",
+  "@imageSaved": {
+    "description": "Message shown when an image is successfully saved",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/storage/emulated/0/Pictures/image.jpg"
+      }
+    }
+  },
+  "errorDownloadingImage": "Klaida atsisiunčiant paveikslėlį: {error}",
+  "@errorDownloadingImage": {
+    "description": "Error message shown when image download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "changelog": "Pakeitimų sąrašas",
+  "@changelog": {
+    "description": "used on the item detail page"
+  },
+  "downloaded": "Atsiųsta",
+  "@downloaded": {
+    "description": "used on the item detail page"
+  },
+  "retryDownload": "Pakartoti atsisiuntimą",
+  "@retryDownload": {
+    "description": "used on the item detail page"
+  },
+  "downloadImage": "Atsisiųsti paveikslėlį",
+  "@downloadImage": {
+    "description": "used on the item detail page"
+  },
+  "downloadImageQuestion": "Atsisiųsti šį paveikslėlį?",
+  "@downloadImageQuestion": {
+    "description": "used on the item detail page"
+  },
+  "cancel": "Atšaukti",
+  "@cancel": {
+    "description": "used on the item detail page"
+  },
+  "trailer": "Žiūrėti anonsą",
+  "@trailer": {
+    "description": "trailer button on item detail page"
+  },
+  "trailerError": "Nepavyko atidaryti anonso: {error}",
+  "@trailerError": {
+    "description": "Error message for trailer",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Trailer error"
+      }
+    }
+  },
+  "appearance": "Išvaizda",
+  "@appearance": {
+    "description": "Used on the settings tab"
+  },
+  "darkMode": "Tamsus režimas",
+  "@darkMode": {
+    "description": "Used on the settings tab"
+  },
+  "darkEnabled": "Tamsus režimas įjungtas",
+  "@darkEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "lightEnabled": "Šviesus režimas įjungtas",
+  "@lightEnabled": {
+    "description": "Used on the settings tab"
+  },
+  "colorScheme": "Spalvų schema",
+  "@colorScheme": {
+    "description": "Used on the settings tab"
+  },
+  "defaultColor": "Numatytasis",
+  "@defaultColor": {
+    "description": "Used on the settings tab"
+  },
+  "defaultPurple": "Numatytasis (Violetinė)",
+  "@defaultPurple": {
+    "description": "Used on the settings tab"
+  },
+  "colorSchemeBlue": "Mėlyna",
+  "@colorSchemeBlue": {
+    "description": "Display name for blue color scheme"
+  },
+  "colorSchemeGreen": "Žalia",
+  "@colorSchemeGreen": {
+    "description": "Display name for green color scheme"
+  },
+  "colorSchemeOrange": "Oranžinė",
+  "@colorSchemeOrange": {
+    "description": "Display name for orange color scheme"
+  },
+  "colorSchemeRed": "Raudona",
+  "@colorSchemeRed": {
+    "description": "Display name for red color scheme"
+  },
+  "colorSchemeTeal": "Tamsiai žydra",
+  "@colorSchemeTeal": {
+    "description": "Display name for teal color scheme"
+  },
+  "colorSchemePink": "Rožinė",
+  "@colorSchemePink": {
+    "description": "Display name for pink color scheme"
+  },
+  "colorSchemeLime": "Žalsvai geltona",
+  "@colorSchemeLime": {
+    "description": "Display name for lime color scheme"
+  },
+  "filters": "Filtrai",
+  "@filters": {
+    "description": "Used on the settings tab"
+  },
+  "filter": "Filtras:",
+  "@filter": {
+    "description": "Used on the settings tab"
+  },
+  "showSkins": "Rodyti skin'us",
+  "@showSkins": {
+    "description": "Used on the settings tab"
+  },
+  "keys": "Raktai",
+  "@keys": {
+    "description": "Used on the settings tab"
+  },
+  "autoUpdate": "Auto-atnaujinimai",
+  "@autoUpdate": {
+    "description": "Used on the settings tab, auto update for the keys"
+  },
+  "customDb": "Asmeninė DB",
+  "@customDb": {
+    "description": "Used on the settings tab"
+  },
+  "accountLogin": "Paskyros prisijungimas",
+  "@accountLogin": {
+    "description": "Used on the settings tab"
+  },
+  "extras": "Papildomai",
+  "@extras": {
+    "description": "Used on the settings tab"
+  },
+  "cache": "Cache",
+  "@cache": {
+    "description": "Used on the settings tab"
+  },
+  "cacheCleared": "Išvalyta {size} MB iš cache",
+  "@cacheCleared": {
+    "description": "Message shown when cache is cleared",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "15.0"
+      }
+    }
+  },
+  "faqUppercase": "DUK",
+  "@faqUppercase": {
+    "description": "Used on faq page"
+  },
+  "faq": "DUK",
+  "@faq": {
+    "description": "Used on the settings tab"
+  },
+  "terminal": "Terminalas",
+  "@terminal": {
+    "description": "Used on the settings tab"
+  },
+  "faqQuestion1": "Prašau pridėkite raktus šiam ir tam rinkiniui!",
+  "@faqQuestion1": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion2": "Kada bus atnaujinami raktai?",
+  "@faqQuestion2": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion3": "Koks yra skirtumas tarp užsifruoti ir atšifruoto?",
+  "@faqQuestion3": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion4": "Kur galiu rasti atsiųstus rinkinius?",
+  "@faqQuestion4": {
+    "description": "Used on faq page"
+  },
+  "faqQuestion5": "Kas yra keys.tsv?",
+  "@faqQuestion5": {
+    "description": "Used on faq page"
+  },
+  "faqAnswer1": "Tai nėra magija: naudotojas turi nupirkti rinkinį, o raktus pasidalinti su mumis. Be kitų pagalbos, raktų išvis nebūtų. Neįmanoma jų išgauti kitais būdais. Lauk atkakliai arba nusipirk rinkinį.",
+  "@faqAnswer1": {
+    "description": "Answer for FAQ question 1"
+  },
+  "faqAnswer2": "Kada mes nuspręsime.",
+  "@faqAnswer2": {
+    "description": "Answer for FAQ question 2"
+  },
+  "faqAnswer3": "Šifravimas reiškia failo pavertimą į žodžių maišalynę. Niekas jo negali perskaityti be specialaus rakto. Neįmanoma žaisti užsifruotų Minecraft rinkinių. Atšifravimas reiškia to specialaus rakto panaudojimą, siekiant atgauti originalų failo turinį. Dabar tokį Minecraft rinkinį galima naudoti.",
+  "@faqAnswer3": {
+    "description": "Answer for FAQ question 3"
+  },
+  "faqAnswer4": "Rinkinius galima rasti Download/Kyzen",
+  "@faqAnswer4": {
+    "description": "Answer for FAQ question 4"
+  },
+  "faqAnswer5": "Failas kuris laiko rinkinių UUID su atšifravimo raktais. Be atšifravimo raktų atsiųsti rinkinių neįmanoma žaisti.",
+  "@faqAnswer5": {
+    "description": "Answer for FAQ question 5"
+  },
+  "fileDeleted": "Failas pašalintas",
+  "@fileDeleted": {
+    "description": "Used on the downloads tab"
+  },
+  "storedFiles": "Saugomi failai",
+  "@storedFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "refreshFiles": "Atnaujinti failus",
+  "@refreshFiles": {
+    "description": "Used on the downloads tab"
+  },
+  "deleteFile": "Šalinti failą",
+  "@deleteFile": {
+    "description": "Title for delete file confirmation dialog"
+  },
+  "deleteFileConfirmation": "Ar tikrai norite šalinti {fileName}?",
+  "@deleteFileConfirmation": {
+    "description": "Confirmation message for deleting a file",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "description": "Name of the file to be deleted"
+      }
+    }
+  },
+  "cancelUppercase": "ATŠAUKTI",
+  "@cancelUppercase": {
+    "description": "Cancel button"
+  },
+  "deleteUppercase": "ŠALINTI",
+  "@deleteUppercase": {
+    "description": "Delete button"
+  },
+  "currentDownload": "Dabartinis atsisiuntimas",
+  "@currentDownload": {
+    "description": "Used on the downloads tab"
+  },
+  "noActiveDownloads": "Nėra aktyvių atsisiuntimų",
+  "@noActiveDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "completedDownloads": "Užbaigti atsisiuntimai",
+  "@completedDownloads": {
+    "description": "Used on the downloads tab"
+  },
+  "clearAll": "Išvalyti visus",
+  "@clearAll": {
+    "description": "Used on the downloads tab"
+  },
+  "importToMc": "Įkelti į Minecraft",
+  "@importToMc": {
+    "description": "Used on the downloads tab"
+  },
+  "shareFile": "Pasidalinti failu",
+  "@shareFile": {
+    "description": "Used on the downloads tab"
+  },
+  "debugTerminal": "Debug terminalas",
+  "@debugTerminal": {
+    "description": "Used on debug page"
+  },
+  "clearLogs": "Šalinti logs'us",
+  "@clearLogs": {
+    "description": "Used on debug page"
+  },
+  "noLogs": "Nėra jokių logs'ų...",
+  "@noLogs": {
+    "description": "Used on debug page"
+  },
+  "selectingFile": "Pasirenkamas failas...",
+  "@selectingFile": {
+    "description": "Used on the custom db page"
+  },
+  "processingFile": "Failas apdorojamas...",
+  "@processingFile": {
+    "description": "Used on the custom db page"
+  },
+  "fileProcessed": "Failas apdorotas sėkmingai!",
+  "@fileProcessed": {
+    "description": "Used on the custom db page"
+  },
+  "noFileSelected": "Joks failas nepasirinktas",
+  "@noFileSelected": {
+    "description": "Used on the custom db page"
+  },
+  "customKeysLoaded": "Užkrauta {count} asmeninių raktų",
+  "@customKeysLoaded": {
+    "description": "Used on the custom db page",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of custom keys loaded"
+      }
+    }
+  },
+  "noCustomKeysLoaded": "Neužkrauta jokių asmeninių raktų",
+  "@noCustomKeysLoaded": {
+    "description": "Used on the custom db page"
+  },
+  "importFileFormat": "Įtraukti failą su UUID=RAKTAS formatu",
+  "@importFileFormat": {
+    "description": "Used on the custom db page"
+  },
+  "creatorItemsWithType": "{contentType} objektai",
+  "@creatorItemsWithType": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      }
+    }
+  },
+  "creatorItemsWithTypeAndCount": "{contentType} objektai ({count})",
+  "@creatorItemsWithTypeAndCount": {
+    "description": "Used on the bottom sheet creator",
+    "placeholders": {
+      "contentType": {
+        "type": "String",
+        "example": "Skins"
+      },
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "creatorItemsDefault": "Kūrėjų objektai",
+  "@creatorItemsDefault": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noItemCreator": "Kūrėjas neturi jokio turinio",
+  "@noItemCreator": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noStatistic": "Statistika nepasiekiama",
+  "@noStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "failedLoadStatistic": "Nepavyko užkrauti statistikos",
+  "@failedLoadStatistic": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "noResultsFound": "Nerasta rezultatų",
+  "@noResultsFound": {
+    "description": "Used on the bottom sheet creator"
+  },
+  "microsoftAuth": "Microsoft prisijungimas",
+  "@microsoftAuth": {
+    "description": "Used on the auth page"
+  },
+  "exchangingToken": "Keičiamas prisijungimo kodas į tokeną...",
+  "@exchangingToken": {
+    "description": "Used on the auth page"
+  },
+  "authenticationFailed": "Prisijungimas nepavyko: {error}",
+  "@authenticationFailed": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "access_denied"
+      }
+    }
+  },
+  "authenticationSuccessful": "Prisijungimas pavyko!",
+  "@authenticationSuccessful": {
+    "description": "Used on the auth page"
+  },
+  "failedToExchangeToken": "Nepavyko iškeisti kodo į tokeną: {error}",
+  "@failedToExchangeToken": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "invalid_grant"
+      }
+    }
+  },
+  "noAuthorizationCodeReceived": "Negautas prisijungimo kodas",
+  "@noAuthorizationCodeReceived": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysCopy": "Nerasta naujų raktų kopijavimui",
+  "@noNewKeysCopy": {
+    "description": "Used on the auth page"
+  },
+  "keysCopyClipboard": "Raktai nukopijuotį į iškarpinę!",
+  "@keysCopyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "noNewKeysShare": "Nerasta naujų raktų pasidalinimui",
+  "@noNewKeysShare": {
+    "description": "Used on the auth page"
+  },
+  "keysShared": "Raktai pasidalinti sėkmingai!",
+  "@keysShared": {
+    "description": "Used on the auth page"
+  },
+  "authCheck": "Tikrinama egzistuojantis prisijungimas...",
+  "@authCheck": {
+    "description": "Used on the auth page"
+  },
+  "alreadyAuth": "Jau prisijungta!",
+  "@alreadyAuth": {
+    "description": "Used on the auth page"
+  },
+  "readyAuth": "Pasiruošta prisijungti",
+  "@readyAuth": {
+    "description": "Used on the auth page"
+  },
+  "authURL": "Prisijungti su URL",
+  "@authURL": {
+    "description": "Used on the auth page"
+  },
+  "completeAuth": "Užbaikite prisijungimą savo naršyklėje. Būsite nukreiptas atgal į programėlę.",
+  "@completeAuth": {
+    "description": "Used on the auth page"
+  },
+  "authPageFail": "Nepavyko atidaryti prisijungimo puslapio.",
+  "@authPageFail": {
+    "description": "Used on the auth page"
+  },
+  "logout": "Atsijungiama...",
+  "@logout": {
+    "description": "Used on the auth page"
+  },
+  "logoutOk": "Atsijungta sėkmingai",
+  "@logoutOk": {
+    "description": "Used on the auth page"
+  },
+  "usingCachedSession": "Naudojama cache'uota sesija...",
+  "@usingCachedSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftKeys": "Kraunami Minecraft raktai...",
+  "@loadingMinecraftKeys": {
+    "description": "Used on the auth page"
+  },
+  "requestingXboxLiveToken": "Prašoma Xbox Live tokeno...",
+  "@requestingXboxLiveToken": {
+    "description": "Used on the auth page"
+  },
+  "loggingInToPlayFab": "Prisijungiama į PlayFab...",
+  "@loggingInToPlayFab": {
+    "description": "Used on the auth page"
+  },
+  "gettingUserInformation": "Gaunama naudotojo informacija...",
+  "@gettingUserInformation": {
+    "description": "Used on the auth page"
+  },
+  "startingMinecraftSession": "Pradedama Minecraft sesija...",
+  "@startingMinecraftSession": {
+    "description": "Used on the auth page"
+  },
+  "loadingMinecraftInventory": "Kraunamas Minecraft inventorius...",
+  "@loadingMinecraftInventory": {
+    "description": "Used on the auth page"
+  },
+  "successfullyLoadedKeys": "Sėkmingai užkrauta {keyCount} raktų!",
+  "@successfullyLoadedKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "keyCount": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "errorLoadingKeys": "Klaida užkraunant raktus: {error}",
+  "@errorLoadingKeys": {
+    "description": "Used on the auth page",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyClipboard": "Nukopijuota į iškarpinę",
+  "@copyClipboard": {
+    "description": "Used on the auth page"
+  },
+  "authOk": "Prisijungta",
+  "@authOk": {
+    "description": "Used on the auth page"
+  },
+  "authNotOk": "Neprisijungta",
+  "@authNotOk": {
+    "description": "Used on the auth page"
+  },
+  "urlAuth": "Prisijungimo URL",
+  "@urlAuth": {
+    "description": "Used on the auth page"
+  },
+  "loadedKeys": "Užkrauti raktai",
+  "@loadedKeys": {
+    "description": "Used on the auth page"
+  },
+  "exportNewKeys": "Eksportuoti tik naujus raktus",
+  "@exportNewKeys": {
+    "description": "Used on the auth page"
+  },
+  "loadKeysButton": "Užkrauti raktus",
+  "@loadKeysButton": {
+    "description": "Used on the auth page"
+  },
+  "logoutButton": "Atsijungti",
+  "@logoutButton": {
+    "description": "Used on the auth page"
+  },
+  "startAuthButton": "Pradėti prisijungimą",
+  "@startAuthButton": {
+    "description": "Used on the auth page"
+  },
+  "greetings": "Labas ",
+  "@greetings": {
+    "description": "Used on the auth page"
+  },
+  "startingDownload": "Pradedamas atsisiuntimas...",
+  "@startingDownload": {
+    "description": "Used on the download service"
+  },
+  "downloadsCompleted": "Atsisiuntimai baigti",
+  "@downloadsCompleted": {
+    "description": "Status when all downloads are finished"
+  },
+  "completed": "Užbaigta!",
+  "@completed": {
+    "description": "Final completion status"
+  },
+  "downloadFailed": "Atsisiuntimas nepavyko",
+  "@downloadFailed": {
+    "description": "Error status when download fails"
+  },
+  "downloading": "Atsisiunčiama",
+  "@downloading": {
+    "description": "Status during download progress"
+  },
+  "processing": "Apdorojama",
+  "@processing": {
+    "description": "Status during file processing"
+  },
+  "extractingZipFile": "Išarchyvuojamas zip failas...",
+  "@extractingZipFile": {
+    "description": "Status message when extracting zip files during DLC processing"
+  },
+  "decryptingContents": "Atšifruojamas turinys...",
+  "@decryptingContents": {
+    "description": "Status message when decrypting DLC contents"
+  },
+  "compressingPack": "Suspaudžiamas rinkinys...",
+  "@compressingPack": {
+    "description": "Status message when compressing the final pack"
+  },
+  "cleaningUp": "Apsivaloma...",
+  "@cleaningUp": {
+    "description": "Status message when cleaning up temporary files"
+  },
+  "showAll": "Rodyti visus",
+  "@showAll": {
+    "description": "Used for key filter"
+  },
+  "onlyAvailable": "Tik prieinami",
+  "@onlyAvailable": {
+    "description": "Used for key filter"
+  },
+  "onlyNotAvailable": "Tik neprieinami",
+  "@onlyNotAvailable": {
+    "description": "Used for key filter"
+  }
+}

@@ -1,0 +1,62 @@
+name: Linux build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_linux:
+    name: Build Flutter (Linux)
+    runs-on: ubuntu-latest
+    env:
+      PUB_ENVIRONMENT: "ci"
+      NO_WATCHMAN: "true"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Activate FastForge
+        run: dart pub global activate fastforge
+
+      - name: Add FastForge to path
+        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+
+      - name: Install Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locate libgtk-3-dev libzip-dev zip zipcmp zipmerge ziptool libbz2-dev
+          sudo updatedb
+
+      - name: Install AppImageTool
+        run: |
+          wget -O appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
+          chmod +x appimagetool
+          sudo mv appimagetool /usr/local/bin/
+
+      - name: Create .env.json
+        run: echo '${{ secrets.ENV_JSON }}' > .env.json
+
+      - name: Build Linux release
+        run: fastforge release --name release-linux
+
+      - name: Get short commit hash
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Rename AppImage
+        run: |
+          original_file=$(find dist -name "*.AppImage")
+          mv "$original_file" "Kyzen_alpha_${{ steps.vars.outputs.sha_short }}.AppImage"
+
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kyzen_alpha_${{ steps.vars.outputs.sha_short }}.AppImage
+          path: Kyzen_alpha_${{ steps.vars.outputs.sha_short }}.AppImage

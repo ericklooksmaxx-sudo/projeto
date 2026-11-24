@@ -1,0 +1,48 @@
+name: Android build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_android:
+    name: Build Flutter (Android)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Accept NDK licenses
+        run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+
+      - name: Create .env.json
+        run: echo '${{ secrets.ENV_JSON }}' > .env.json
+
+      - name: Build APK
+        run: flutter build apk --dart-define-from-file=.env.json
+
+      - name: Get short commit hash
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Rename APK
+        run: mv build/app/outputs/flutter-apk/app-release.apk Kyzen_alpha_${{ steps.vars.outputs.sha_short }}.apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kyzen_alpha_${{ steps.vars.outputs.sha_short }}.apk
+          path: Kyzen_alpha_${{ steps.vars.outputs.sha_short }}.apk
