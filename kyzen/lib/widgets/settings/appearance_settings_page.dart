@@ -286,16 +286,6 @@ class _AppearanceSettingsPageState extends State<AppearanceSettingsPage> {
     }
   }
 
-  Future<void> _toggleDarkMode(bool value) async {
-    try {
-      await _settingsService.setDarkMode(value);
-      setState(() => _isDarkMode = value);
-      widget.onThemeChanged(value);
-    } catch (_) {
-      _showErrorSnackBar('Failed to save theme setting');
-    }
-  }
-
   Future<void> _toggleMinecraftFont(bool value) async {
     try {
       await _settingsService.updateFont(value);

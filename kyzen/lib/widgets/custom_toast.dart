@@ -1,6 +1,5 @@
 import 'package:material_ui/material_ui.dart';
 
-import '../kyzen/kz_motion.dart';
 import '../kyzen/kz_surface.dart';
 import '../kyzen/kz_tokens.dart';
 

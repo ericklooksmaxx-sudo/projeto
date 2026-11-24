@@ -233,8 +233,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Criptografado: significa transformar o arquivo em palavras embaralhadas que parecem um amontoado de caracteres sem sentido. Ninguém consegue lê-lo sem uma chave especial. Conteúdo criptografado do Minecraft é impossível de jogar.\n\nDescriptografado: significa usar a chave especial para transformar o amontoado de caracteres sem sentido de volta ao conteúdo original. Agora o conteúdo do Minecraft pode ser usado.';
 
   @override
-  String get faqAnswer4 =>
-      'Você pode encontrar os pacotes em Download/Kyzen';
+  String get faqAnswer4 => 'Você pode encontrar os pacotes em Download/Kyzen';
 
   @override
   String get faqAnswer5 =>

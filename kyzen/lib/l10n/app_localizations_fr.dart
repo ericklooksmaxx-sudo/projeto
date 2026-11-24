@@ -231,8 +231,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Chiffré signifie que le fichier a été transformé en texte illisible. Personne ne peut le lire sans une clé spéciale. Les contenus Minecraft chiffrés sont injouables.\n\nDéchiffré signifie que cette clé spéciale a été utilisée pour rendre le contenu lisible à nouveau. Les contenus Minecraft peuvent alors être utilisés.';
 
   @override
-  String get faqAnswer4 =>
-      'Vous pouvez trouver les packs ici : Download/Kyzen';
+  String get faqAnswer4 => 'Vous pouvez trouver les packs ici : Download/Kyzen';
 
   @override
   String get faqAnswer5 =>

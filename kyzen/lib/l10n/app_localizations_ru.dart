@@ -752,8 +752,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noNewKeysFoundToSave => 'Ключи для сохранения не найдены';
 
   @override
-  String get keysSavedSuccessfully =>
-      'Ключи успешно сохранены в папку Kyzen';
+  String get keysSavedSuccessfully => 'Ключи успешно сохранены в папку Kyzen';
 
   @override
   String get entitlementKeys => 'Ключи доступа';
