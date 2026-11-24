@@ -1,0 +1,71 @@
+name: Kyzen Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'ccr-**'
+    paths:
+      - 'kyzen/**'
+      - '.github/workflows/kyzen-android.yml'
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: kyzen
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Accept Android SDK licenses
+        run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
+      # Optional: add an ENV_JSON repository secret with the key endpoints.
+      # Without it the app builds and runs, but the key database stays empty.
+      - name: Create .env.json
+        env:
+          ENV_JSON: ${{ secrets.ENV_JSON }}
+        run: |
+          if [ -n "$ENV_JSON" ]; then
+            printf '%s' "$ENV_JSON" > .env.json
+          else
+            echo '{}' > .env.json
+            echo "::warning::No ENV_JSON secret: building without key endpoints."
+          fi
+
+      - name: Build APK
+        run: flutter build apk --release --dart-define-from-file=.env.json
+
+      - name: Short commit hash
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Rename APK
+        run: mv build/app/outputs/flutter-apk/app-release.apk Kyzen_${{ steps.vars.outputs.sha_short }}.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kyzen_${{ steps.vars.outputs.sha_short }}
+          path: kyzen/Kyzen_${{ steps.vars.outputs.sha_short }}.apk
+          if-no-files-found: error
