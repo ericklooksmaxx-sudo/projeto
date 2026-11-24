@@ -45,6 +45,7 @@ import 'widgets/key_server_restriction_dialog.dart';
 import 'widgets/announcements_tab.dart';
 import 'services/announcements_service.dart';
 import 'kyzen/gate/gate_page.dart';
+import 'kyzen/kz_boot.dart';
 import 'kyzen/gate/pass_service.dart';
 import 'kyzen/kz_surface.dart';
 import 'kyzen/kz_theme.dart';
@@ -210,16 +211,25 @@ class _MainAppState extends State<MainApp> {
 
   Future<void> _authenticateAndInitialize() async {
     if (mounted) setState(() => _loadingKey = 'apiLogin');
-    await _authenticate();
+    await KzBoot.tryStep(
+      'playfab login',
+      _authenticate,
+      timeout: const Duration(seconds: 45),
+    );
 
     if (Platform.isWindows) {
       if (mounted) setState(() => _loadingKey = 'processingEntitlement');
-      await _processEntitlement();
+      await KzBoot.tryStep('entitlement', _processEntitlement);
     }
 
     if (mounted) setState(() => _loadingKey = 'checkingKeys');
-    await _initializeKeysAndStartupSearch();
+    await KzBoot.tryStep(
+      'keys',
+      _initializeKeysAndStartupSearch,
+      timeout: const Duration(seconds: 60),
+    );
 
+    KzBoot.mark('opening the app');
     if (mounted) {
       setState(() {
         _loadingKey = null;
@@ -229,9 +239,16 @@ class _MainAppState extends State<MainApp> {
 
     if (!_hasDeepLink) {
       if (_selectedSearchType == 'discovery') {
-        await _loadDiscovery();
+        await KzBoot.tryStep(
+          'discovery',
+          _loadDiscovery,
+          timeout: const Duration(seconds: 45),
+        );
       } else {
-        await _performSearch('', filter: 'default', pageSize: _pageSize);
+        await KzBoot.tryStep(
+          'first search',
+          () => _performSearch('', filter: 'default', pageSize: _pageSize),
+        );
       }
     }
   }
@@ -252,13 +269,19 @@ class _MainAppState extends State<MainApp> {
     });
 
     try {
-      final keyUpdateEnabled = await _settingsService.getKeyUpdate();
+      final keyUpdateEnabled = await KzBoot.step(
+        'read settings',
+        _settingsService.getKeyUpdate,
+      );
 
       int count = 0;
       if (keyUpdateEnabled) {
-        count = await KeysService.instance.initialize(download: true);
+        count = await KzBoot.step(
+          'download keys',
+          () => KeysService.instance.initialize(download: true),
+        );
       } else {
-        count = await KeysService.instance.loadKeys();
+        count = await KzBoot.step('load keys', KeysService.instance.loadKeys);
       }
 
       if (count > 0 && keyUpdateEnabled) {

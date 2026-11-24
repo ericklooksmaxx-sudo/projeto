@@ -1,6 +1,7 @@
 import 'package:kyzen/l10n/context_extensions.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../kyzen/kz_boot.dart';
 import '../kyzen/kz_motion.dart';
 import '../kyzen/kz_surface.dart';
 import '../kyzen/kz_tokens.dart';
@@ -82,6 +83,20 @@ class LoadingScreen extends StatelessWidget {
                       key: ValueKey<String>(message),
                       textAlign: TextAlign.center,
                       style: KzType.meta.copyWith(fontSize: 13),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  // which call the boot is in, and for how long
+                  ValueListenableBuilder<String>(
+                    valueListenable: KzBoot.status,
+                    builder: (context, status, _) => Text(
+                      status,
+                      textAlign: TextAlign.center,
+                      style: KzType.tiny.copyWith(
+                        fontSize: 11,
+                        color: KzColors.ink3,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
