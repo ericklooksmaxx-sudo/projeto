@@ -54,6 +54,13 @@ import 'kyzen/kz_top_bar.dart';
 void main() async {
   setupDebugPrint();
   WidgetsFlutterBinding.ensureInitialized();
+  // a build that throws must say so on screen, not only in the device log
+  final void Function(FlutterErrorDetails)? previousOnError =
+      FlutterError.onError;
+  FlutterError.onError = (FlutterErrorDetails details) {
+    KzBoot.onFlutterError(details);
+    previousOnError?.call(details);
+  };
   if (Platform.isAndroid) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setSystemUIOverlayStyle(
@@ -696,12 +703,10 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    // Loading screen
-    if (_loadingKey != null) {
-      return _buildMaterialApp(home: LoadingScreen(loadingKey: _loadingKey!));
-    }
-
-    // Main app
+    // One MaterialApp for the whole life of the app: the loading screen is a
+    // page inside it, not a second app. Swapping the app itself meant swapping
+    // the Navigator and its global keys mid-boot, which could leave the old
+    // loading screen on screen after start-up had finished.
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -714,7 +719,9 @@ class _MainAppState extends State<MainApp> {
         ChangeNotifierProvider(create: (context) => SkinService()),
       ],
       child: _buildMaterialApp(
-        home: Builder(
+        home: _loadingKey != null
+            ? LoadingScreen(loadingKey: _loadingKey!)
+            : Builder(
           builder: (innerContext) {
             if (_needToShowMessages) {
               _showPendingMessages(innerContext);

@@ -80,6 +80,24 @@ class KzBoot {
     }
   }
 
+  /// Records a framework error so a failed build shows up on screen instead of
+  /// only in logcat.
+  static void onFlutterError(FlutterErrorDetails details) {
+    final String text = details.exceptionAsString();
+    final String short = text.length > 140 ? '${text.substring(0, 140)}…' : text;
+    log.add('ERROR: $short');
+    _ticker?.cancel();
+    _ticker = null;
+    status.value = 'error: $short';
+  }
+
+  /// The last few steps, newest last — shown under the loading message.
+  static String tail([int n = 3]) {
+    if (log.isEmpty) return '';
+    final int from = log.length > n ? log.length - n : 0;
+    return log.sublist(from).join('\n');
+  }
+
   static void mark(String label) {
     _ticker?.cancel();
     _ticker = null;

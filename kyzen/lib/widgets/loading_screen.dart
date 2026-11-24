@@ -89,14 +89,33 @@ class LoadingScreen extends StatelessWidget {
                   // which call the boot is in, and for how long
                   ValueListenableBuilder<String>(
                     valueListenable: KzBoot.status,
-                    builder: (context, status, _) => Text(
-                      status,
-                      textAlign: TextAlign.center,
-                      style: KzType.tiny.copyWith(
-                        fontSize: 11,
-                        color: KzColors.ink3,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    builder: (context, status, _) => Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          status,
+                          textAlign: TextAlign.center,
+                          style: KzType.tiny.copyWith(
+                            fontSize: 11,
+                            color: status.startsWith('error')
+                                ? KzColors.bad
+                                : KzColors.ink3,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        if (KzBoot.tail().isNotEmpty) ...[
+                          const SizedBox(height: 8),
+                          Text(
+                            KzBoot.tail(),
+                            textAlign: TextAlign.center,
+                            style: KzType.tiny.copyWith(
+                              fontSize: 10,
+                              color: KzColors.ink3,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                   ),
                 ],
