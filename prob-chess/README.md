@@ -27,9 +27,15 @@ typedef struct { float mu, sigma; } Belief;
 * `sigma` — **volatilidade**: o quanto a própria engine desconfia desse número
 
 `sigma` cresce com peças penduradas, damas no tabuleiro, reis expostos e
-xeques disponíveis; encolhe em finais técnicos e posições travadas. Um final
-de torres tem `sigma ≈ 1,5%`; um ataque de peões sobre o roque adversário
-passa de `25%`.
+xeques disponíveis; encolhe em finais técnicos. Valores medidos:
+
+| posição | sigma |
+|---|---|
+| final de peões travados | 4,1% |
+| final de torres | 5,6% |
+| posição inicial | 6,6% |
+| meio-jogo com combinação latente (WAC.001) | 16,2% |
+| Kiwipete (peças penduradas dos dois lados) | 28,2% |
 
 Essa é a peça central. Em uma engine convencional, "+0,30" e "+0,30" são a
 mesma coisa. Aqui, `0,53 ± 0,02` e `0,53 ± 0,22` são posições completamente
@@ -103,7 +109,7 @@ está perdida à força, ela diz isso.
 * **Escolha final estocástica**: entre lances objetivamente equivalentes (dentro
   de uma janela estreita de probabilidade de vitória) a escolha é sorteada por
   temperamento. Quando um lance é claramente melhor, ela joga esse lance.
-* **Livro de aberturas probabilístico** com 52 linhas principais e 645 posições,
+* **Livro de aberturas probabilístico** com 51 linhas principais e 645 posições,
   amostrado por peso — ela não repete a mesma partida.
 * **Justificativa em português** gerada do traço da avaliação, não de templates
   fixos: *"Dxh7+ — força o mate e dá xeque e não deixa respirar. Minhas
@@ -160,9 +166,9 @@ vê-la e jogar outra coisa.
 
 Nada aqui foi aceito por parecer certo.
 
-**Gerador de lances.** `perft` até profundidade 6 em 6 posições padrão
-(119 060 324 e 193 690 690 nós inclusive), além de `perft divide` comparado nó
-a nó contra `tests/ref.py` — um gerador *mailbox* ingênuo escrito de forma
+**Gerador de lances.** `perft` em 6 posições (5 padrão + 1 conferida aqui),
+profundidades 4 a 6, incluindo 119 060 324 e 193 690 690 nós, além de
+`perft divide` comparado nó a nó contra `tests/ref.py` — um gerador *mailbox* ingênuo escrito de forma
 independente, sem bitboards, só para servir de testemunha.
 
 ```bash
