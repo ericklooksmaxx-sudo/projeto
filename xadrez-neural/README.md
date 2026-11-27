@@ -51,3 +51,23 @@ Arquivos:
 - `play.py`: jogar contra a rede
 - `log.jsonl`: histórico completo do treino
 - `checkpoints/`: pesos treinados de Alfa e Beta e uma partida Alfa x Beta em PGN
+
+## Resultados do treino (3 horas, 164.864 partidas Alfa x Beta)
+
+Avaliações em 40 partidas contra a referência Materialista (vitórias/empates/derrotas da Alfa):
+
+| Partidas de treino | Alfa x Materialista | Sonda "dama a mais" (Beta) |
+|---:|:---:|:---:|
+| 1.280 | 4 / 11 / 25 | +0,04 |
+| 11.520 | 17 / 15 / 8 | +0,04 |
+| 42.240 | 29 / 8 / 3 | +0,09 |
+| 93.440 | 35 / 5 / 0 | +0,20 |
+| 163.840 | 31 / 9 / 0 | +0,28 |
+
+Confronto final (200 partidas): **Alfa 77 x 40 Beta** (83 empates).
+Contra a Materialista (100 partidas): Alfa 90/8/2, Beta 60/26/14.
+Sozinha, a Beta passou a dar mais valor à dama do que à torre, à torre mais do que ao
+bispo e ao bispo mais do que ao cavalo e ao peão.
+
+Partida Claude (brancas) x Alfa: `checkpoints/claude_x_alfa.pgn` (vitória das brancas
+por mate no lance 22). A rede ainda entrega peças: ela só olha 1 lance à frente, sem busca.
